@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:overslime_modifier",
+  "ingredient": {
+    "item": "slimeworld:ocean_slime_ball"
+  },
+  "restore_amount": 30,
+  "tools": {
+    "tag": "tconstruct:modifiable/durability"
+  }
+}

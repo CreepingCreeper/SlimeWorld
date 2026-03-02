@@ -1,0 +1,16 @@
+{
+  "type": "crossroads:mill",
+  "conditions": [
+    {
+      "modid": "crossroads",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "input": {
+    "item": "tconstruct:necrotic_bone"
+  },
+  "output": {
+    "item": "slimeworld:necrotic_bone_meal",
+    "count": 5
+  }
+}

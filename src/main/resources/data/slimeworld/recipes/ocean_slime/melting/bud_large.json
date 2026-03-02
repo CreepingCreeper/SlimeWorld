@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:ore_melting",
+  "ingredient": {
+    "item": "slimeworld:large_ocean_slime_crystal_bud"
+  },
+  "rate": "gem",
+  "result": {
+    "amount": 750,
+    "fluid": "slimeworld:ocean_slime"
+  },
+  "temperature": 70,
+  "time": 64
+}

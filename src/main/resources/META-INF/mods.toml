@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+issueTrackerURL=""
+logoFile="logo.png"
+license="MIT"
+[[mods]]
+modId="slimeworld"
+version="0.1.6.6"
+displayName="Slime World"
+authors="Creeping Creeper"
+description='''
+An addon mod for Tinkers' Construct.
+    '''
+  displayURL=""
+
+[[dependencies.slimeworld]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.slimeworld]]
+modId="forge"
+mandatory=true
+versionRange="[47.1.40,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.slimeworld]]
+modId="tconstruct"
+mandatory=true
+versionRange="[3.11.2.166,)"
+ordering = "AFTER"
+side="BOTH"

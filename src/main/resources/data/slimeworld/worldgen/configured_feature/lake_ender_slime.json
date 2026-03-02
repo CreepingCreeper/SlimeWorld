@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:lake",
+  "config": {
+    "barrier": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "tconstruct:ender_congealed_slime"
+      }
+    },
+    "fluid": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "tconstruct:ender_slime_fluid",
+        "Properties": {
+          "level": "0"
+        }
+      }
+    }
+  }
+}

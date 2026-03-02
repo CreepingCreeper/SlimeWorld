@@ -1,0 +1,60 @@
+{
+  "type": "slimeworld:slimeworld_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "slimeworld:honey_fields",
+          "parameters": { "temperature": 0, "humidity": [-1, 1], "continentalness": [-2, -1.05], "erosion": [-1, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:deep_forgotten_ocean",
+          "parameters": { "temperature": 0, "humidity": [-1, 1], "continentalness": [-1.05, -0.455], "erosion": [-1, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:forgotten_ocean",
+          "parameters": { "temperature": 0, "humidity": [-1, 1], "continentalness": [-0.455, -0.19], "erosion": [-1, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:red_beach",
+          "parameters": { "temperature": 0, "humidity": [0, 1], "continentalness": [-0.19, -0.11], "erosion": [-0.78, 0.05], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:clay_waste",
+          "parameters": { "temperature": 0, "humidity": [-1, 0], "continentalness": [-0.19, -0.11], "erosion": [-0.375, 0.45], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:earth_plains",
+          "parameters": { "temperature": 0, "humidity": [-0.35, -0.1], "continentalness": [-0.11, 0.3], "erosion": [-0.2225, 0.55], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:sky_hills",
+          "parameters": { "temperature": 0, "humidity": [-0.1, 0.1], "continentalness": [-0.11, 0.3], "erosion": [-1, -0.375], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:blood_forest",
+          "parameters": { "temperature": 0, "humidity": [0.1, 0.3], "continentalness": [-0.11, 0.3], "erosion": [-0.78, 0.45], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:ender_swamp",
+          "parameters": { "temperature": 0, "humidity": [0.3, 1], "continentalness": [-0.11, 0.3], "erosion": [0.55, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:lacerated_land",
+          "parameters": { "temperature": 0, "humidity": [0, 1], "continentalness": [0.3, 2], "erosion": [-1, 0], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:crystal_desert",
+          "parameters": { "temperature": 0, "humidity": [-1, 0], "continentalness": [0.3, 2], "erosion": [0, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:ichor_caves",
+          "parameters": { "temperature": 0, "humidity": [-1, 1], "continentalness": [0.03, 2], "erosion": [-1, 1], "depth": [0.35, 1], "weirdness": 0, "offset": 0 }
+        }
+      ]
+    },
+    "settings": "slimeworld:slimeworld_setting"
+  }
+}

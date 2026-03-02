@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_table",
+  "cooling_time": 53,
+  "fluid": {
+    "amount": 250,
+    "fluid": "slimeworld:ocean_slime"
+  },
+  "result": "slimeworld:ocean_slime_ball"
+}

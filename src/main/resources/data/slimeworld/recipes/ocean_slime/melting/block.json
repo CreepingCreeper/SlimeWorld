@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "slimeworld:ocean_slime"
+  },
+  "result": {
+    "amount": 2250,
+    "fluid": "slimeworld:ocean_slime"
+  },
+  "temperature": 70,
+  "time": 95
+}

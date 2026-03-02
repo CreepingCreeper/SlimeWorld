@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "slimeworld:block/geode/cluster",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "slimeworld:block/geode/cluster",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "slimeworld:block/geode/cluster",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "slimeworld:block/geode/cluster",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "slimeworld:block/geode/cluster"
+    },
+    "facing=west": {
+      "model": "slimeworld:block/geode/cluster",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

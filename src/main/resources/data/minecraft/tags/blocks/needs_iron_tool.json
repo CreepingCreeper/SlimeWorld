@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "slimeworld:bronze_block",
+    "slimeworld:ichor_earth_slime_grass",
+    "slimeworld:ichor_sky_slime_grass",
+    "slimeworld:ichor_ichor_slime_grass",
+    "slimeworld:ichor_ender_slime_grass",
+    "slimeworld:ichor_vanilla_slime_grass"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "slimeworld:ichor_slime_vegetation",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.08,
+        "feature": {
+          "feature": "slimeworld:ichor_slime_island_fungus",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

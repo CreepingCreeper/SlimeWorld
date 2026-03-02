@@ -1,0 +1,4 @@
+{
+  "parent": "slimeworld:block/stick_punjis/stick",
+  "transform": { "translation": [ 0, 0, -0.5 ] }
+}

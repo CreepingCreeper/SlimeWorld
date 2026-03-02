@@ -1,0 +1,18 @@
+{
+  "type": "immersiveengineering:crusher",
+  "conditions": [
+    {
+      "modid": "immersiveengineering",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "energy": 1600,
+  "input": {
+    "item": "tconstruct:necrotic_bone"
+  },
+  "result": {
+    "count": 6,
+    "item": "slimeworld:necrotic_bone_meal"
+  },
+  "secondaries": []
+}

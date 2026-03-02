@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "action": "shears_dig",
+          "condition": "forge:can_tool_perform_action"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "slimeworld:iron_berry_bush"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "slimeworld:iron_berry_bush",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "slimeworld:iron_shard"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

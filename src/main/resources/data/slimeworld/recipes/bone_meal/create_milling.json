@@ -1,0 +1,30 @@
+{
+  "type": "create:milling",
+  "conditions": [
+    {
+      "modid": "create",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "tconstruct:necrotic_bone"
+    }
+  ],
+  "processingTime": 100,
+  "results": [
+    {
+      "count": 3,
+      "item": "slimeworld:necrotic_bone_meal"
+    },
+    {
+      "chance": 0.25,
+      "item": "minecraft:black_dye"
+    },
+    {
+      "chance": 0.25,
+      "count": 3,
+      "item": "slimeworld:necrotic_bone_meal"
+    }
+  ]
+}

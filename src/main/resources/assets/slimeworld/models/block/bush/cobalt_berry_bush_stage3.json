@@ -1,0 +1,7 @@
+{
+  "parent": "slimeworld:block/bush/ore_stage3",
+  "textures": {
+    "cross": "slimeworld:block/bush/ore_stage3",
+    "berry": "slimeworld:block/bush/cobalt_berry"
+  }
+}

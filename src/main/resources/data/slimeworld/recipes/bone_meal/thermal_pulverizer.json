@@ -1,0 +1,18 @@
+{
+  "type": "thermal:pulverizer",
+  "conditions": [
+    {
+      "modid": "thermal_expansion",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "ingredient": {
+    "item": "tconstruct:necrotic_bone"
+  },
+  "result": [
+    {
+      "item": "slimeworld:necrotic_bone_meal",
+      "chance": 4.5
+    }
+  ]
+}

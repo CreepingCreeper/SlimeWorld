@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#tconstruct:ocean_slime",
+    "slimeworld:resonance_slime"
+  ]
+}

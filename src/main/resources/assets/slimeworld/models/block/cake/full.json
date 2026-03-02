@@ -1,0 +1,9 @@
+{
+  "parent": "block/cake",
+  "textures": {
+    "particle": "slimeworld:block/cake/side",
+    "bottom":   "slimeworld:block/cake/bottom",
+    "top":      "slimeworld:block/cake/top",
+    "side":     "slimeworld:block/cake/side"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cast": {
+    "item": "minecraft:gravel"
+  },
+  "cast_consumed": true,
+  "cooling_time": 75,
+  "fluid": {
+    "amount": 500,
+    "fluid": "slimeworld:ocean_slime"
+  },
+  "result": "slimeworld:slime_gravel"
+}

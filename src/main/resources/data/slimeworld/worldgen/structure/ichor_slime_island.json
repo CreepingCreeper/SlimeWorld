@@ -1,0 +1,57 @@
+{
+  "type": "tconstruct:island",
+  "biomes": "#tconstruct:islands/blood",
+  "grasses": [
+    {
+      "data": "slimeworld:ichor_slime_tall_grass",
+      "weight": 7
+    },
+    {
+      "data": "slimeworld:ichor_slime_fern",
+      "weight": 1
+    }
+  ],
+  "placement": "sky",
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "full",
+      "spawns": [
+        {
+          "type": "slimeworld:ichor_slime",
+          "maxCount": 6,
+          "minCount": 4,
+          "weight": 1
+        }
+      ]
+    }
+  },
+  "step": "surface_structures",
+  "templates": [
+    {
+      "data": "slimeworld:islands/ichor/0x1x0",
+      "weight": 1
+    },
+    {
+      "data": "slimeworld:islands/ichor/2x2x4",
+      "weight": 1
+    },
+    {
+      "data": "slimeworld:islands/ichor/4x1x6",
+      "weight": 1
+    },
+    {
+      "data": "slimeworld:islands/ichor/8x1x11",
+      "weight": 1
+    },
+    {
+      "data": "slimeworld:islands/ichor/11x1x11",
+      "weight": 1
+    }
+  ],
+  "trees": [
+    {
+      "data": "slimeworld:ichor_slime_island_fungus",
+      "weight": 1
+    }
+  ]
+}

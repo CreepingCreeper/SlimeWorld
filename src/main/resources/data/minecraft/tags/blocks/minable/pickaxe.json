@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "slimeworld:bronze_block",
+    "slimeworld:ocean_slime_crystal_block",
+    "slimeworld:small_ocean_slime_crystal_bud",
+    "slimeworld:medium_ocean_slime_crystal_bud",
+    "slimeworld:large_ocean_slime_crystal_bud",
+    "slimeworld:ocean_slime_crystal_cluster",
+    "slimeworld:budding_ocean_slime_crystal",
+    "slimeworld:bronze_cluster"
+  ]
+}

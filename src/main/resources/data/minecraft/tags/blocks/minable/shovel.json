@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "slimeworld:ocean_congealed_slime",
+    "slimeworld:slime_gravel",
+    "slimeworld:ichor_earth_slime_grass",
+    "slimeworld:ichor_sky_slime_grass",
+    "slimeworld:ichor_ichor_slime_grass",
+    "slimeworld:ichor_ender_slime_grass",
+    "slimeworld:ichor_vanilla_slime_grass"
+  ]
+}

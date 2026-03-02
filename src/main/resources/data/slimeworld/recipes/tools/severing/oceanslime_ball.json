@@ -1,0 +1,7 @@
+{
+  "type": "tconstruct:severing",
+  "entity": {
+    "type": "slimeworld:ocean_slime"
+  },
+  "result": "slimeworld:ocean_slime_ball"
+}

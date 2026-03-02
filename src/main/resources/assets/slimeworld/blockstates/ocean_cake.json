@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "bites=0": { "model": "slimeworld:block/cake/full" },
+    "bites=1": { "model": "slimeworld:block/cake/slice1" },
+    "bites=2": { "model": "slimeworld:block/cake/slice2" },
+    "bites=3": { "model": "slimeworld:block/cake/slice3" },
+    "bites=4": { "model": "slimeworld:block/cake/slice4" },
+    "bites=5": { "model": "slimeworld:block/cake/slice5" },
+    "bites=6": { "model": "slimeworld:block/cake/slice6" }
+  }
+}

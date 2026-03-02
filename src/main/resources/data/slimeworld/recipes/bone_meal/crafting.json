@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "bonemeal",
+  "ingredients": [
+    {
+      "item": "tconstruct:necrotic_bone"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "slimeworld:necrotic_bone_meal"
+  }
+}

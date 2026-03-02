@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "slimeworld:block/bush/slime_berry_bush_stage0"
+    },
+    "age=1": {
+      "model": "slimeworld:block/bush/slime_berry_bush_stage1"
+    },
+    "age=2,berry=0": {
+      "model": "slimeworld:block/bush/slime_berry_bush_stage2"
+    },
+    "age=2,berry=1": {
+      "model": "slimeworld:block/bush/earth_slime_berry_bush_stage2"
+    },
+    "age=2,berry=2": {
+      "model": "slimeworld:block/bush/sky_slime_berry_bush_stage2"
+    },
+    "age=2,berry=4": {
+      "model": "slimeworld:block/bush/ender_slime_berry_bush_stage2"
+    },
+    "age=2,berry=5": {
+      "model": "slimeworld:block/bush/blood_slime_berry_bush_stage2"
+    },
+    "age=3,berry=0": {
+      "model": "slimeworld:block/bush/slime_berry_bush_stage3"
+    },
+    "age=3,berry=1": {
+      "model": "slimeworld:block/bush/earth_slime_berry_bush_stage3"
+    },
+    "age=3,berry=2": {
+      "model": "slimeworld:block/bush/sky_slime_berry_bush_stage3"
+    },
+    "age=3,berry=4": {
+      "model": "slimeworld:block/bush/ender_slime_berry_bush_stage3"
+    },
+    "age=3,berry=5": {
+      "model": "slimeworld:block/bush/blood_slime_berry_bush_stage3"
+    }
+  }
+}

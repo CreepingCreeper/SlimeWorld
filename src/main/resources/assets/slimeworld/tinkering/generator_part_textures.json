@@ -1,0 +1,10 @@
+{
+  "parts": [
+    {
+      "allow_animated": false,
+      "path": "minecraft:entity/creeper",
+      "stat_type": "tconstruct:repair_kit"
+    }
+  ],
+"replace": false
+}

@@ -1,0 +1,64 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "data": {
+                  "Name": "tconstruct:sky_slime_crystal_cluster"
+                },
+                "weight": 18
+              },
+              {
+                "data": {
+                  "Name": "tconstruct:steel_cluster"
+                },
+                "weight": 7
+              },
+              {
+                "data": {
+                  "Name": "tconstruct:large_sky_slime_crystal_bud"
+                },
+                "weight": 25
+              },
+              {
+                "data": {
+                  "Name": "tconstruct:medium_sky_slime_crystal_bud"
+                },
+                "weight": 25
+              },
+              {
+                "data": {
+                  "Name": "tconstruct:small_sky_slime_crystal_bud"
+                },
+                "weight": 25
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:all_of",
+            "predicates": [
+              {
+                "type": "minecraft:matching_blocks",
+                "blocks": "minecraft:air"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 32,
+    "xz_spread": 7,
+    "y_spread": 3
+  }
+}

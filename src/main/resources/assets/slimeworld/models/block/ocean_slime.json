@@ -1,0 +1,8 @@
+{
+  "render_type": "minecraft:translucent",
+  "parent": "block/slime_block",
+  "textures": {
+    "particle": "slimeworld:block/ocean_slime",
+    "texture": "slimeworld:block/ocean_slime"
+  }
+}

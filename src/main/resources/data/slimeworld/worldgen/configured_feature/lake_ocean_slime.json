@@ -1,0 +1,20 @@
+{
+  "type": "slimeworld:ocean_lake",
+  "config": {
+    "barrier": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "slimeworld:ocean_congealed_slime"
+      }
+    },
+    "fluid": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "slimeworld:ocean_slime_fluid",
+        "Properties": {
+          "level": "0"
+        }
+      }
+    }
+  }
+}

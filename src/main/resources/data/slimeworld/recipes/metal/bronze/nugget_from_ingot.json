@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "tconstruct:cobalt_ingot",
+  "ingredients": [{ "item": "slimeworld:bronze_ingot" }],
+  "result": {
+    "item": "slimeworld:bronze_nugget",
+    "count": 9
+  }
+}

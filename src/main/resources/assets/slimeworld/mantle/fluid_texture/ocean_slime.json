@@ -1,0 +1,13 @@
+{
+  "camera": "slimeworld:fluid/ocean_slime/camera",
+  "camera_opacity": 0.1,
+  "color": "FFFFFFFF",
+  "flowing": "slimeworld:fluid/ocean_slime/flowing",
+  "fog": {
+    "calculate_color": true,
+    "end": 24.0,
+    "shape": "sphere",
+    "start": -8.0
+  },
+  "still": "slimeworld:fluid/ocean_slime/still"
+}

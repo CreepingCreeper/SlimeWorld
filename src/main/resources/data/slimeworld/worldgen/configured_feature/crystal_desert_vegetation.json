@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:simple_random_selector",
+  "config": {
+    "features": [
+      "slimeworld:amethyst_vegetation",
+      "slimeworld:earth_slime_crystal_vegetation",
+      "slimeworld:sky_slime_crystal_vegetation",
+      "slimeworld:ichor_slime_crystal_vegetation",
+      "slimeworld:ender_slime_crystal_vegetation",
+      "slimeworld:ocean_slime_crystal_vegetation"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:ore_melting",
+  "ingredient": {
+    "item": "slimeworld:ocean_slime_crystal_cluster"
+  },
+  "rate": "gem",
+  "result": {
+    "amount": 1000,
+    "fluid": "slimeworld:ocean_slime"
+  },
+  "temperature": 70,
+  "time": 79
+}
