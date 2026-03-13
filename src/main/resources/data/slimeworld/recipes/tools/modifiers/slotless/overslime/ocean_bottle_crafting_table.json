@@ -1,0 +1,10 @@
+{
+  "type": "tconstruct:crafting_overslime_modifier",
+  "ingredient": {
+    "item": "slimeworld:ocean_slime_bottle"
+  },
+  "restore_amount": 30,
+  "tools": {
+    "tag": "tconstruct:modifiable/durability"
+  }
+}

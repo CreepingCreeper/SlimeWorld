@@ -84,7 +84,8 @@ public class ModItems {
     public static final ItemObject<IchorNyliumBlock> IchorEnderSlimeNylium = BLOCKS.register("ichor_ender_slime_grass", () -> new IchorNyliumBlock(ichorNylium(), DirtType.ENDER), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<IchorNyliumBlock> IchorVanillaSlimeNylium = BLOCKS.register("ichor_vanilla_slime_grass", () -> new IchorNyliumBlock(ichorNylium(), DirtType.VANILLA), TOOLTIP_BLOCK_ITEM);
 
-    public static final ItemObject<Block> SlimeKelp = BLOCKS.register("slime_kelp", () -> new SlimeKelpBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().randomTicks().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> SlimeWeed = BLOCKS.register("slime_weed", () -> new GlowLichenBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> SlimeKelp = BLOCKS.register("slime_kelp", () -> new SlimeKelpBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().randomTicks().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)), GENERAL_BLOCK_ITEM);
     public static final RegistryObject<Block> SlimeKelpPlant = BLOCKS.registerNoItem("slime_kelp_plant", () -> new SlimeKelpPlantBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)));
     public static final ItemObject<Block> StickPunjis = BLOCKS.register("stick_punjis", () -> new StickPunjisBlock(grass().strength(3.0F).speedFactor(0.4F).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> FieryFlower = BLOCKS.register("fiery_flower", () -> new FieryFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
@@ -149,6 +150,7 @@ public class ModItems {
         output.accept(IchorEnderSlimeNylium);
         output.accept(IchorVanillaSlimeNylium);
 
+        output.accept(SlimeWeed);
         output.accept(SlimeKelp);
         output.accept(StickPunjis);
         output.accept(FieryFlower);

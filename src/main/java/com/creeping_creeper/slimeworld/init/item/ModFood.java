@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.item;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
 import slimeknights.tconstruct.shared.TinkerEffects;
 
 public class ModFood {

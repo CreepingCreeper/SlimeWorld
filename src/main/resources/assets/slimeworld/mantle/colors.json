@@ -1,0 +1,14 @@
+{
+  "modifier.slimeworld":
+  {
+    "sputtering": "#568bf5"
+  },
+  "material.slimeworld":
+  {
+    "oceanslime": "#568bf5"
+  },
+  "material.tconstruct":
+  {
+    "slimeball.ocean":  "#568bf5"
+  }
+}

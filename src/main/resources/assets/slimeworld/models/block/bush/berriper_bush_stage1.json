@@ -1,7 +1,0 @@
-{
-  "render_type": "cutout",
-  "parent": "block/cross",
-  "textures": {
-    "cross": "slimeworld:block/bush/slime_stage1"
-  }
-}

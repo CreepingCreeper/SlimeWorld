@@ -48,8 +48,7 @@ public class NecroticBoneMealItem extends Item {
                 }
                 item.shrink(1);
                 return true;
-            }else if (blockstate.getBlock() instanceof NecroticBonemealableBlock) {
-                NecroticBonemealableBlock block = (NecroticBonemealableBlock)blockstate.getBlock();
+            }else if (blockstate.getBlock() instanceof NecroticBonemealableBlock block) {
                 if (block.isValidBonemealTarget(level, pos, blockstate, level.isClientSide)) {
                     if (level instanceof ServerLevel) {
                         player.hurt(TinkerDamageTypes.source(level.registryAccess(), TinkerDamageTypes.BLEEDING), 3);

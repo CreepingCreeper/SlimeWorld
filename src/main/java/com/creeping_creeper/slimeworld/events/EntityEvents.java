@@ -4,7 +4,6 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.entity.BossSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.IchorSlimeEntity;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;

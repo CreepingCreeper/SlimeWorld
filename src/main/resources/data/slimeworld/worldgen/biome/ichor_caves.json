@@ -28,6 +28,7 @@
   "features": [
     [],
     [
+      "slimeworld:lake_ichor",
       "minecraft:lake_lava_underground",
       "minecraft:lake_lava_surface"
     ],

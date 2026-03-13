@@ -8,6 +8,7 @@ import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.pathfinder.Node;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathFinder;
@@ -106,14 +107,6 @@ public class InvertedGroundPathNavigation extends PathNavigation {
     }
 
     private boolean canSeeSkyWithoutSolid(Level level, BlockPos pos){
-        if (!level.canSeeSky(pos)){
-            return false;
-        }
-        for(BlockPos pos1 = pos; pos1.getY() < level.getMaxBuildHeight(); pos1 = pos1.above()) {
-           if (level.getBlockState(pos).isSolid()){
-               return false;
-           }
-        }
-        return true;
+        return level.canSeeSky(pos) && level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING, pos).getY() <= pos.getY();
     }
 }

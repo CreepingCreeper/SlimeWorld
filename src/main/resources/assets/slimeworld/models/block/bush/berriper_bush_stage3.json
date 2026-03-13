@@ -1,7 +1,7 @@
 {
-  "render_type": "cutout",
-  "parent": "block/cross",
+  "parent": "slimeworld:block/bush/ore_stage3",
   "textures": {
-    "cross": "slimeworld:block/bush/berriper_stage3"
+    "cross": "slimeworld:block/bush/slime_stage3",
+    "berry": "slimeworld:block/bush/berriper"
   }
 }

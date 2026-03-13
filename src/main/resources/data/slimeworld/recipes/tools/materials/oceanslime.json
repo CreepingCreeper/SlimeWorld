@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "ingredient": {
+    "item": "slimeworld:ocean_slime_crystal"
+  },
+  "material": "slimeworld:oceanslime",
+  "needed": 1,
+  "value": 1
+}

@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.block.grass;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;

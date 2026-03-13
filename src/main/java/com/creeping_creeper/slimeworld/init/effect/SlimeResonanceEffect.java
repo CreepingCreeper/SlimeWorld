@@ -1,6 +1,8 @@
 package com.creeping_creeper.slimeworld.init.effect;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
+import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.library.ParticleUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -44,9 +46,7 @@ public class SlimeResonanceEffect extends TinkerEffect {
             if (server == null) return;
             ServerLevel serverLevel = level.dimension() == SLIMEWORLD ? server.getLevel(Level.OVERWORLD) : server.getLevel(SLIMEWORLD);
             if (serverLevel != null) {
-                if (level instanceof ServerLevel serverLevel0){
-                    serverLevel0.sendParticles(ParticleTypes.ITEM_SLIME, living.getX(), living.getY(), living.getZ(), 1, 0.0F, 0.0F, 0, 0);
-                }
+                ParticleUtil.slimeParticle(level,ParticleTypes.ITEM_SLIME, 12, 1, living.getX(), living.getY() + 0.1, living.getZ());
                 living.teleportTo(serverLevel, living.getX(), 256 ,living.getZ(), DEFAULT_TELEPORT_FLAGS, living.getYRot(), living.getXRot());
                 living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 4));
                 living.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400));

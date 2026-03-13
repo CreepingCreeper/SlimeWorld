@@ -15,6 +15,9 @@
     "age=2,berry=2": {
       "model": "slimeworld:block/bush/sky_slime_berry_bush_stage2"
     },
+    "age=2,berry=3": {
+      "model": "slimeworld:block/bush/slime_berry_bush_stage2"
+    },
     "age=2,berry=4": {
       "model": "slimeworld:block/bush/ender_slime_berry_bush_stage2"
     },
@@ -29,6 +32,9 @@
     },
     "age=3,berry=2": {
       "model": "slimeworld:block/bush/sky_slime_berry_bush_stage3"
+    },
+    "age=3,berry=3": {
+      "model": "slimeworld:block/bush/slime_berry_bush_stage3"
     },
     "age=3,berry=4": {
       "model": "slimeworld:block/bush/ender_slime_berry_bush_stage3"

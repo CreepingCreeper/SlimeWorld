@@ -1,8 +1,8 @@
 package com.creeping_creeper.slimeworld.init.block;
 
+import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.library.ParticleUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,9 +29,8 @@ public class IchorVentBlock extends Block {
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (!entity.isSteppingCarefully() && !level.canSeeSkyFromBelowWater(pos.above()) && entity instanceof LivingEntity living && !living.hasEffect(TinkerEffects.antigravity.get())) {
-            living.addEffect(new MobEffectInstance(TinkerEffects.antigravity.get(), 300));
-            if (level instanceof ServerLevel serverLevel){
-                serverLevel.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, pos.getX(), pos.getY() + 0.5D, pos.getZ(), 1, 0.0F, 0.0F, 0, 2);
+            if(living.addEffect(new MobEffectInstance(TinkerEffects.antigravity.get(), 300))){
+                ParticleUtil.slimeParticle(level, ModEntities.ichorSlimeParticle.get(), 12, 1, living.getX(), living.getY() + 0.1, living.getZ());
             }
         }
         super.stepOn(level, pos, state, entity);

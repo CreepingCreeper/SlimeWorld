@@ -1,8 +1,7 @@
 {
   "parts": [
     {
-      "allow_animated": false,
-      "path": "minecraft:entity/creeper",
+      "path": "slimeworld:block/lily",
       "stat_type": "tconstruct:repair_kit"
     }
   ],

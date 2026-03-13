@@ -2,7 +2,6 @@ package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -29,7 +28,7 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
     @Override
     public void travel(Vec3 travelVector) {
         if (this.isEffectiveAi() && this.getTarget() != null && this.onGround() && !isCooling()) {
-            int force = 8 / this.getSize();
+            int force = 16 / this.getSize();
             this.lookAt(this.getTarget(), 10.0F, 10.0F);
             Vec3 look = this.getLookAngle();
             this.push(force * look.x, 0.02,force * look.z);

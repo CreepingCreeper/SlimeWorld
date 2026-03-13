@@ -16,14 +16,11 @@ import org.slf4j.Logger;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SlimeWorld {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "slimeworld";
-    // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOG = LogUtils.getLogger();
 
     public SlimeWorld() {
       IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
