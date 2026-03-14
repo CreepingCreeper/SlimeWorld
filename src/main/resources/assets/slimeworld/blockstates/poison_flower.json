@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "slimeworld:block/flower/poison_flower"
+    }
+  }
+}

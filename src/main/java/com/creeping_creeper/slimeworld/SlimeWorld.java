@@ -28,13 +28,12 @@ public class SlimeWorld {
       ModItems.registers(bus);
       ModFluids.registers(bus);
       ModModifiers.registers(bus);
-      ModPotions.registers(bus);
       ModEffects.registers(bus);
       ModEntities.registers(bus);
       ModFeature.registers(bus);
     }
     public void commonSetup(final FMLCommonSetupEvent event) {
-        ModPotions.init();
+       ModEffects.init();
         WorldEvents.init();
         MinecraftForge.EVENT_BUS.register(new EntityEvents());
     }

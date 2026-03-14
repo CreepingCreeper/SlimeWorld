@@ -53,6 +53,8 @@ public class WorldClientEvents extends ClientEventBase {
         event.registerSpecial(ModEntities.ichorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
         event.registerSpecial(ModEntities.originSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));
         event.registerSpecial(ModEntities.steelSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.slimesteel.getIngot()));
+        event.registerSpriteSet(ModEntities.whiteSporeParticle.get(), SporeParticle.WhiteSporeProvider::new);
+        event.registerSpriteSet(ModEntities.blackSporeParticle.get(), SporeParticle.BlackSporeProvider::new);
     }
 
     @SubscribeEvent

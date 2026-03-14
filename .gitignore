@@ -15,8 +15,8 @@ out
 
 # gradle
 build
-.build
 .gradle
+lib
 unused
 
 # other

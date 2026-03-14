@@ -51,6 +51,8 @@ public class ModEntities {
     public static final RegistryObject<SimpleParticleType> ichorSlimeParticle = PARTICLE_TYPES.register("ichor_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> originSlimeParticle = PARTICLE_TYPES.register("origin_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> steelSlimeParticle = PARTICLE_TYPES.register("steel_slime", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> whiteSporeParticle = PARTICLE_TYPES.register("white_spore", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> blackSporeParticle = PARTICLE_TYPES.register("black_spore", () -> new SimpleParticleType(false));
 
     public static void registers(IEventBus bus) {
         ENTITIES.register(bus);

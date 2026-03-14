@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.init.block.flower;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -17,7 +18,7 @@ import slimeknights.tconstruct.shared.TinkerEffects;
 
 public class SpringyFlowerBlock extends BaseFlowerBlock {
     public SpringyFlowerBlock(Properties properties) {
-        super(TinkerEffects.bouncy, 7, properties, ParticleTypes.SPORE_BLOSSOM_AIR);
+        super(TinkerEffects.bouncy, 7, properties);
     }
 
     @Override
@@ -31,5 +32,10 @@ public class SpringyFlowerBlock extends BaseFlowerBlock {
             RandomSource random = living.getRandom();
             level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.SLIME_ATTACK, SoundSource.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F);
         }
+    }
+
+    @Override
+    public SimpleParticleType particleType(){
+        return ParticleTypes.SPORE_BLOSSOM_AIR;
     }
 }

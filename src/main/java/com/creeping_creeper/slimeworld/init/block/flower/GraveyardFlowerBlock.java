@@ -1,8 +1,10 @@
 package com.creeping_creeper.slimeworld.init.block.flower;
 
 import com.creeping_creeper.slimeworld.init.ModEffects;
+import com.creeping_creeper.slimeworld.init.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
@@ -11,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class GraveyardFlowerBlock extends BaseFlowerBlock {
     public GraveyardFlowerBlock(Properties properties) {
-        super(ModEffects.Curse, 15, properties, ParticleTypes.WARPED_SPORE);
+        super(ModEffects.Curse, 15, properties);
     }
 
     @Override
@@ -22,5 +24,10 @@ public class GraveyardFlowerBlock extends BaseFlowerBlock {
                 living.heal(1);
             }
         }
+    }
+
+    @Override
+    public SimpleParticleType particleType(){
+        return ModEntities.blackSporeParticle.get();
     }
 }

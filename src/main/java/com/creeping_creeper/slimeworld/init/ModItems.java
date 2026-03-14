@@ -89,7 +89,7 @@ public class ModItems {
     public static final RegistryObject<Block> SlimeKelpPlant = BLOCKS.registerNoItem("slime_kelp_plant", () -> new SlimeKelpPlantBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)));
     public static final ItemObject<Block> StickPunjis = BLOCKS.register("stick_punjis", () -> new StickPunjisBlock(grass().strength(3.0F).speedFactor(0.4F).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> FieryFlower = BLOCKS.register("fiery_flower", () -> new FieryFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
-    public static final ItemObject<Block> PotionFlower = BLOCKS.register("potion_flower", () -> new PotionFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
+    public static final ItemObject<Block> PoisonFlower = BLOCKS.register("poison_flower", () -> new PoisonFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> SpringyFlower = BLOCKS.register("springy_flower", () -> new SpringyFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> ConsecratedFlower = BLOCKS.register("consecrated_flower", () -> new ConsecratedFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> GraveyardFlower = BLOCKS.register("graveyard_flower", () -> new GraveyardFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
@@ -154,7 +154,7 @@ public class ModItems {
         output.accept(SlimeKelp);
         output.accept(StickPunjis);
         output.accept(FieryFlower);
-        output.accept(PotionFlower);
+        output.accept(PoisonFlower);
         output.accept(SpringyFlower);
         output.accept(ConsecratedFlower);
         output.accept(GraveyardFlower);

@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block.flower;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
@@ -18,16 +19,14 @@ import slimeknights.tconstruct.common.TinkerTags;
 
 import java.util.function.Supplier;
 
-public class BaseFlowerBlock extends FlowerBlock implements SuspiciousEffectHolder {
+public abstract class BaseFlowerBlock extends FlowerBlock implements SuspiciousEffectHolder {
     private final Supplier<TinkerEffect> effect;
     private final int duration;
-    private final SimpleParticleType PARTICLE_TYPE;
 
-    public BaseFlowerBlock(Supplier<TinkerEffect> effect, int duration, Properties properties, SimpleParticleType particleTypes) {
+    public BaseFlowerBlock(Supplier<TinkerEffect> effect, int duration, Properties properties) {
         super((Supplier<MobEffect>) null, 0, properties);
         this.effect = effect;
         this.duration = duration;
-        this.PARTICLE_TYPE = particleTypes;
     }
 
     @Override
@@ -40,8 +39,11 @@ public class BaseFlowerBlock extends FlowerBlock implements SuspiciousEffectHold
         return level.getBlockState(pos.below()).is(TinkerTags.Blocks.SLIMY_SOIL);
     }
 
+    public abstract SimpleParticleType particleType();
+
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (!level.isClientSide()) return;
         VoxelShape voxelshape = this.getShape(state, level, pos, CollisionContext.empty());
         Vec3 vec3 = voxelshape.bounds().getCenter();
         double d0 = (double)pos.getX() + vec3.x;
@@ -49,7 +51,7 @@ public class BaseFlowerBlock extends FlowerBlock implements SuspiciousEffectHold
 
         for(int i = 0; i < 3; ++i) {
             if (random.nextBoolean()) {
-                level.addParticle(this.PARTICLE_TYPE, d0 + random.nextDouble() / (double)5.0F, (double)pos.getY() + ((double)0.5F - random.nextDouble()), d1 + random.nextDouble() / (double)5.0F, 0.0F, 0.0F, 0.0F);
+                level.addParticle(particleType(), d0 + random.nextDouble() / (double)5.0F, (double)pos.getY() + ((double)0.5F - random.nextDouble()), d1 + random.nextDouble() / (double)5.0F, 0.0F, 0.0F, 0.0F);
             }
         }
     }
