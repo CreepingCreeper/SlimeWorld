@@ -1,9 +1,0 @@
-{
-  "type": "tconstruct:material",
-  "ingredient": {
-    "item": "slimeworld:slime_kelp"
-  },
-  "material": "slimeworld:slime_kelp",
-  "needed": 4,
-  "value": 1
-}
