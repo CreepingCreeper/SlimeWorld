@@ -2,6 +2,9 @@ package com.creeping_creeper.slimeworld.init.block.flower;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -20,6 +23,8 @@ public class PotionFlowerBlock extends BaseFlowerBlock {
         if (!level.isClientSide && entity instanceof LivingEntity living) {
             TinkerEffects.venom.get().apply(living, 100,  0, true);
             living.addEffect(new MobEffectInstance(MobEffects.POISON, 25));
+            RandomSource random = living.getRandom();
+            if (entity.tickCount % 20 == 0) level.playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.SPLASH_POTION_BREAK, SoundSource.BLOCKS, 1.0F + random.nextFloat(), random.nextFloat() * 0.7F + 0.3F);
         }
     }
 }

@@ -37,6 +37,7 @@
   "block.slimeworld.berriper_bush": "Berripers",
 
   "block.slimeworld.fiery_flower": "Fiery Coreopsis",
+  "block.slimeworld.springy_flower": "Springy Allium",
   "block.slimeworld.slime_kelp": "Slimekelp",
   "block.slimeworld.slime_kelp_plant": "Slimekelp Plant",
   "block.slimeworld.copper_berry_bush": "Copper Oreberry Bush",
@@ -176,5 +177,7 @@
   "item.minecraft.lingering_potion.effect.double_jump_potion_long": "Lingering Potion of Double Jump",
   "item.minecraft.tipped_arrow.effect.double_jump_potion": "Arrow of Double Jump",
   "item.minecraft.tipped_arrow.effect.double_jump_potion_long": "Arrow of Double Jump",
-  "item.minecraft.tipped_arrow.effect.double_jump_potion_strong": "Arrow of Double Jump"
+  "item.minecraft.tipped_arrow.effect.double_jump_potion_strong": "Arrow of Double Jump",
+
+  "attribute.name.tconstruct.generic.bouncy": "Bouncy"
 }

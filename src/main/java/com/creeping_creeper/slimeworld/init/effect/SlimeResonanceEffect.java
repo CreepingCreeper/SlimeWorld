@@ -1,7 +1,6 @@
 package com.creeping_creeper.slimeworld.init.effect;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.library.ParticleUtil;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;

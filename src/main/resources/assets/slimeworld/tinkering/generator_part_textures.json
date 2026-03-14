@@ -1,7 +1,7 @@
 {
   "parts": [
     {
-      "path": "slimeworld:block/lily",
+      "path": "slimeworld:block/grayscale-image",
       "stat_type": "tconstruct:repair_kit"
     }
   ],

@@ -36,8 +36,8 @@
   "block.slimeworld.slime_berry_bush": "黏液莓",
   "block.slimeworld.berriper_bush": "莓力怕",
 
-
   "block.slimeworld.fiery_flower": "炽火菊",
+  "block.slimeworld.springy_flower": "弹力葱",
   "block.slimeworld.slime_kelp": "黏液海带",
   "block.slimeworld.slime_kelp_plant": "黏液海带植株",
   "block.slimeworld.copper_berry_bush": "铜矿莓丛",
@@ -177,5 +177,7 @@
   "item.minecraft.lingering_potion.effect.double_jump_potion_long": "滞留型二段跳药水",
   "item.minecraft.tipped_arrow.effect.double_jump_potion": "二段跳之箭",
   "item.minecraft.tipped_arrow.effect.double_jump_potion_long": "二段跳之箭",
-  "item.minecraft.tipped_arrow.effect.double_jump_potion_strong": "二段跳之箭"
+  "item.minecraft.tipped_arrow.effect.double_jump_potion_strong": "二段跳之箭",
+
+  "attribute.name.tconstruct.generic.bouncy": "弹性"
 }
