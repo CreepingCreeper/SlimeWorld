@@ -1,6 +1,5 @@
 package com.creeping_creeper.slimeworld.init.block.flower;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
