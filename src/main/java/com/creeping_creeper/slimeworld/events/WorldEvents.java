@@ -1,6 +1,5 @@
 package com.creeping_creeper.slimeworld.events;
 
-import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.core.BlockPos;

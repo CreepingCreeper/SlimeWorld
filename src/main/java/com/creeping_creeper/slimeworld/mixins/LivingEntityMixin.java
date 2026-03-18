@@ -1,7 +1,6 @@
 package com.creeping_creeper.slimeworld.mixins;
 
 import com.creeping_creeper.slimeworld.init.ModEffects;
-import lombok.experimental.SuperBuilder;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
