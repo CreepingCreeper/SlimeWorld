@@ -8,11 +8,14 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.block.SlimeType;
 
 import javax.annotation.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class IchorParticle extends BreakingItemParticle {
     public IchorParticle(ClientLevel level, double x, double y, double z, ItemStack stack) {
         super(level, x, y, z, stack);

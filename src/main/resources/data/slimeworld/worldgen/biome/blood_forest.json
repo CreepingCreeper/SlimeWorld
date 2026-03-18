@@ -81,7 +81,8 @@
       "slimeworld:blood_slime_berry_bush",
       "slimeworld:blood_slime_fungus",
       "slimeworld:huge_mushroom",
-      "slimeworld:blood_slime_vegetation"
+      "slimeworld:blood_slime_vegetation",
+      "slimeworld:magic_plant"
     ],
     [
       "minecraft:freeze_top_layer"

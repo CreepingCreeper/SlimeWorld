@@ -1,0 +1,47 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "slimeworld:fiery_flower"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "slimeworld:poison_flower"
+          },
+          "weight": 1
+        },
+        {
+
+          "data": {
+            "Name": "slimeworld:springy_flower"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "slimeworld:consecrated_flower"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+          "Name": "slimeworld:graveyard_flower"
+        },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "minecraft:wither_rose"
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

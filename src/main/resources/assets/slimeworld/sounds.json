@@ -1,0 +1,74 @@
+{
+  "entity.bogged.ambient": {
+    "sounds": [
+      "slimeworld:mob/bogged/ambient1",
+      "slimeworld:mob/bogged/ambient2",
+      "slimeworld:mob/bogged/ambient3",
+      "slimeworld:mob/bogged/ambient4"
+    ],
+    "subtitle": "subtitles.entity.bogged.ambient"
+  },
+  "entity.bogged.death": {
+    "sounds": [
+      "slimeworld:mob/bogged/death"
+    ],
+    "subtitle": "subtitles.entity.bogged.death"
+  },
+  "entity.bogged.hurt": {
+    "sounds": [
+      "slimeworld:mob/bogged/hurt1",
+      "slimeworld:mob/bogged/hurt2",
+      "slimeworld:mob/bogged/hurt3",
+      "slimeworld:mob/bogged/hurt4"
+    ],
+    "subtitle": "subtitles.entity.bogged.hurt"
+  },
+  "entity.bogged.shear": {
+    "sounds": [
+      "mob/sheep/shear"
+    ],
+    "subtitle": "subtitles.item.shears.shear"
+  },
+  "entity.bogged.step": {
+    "sounds": [
+      "slimeworld:mob/bogged/step1",
+      "slimeworld:mob/bogged/step2",
+      "slimeworld:mob/bogged/step3",
+      "slimeworld:mob/bogged/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.parched.ambient": {
+    "sounds": [
+      "slimeworld:mob/parched/ambient1",
+      "slimeworld:mob/parched/ambient2",
+      "slimeworld:mob/parched/ambient3",
+      "slimeworld:mob/parched/ambient4"
+    ],
+    "subtitle": "subtitles.entity.parched.ambient"
+  },
+  "entity.parched.death": {
+    "sounds": [
+      "slimeworld:mob/parched/death"
+    ],
+    "subtitle": "subtitles.entity.parched.death"
+  },
+  "entity.parched.hurt": {
+    "sounds": [
+      "slimeworld:mob/parched/hurt1",
+      "slimeworld:mob/parched/hurt2",
+      "slimeworld:mob/parched/hurt3",
+      "slimeworld:mob/parched/hurt4"
+    ],
+    "subtitle": "subtitles.entity.parched.hurt"
+  },
+  "entity.parched.step": {
+    "sounds": [
+      "slimeworld:mob/parched/step1",
+      "slimeworld:mob/parched/step2",
+      "slimeworld:mob/parched/step3",
+      "slimeworld:mob/parched/step4"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+}

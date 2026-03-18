@@ -76,6 +76,10 @@
   "item.slimeworld.ichor_slime_spawn_egg": "Ichorslime Spawn Egg",
   "entity.slimeworld.origin_slime": "Originslime",
   "item.slimeworld.origin_slime_spawn_egg": "Originslime Spawn Egg",
+  "entity.slimeworld.bogged": "Bogged",
+  "item.slimeworld.bogged_spawn_egg": "Bogged Spawn Egg",
+  "entity.slimeworld.parched": "Parched",
+  "item.slimeworld.parched_spawn_egg": "Parched Spawn Egg",
 
   "material.slimeworld.slime_kelp": "Slimekelp",
   "material.slimeworld.slime_kelp.flavor": "潮起，潮落",
@@ -134,5 +138,13 @@
   "item.minecraft.lingering_potion.effect.slimeworld.double_jump": "Lingering Potion of Double Jump",
   "item.minecraft.tipped_arrow.effect.slimeworld.double_jump": "Arrow of Double Jump",
 
-  "attribute.name.tconstruct.generic.bouncy": "Bouncy"
+  "attribute.name.tconstruct.generic.bouncy": "Bouncy",
+
+  "subtitles.entity.bogged.ambient": "Bogged rattles",
+  "subtitles.entity.bogged.death": "Bogged dies",
+  "subtitles.entity.bogged.hurt": "Bogged hurts",
+
+  "subtitles.entity.parched.ambient": "Parched crackles",
+  "subtitles.entity.parched.death": "Parched dies",
+  "subtitles.entity.parched.hurt": "Parched hurts"
 }

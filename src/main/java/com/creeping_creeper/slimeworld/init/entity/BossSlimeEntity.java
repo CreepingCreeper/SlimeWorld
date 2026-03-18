@@ -11,10 +11,8 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.level.Level;
@@ -55,6 +53,10 @@ public abstract class BossSlimeEntity extends Slime {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(COOLING, 0);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes();
     }
 
     protected void setCooling(int cooling) {

@@ -1,11 +1,19 @@
 package com.creeping_creeper.slimeworld.client;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
+import com.creeping_creeper.slimeworld.client.renderer.BoggedRenderer;
+import com.creeping_creeper.slimeworld.client.renderer.BossSlimeRenderer;
+import com.creeping_creeper.slimeworld.client.renderer.InvertedSlimeRenderer;
+import com.creeping_creeper.slimeworld.client.renderer.ParchedRenderer;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
+import net.minecraft.client.model.HumanoidArmorModel;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.builders.CubeDeformation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -32,8 +40,11 @@ import slimeknights.tconstruct.world.client.TinkerSlimeRenderer;
 
 import javax.annotation.Nullable;
 
+import static net.minecraft.client.model.geom.LayerDefinitions.INNER_ARMOR_DEFORMATION;
+import static net.minecraft.client.model.geom.LayerDefinitions.OUTER_ARMOR_DEFORMATION;
+
 @Mod.EventBusSubscriber(modid = SlimeWorld.MODID, value= Dist.CLIENT, bus= Mod.EventBusSubscriber.Bus.MOD)
-public class WorldClientEvents extends ClientEventBase {
+public class ClientBase extends ClientEventBase {
     public static final SlimeFactory OCEAN_SLIME_FACTORY = new SlimeFactory(SlimeWorld.getResource("textures/entity/ocean_slime.png"), SlimeWorld.getResource("textures/entity/bronze_slime.png"));
     public static final InvertedSlimeFactory ICHOR_SLIME_FACTORY = new InvertedSlimeFactory(SlimeWorld.getResource("textures/entity/ichor_slime.png"), SlimeWorld.getResource("textures/entity/cobalt_slime.png"));
     public static final SlimeFactory ORIGIN_SLIME_FACTORY = new SlimeFactory(TConstruct.getResource("textures/entity/slime.png"), TConstruct.getResource("textures/entity/slime.png"));
@@ -45,6 +56,8 @@ public class WorldClientEvents extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.ichorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.originSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.steelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.boggedEntity.get(), BoggedRenderer::new);
+        event.registerEntityRenderer(ModEntities.parchedEntity.get(), ParchedRenderer::new);
     }
 
     @SubscribeEvent
@@ -59,7 +72,15 @@ public class WorldClientEvents extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(InvertedSlimeRenderer.INVERTED_SLIME_INNER, InvertedSlimeRenderer::createInnerBodyLayer);
+        event.registerLayerDefinition(ModLayers.InvertedSlimeInner, InvertedSlimeRenderer::createInnerBodyLayer);
+        event.registerLayerDefinition(ModLayers.Bogged, BoggedRenderer::createBodyLayer);
+        event.registerLayerDefinition(ModLayers.BoggedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModLayers.BoggedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModLayers.BoggedOuterLayer, () -> LayerDefinition.create(HumanoidModel.createMesh(new CubeDeformation(0.25F), 0.0F), 64, 32));
+        event.registerLayerDefinition(ModLayers.Parched, ParchedRenderer::createSingleModelDualBodyLayer);
+        event.registerLayerDefinition(ModLayers.ParchedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModLayers.ParchedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
+
     }
     public record SlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {
         @Override

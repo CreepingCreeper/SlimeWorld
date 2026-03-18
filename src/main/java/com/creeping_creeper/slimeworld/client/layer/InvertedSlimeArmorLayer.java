@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.client;
+package com.creeping_creeper.slimeworld.client.layer;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -32,11 +32,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.SkullBlock.Type;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
 import slimeknights.tconstruct.world.client.SlimeArmorLayer;
 
 import java.util.Map;
 
+@OnlyIn(Dist.CLIENT)
 public class InvertedSlimeArmorLayer<T extends Slime, M extends HierarchicalModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T,M> {
     private final A armorModel;
     public final Map<Type, SkullModelBase> skullModels;
@@ -54,7 +57,6 @@ public class InvertedSlimeArmorLayer<T extends Slime, M extends HierarchicalMode
             matrices.pushPose();
             matrices.scale(0.9f, -0.9f, 0.9f);
             matrices.translate(0, -1.11f, 0);
-            // ========== 以下逻辑完全复用原代码，无修改 ==========
             Item item = helmet.getItem();
             if (item instanceof ArmorItem armor && armor.getType() == ArmorItem.Type.HELMET) {
                 this.getParentModel().copyPropertiesTo(armorModel);

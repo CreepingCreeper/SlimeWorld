@@ -76,6 +76,10 @@
   "item.slimeworld.ichor_slime_spawn_egg": "灵浆史莱姆刷怪蛋",
   "entity.slimeworld.origin_slime": "原初史莱姆",
   "item.slimeworld.origin_slime_spawn_egg": "原初史莱姆刷怪蛋",
+  "entity.slimeworld.bogged": "沼骸",
+  "item.slimeworld.bogged_spawn_egg": "沼骸刷怪蛋",
+  "entity.slimeworld.parched": "焦骸",
+  "item.slimeworld.parched_spawn_egg": "焦骸刷怪蛋",
 
   "material.slimeworld.slime_kelp": "黏液海带",
   "material.slimeworld.slime_kelp.flavor": "潮起，潮落",
@@ -134,5 +138,12 @@
   "item.minecraft.lingering_potion.effect.slimeworld.double_jump": "滞留型二段跳药水",
   "item.minecraft.tipped_arrow.effect.slimeworld.double_jump": "二段跳之箭",
 
-  "attribute.name.tconstruct.generic.bouncy": "弹性"
+  "attribute.name.tconstruct.generic.bouncy": "弹性",
+
+  "subtitles.entity.bogged.ambient": "沼骸：咯咯声",
+  "subtitles.entity.bogged.death": "沼骸：死亡",
+  "subtitles.entity.bogged.hurt": "沼骸：受伤",
+  "subtitles.entity.parched.ambient": "焦骸：咯咯声",
+  "subtitles.entity.parched.death": "焦骸：死亡",
+  "subtitles.entity.parched.hurt": "焦骸：受伤"
 }

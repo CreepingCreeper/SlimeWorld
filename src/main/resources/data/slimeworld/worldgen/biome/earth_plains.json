@@ -75,7 +75,8 @@
       "slimeworld:earth_slime_berry_bush",
       "slimeworld:earth_slime_fern",
       "slimeworld:earth_slime_trees",
-      "slimeworld:earth_slime_grass"
+      "slimeworld:earth_slime_grass",
+      "slimeworld:magic_plant"
     ],
     [
       "minecraft:freeze_top_layer"

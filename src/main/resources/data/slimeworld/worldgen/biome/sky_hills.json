@@ -75,7 +75,8 @@
       "slimeworld:sky_slime_berry_bush",
       "slimeworld:sky_slime_fern",
       "slimeworld:sky_slime_trees",
-      "slimeworld:sky_slime_grass"
+      "slimeworld:sky_slime_grass",
+      "slimeworld:magic_plant"
     ],
     [
       "minecraft:freeze_top_layer"
@@ -111,7 +112,13 @@
         "type": "minecraft:skeleton",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 100
+        "weight": 20
+      },
+      {
+        "type": "minecraft:stray",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 80
       },
       {
         "type": "minecraft:creeper",

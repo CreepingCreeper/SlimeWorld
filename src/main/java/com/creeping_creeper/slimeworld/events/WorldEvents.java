@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld.events;
 
+import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.core.BlockPos;
@@ -22,6 +23,7 @@ public class WorldEvents {
         ComposterBlock.add(0.3f, ModItems.Berriper);
         ComposterBlock.add(0.3f, ModItems.SlimeKelp);
         ComposterBlock.add(0.3f, ModItems.DriedSlimeKelp);
+        ComposterBlock.add(0.3f, ModItems.SlimeWeed);
         ComposterBlock.add(0.65f, ModItems.IchorFern);
         ComposterBlock.add(0.35f, ModItems.IchorTallGrass);
         ComposterBlock.add(0.35f, ModItems.IchorSlimeSapling);

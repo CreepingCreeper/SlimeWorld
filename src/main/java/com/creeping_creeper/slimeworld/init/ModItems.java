@@ -168,6 +168,8 @@ public class ModItems {
         output.accept(ModEntities.oceanSlimeEntity);
         output.accept(ModEntities.ichorSlimeEntity);
         output.accept(ModEntities.originSlimeEntity);
+        output.accept(ModEntities.boggedEntity);
+        output.accept(ModEntities.parchedEntity);
     }
 
     protected static BlockBehaviour.Properties grass() {

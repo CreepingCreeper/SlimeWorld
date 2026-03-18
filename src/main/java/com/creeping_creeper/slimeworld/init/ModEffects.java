@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.effect.SlimeResonanceEffect;
+import com.creeping_creeper.slimeworld.init.effect.StandEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -36,6 +37,7 @@ public class ModEffects {
     public static final RegistryObject<TinkerEffect> Curse = MOB_EFFECTS.register("curse",() -> new TinkerEffect(MobEffectCategory.HARMFUL, 0xA2935E,true)
             .addAttributeModifier(TinkerAttributes.GOOD_EFFECT_DURATION.get(),"2602DE5E-7CE8-4241-940E-647C1F170003",-0.25, AttributeModifier.Operation.MULTIPLY_TOTAL)
             .addAttributeModifier(TinkerAttributes.BAD_EFFECT_DURATION.get(),"2602DE5E-7CE8-4241-940E-647C1F170004",0.25, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<MobEffect> Stand = MOB_EFFECTS.register("stand",() -> new StandEffect(MobEffectCategory.BENEFICIAL, 0x8CD782,true));
 
     public static final EnumObject<PotionType, Potion> ConductivePotion = POTIONS.registerTypes(TinkerEffects.conductive, 30 * 20, 0).withStrong().withLong().build();
     public static final EnumObject<PotionType, Potion> VenomPotion = POTIONS.registerTypes(TinkerEffects.venom, 30 * 20, 0).withStrong().withLong().build();

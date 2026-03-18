@@ -1,10 +1,10 @@
-package com.creeping_creeper.slimeworld.client;
+package com.creeping_creeper.slimeworld.client.renderer;
 
-import com.creeping_creeper.slimeworld.SlimeWorld;
+import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.layer.InvertedSlimeArmorLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SlimeModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -27,7 +27,7 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
     private final ResourceLocation slime, metal;
 
     public InvertedSlimeRenderer(EntityRendererProvider.Context context, ResourceLocation slime, ResourceLocation metal) {
-        super(context, new SlimeModel<>(context.bakeLayer(INVERTED_SLIME_INNER)), 0.25F);
+        super(context, new SlimeModel<>(context.bakeLayer(ModLayers.InvertedSlimeInner)), 0.25F);
         this.addLayer(new SlimeOuterLayer<>(this, context.getModelSet()));
         this.slime = slime;
         this.metal = metal;
@@ -56,18 +56,12 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
         return slime;
     }
 
-    public static final ModelLayerLocation INVERTED_SLIME_INNER = new ModelLayerLocation(
-            new ResourceLocation(SlimeWorld.MODID, "inverted_slime_inner"), "main");
-
     public static LayerDefinition createInnerBodyLayer() {
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
         partdefinition.addOrReplaceChild("cube", CubeListBuilder.create().texOffs(0, 16).addBox(-3.0F, 17.0F, -3.0F, 6.0F, 6.0F, 6.0F), PartPose.ZERO);
-        // 右眼：Y=20.0F → 范围20~22F（远离底面24F）
         partdefinition.addOrReplaceChild("right_eye", CubeListBuilder.create().texOffs(32, 0).addBox(-3.25F, 20.0F, -3.5F, 2.0F, 2.0F, 2.0F), PartPose.ZERO);
-        // 左眼：Y=20.0F → 范围20~22F
         partdefinition.addOrReplaceChild("left_eye", CubeListBuilder.create().texOffs(32, 4).addBox(1.25F, 20.0F, -3.5F, 2.0F, 2.0F, 2.0F), PartPose.ZERO);
-        // 嘴巴：Y=18.0F → 范围18~19F（远离顶面16F）
         partdefinition.addOrReplaceChild("mouth", CubeListBuilder.create().texOffs(32, 8).addBox(0.0F, 18.0F, -3.5F, 1.0F, 1.0F, 1.0F), PartPose.ZERO);
 
         return LayerDefinition.create(meshdefinition, 64, 32);
