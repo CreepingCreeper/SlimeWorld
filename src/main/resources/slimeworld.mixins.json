@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.creeping_creeper.slimeworld.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "slimeworld.refmap.json",
+  "client": [
+  ],
+  "minVersion": "0.8.5",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "LivingEntityMixin"
+  ]
+}
