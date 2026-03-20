@@ -8,8 +8,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import slimeknights.tconstruct.common.TinkerEffect;
 
-public class StandEffect extends TinkerEffect {
-    public StandEffect(MobEffectCategory typeIn, int color, boolean show) {
+public class FloatingEffect extends TinkerEffect {
+    public FloatingEffect(MobEffectCategory typeIn, int color, boolean show) {
         super(typeIn, color, show);
     }
 
@@ -17,17 +17,17 @@ public class StandEffect extends TinkerEffect {
     public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
+
     @Override
     public void applyEffectTick(LivingEntity living, int amplifier) {
-        if (living.isInFluidType()) {
+        if (living.isInFluidType() && !living.isSteppingCarefully()) {
             CollisionContext collisioncontext = CollisionContext.of(living);
-            if (!living.isSteppingCarefully() && collisioncontext.isAbove(LiquidBlock.STABLE_SHAPE, living.blockPosition(), true) && living.level().getFluidState(living.blockPosition().above()).is(Fluids.EMPTY)) {
+            if (collisioncontext.isAbove(LiquidBlock.STABLE_SHAPE, living.blockPosition(), true) && living.level().getFluidState(living.blockPosition().above()).is(Fluids.EMPTY)) {
                 living.setOnGround(true);
             } else {
-                Vec3 movement = living.getDeltaMovement();
-                double y = movement.y;
-                if (!living.isSwimming() && y < 0) {
-                    living.setDeltaMovement(movement.add(0.0F, y * 0.5 + 0.05, 0.0F));
+                Vec3 vec3 = living.getDeltaMovement();
+                if(vec3.y<0){
+                    living.setDeltaMovement(new Vec3(vec3.x, vec3.y * 0.3, vec3.z));
                 }
             }
         }

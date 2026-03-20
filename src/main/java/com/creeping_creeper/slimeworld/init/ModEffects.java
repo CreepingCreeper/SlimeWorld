@@ -2,7 +2,7 @@ package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.effect.SlimeResonanceEffect;
-import com.creeping_creeper.slimeworld.init.effect.StandEffect;
+import com.creeping_creeper.slimeworld.init.effect.FloatingEffect;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -37,14 +37,14 @@ public class ModEffects {
     public static final RegistryObject<TinkerEffect> Curse = MOB_EFFECTS.register("curse",() -> new TinkerEffect(MobEffectCategory.HARMFUL, 0xA2935E,true)
             .addAttributeModifier(TinkerAttributes.GOOD_EFFECT_DURATION.get(),"2602DE5E-7CE8-4241-940E-647C1F170003",-0.25, AttributeModifier.Operation.MULTIPLY_TOTAL)
             .addAttributeModifier(TinkerAttributes.BAD_EFFECT_DURATION.get(),"2602DE5E-7CE8-4241-940E-647C1F170004",0.25, AttributeModifier.Operation.MULTIPLY_TOTAL));
-    public static final RegistryObject<MobEffect> Stand = MOB_EFFECTS.register("stand",() -> new StandEffect(MobEffectCategory.BENEFICIAL, 0x8CD782,true));
+    public static final RegistryObject<MobEffect> Floating = MOB_EFFECTS.register("floating",() -> new FloatingEffect(MobEffectCategory.BENEFICIAL, 0x8CD782,true));
 
     public static final EnumObject<PotionType, Potion> ConductivePotion = POTIONS.registerTypes(TinkerEffects.conductive, 30 * 20, 0).withStrong().withLong().build();
     public static final EnumObject<PotionType, Potion> VenomPotion = POTIONS.registerTypes(TinkerEffects.venom, 30 * 20, 0).withStrong().withLong().build();
     public static final EnumObject<PotionType, Potion> BouncyPotion = POTIONS.registerTypes(TinkerEffects.bouncy, 60 * 20, 0).withStrong().withLong().build();
     public static final EnumObject<PotionType, Potion> BlessingPotion = POTIONS.registerTypes(Blessing).withStrong().withLong().build();
     public static final EnumObject<PotionType, Potion> CursePotion = POTIONS.registerTypes(Curse).withStrong().withLong().build();
-    public static final EnumObject<PotionType, Potion> DoubleJumpPotion = POTIONS.registerTypes(TinkerEffects.doubleJump, 60 * 20, 0).withStrong().withLong().build();
+    public static final EnumObject<PotionType, Potion> FloatingPotion = POTIONS.registerTypes(Floating).withLong().build();
 
     public static void init() {
         brewing(ConductivePotion, Potions.AWKWARD, ModItems.FieryFlower);
@@ -52,7 +52,8 @@ public class ModEffects {
         brewing(BouncyPotion, Potions.AWKWARD, ModItems.SpringyFlower);
         brewing(BlessingPotion, Potions.AWKWARD, ModItems.ConsecratedFlower);
         brewing(CursePotion, Potions.AWKWARD, ModItems.GraveyardFlower);
-        brewing(DoubleJumpPotion, Potions.AWKWARD, ModItems.OceanCongealedSlime);
+        brewing(FloatingPotion, Potions.AWKWARD, ModItems.OceanCongealedSlime);
+        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(ModItems.OceanCongealedSlime), ModItems.OceanSlimeBottle.get().getDefaultInstance()));
     }
 
     private static void brewing(EnumObject<PotionDeferredRegister.PotionType,Potion> potion, Potion base, ItemLike item) {
@@ -66,8 +67,7 @@ public class ModEffects {
         if (strong != null) {
             PotionBrewing.addMix(normal, Items.GLOWSTONE_DUST, strong);
         }
-        BrewingRecipeRegistry.addRecipe(new BrewingRecipe(Ingredient.of(Items.GLASS_BOTTLE), Ingredient.of(ModItems.OceanCongealedSlime), ModItems.OceanSlimeBottle.get().getDefaultInstance()));
-    }
+     }
 
     public static void registers(IEventBus bus) {
         MOB_EFFECTS.register(bus);

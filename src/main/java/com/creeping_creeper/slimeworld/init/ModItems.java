@@ -115,6 +115,9 @@ public class ModItems {
     public static final ItemObject<Block> GoldBerryBush = BLOCKS.register("gold_berry_bush", () -> new OreBerryBushBlock(GoldShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> CobaltBerryBush = BLOCKS.register("cobalt_berry_bush", () -> new OreBerryBushBlock(TinkerWorld.cobaltShard, oreBush()), UNCOMMON_BLOCK_ITEM);
 
+
+    //public static final ItemObject<Block> Bubble = BLOCKS.register("bubble", () -> new BubbleBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).noCollission().noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
+
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(NecroticBoneMeal);
         output.accept(OceanSlimeBall);
@@ -170,6 +173,8 @@ public class ModItems {
         output.accept(ModEntities.originSlimeEntity);
         output.accept(ModEntities.boggedEntity);
         output.accept(ModEntities.parchedEntity);
+
+        //output.accept(Bubble);
     }
 
     protected static BlockBehaviour.Properties grass() {

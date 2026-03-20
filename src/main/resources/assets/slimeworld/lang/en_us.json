@@ -107,6 +107,7 @@
   "effect.slimeworld.slime_resonance": "Slime Resonance",
   "effect.slimeworld.blessing": "Blessing",
   "effect.slimeworld.curse": "Curse",
+  "effect.slimeworld.floating": "Floating",
 
   "item.minecraft.potion.effect.slimeworld.conductive": "Potion of Conductive",
   "item.minecraft.splash_potion.effect.slimeworld.conductive": "Splash Potion of Conductive",
@@ -133,10 +134,10 @@
   "item.minecraft.lingering_potion.effect.slimeworld.curse": "Lingering Potion of Curse",
   "item.minecraft.tipped_arrow.effect.slimeworld.curse": "Arrow of Curse",
 
-  "item.minecraft.potion.effect.slimeworld.double_jump": "Potion of Double Jump",
-  "item.minecraft.splash_potion.effect.slimeworld.double_jump": "Splash Potion of Double Jump",
-  "item.minecraft.lingering_potion.effect.slimeworld.double_jump": "Lingering Potion of Double Jump",
-  "item.minecraft.tipped_arrow.effect.slimeworld.double_jump": "Arrow of Double Jump",
+  "item.minecraft.potion.effect.slimeworld.floating": "Potion of Floating",
+  "item.minecraft.splash_potion.effect.slimeworld.floating": "Splash Potion of Floating",
+  "item.minecraft.lingering_potion.effect.slimeworld.floating": "Lingering Potion of Floating",
+  "item.minecraft.tipped_arrow.effect.slimeworld.floating": "Arrow of Floating",
 
   "attribute.name.tconstruct.generic.bouncy": "Bouncy",
 

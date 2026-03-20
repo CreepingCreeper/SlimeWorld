@@ -18,6 +18,7 @@ build
 .gradle
 lib
 unused
+test
 
 # other
 eclipse

@@ -26,6 +26,7 @@ public class WorldEvents {
         ComposterBlock.add(0.65f, ModItems.IchorFern);
         ComposterBlock.add(0.35f, ModItems.IchorTallGrass);
         ComposterBlock.add(0.35f, ModItems.IchorSlimeSapling);
+        ComposterBlock.add(0.35f, ModItems.OceanCake);
 
         DispenseItemBehavior dispenseBucket = new DefaultDispenseItemBehavior() {
             private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();

@@ -22,7 +22,7 @@
     {
       "type": "tconstruct:mob_effect",
       "action": "add",
-      "effect": "tconstruct:double_jump",
+      "effect": "slimeworld:floating",
       "level": 1,
       "time": 140
     },
