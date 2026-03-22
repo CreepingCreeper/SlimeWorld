@@ -33,7 +33,7 @@ public class ModFluids {
         return base(name).density(2000)
                 .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
                 .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
-                .canExtinguish(true);
+                .canExtinguish(true).canHydrate(true);
     }
     private static FluidType.Properties slime(String name) {
         return common(name).density(1600).viscosity(1600);

@@ -16,6 +16,8 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,6 +32,7 @@ import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.common.registration.BlockDeferredRegisterExtension;
 import slimeknights.tconstruct.common.registration.GeodeItemObject;
 import slimeknights.tconstruct.common.registration.ItemDeferredRegisterExtension;
+import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.fluids.item.ContainerFoodItem;
 import slimeknights.tconstruct.gadgets.block.FoodCakeBlock;
 import slimeknights.tconstruct.library.recipe.FluidValues;
@@ -115,8 +118,11 @@ public class ModItems {
     public static final ItemObject<Block> GoldBerryBush = BLOCKS.register("gold_berry_bush", () -> new OreBerryBushBlock(GoldShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> CobaltBerryBush = BLOCKS.register("cobalt_berry_bush", () -> new OreBerryBushBlock(TinkerWorld.cobaltShard, oreBush()), UNCOMMON_BLOCK_ITEM);
 
+    public static final ItemObject<Block> WindSculpture = BLOCKS.register("wind_sculpture", () -> new WindSculptureBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
 
-    //public static final ItemObject<Block> Bubble = BLOCKS.register("bubble", () -> new BubbleBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).noCollission().noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> WaterBubble = BLOCKS.register("water_bubble", () -> new WaterBubbleBlock(builder(MapColor.WATER).sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> LavaBubble = BLOCKS.register("lava_bubble", () -> new BubbleBlock(builder(MapColor.COLOR_RED).randomTicks().sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY), () -> Fluids.LAVA), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> EarthSlimeBubble = BLOCKS.register("earth_slime_bubble", () -> new SlimeBubbleBlock(builder(MapColor.COLOR_RED).sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY), TinkerFluids.earthSlime), TOOLTIP_BLOCK_ITEM);
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(NecroticBoneMeal);
@@ -174,7 +180,10 @@ public class ModItems {
         output.accept(ModEntities.boggedEntity);
         output.accept(ModEntities.parchedEntity);
 
-        //output.accept(Bubble);
+        output.accept(WindSculpture);
+        output.accept(WaterBubble);
+        output.accept(LavaBubble);
+        output.accept(EarthSlimeBubble);
     }
 
     protected static BlockBehaviour.Properties grass() {
