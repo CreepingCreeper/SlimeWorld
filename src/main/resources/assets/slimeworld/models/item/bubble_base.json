@@ -1,0 +1,7 @@
+{
+  "parent": "forge:item/default",
+  "textures": {
+    "base": "slimeworld:block/bubble",
+    "fluid": "slimeworld:block/bubble_white"
+  }
+}
