@@ -1,16 +1,16 @@
-package com.creeping_creeper.slimeworld.init.block;
+package com.creeping_creeper.slimeworld.init.block.bubble;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
-import slimeknights.tconstruct.fluids.fluids.SlimeFluid;
 
-public class SlimeBubbleBlock extends BubbleBlock{
-    protected final FlowingFluidObject<SlimeFluid> fluid;
+public class SlimeBubbleBlock extends BubbleBlock {
+    protected final FlowingFluidObject<? extends ForgeFlowingFluid> fluid;
 
-    public SlimeBubbleBlock(Properties properties, FlowingFluidObject<SlimeFluid> fluid) {
+    public SlimeBubbleBlock(Properties properties, FlowingFluidObject<? extends ForgeFlowingFluid> fluid) {
         super(properties, fluid::get);
         this.fluid = fluid;
     }

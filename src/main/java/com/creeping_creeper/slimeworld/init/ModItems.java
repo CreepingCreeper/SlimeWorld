@@ -4,6 +4,9 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.ModResourceKeys;
 import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.block.*;
+import com.creeping_creeper.slimeworld.init.block.bubble.BubbleBlock;
+import com.creeping_creeper.slimeworld.init.block.bubble.SlimeBubbleBlock;
+import com.creeping_creeper.slimeworld.init.block.bubble.WaterBubbleBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.CommonBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.OreBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.SlimeBerryBushBlock;
@@ -21,10 +24,12 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.item.BlockTooltipItem;
 import slimeknights.mantle.item.TooltipItem;
 import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
+import slimeknights.mantle.registration.object.FlowingFluidObject;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
 import slimeknights.tconstruct.common.Sounds;
@@ -119,9 +124,15 @@ public class ModItems {
 
     public static final ItemObject<Block> WindSculpture = BLOCKS.register("wind_sculpture", () -> new WindSculptureBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
 
-    public static final ItemObject<Block> WaterBubble = BLOCKS.register("water_bubble", () -> new WaterBubbleBlock(builder(MapColor.WATER).sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY)), TOOLTIP_BLOCK_ITEM);
-    public static final ItemObject<Block> LavaBubble = BLOCKS.register("lava_bubble", () -> new BubbleBlock(builder(MapColor.COLOR_RED).randomTicks().sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY), () -> Fluids.LAVA), TOOLTIP_BLOCK_ITEM);
-    public static final ItemObject<Block> EarthSlimeBubble = BLOCKS.register("earth_slime_bubble", () -> new SlimeBubbleBlock(builder(MapColor.COLOR_RED).sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).pushReaction(PushReaction.DESTROY), TinkerFluids.earthSlime), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> WaterBubble = BLOCKS.register("water_bubble", () -> new WaterBubbleBlock(bubble(MapColor.WATER)), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> LavaBubble = BLOCKS.register("lava_bubble", () -> new BubbleBlock(builder(MapColor.COLOR_RED).randomTicks().noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never), () -> Fluids.LAVA), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> EarthSlimeBubble = BLOCKS.register("earth_slime_bubble", () -> new SlimeBubbleBlock(bubble(MapColor.COLOR_LIGHT_GREEN), TinkerFluids.earthSlime), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> SkySlimeBubble = BLOCKS.register("sky_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_BLUE)), TinkerFluids.skySlime), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> IchorSlimeBubble = BLOCKS.register("ichor_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_ORANGE)), TinkerFluids.ichor), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> EnderSlimeBubble = BLOCKS.register("ender_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_PURPLE)), TinkerFluids.enderSlime), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> OceanSlimeBubble = BLOCKS.register("ocean_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_BLUE)), ModFluids.OceanSlime), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), TOOLTIP_BLOCK_ITEM);
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(NecroticBoneMeal);
@@ -183,6 +194,12 @@ public class ModItems {
         output.accept(WaterBubble);
         output.accept(LavaBubble);
         output.accept(EarthSlimeBubble);
+        output.accept(SkySlimeBubble);
+        output.accept(IchorSlimeBubble);
+        output.accept(EnderSlimeBubble);
+        output.accept(OceanSlimeBubble);
+        output.accept(HoneyBubble);
+        output.accept(VenomBubble);
     }
 
     protected static BlockBehaviour.Properties grass() {
@@ -199,6 +216,9 @@ public class ModItems {
     }
     protected static BlockBehaviour.Properties ichorNylium() {
         return builder(MapColor.COLOR_ORANGE).sound(SoundType.SLIME_BLOCK).strength(2.0f).requiresCorrectToolForDrops().randomTicks();
+    }
+    protected static BlockBehaviour.Properties bubble(MapColor color) {
+        return builder(color).sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never);
     }
     protected static BlockBehaviour.Properties builder(MapColor color) {
         return Block.Properties.of().mapColor(color);

@@ -9,12 +9,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
 
-public class FloatingWindEntity extends Entity {
+public class MagicbubbleEntity extends Entity {
     private int age = 0;
 
-    public FloatingWindEntity(EntityType<? extends Entity> type, Level level) {
+    public MagicbubbleEntity(EntityType<? extends Entity> type, Level level) {
         super(type, level);
-        this.noPhysics = true;
     }
 
     @Override
@@ -37,8 +36,7 @@ public class FloatingWindEntity extends Entity {
     public void tick() {
         super.tick();
         this.age++;
-        int maxAge = 160;
-        if (this.age >= maxAge) {
+        if (this.age >= 160) {
             this.discard();
         }
         if (!level().isClientSide) {
@@ -48,14 +46,14 @@ public class FloatingWindEntity extends Entity {
             this.setDeltaMovement(motionX, motionY, motionZ);
             this.move(MoverType.SELF, this.getDeltaMovement());
 
-            AABB box = getBoundingBox();
-            if (level().getEntitiesOfClass(LivingEntity.class, box.inflate(0.15D)).isEmpty()) {
+            AABB box = this.getBoundingBox();
+            if (!level().getEntitiesOfClass(LivingEntity.class, box.inflate(0.15D)).isEmpty()) {
                 this.discard();
             }
             if (!level().getBlockState(BlockPos.containing(this.getX(), this.getY(), this.getZ())).isAir()){
-                this.age+=19;
+                this.age+=9;
             }
-        }else level().addParticle(ModEntities.windParticle.get(), this.getX(), this.getY(), this.getZ(), 0, 0 ,0);
+        }else level().addParticle(ModEntities.magicbubbleParticle.get(), this.getX(), this.getY(), this.getZ(), 0, 0 ,0);
     }
 
     @Override
@@ -67,6 +65,6 @@ public class FloatingWindEntity extends Entity {
 
     @Override
     public PushReaction getPistonPushReaction() {
-        return PushReaction.IGNORE;
+        return PushReaction.NORMAL;
     }
 }

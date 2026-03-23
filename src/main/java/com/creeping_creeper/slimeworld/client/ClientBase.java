@@ -11,7 +11,6 @@ import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.particle.SoulParticle;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -50,7 +49,7 @@ public class ClientBase extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ModEntities.floatingWind.get(), FloatingWindRenderer::new);
+        event.registerEntityRenderer(ModEntities.magicbubble.get(), FloatingWindRenderer::new);
         event.registerEntityRenderer(ModEntities.oceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.ichorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.originSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
@@ -61,7 +60,7 @@ public class ClientBase extends ClientEventBase {
 
     @SubscribeEvent
     static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModEntities.windParticle.get(), SoulParticle.Provider::new);
+        event.registerSpriteSet(ModEntities.magicbubbleParticle.get(), sprite -> new StaticColorParticle.Provider(sprite, 0.95F, 0.38F, 0.73F));
         event.registerSpecial(ModEntities.oceanSlimeParticle.get(), new SlimeParticle.Factory(ModItems.OceanSlimeBall));
         event.registerSpecial(ModEntities.ichorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
         event.registerSpecial(ModEntities.originSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));

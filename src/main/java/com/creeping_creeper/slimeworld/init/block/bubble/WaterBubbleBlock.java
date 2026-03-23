@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.block;
+package com.creeping_creeper.slimeworld.init.block.bubble;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
-public class WaterBubbleBlock extends BubbleBlock{
+public class WaterBubbleBlock extends BubbleBlock {
     public WaterBubbleBlock(Properties properties) {
         super(properties, () -> Fluids.WATER);
     }

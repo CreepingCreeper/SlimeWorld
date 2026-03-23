@@ -1,14 +1,11 @@
-package com.creeping_creeper.slimeworld.init.block;
+package com.creeping_creeper.slimeworld.init.block.bubble;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BucketPickup;
-import net.minecraft.world.level.block.LiquidBlockContainer;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -18,7 +15,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.level.material.FlowingFluid.FALLING;
 
-public class BubbleBlock extends Block implements BucketPickup, LiquidBlockContainer {
+public class BubbleBlock extends AbstractGlassBlock implements BucketPickup, LiquidBlockContainer {
     private final Supplier<Fluid> fluid;
 
     public BubbleBlock(Properties properties, Supplier<Fluid> fluid) {

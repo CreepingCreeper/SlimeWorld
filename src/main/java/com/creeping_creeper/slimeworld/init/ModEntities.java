@@ -17,13 +17,13 @@ public class ModEntities {
     protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(SlimeWorld.MODID);
     protected static final SynchronizedDeferredRegister<ParticleType<?>> PARTICLE_TYPES = SynchronizedDeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, SlimeWorld.MODID);
 
-    public static final RegistryObject<EntityType<FloatingWindEntity>> floatingWind = ENTITIES.register("floating_wind", () ->
-            EntityType.Builder.of(FloatingWindEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<MagicbubbleEntity>> magicbubble = ENTITIES.register("magicbubble", () ->
+            EntityType.Builder.of(MagicbubbleEntity::new, MobCategory.MISC)
                     .sized(0.15f, 0.15f)
                     .setShouldReceiveVelocityUpdates(true)
                     .clientTrackingRange(16)
                     .updateInterval(1)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.floatingWind.get().create(world)));
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.magicbubble.get().create(world)));
     public static final EntityObject<OceanSlimeEntity> oceanSlimeEntity = ENTITIES.registerWithEgg("ocean_slime", () ->
             EntityType.Builder.of(OceanSlimeEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)
@@ -59,7 +59,7 @@ public class ModEntities {
                     .sized(2.04F, 2.04F)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.steelSlimeBossEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
 
-    public static final RegistryObject<SimpleParticleType> windParticle = PARTICLE_TYPES.register("wind", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> magicbubbleParticle = PARTICLE_TYPES.register("magicbubble", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> oceanSlimeParticle = PARTICLE_TYPES.register("ocean_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> ichorSlimeParticle = PARTICLE_TYPES.register("ichor_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> originSlimeParticle = PARTICLE_TYPES.register("origin_slime", () -> new SimpleParticleType(false));
