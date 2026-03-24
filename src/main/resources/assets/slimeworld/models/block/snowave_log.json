@@ -1,0 +1,6 @@
+{
+  "parent": "slimeworld:block/special_log",
+  "textures": {
+    "all": "slimeworld:block/slime_gravel"
+  }
+}
