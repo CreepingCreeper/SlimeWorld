@@ -1,0 +1,6 @@
+{
+  "parent": "slimeworld:block/special_log_vertical",
+  "textures": {
+    "particle": "#log"
+  }
+}

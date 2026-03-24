@@ -27,9 +27,6 @@ public class ModTags {
         public static final TagKey<Block> IchorSlimeSpawn = local("ichor_slime_spawn");
         public static final TagKey<Block> TerracubeSpawn = local("terracube_spawn");
         public static final TagKey<Block> Slimy = local("slimy");
-        public static final TagKey<Block> BerryBush = local("berry_bush");
-        public static final TagKey<Block> BerryBushStage3 = local("berry_bush/stage3");
-        public static final TagKey<Block> BerryBushStage7 = local("berry_bush/stage7");
         private static TagKey<Block> local(String name) {
             return TagKey.create(Registries.BLOCK, SlimeWorld.getResource(name));
         }
