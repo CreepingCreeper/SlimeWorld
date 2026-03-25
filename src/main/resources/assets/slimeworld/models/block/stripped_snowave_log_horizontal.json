@@ -1,0 +1,9 @@
+{
+  "parent": "slimeworld:block/special_log_horizontal",
+  "textures": {
+    "log": "minecraft:block/oak_log",
+    "log_top": "minecraft:block/oak_log_top",
+    "special": "minecraft:block/oak_log",
+    "special_edge": "minecraft:block/oak_log"
+  }
+}

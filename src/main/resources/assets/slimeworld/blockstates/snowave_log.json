@@ -1,26 +1,28 @@
 {
   "variants": {
     "facing=down": {
-      "model": "slimeworld:block/snowave_log_vertical",
-      "x": 180
+      "model": "slimeworld:block/snowave_log"
     },
     "facing=east": {
-      "model": "slimeworld:block/snowave_log",
+      "model": "slimeworld:block/snowave_log_horizontal",
+      "x": 90,
       "y": 90
     },
     "facing=north": {
-      "model": "slimeworld:block/snowave_log"
+      "model": "slimeworld:block/snowave_log_horizontal",
+      "x": 90
     },
     "facing=south": {
-      "model": "slimeworld:block/snowave_log",
-      "y": 180
+      "model": "slimeworld:block/snowave_log_horizontal",
+      "x": 90
     },
     "facing=up": {
-      "model": "slimeworld:block/snowave_log_vertical"
+      "model": "slimeworld:block/snowave_log"
     },
     "facing=west": {
-      "model": "slimeworld:block/snowave_log",
-      "y": 270
+      "model": "slimeworld:block/snowave_log_horizontal",
+      "x": 90,
+      "y": 90
     }
   }
 }

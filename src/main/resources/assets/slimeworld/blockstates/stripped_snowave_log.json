@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "slimeworld:block/stripped_snowave_log",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "slimeworld:block/stripped_snowave_log_horizontal",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "slimeworld:block/stripped_snowave_log_horizontal"
+    },
+    "facing=south": {
+      "model": "slimeworld:block/stripped_snowave_log_horizontal",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "slimeworld:block/stripped_snowave_log"
+    },
+    "facing=west": {
+      "model": "slimeworld:block/stripped_snowave_log_horizontal",
+      "y": 270
+    }
+  }
+}
