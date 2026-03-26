@@ -39,9 +39,4 @@ public class RegisterEvents {
         event.register(ModEntities.boggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.parchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
     }
-
-    private static void setWoodFireInfo(FireBlock fireBlock, Block block) {
-            // planks
-            fireBlock.setFlammable(block, 5, 20);
-    }
 }
