@@ -20,7 +20,6 @@ public class ModFeature {
     public static final RegistryObject<OceanLakeFeature> oceanLakeFeature = FEATURES.register("ocean_lake", () -> new OceanLakeFeature(OceanLakeFeature.Configuration.CODEC));
     public static final RegistryObject<InvertedLakeFeature> invertedLakeFeature = FEATURES.register("inverted_lake", () -> new InvertedLakeFeature(InvertedLakeFeature.Configuration.CODEC));
     public static final RegistryObject<IchorFungusFeature> ichorFungusFeature = FEATURES.register("ichor_fungus", () -> new IchorFungusFeature(SlimeFungusConfig.CODEC));
-    public static final RegistryObject<Feature<NoneFeatureConfiguration>> slimeKelpFeature = FEATURES.register("slime_kelp", () -> new SlimeKelpFeature(NoneFeatureConfiguration.CODEC));
 
     public static final RegistryObject<Codec<? extends BiomeModifier>> MODIFY_SPAWNS =
             BIOME_MODIFIER_SERIALIZERS.register("modify_spawns", () -> ModifySpawnsBiomeModifier.CODEC);

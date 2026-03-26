@@ -1,0 +1,11 @@
+{
+  "type": "mantle:empty_item",
+  "fluid": {
+    "amount": 1000,
+    "fluid": "minecraft:water"
+  },
+  "input": {
+    "item": "slimeworld:water_bubble"
+  },
+  "result": "slimeworld:bubble"
+}

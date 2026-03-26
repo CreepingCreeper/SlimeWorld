@@ -5,31 +5,18 @@ import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.entity.*;
 import com.creeping_creeper.slimeworld.library.BiomeSlimePlacementPredicate;
-import com.mojang.serialization.Codec;
-import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.common.world.MobSpawnSettingsBuilder;
-import net.minecraftforge.common.world.ModifiableBiomeInfo;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.entity.SlimePlacementPredicate;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = SlimeWorld.MODID, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class RegisterEvents {
@@ -53,29 +40,8 @@ public class RegisterEvents {
         event.register(ModEntities.parchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
     }
 
-    public record RemoveSpawnsBiomeModifier(HolderSet<Biome> biomes, HolderSet<EntityType<?>> entityTypes) implements BiomeModifier {
-        public void modify(Holder<Biome> biome, BiomeModifier.Phase phase, ModifiableBiomeInfo.BiomeInfo.Builder builder) {
-            if (phase == Phase.MODIFY) {
-                if (biome.is(Tags.Biomes.IS_SWAMP)) {
-                    MobSpawnSettingsBuilder spawnBuilder = builder.getMobSpawnSettings();
-                    for (MobCategory category : MobCategory.values()) {
-                        List<MobSpawnSettings.SpawnerData> spawns = spawnBuilder.getSpawner(category);
-                        spawns.removeIf((spawnerData) -> this.entityTypes.contains(ForgeRegistries.ENTITY_TYPES.getHolder(EntityType.SKELETON).get()));
-                        spawns.add(new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 70, 4, 4));
-                    }
-                } else if (biome.is(Tags.Biomes.IS_DESERT)) {
-                    MobSpawnSettingsBuilder spawnBuilder = builder.getMobSpawnSettings();
-                    for (MobCategory category : MobCategory.values()) {
-                        List<MobSpawnSettings.SpawnerData> spawns = spawnBuilder.getSpawner(category);
-                        spawns.removeIf((spawnerData) -> this.entityTypes.contains(ForgeRegistries.ENTITY_TYPES.getHolder(EntityType.SKELETON).get()));
-                        spawns.add(new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 50, 4, 4));
-                    }
-                }
-            }
-        }
-
-        public Codec<? extends BiomeModifier> codec() {
-            return (Codec) ForgeMod.REMOVE_SPAWNS_BIOME_MODIFIER_TYPE.get();
-        }
+    private static void setWoodFireInfo(FireBlock fireBlock, Block block) {
+            // planks
+            fireBlock.setFlammable(block, 5, 20);
     }
 }

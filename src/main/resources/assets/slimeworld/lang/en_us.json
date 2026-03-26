@@ -32,7 +32,6 @@
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
   "block.slimeworld.ocean_cake": "OceansLime Cake",
-  "item.slimeworld.dried_slime_kelp": "Dried Slime Kelp",
   "block.slimeworld.slime_berry_bush": "Slimeberries",
   "block.slimeworld.berriper_bush": "Berripers",
 
@@ -41,8 +40,6 @@
   "block.slimeworld.springy_flower": "Springyallium",
   "block.slimeworld.consecrated_flower": "Consecratedyarrow",
   "block.slimeworld.graveyard_flower": "Graveyardyarrow",
-  "block.slimeworld.slime_kelp": "Slimekelp",
-  "block.slimeworld.slime_kelp_plant": "Slimekelp Plant",
   "block.slimeworld.copper_berry_bush": "Copper Oreberry Bush",
   "block.slimeworld.iron_berry_bush": "Iron Oreberry Bush",
   "block.slimeworld.gold_berry_bush": "Gold Oreberry Bush",
@@ -81,8 +78,8 @@
   "entity.slimeworld.parched": "Parched",
   "item.slimeworld.parched_spawn_egg": "Parched Spawn Egg",
 
-  "material.slimeworld.slime_kelp": "Slimekelp",
-  "material.slimeworld.slime_kelp.flavor": "潮起，潮落",
+  "material.slimeworld.kelp": "kelp",
+  "material.slimeworld.kelp.flavor": "潮起，潮落",
   "material.slimeworld.slimeslime_kelp": "在雨中/水中时+15%/+30%拉弓速度",
   "material.slimeworld.slimeslime_kelp.armor": "潜行时伤害+12%",
 

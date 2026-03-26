@@ -32,7 +32,6 @@
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
   "block.slimeworld.ocean_cake": "海洋黏液蛋糕",
-  "item.slimeworld.dried_slime_kelp": "干黏液海带",
   "block.slimeworld.slime_berry_bush": "黏液莓",
   "block.slimeworld.berriper_bush": "莓力怕",
 
@@ -41,8 +40,6 @@
   "block.slimeworld.springy_flower": "弹力葱",
   "block.slimeworld.consecrated_flower": "神圣蓍",
   "block.slimeworld.graveyard_flower": "黄泉蓍",
-  "block.slimeworld.slime_kelp": "黏液海带",
-  "block.slimeworld.slime_kelp_plant": "黏液海带植株",
   "block.slimeworld.copper_berry_bush": "铜矿莓丛",
   "block.slimeworld.iron_berry_bush": "铁矿莓丛",
   "block.slimeworld.gold_berry_bush": "金矿莓丛",
@@ -81,8 +78,8 @@
   "entity.slimeworld.parched": "焦骸",
   "item.slimeworld.parched_spawn_egg": "焦骸刷怪蛋",
 
-  "material.slimeworld.slime_kelp": "黏液海带",
-  "material.slimeworld.slime_kelp.flavor": "潮起，潮落",
+  "material.slimeworld.kelp": "海带",
+  "material.slimeworld.kelp.flavor": "潮起，潮落",
   "material.slimeworld.slimeslime_kelp": "在雨中/水中时+15%/+30%拉弓速度",
   "material.slimeworld.slimeslime_kelp.armor": "潜行时伤害+12%",
   

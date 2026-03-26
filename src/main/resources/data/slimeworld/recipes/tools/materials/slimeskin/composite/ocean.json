@@ -5,6 +5,6 @@
     "tag": "tconstruct:ocean_slime"
   },
   "input": "tconstruct:leather",
-  "output": "slimeworld:slime_kelp#slimeskin",
+  "output": "slimeworld:kelp#slimeskin",
   "temperature": 70
 }

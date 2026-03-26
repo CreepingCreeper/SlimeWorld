@@ -10,8 +10,7 @@ import net.minecraft.world.item.DispensibleContainerItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.ComposterBlock;
-import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.*;
 
 public class WorldEvents {
     public static void init() {
@@ -20,8 +19,6 @@ public class WorldEvents {
         ComposterBlock.add(0.3f, ModItems.EnderSlimeBerry);
         ComposterBlock.add(0.3f, ModItems.BloodSlimeBerry);
         ComposterBlock.add(0.3f, ModItems.Berriper);
-        ComposterBlock.add(0.3f, ModItems.SlimeKelp);
-        ComposterBlock.add(0.3f, ModItems.DriedSlimeKelp);
         ComposterBlock.add(0.3f, ModItems.SlimeWeed);
         ComposterBlock.add(0.65f, ModItems.IchorFern);
         ComposterBlock.add(0.35f, ModItems.IchorTallGrass);
@@ -47,5 +44,10 @@ public class WorldEvents {
 
         DispenserBlock.registerBehavior(ModFluids.OceanSlime, dispenseBucket);
         DispenserBlock.registerBehavior(ModFluids.ResonanceSlime, dispenseBucket);
+
+        FireBlock fireblock = (FireBlock) Blocks.FIRE;
+        fireblock.setFlammable(ModItems.MagicbubbleLog.get(), 5, 5);
+        fireblock.setFlammable(ModItems.SnowaveLog.get(), 5, 5);
+        fireblock.setFlammable(ModItems.StrippedSnowaveLog.get(), 5, 5);
     }
 }

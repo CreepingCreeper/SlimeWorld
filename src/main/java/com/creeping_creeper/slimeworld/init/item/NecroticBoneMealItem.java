@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld.init.item;
 import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.block.NecroticBonemealableBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -10,12 +11,17 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.ForgeEventFactory;
+import slimeknights.mantle.util.TranslationHelper;
 import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.common.TinkerDamageTypes;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class NecroticBoneMealItem extends Item {
     public NecroticBoneMealItem(Properties properties) {
@@ -60,5 +66,11 @@ public class NecroticBoneMealItem extends Item {
             }
         }
         return false;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        TranslationHelper.addOptionalTooltip(stack, tooltip);
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

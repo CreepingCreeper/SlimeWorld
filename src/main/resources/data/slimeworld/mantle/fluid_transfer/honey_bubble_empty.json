@@ -1,0 +1,11 @@
+{
+  "type": "mantle:empty_item",
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:honey"
+  },
+  "input": {
+    "item": "slimeworld:honey_bubble"
+  },
+  "result": "slimeworld:bubble"
+}

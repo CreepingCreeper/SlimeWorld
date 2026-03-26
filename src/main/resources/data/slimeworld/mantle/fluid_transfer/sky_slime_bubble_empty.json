@@ -1,0 +1,11 @@
+{
+  "type": "mantle:empty_item",
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:sky_slime"
+  },
+  "input": {
+    "item": "slimeworld:sky_slime_bubble"
+  },
+  "result": "slimeworld:bubble"
+}

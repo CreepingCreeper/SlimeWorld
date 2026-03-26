@@ -1,0 +1,11 @@
+{
+  "type": "mantle:fill_item",
+  "fluid": {
+    "amount": 1000,
+    "fluid": "tconstruct:ichor"
+  },
+  "input": {
+    "item": "slimeworld:bubble"
+  },
+  "result": "slimeworld:ichor_bubble"
+}
