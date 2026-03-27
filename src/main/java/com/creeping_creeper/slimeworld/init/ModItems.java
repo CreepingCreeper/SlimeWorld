@@ -77,7 +77,8 @@ public class ModItems {
     public static final GeodeItemObject OceanGeode = BLOCKS.registerGeode("ocean_slime_crystal", MapColor.COLOR_BLUE, Sounds.ENDER_CRYSTAL, Sounds.ENDER_CRYSTAL_CHIME.getSound(), Sounds.ENDER_CRYSTAL_CLUSTER, 5, GENERAL_PROPS);
     public static final ItemObject<Block> SlimeGravel = BLOCKS.register("slime_gravel", () -> new SlimeGravelBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.GRAVEL).instrument(NoteBlockInstrument.SNARE).strength(0.6F)), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
-    public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).strength(5F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", () -> new Block(builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Block> IchorFern = BLOCKS.register("ichor_slime_fern", () -> new IchorTallGrassBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).offsetType(BlockBehaviour.OffsetType.XZ).replaceable().instabreak().noCollission().pushReaction(PushReaction.DESTROY), FoliageType.ICHOR), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> IchorTallGrass = BLOCKS.register("ichor_slime_tall_grass", () -> new IchorTallGrassBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).offsetType(BlockBehaviour.OffsetType.XZ).replaceable().instabreak().noCollission().pushReaction(PushReaction.DESTROY), FoliageType.ICHOR), TOOLTIP_BLOCK_ITEM);
@@ -116,9 +117,9 @@ public class ModItems {
     public static final ItemObject<Block> GoldBerryBush = BLOCKS.register("gold_berry_bush", () -> new OreBerryBushBlock(GoldShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> CobaltBerryBush = BLOCKS.register("cobalt_berry_bush", () -> new OreBerryBushBlock(TinkerWorld.cobaltShard, oreBush()), UNCOMMON_BLOCK_ITEM);
 
-    public static final ItemObject<Block> MagicbubbleLog = BLOCKS.register("magicbubble_log", () -> new MagicbubbleLogBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD)), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
-    public static final ItemObject<Block> StrippedSnowaveLog = BLOCKS.register("stripped_snowave_log", () -> new SnowaveLogBlock(builder(MapColor.WOOD).sound(SoundType.WOOD)),(b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
-    public static final ItemObject<Block> SnowaveLog = BLOCKS.register("snowave_log", () -> new StrippableSnowaveLogBlock(StrippedSnowaveLog, builder(MapColor.WOOD).sound(SoundType.WOOD)), (b) -> new BurnableBlockItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> MagicbubbleLog = BLOCKS.register("magicbubble_log", () -> new MagicbubbleLogBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> StrippedSnowaveLog = BLOCKS.register("stripped_snowave_log", () -> new SnowaveLogBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()),(b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> SnowaveLog = BLOCKS.register("snowave_log", () -> new StrippableSnowaveLogBlock(StrippedSnowaveLog, builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockItem(b, GENERAL_PROPS, 300));
 
     public static final ItemObject<Item> Bubble = ITEMS.register("bubble", GENERAL_PROPS);
     public static final ItemObject<Block> WaterBubble = BLOCKS.register("water_bubble", () -> new WaterBubbleBlock(bubble(MapColor.WATER)), GENERAL_BLOCK_ITEM);
@@ -156,6 +157,7 @@ public class ModItems {
         output.accept(SlimeGravel);
         output.accept(IchorVent);
         output.accept(GlowstoneOre);
+        output.accept(DeepSlateGlowstoneOre);
         output.accept(IchorFern);
         output.accept(IchorTallGrass);
         output.accept(IchorSlimeSapling);

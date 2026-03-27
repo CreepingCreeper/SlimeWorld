@@ -42,7 +42,9 @@ public class SnowaveLogBlock extends Block {
         if (item.getItem() == TinkerCommons.obsidianPane.asItem()) {
             ItemEntity itementity = new ItemEntity(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, new ItemStack(Items.PAPER, 4));
             level.addFreshEntity(itementity);
-            item.shrink(1);
+            if (!player.getAbilities().instabuild){
+                item.shrink(1);
+            }
             level.removeBlock(pos, false);
             return InteractionResult.sidedSuccess(level.isClientSide);
         }

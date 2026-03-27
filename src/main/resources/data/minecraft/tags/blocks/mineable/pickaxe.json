@@ -8,6 +8,8 @@
     "slimeworld:large_ocean_slime_crystal_bud",
     "slimeworld:ocean_slime_crystal_cluster",
     "slimeworld:budding_ocean_slime_crystal",
-    "slimeworld:bronze_cluster"
+    "slimeworld:bronze_cluster",
+    "slimeworld:glowstone_ore",
+    "slimeworld:deepslate_glowstone_ore"
   ]
 }
