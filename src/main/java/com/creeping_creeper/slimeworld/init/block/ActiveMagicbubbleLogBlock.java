@@ -8,8 +8,8 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class MagicbubbleLogBlock extends RotatedPillarBlock {
-    public MagicbubbleLogBlock(Properties properties) {
+public class ActiveMagicbubbleLogBlock extends RotatedPillarBlock {
+    public ActiveMagicbubbleLogBlock(Properties properties) {
         super(properties);
     }
 

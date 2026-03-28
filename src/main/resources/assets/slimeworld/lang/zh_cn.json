@@ -31,6 +31,9 @@
   "item.slimeworld.ocean_slime_bottle": "海洋黏液瓶",
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
+  "block.slimeworld.glowstone_ore": "荧石矿石",
+  "block.slimeworld.deepslate_glowstone_ore": "深层荧石矿石",
+
   "block.slimeworld.ocean_cake": "海洋黏液蛋糕",
   "block.slimeworld.slime_berry_bush": "黏液莓",
   "block.slimeworld.berriper_bush": "莓力怕",

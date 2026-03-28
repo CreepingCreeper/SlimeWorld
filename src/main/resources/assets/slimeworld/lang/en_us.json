@@ -31,6 +31,9 @@
   "item.slimeworld.ocean_slime_bottle": "OceansLime Bottle",
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
+  "block.slimeworld.glowstone_ore": "Glowstone Ore",
+  "block.slimeworld.deepslate_glowstone_ore": "Deepslate Glowstone Ore",
+
   "block.slimeworld.ocean_cake": "OceansLime Cake",
   "block.slimeworld.slime_berry_bush": "Slimeberries",
   "block.slimeworld.berriper_bush": "Berripers",

@@ -16,7 +16,7 @@ public abstract class PlayerMixin extends LivingEntity{
         super(entityType, level);
     }
 
-        @Unique
+    @Unique
     public boolean canStandOnFluid(FluidState fluidState){
         return (!this.isSteppingCarefully() && this.hasEffect(ModEffects.Floating.get())) || super.canStandOnFluid(fluidState);
     }

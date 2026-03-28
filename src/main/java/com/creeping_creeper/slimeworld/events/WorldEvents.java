@@ -47,6 +47,7 @@ public class WorldEvents {
 
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFlammable(ModItems.MagicbubbleLog.get(), 5, 5);
+        fireblock.setFlammable(ModItems.ActiveMagicbubbleLog.get(), 5, 5);
         fireblock.setFlammable(ModItems.SnowaveLog.get(), 5, 5);
         fireblock.setFlammable(ModItems.StrippedSnowaveLog.get(), 5, 5);
     }

@@ -117,7 +117,8 @@ public class ModItems {
     public static final ItemObject<Block> GoldBerryBush = BLOCKS.register("gold_berry_bush", () -> new OreBerryBushBlock(GoldShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> CobaltBerryBush = BLOCKS.register("cobalt_berry_bush", () -> new OreBerryBushBlock(TinkerWorld.cobaltShard, oreBush()), UNCOMMON_BLOCK_ITEM);
 
-    public static final ItemObject<Block> MagicbubbleLog = BLOCKS.register("magicbubble_log", () -> new MagicbubbleLogBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> MagicbubbleLog = BLOCKS.register("magicbubble_log", () -> new RotatedPillarBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> ActiveMagicbubbleLog = BLOCKS.register("active_magicbubble_log", () -> new ActiveMagicbubbleLogBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
     public static final ItemObject<Block> StrippedSnowaveLog = BLOCKS.register("stripped_snowave_log", () -> new SnowaveLogBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()),(b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
     public static final ItemObject<Block> SnowaveLog = BLOCKS.register("snowave_log", () -> new StrippableSnowaveLogBlock(StrippedSnowaveLog, builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockItem(b, GENERAL_PROPS, 300));
 
@@ -188,6 +189,7 @@ public class ModItems {
         output.accept(ModEntities.parchedEntity);
 
         output.accept(MagicbubbleLog);
+        output.accept(ActiveMagicbubbleLog);
         output.accept(SnowaveLog);
         output.accept(StrippedSnowaveLog);
 
