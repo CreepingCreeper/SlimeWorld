@@ -79,6 +79,8 @@ public class ModItems {
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", () -> new Block(builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> IsomericGlowstone = BLOCKS.register("isomeric_glowstone", () -> new Block(builder(MapColor.SAND).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.PLING).strength(5.0F, 6.0F).sound(METAL).lightLevel((p_50874_) -> 15).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> IsomericRedstoneBlock = BLOCKS.register("isomeric_redstone_block", () -> new PoweredBlock(builder(MapColor.FIRE).strength(0.3F).sound(SoundType.GLASS).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Block> IchorFern = BLOCKS.register("ichor_slime_fern", () -> new IchorTallGrassBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).offsetType(BlockBehaviour.OffsetType.XZ).replaceable().instabreak().noCollission().pushReaction(PushReaction.DESTROY), FoliageType.ICHOR), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> IchorTallGrass = BLOCKS.register("ichor_slime_tall_grass", () -> new IchorTallGrassBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).offsetType(BlockBehaviour.OffsetType.XZ).replaceable().instabreak().noCollission().pushReaction(PushReaction.DESTROY), FoliageType.ICHOR), TOOLTIP_BLOCK_ITEM);
@@ -159,6 +161,9 @@ public class ModItems {
         output.accept(IchorVent);
         output.accept(GlowstoneOre);
         output.accept(DeepSlateGlowstoneOre);
+        output.accept(IsomericGlowstone);
+        output.accept(IsomericRedstoneBlock);
+
         output.accept(IchorFern);
         output.accept(IchorTallGrass);
         output.accept(IchorSlimeSapling);

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "slimeworld:block/isomeric_redstone_block"
+  }
+}

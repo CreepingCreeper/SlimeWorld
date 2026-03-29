@@ -33,7 +33,8 @@
 
   "block.slimeworld.glowstone_ore": "荧石矿石",
   "block.slimeworld.deepslate_glowstone_ore": "深层荧石矿石",
-
+  "block.slimeworld.isomeric_glowstone": "异构荧石",
+  "block.slimeworld.isomeric_redstone_block": "异构红石块",
   "block.slimeworld.ocean_cake": "海洋黏液蛋糕",
   "block.slimeworld.slime_berry_bush": "黏液莓",
   "block.slimeworld.berriper_bush": "莓力怕",
