@@ -15,6 +15,7 @@ import com.creeping_creeper.slimeworld.init.block.grass.*;
 import com.creeping_creeper.slimeworld.init.item.BurnableBlockTooltipItem;
 import com.creeping_creeper.slimeworld.init.item.ModFood;
 import com.creeping_creeper.slimeworld.init.item.NecroticBoneMealItem;
+import com.creeping_creeper.slimeworld.init.world.MagicbubbleTreeGrower;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -91,6 +92,16 @@ public class ModItems {
     public static final ItemObject<IchorNyliumBlock> IchorEnderSlimeNylium = BLOCKS.register("ichor_ender_slime_grass", () -> new IchorNyliumBlock(ichorNylium(), DirtType.ENDER), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<IchorNyliumBlock> IchorVanillaSlimeNylium = BLOCKS.register("ichor_vanilla_slime_grass", () -> new IchorNyliumBlock(ichorNylium(), DirtType.VANILLA), TOOLTIP_BLOCK_ITEM);
 
+    public static final ItemObject<Block> MagicbubbleSapling = BLOCKS.register("magicbubble_sapling", () -> new SaplingBlock(new MagicbubbleTreeGrower(), builder(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> SnowaveSapling = BLOCKS.register("snowave_sapling", () -> new SaplingBlock(new MagicbubbleTreeGrower(), builder(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> MagicbubbleLog = BLOCKS.register("magicbubble_log", () -> new RotatedPillarBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+
+    public static final ItemObject<Block> Magicbubbleleaves = BLOCKS.register("magicbubble_leaves", () -> new LeavesBlock(builder(MapColor.PLANT).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> ActiveMagicbubbleLog = BLOCKS.register("active_magicbubble_log", () -> new ActiveMagicbubbleLogBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> StrippedSnowaveLog = BLOCKS.register("stripped_snowave_log", () -> new SnowaveLogBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()),(b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
+    public static final ItemObject<Block> Snowaveleaves = BLOCKS.register("snowave_leaves", () -> new LeavesBlock(builder(MapColor.PLANT).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> SnowaveLog = BLOCKS.register("snowave_log", () -> new StrippableSnowaveLogBlock(StrippedSnowaveLog, builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockItem(b, GENERAL_PROPS, 300));
+
     public static final ItemObject<Block> SlimeWeed = BLOCKS.register("slime_weed", () -> new GlowLichenBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> StickPunjis = BLOCKS.register("stick_punjis", () -> new StickPunjisBlock(grass().strength(3.0F).speedFactor(0.4F).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> FieryFlower = BLOCKS.register("fiery_flower", () -> new FieryFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
@@ -118,11 +129,6 @@ public class ModItems {
     public static final ItemObject<Block> IronBerryBush = BLOCKS.register("iron_berry_bush", () -> new OreBerryBushBlock(IronShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> GoldBerryBush = BLOCKS.register("gold_berry_bush", () -> new OreBerryBushBlock(GoldShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> CobaltBerryBush = BLOCKS.register("cobalt_berry_bush", () -> new OreBerryBushBlock(TinkerWorld.cobaltShard, oreBush()), UNCOMMON_BLOCK_ITEM);
-
-    public static final ItemObject<Block> MagicbubbleLog = BLOCKS.register("magicbubble_log", () -> new RotatedPillarBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
-    public static final ItemObject<Block> ActiveMagicbubbleLog = BLOCKS.register("active_magicbubble_log", () -> new ActiveMagicbubbleLogBlock(builder(MapColor.WOOD).randomTicks().sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
-    public static final ItemObject<Block> StrippedSnowaveLog = BLOCKS.register("stripped_snowave_log", () -> new SnowaveLogBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()),(b) -> new BurnableBlockTooltipItem(b, GENERAL_PROPS, 300));
-    public static final ItemObject<Block> SnowaveLog = BLOCKS.register("snowave_log", () -> new StrippableSnowaveLogBlock(StrippedSnowaveLog, builder(MapColor.WOOD).sound(SoundType.WOOD).ignitedByLava()), (b) -> new BurnableBlockItem(b, GENERAL_PROPS, 300));
 
     public static final ItemObject<Item> Bubble = ITEMS.register("bubble", GENERAL_PROPS);
     public static final ItemObject<Block> WaterBubble = BLOCKS.register("water_bubble", () -> new WaterBubbleBlock(bubble(MapColor.WATER)), GENERAL_BLOCK_ITEM);
@@ -173,6 +179,15 @@ public class ModItems {
         output.accept(IchorEnderSlimeNylium);
         output.accept(IchorVanillaSlimeNylium);
 
+        output.accept(MagicbubbleSapling);
+        output.accept(SnowaveSapling);
+        output.accept(Magicbubbleleaves);
+        output.accept(MagicbubbleLog);
+        output.accept(ActiveMagicbubbleLog);
+        output.accept(SnowaveLog);
+        output.accept(Snowaveleaves);
+        output.accept(StrippedSnowaveLog);
+
         output.accept(SlimeWeed);
         output.accept(StickPunjis);
         output.accept(FieryFlower);
@@ -192,11 +207,6 @@ public class ModItems {
         output.accept(ModEntities.originSlimeEntity);
         output.accept(ModEntities.boggedEntity);
         output.accept(ModEntities.parchedEntity);
-
-        output.accept(MagicbubbleLog);
-        output.accept(ActiveMagicbubbleLog);
-        output.accept(SnowaveLog);
-        output.accept(StrippedSnowaveLog);
 
         output.accept(Bubble);
         output.accept(WaterBubble);

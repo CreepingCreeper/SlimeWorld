@@ -14,6 +14,10 @@ import net.minecraft.world.level.block.*;
 
 public class WorldEvents {
     public static void init() {
+        ComposterBlock.add(0.3f, ModItems.MagicbubbleSapling);
+        ComposterBlock.add(0.3f, ModItems.SnowaveSapling);
+        ComposterBlock.add(0.3f, ModItems.Magicbubbleleaves);
+        ComposterBlock.add(0.3f, ModItems.Snowaveleaves);
         ComposterBlock.add(0.3f, ModItems.EarthSlimeBerry);
         ComposterBlock.add(0.3f, ModItems.SkySlimeBerry);
         ComposterBlock.add(0.3f, ModItems.EnderSlimeBerry);
@@ -46,6 +50,8 @@ public class WorldEvents {
         DispenserBlock.registerBehavior(ModFluids.ResonanceSlime, dispenseBucket);
 
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
+        fireblock.setFlammable(ModItems.Magicbubbleleaves.get(), 30, 60);
+        fireblock.setFlammable(ModItems.Snowaveleaves.get(), 30, 60);
         fireblock.setFlammable(ModItems.MagicbubbleLog.get(), 5, 5);
         fireblock.setFlammable(ModItems.ActiveMagicbubbleLog.get(), 5, 5);
         fireblock.setFlammable(ModItems.SnowaveLog.get(), 5, 5);
