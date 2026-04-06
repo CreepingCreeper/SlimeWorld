@@ -1,0 +1,21 @@
+{
+  "name": "slimeworld:great_wall/room",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight":20,
+      "element": {
+        "location": "slimeworld:great_wall/room/library",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":80,
+      "element": {
+        "element_type": "minecraft:empty_pool_element"
+      }
+    }
+  ]
+}

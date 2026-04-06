@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "frequency": 0.5,
+    "salt": 14357800,
+    "separation": 7,
+    "spacing": 15
+  },
+  "structures": [
+    {
+      "structure": "slimeworld:grout",
+      "weight": 1
+    }
+  ]
+}

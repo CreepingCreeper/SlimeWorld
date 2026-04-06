@@ -1,0 +1,15 @@
+{
+  "name": "slimeworld:great_wall/wall",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/wall/start",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}

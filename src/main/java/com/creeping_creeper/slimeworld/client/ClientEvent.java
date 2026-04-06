@@ -41,7 +41,7 @@ import static net.minecraft.client.model.geom.LayerDefinitions.INNER_ARMOR_DEFOR
 import static net.minecraft.client.model.geom.LayerDefinitions.OUTER_ARMOR_DEFORMATION;
 
 @Mod.EventBusSubscriber(modid = SlimeWorld.MODID, value= Dist.CLIENT, bus= Mod.EventBusSubscriber.Bus.MOD)
-public class ClientBase extends ClientEventBase {
+public class ClientEvent extends ClientEventBase {
     public static final SlimeFactory OCEAN_SLIME_FACTORY = new SlimeFactory(SlimeWorld.getResource("textures/entity/ocean_slime.png"), SlimeWorld.getResource("textures/entity/bronze_slime.png"));
     public static final InvertedSlimeFactory ICHOR_SLIME_FACTORY = new InvertedSlimeFactory(SlimeWorld.getResource("textures/entity/ichor_slime.png"), SlimeWorld.getResource("textures/entity/cobalt_slime.png"));
     public static final SlimeFactory ORIGIN_SLIME_FACTORY = new SlimeFactory(TConstruct.getResource("textures/entity/slime.png"), TConstruct.getResource("textures/entity/slime.png"));

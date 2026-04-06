@@ -1,0 +1,33 @@
+{
+  "name": "slimeworld:great_wall/barrier",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/barrier/bars",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/barrier/door",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/barrier/wall",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
