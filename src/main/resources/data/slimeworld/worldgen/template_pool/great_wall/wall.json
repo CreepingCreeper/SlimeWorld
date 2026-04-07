@@ -1,0 +1,42 @@
+{
+  "name": "slimeworld:great_wall/wall",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight":80,
+      "element": {
+        "location": "slimeworld:great_wall/wall/common",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":10,
+      "element": {
+        "location": "slimeworld:great_wall/wall/beacon",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":5,
+      "element": {
+        "location": "slimeworld:great_wall/wall/corner_left",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":5,
+      "element": {
+        "location": "slimeworld:great_wall/wall/corner_right",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    }
+  ]
+}
