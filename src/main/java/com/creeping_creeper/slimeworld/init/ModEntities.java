@@ -42,6 +42,13 @@ public class ModEntities {
                     .setTrackingRange(20)
                     .sized(2.04F, 2.04F)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.originSlimeEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
+    public static final EntityObject<SulfurCubeEntity> sulfurCubeEntity = ENTITIES.registerWithEgg("sulfur_cube", () ->
+            EntityType.Builder.of(SulfurCubeEntity::new, MobCategory.MONSTER)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .setTrackingRange(20)
+                    .sized(1.96F, 1.96F).clientTrackingRange(10)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.sulfurCubeEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
+
     public static final EntityObject<BoggedEntity> boggedEntity = ENTITIES.registerWithEgg("bogged", () ->
             EntityType.Builder.of(BoggedEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)

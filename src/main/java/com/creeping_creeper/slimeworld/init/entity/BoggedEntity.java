@@ -7,7 +7,6 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
@@ -16,7 +15,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Shearable;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
@@ -34,10 +32,11 @@ import net.minecraftforge.common.IForgeShearable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class BoggedEntity extends AbstractSkeleton implements Shearable, IForgeShearable {
+public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
     private static final EntityDataAccessor<Boolean> DATA_SHEARED = SynchedEntityData.defineId(BoggedEntity.class, EntityDataSerializers.BOOLEAN);
 
     public BoggedEntity(EntityType<? extends AbstractSkeleton> entityType, Level level) {
@@ -132,37 +131,22 @@ public class BoggedEntity extends AbstractSkeleton implements Shearable, IForgeS
     }
 
     @Override
-    public void shear(SoundSource category) {
-        this.level().playSound(null, this, ModSounds.BOGGED_SHEAR.get(), category, 1.0F, 1.0F);
-        if (!this.level().isClientSide()) {
-            this.setSheared(true);
-            this.getMushroom();
-        }
-
-    }
-    private void getMushroom(){
-        for (int i = 0 ; i < 2 ; i++){
-            Item item = this.random.nextBoolean() ? Items.RED_MUSHROOM : Items.BROWN_MUSHROOM;
-            this.spawnAtLocation(item.getDefaultInstance(), 1.7F);
-        }
-    }
-
-    public boolean readyForShearing() {
+    public boolean isShearable(@NotNull ItemStack item, Level world, BlockPos pos) {
         return !this.isSheared() && this.isAlive();
     }
 
     @Override
-    public boolean isShearable(@NotNull ItemStack item, Level world, BlockPos pos) {
-        return this.readyForShearing();
-    }
-
-    @Override
     public @NotNull List<ItemStack> onSheared(@Nullable Player player, @NotNull ItemStack item, Level world, BlockPos pos, int fortune) {
-        world.playSound(null, this, SoundEvents.SNOW_GOLEM_SHEAR, player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
+        world.playSound(null, this, ModSounds.BOGGED_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         this.gameEvent(GameEvent.SHEAR, player);
         if (!world.isClientSide()) {
             this.setSheared(true);
-            this.getMushroom();
+            List<ItemStack> items = new ArrayList();
+            for (int i = 0; i < 2; i++) {
+                Item item1 = this.random.nextBoolean() ? Items.RED_MUSHROOM : Items.BROWN_MUSHROOM;
+                items.add(item1.getDefaultInstance());
+            }
+            return items;
         }
         return Collections.emptyList();
     }

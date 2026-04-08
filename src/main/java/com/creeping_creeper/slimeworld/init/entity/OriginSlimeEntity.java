@@ -43,7 +43,7 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
         InteractionResult interactionresult = super.mobInteract(player, hand);
         ItemStack item =  player.getItemInHand(hand);
         Level level = this.level();
-        if (!level.isClientSide && FOOD_ITEMS.test(item)) {
+        if (!level.isClientSide() && FOOD_ITEMS.test(item)) {
             for (int i = 0; i < 6; i++){
                 if (item.getItem() == FOOD_ITEMS.getItems()[i].getItem()){
                     if (i==0){

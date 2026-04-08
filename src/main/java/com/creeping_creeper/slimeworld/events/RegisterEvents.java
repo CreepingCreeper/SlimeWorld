@@ -8,8 +8,6 @@ import com.creeping_creeper.slimeworld.library.BiomeSlimePlacementPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
@@ -25,6 +23,7 @@ public class RegisterEvents {
         event.put(ModEntities.oceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.ichorSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.originSlimeEntity.get(), Monster.createMonsterAttributes().build());
+        event.put(ModEntities.sulfurCubeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.boggedEntity.get(), BoggedEntity.createAttributes().build());
         event.put(ModEntities.parchedEntity.get(), ParchedEntity.createAttributes().build());
         event.put(ModEntities.steelSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());

@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.SlimeRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Slime;
@@ -53,6 +54,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.oceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.ichorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.originSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.sulfurCubeEntity.get(), SlimeRenderer::new);
         event.registerEntityRenderer(ModEntities.steelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.boggedEntity.get(), BoggedRenderer::new);
         event.registerEntityRenderer(ModEntities.parchedEntity.get(), ParchedRenderer::new);

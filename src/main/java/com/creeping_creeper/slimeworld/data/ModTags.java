@@ -14,6 +14,7 @@ import static slimeknights.mantle.Mantle.commonResource;
 
 public class ModTags {
     public static class Items {
+        public static final TagKey<Item> SulfurCubeSwallowable = local("sulfur_cube_swallowable");
         private static TagKey<Item> local(String name) {
             return TagKey.create(Registries.ITEM, SlimeWorld.getResource(name));
         }
@@ -33,7 +34,7 @@ public class ModTags {
         private static TagKey<Block> common(String name) {return TagKey.create(Registries.BLOCK, commonResource(name));}
     }
     public static class DamageTypes {
-
+        public static final TagKey<DamageType> SULFUR_CUBE_IMMUNE = local("sulfur_cube_with_block_immune_to");
         private static TagKey<DamageType> local(String name) {
             return TagKey.create(Registries.DAMAGE_TYPE, SlimeWorld.getResource(name));
         }
