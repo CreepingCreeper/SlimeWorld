@@ -2,7 +2,6 @@ package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.client.ModLayers;
 import com.creeping_creeper.slimeworld.client.layer.InvertedSlimeArmorLayer;
-import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SlimeModel;
