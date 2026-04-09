@@ -1,6 +1,8 @@
 package com.creeping_creeper.slimeworld.client;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
+import com.creeping_creeper.slimeworld.client.model.BoggedModel;
+import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
 import com.creeping_creeper.slimeworld.client.renderer.*;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
@@ -54,7 +56,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.oceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.ichorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.originSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
-        event.registerEntityRenderer(ModEntities.sulfurCubeEntity.get(), SlimeRenderer::new);
+        event.registerEntityRenderer(ModEntities.sulfurCubeEntity.get(), SulfurCubeRenderer::new);
         event.registerEntityRenderer(ModEntities.steelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.boggedEntity.get(), BoggedRenderer::new);
         event.registerEntityRenderer(ModEntities.parchedEntity.get(), ParchedRenderer::new);
@@ -74,14 +76,15 @@ public class ClientEvent extends ClientEventBase {
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ModLayers.InvertedSlimeInner, InvertedSlimeRenderer::createInnerBodyLayer);
-        event.registerLayerDefinition(ModLayers.Bogged, BoggedRenderer::createBodyLayer);
+        event.registerLayerDefinition(ModLayers.Bogged, BoggedModel::createBodyLayer);
         event.registerLayerDefinition(ModLayers.BoggedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         event.registerLayerDefinition(ModLayers.BoggedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
         event.registerLayerDefinition(ModLayers.BoggedOuterLayer, () -> LayerDefinition.create(HumanoidModel.createMesh(new CubeDeformation(0.25F), 0.0F), 64, 32));
         event.registerLayerDefinition(ModLayers.Parched, ParchedRenderer::createSingleModelDualBodyLayer);
         event.registerLayerDefinition(ModLayers.ParchedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         event.registerLayerDefinition(ModLayers.ParchedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
-
+        event.registerLayerDefinition(ModLayers.SulferCube, SulfurCubeModel::createOuterBodyLayer);
+        event.registerLayerDefinition(ModLayers.SulferCubeInner, SulfurCubeModel::createInnerBodyLayer);
     }
     public record SlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {
         @Override
@@ -92,10 +95,7 @@ public class ClientEvent extends ClientEventBase {
 
     public record InvertedSlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {
         @Override
-        public EntityRenderer<Slime> create(Context context) {
-            return new InvertedSlimeRenderer(context, slime, metal);
-        }
-    }
+        public EntityRenderer<Slime> create(Context context) {return new InvertedSlimeRenderer(context, slime, metal);}}
 
     public record BossSlimeFactory(ResourceLocation slime) implements EntityRendererProvider<Slime> {
         @Override

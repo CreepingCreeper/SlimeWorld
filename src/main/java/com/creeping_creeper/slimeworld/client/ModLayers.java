@@ -15,5 +15,6 @@ public class ModLayers {
     public static final ModelLayerLocation Parched = new ModelLayerLocation(SlimeWorld.getResource("parched"), "main");
     public static final ModelLayerLocation ParchedInnerArmor = new ModelLayerLocation(SlimeWorld.getResource("parched"), "inner_armor");
     public static final ModelLayerLocation ParchedOuterArmor = new ModelLayerLocation(SlimeWorld.getResource("parched"), "outer_armor");
-
+    public static final ModelLayerLocation SulferCube = new ModelLayerLocation(SlimeWorld.getResource("sulfur_cube"), "main");
+    public static final ModelLayerLocation SulferCubeInner = new ModelLayerLocation(SlimeWorld.getResource("sulfur_cube"), "inner");
 }

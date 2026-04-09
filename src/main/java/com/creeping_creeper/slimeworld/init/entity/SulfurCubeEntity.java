@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class SulfurCubeEntity extends Slime implements IForgeShearable {
-     private static final double PUSH_DISTANCE_THRESHOLD = 1.3F;
+    private static final double PUSH_DISTANCE_THRESHOLD = 1.3F;
     private static final double MAX_PLAYER_PUSH_SPEED = 0.5F;
     private static final float PLAYER_PUSH_SPEED_SCALE_MULTIPLIER = 0.3F;
     private static final float VERTICAL_PUSH_MULTIPLIER = 0.3F;
@@ -139,12 +139,26 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
     public boolean hurt(DamageSource source, float amount) {
         if (hasBodyItem() && source.is(ModTags.DamageTypes.SULFUR_CUBE_IMMUNE)) {
             if (source.getEntity() instanceof Player player) {
-                Vec3 hitVec = player.getEyePosition().scale(0.5D);
-                this.knockback(amount, hitVec.x, hitVec.z);
+                Vec3 playerEyePosition = player.getEyePosition();
+                Vec3 cubePosition = this.getBoundingBox().getCenter();
+                Vec3 playerToCubeDirectionEye = cubePosition.subtract(playerEyePosition);
+                Vec3 playerAimDirection = player.getLookAngle().scale(playerToCubeDirectionEye.length());
+                double hitScale = (double)1.0F / (double)((float)this.getSize() * this.getScale());
+                Vec3 hitVector = playerToCubeDirectionEye.subtract(playerAimDirection).scale(hitScale);
+                hitVector = hitVector.add(cubePosition.subtract(player.position()).normalize().scale(hitScale)).scale((double)0.5F);
+                this.playSound(this.getHurtSound(source));
+                this.applyKnockback(amount, hitVector);
                 return false;
             }
         }
         return super.hurt(source, amount);
+    }
+
+    private void applyKnockback(final float damage, final Vec3 hitVector) {
+        double damageMultiplier = Mth.sqrt(damage);
+        damageMultiplier *= Math.max(0.0F, (double)1.0F - this.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
+        Vec3 deltaVector = hitVector.scale(damageMultiplier * (double)0.6F);
+        this.addDeltaMovement(deltaVector);
     }
 
     // 身体装备（吞噬物品）

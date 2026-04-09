@@ -26,8 +26,7 @@ public class FloatingWindRenderer extends EntityRenderer<MagicbubbleEntity> {
     }
 
     @Override
-    public void render(MagicbubbleEntity entity, float entityYaw, float partialTicks, PoseStack poseStack,
-                       MultiBufferSource buffer, int packedLight) {
+    public void render(MagicbubbleEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         poseStack.pushPose();
         poseStack.scale(0.35F, 0.35F, 0.35F);
         poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());

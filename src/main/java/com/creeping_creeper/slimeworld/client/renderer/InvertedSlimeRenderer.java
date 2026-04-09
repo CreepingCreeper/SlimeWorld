@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.client.ModLayers;
 import com.creeping_creeper.slimeworld.client.layer.InvertedSlimeArmorLayer;
+import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SlimeModel;
@@ -34,15 +35,17 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
         addLayer(new InvertedSlimeArmorLayer<>(this, new HumanoidModel<>(context.bakeLayer(ModelLayers.PLAYER_OUTER_ARMOR)), context.getModelSet()));
     }
 
+    @Override
     public void render(Slime entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         this.shadowRadius = 0.25F * (float)entity.getSize();
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }
 
+    @Override
     protected void scale(Slime livingEntity, PoseStack poseStack, float partialTickTime) {
         poseStack.scale(0.999F, 0.999F, 0.999F);
         poseStack.translate(0.0F, 0.001F, 0.0F);
-        float f1 = (float)livingEntity.getSize();
+        float f1 = (float)livingEntity.getSize() * 0.5f;
         float f2 = Mth.lerp(partialTickTime, livingEntity.oSquish, livingEntity.squish) / (f1 * 0.5F + 1.0F);
         float f3 = 1.0F / (f2 + 1.0F);
         poseStack.scale(f3 * f1, 1.0F / f3 * f1, f3 * f1);
