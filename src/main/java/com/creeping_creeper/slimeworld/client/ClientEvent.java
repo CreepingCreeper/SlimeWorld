@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld.client;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.client.model.BoggedModel;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
+import com.creeping_creeper.slimeworld.client.model.SulfurCubeOuterModel;
 import com.creeping_creeper.slimeworld.client.renderer.*;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
@@ -68,6 +69,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerSpecial(ModEntities.ichorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
         event.registerSpecial(ModEntities.originSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));
         event.registerSpecial(ModEntities.steelSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.slimesteel.getIngot()));
+        event.registerSpecial(ModEntities.sulfurCubeGoo.get(), new SlimeParticle.Factory(ModItems.SulfurGoo));
         event.registerSpriteSet(ModEntities.whiteSporeParticle.get(), SporeParticle.WhiteSporeProvider::new);
         event.registerSpriteSet(ModEntities.blackSporeParticle.get(), SporeParticle.BlackSporeProvider::new);
     }
@@ -82,7 +84,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerLayerDefinition(ModLayers.Parched, ParchedRenderer::createSingleModelDualBodyLayer);
         event.registerLayerDefinition(ModLayers.ParchedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         event.registerLayerDefinition(ModLayers.ParchedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
-        event.registerLayerDefinition(ModLayers.SulferCube, SulfurCubeModel::createOuterBodyLayer);
+        event.registerLayerDefinition(ModLayers.SulferCube, SulfurCubeOuterModel::createOuterBodyLayer);
         event.registerLayerDefinition(ModLayers.SulferCubeInner, SulfurCubeModel::createInnerBodyLayer);
     }
     public record SlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {

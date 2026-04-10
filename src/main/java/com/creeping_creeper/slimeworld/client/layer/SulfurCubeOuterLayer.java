@@ -2,12 +2,12 @@ package com.creeping_creeper.slimeworld.client.layer;
 
 import com.creeping_creeper.slimeworld.client.ModLayers;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
+import com.creeping_creeper.slimeworld.client.model.SulfurCubeOuterModel;
 import com.creeping_creeper.slimeworld.init.entity.SulfurCubeEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.SlimeModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -23,7 +23,7 @@ public class SulfurCubeOuterLayer<T extends SulfurCubeEntity> extends RenderLaye
 
     public SulfurCubeOuterLayer(RenderLayerParent<T, SulfurCubeModel<T>> renderer, EntityModelSet modelSet) {
         super(renderer);
-        this.model = new SlimeModel<>(modelSet.bakeLayer(ModLayers.SulferCube));
+        this.model = new SulfurCubeOuterModel<>(modelSet.bakeLayer(ModLayers.SulferCube));
     }
 
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {

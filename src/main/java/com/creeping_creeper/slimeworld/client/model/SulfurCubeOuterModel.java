@@ -13,13 +13,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class SulfurCubeModel<T extends SulfurCubeEntity> extends HierarchicalModel<T> {
+public class SulfurCubeOuterModel<T extends SulfurCubeEntity> extends HierarchicalModel<T> {
     private final ModelPart root;
-    private final ModelPart block;
-    public SulfurCubeModel(ModelPart root) {
+    public SulfurCubeOuterModel(ModelPart root) {
         super(RenderType::entityTranslucent);
         this.root = root;
-        this.block = root.getChild("block");
     }
 
     public static LayerDefinition createOuterBodyLayer() {
@@ -29,16 +27,8 @@ public class SulfurCubeModel<T extends SulfurCubeEntity> extends HierarchicalMod
         return LayerDefinition.create(mesh, 128, 128);
     }
 
-    public static LayerDefinition createInnerBodyLayer() {
-        MeshDefinition mesh = new MeshDefinition();
-        PartDefinition root = mesh.getRoot();
-        root.addOrReplaceChild("block", CubeListBuilder.create().texOffs(0, 36).addBox(-8.0F, -8.0F, -8.0F, 16.0F, 16.0F, 16.0F), PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 128);
-    }
-
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.block.visible = !entity.hasBodyItem();
     }
 
     @Override

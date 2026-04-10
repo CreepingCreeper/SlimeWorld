@@ -70,6 +70,7 @@ public class ModItems {
     }
 
     public static final ItemObject<Item> NecroticBoneMeal = ITEMS.register("necrotic_bone_meal", () -> new NecroticBoneMealItem(GENERAL_PROPS));
+    public static final ItemObject<Item> SulfurGoo = ITEMS.register("sulfur_goo", GENERAL_PROPS);
     public static final ItemObject<Item> OceanSlimeBall = ITEMS.register("ocean_slime_ball", GENERAL_PROPS);
     public static final ItemObject<Block> OceanSlime = BLOCKS.register("ocean_slime", () -> new StickySlimeBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.SLIME_BLOCK).strength(0.5F).friction(0.5F).lightLevel(s -> 3).noOcclusion(), (state, other) -> !other.is(ModTags.Blocks.Slimy)), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> OceanCongealedSlime = BLOCKS.register("ocean_congealed_slime", () -> new CongealedSlimeBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.SLIME_BLOCK).strength(0.5F).friction(0.5F).lightLevel(s -> 3)), TOOLTIP_BLOCK_ITEM);
@@ -143,6 +144,7 @@ public class ModItems {
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(NecroticBoneMeal);
+        output.accept(SulfurGoo);
         output.accept(OceanSlimeBall);
         output.accept(OceanCongealedSlime);
         output.accept(OceanSlime);
@@ -202,11 +204,6 @@ public class ModItems {
         output.accept(CobaltBerryBush);
         output.accept(ModFluids.OceanSlime);
         output.accept(ModFluids.ResonanceSlime);
-        output.accept(ModEntities.oceanSlimeEntity);
-        output.accept(ModEntities.ichorSlimeEntity);
-        output.accept(ModEntities.originSlimeEntity);
-        output.accept(ModEntities.boggedEntity);
-        output.accept(ModEntities.parchedEntity);
 
         output.accept(Bubble);
         output.accept(WaterBubble);
@@ -218,6 +215,13 @@ public class ModItems {
         output.accept(OceanSlimeBubble);
         output.accept(HoneyBubble);
         output.accept(VenomBubble);
+
+        output.accept(ModEntities.oceanSlimeEntity);
+        output.accept(ModEntities.ichorSlimeEntity);
+        output.accept(ModEntities.originSlimeEntity);
+        output.accept(ModEntities.sulfurCubeEntity);
+        output.accept(ModEntities.boggedEntity);
+        output.accept(ModEntities.parchedEntity);
     }
 
     protected static BlockBehaviour.Properties grass() {

@@ -74,7 +74,7 @@ public abstract class BossSlimeEntity extends Slime {
     @Override
     public void tick() {
         super.tick();
-        if (isCooling()){
+        if (!this.level().isClientSide && isCooling()){
             setCooling(this.getCooling() - 1);
         }
     }

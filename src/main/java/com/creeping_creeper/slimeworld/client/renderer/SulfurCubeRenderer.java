@@ -17,7 +17,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCubeModel<SulfurCubeEntity>> {
-    private static final ResourceLocation SULFUR_CUBE_LOCATION = SlimeWorld.getResource("textures/entity/sulfur_cube.png");
+    private static final ResourceLocation SULFUR_CUBE_LOCATION = SlimeWorld.getResource("textures/entity/sulfur_cube/sulfur_cube.png");
 
     public SulfurCubeRenderer(final EntityRendererProvider.Context context) {
         super(context, new SulfurCubeModel<>(context.bakeLayer(ModLayers.SulferCubeInner)), 0.25F);
@@ -43,9 +43,9 @@ public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCube
         poseStack.translate(-0.0F, 0.98F, -0.0F);
     }
 
-    @Override
-    public ResourceLocation getTextureLocation(SulfurCubeEntity sulfurCubeEntity) {
-        return SULFUR_CUBE_LOCATION;
-    }
+@Override
+public ResourceLocation getTextureLocation(SulfurCubeEntity sulfurCubeEntity) {
+    return SULFUR_CUBE_LOCATION;
+}
 }
 

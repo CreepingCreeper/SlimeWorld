@@ -6,7 +6,6 @@ import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -38,7 +37,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 public class SulfurCubeEntity extends Slime implements IForgeShearable {
     private static final double PUSH_DISTANCE_THRESHOLD = 1.3F;
@@ -49,13 +47,12 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
     private static final float PUSH_SOUND_THRESHOLD = 0.5F;
     private static final EntityDataAccessor<Boolean> FROM_BUCKET = SynchedEntityData.defineId(SulfurCubeEntity.class, EntityDataSerializers.BOOLEAN);
 
-    // 变量
     private int pickupTimer = 0;
     private boolean floatsInLiquids = false;
-    private static final Predicate<ItemEntity> ALLOWED_ITEMS = e -> !e.hasPickUpDelay() && e.isAlive() && isSwallowableItem(e.getItem());
 
     public SulfurCubeEntity(EntityType<? extends SulfurCubeEntity> type, Level worldIn) {
         super(type, worldIn);
+        this.setCanPickUpLoot(true);
     }
 
     @Override
@@ -161,16 +158,14 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
         this.addDeltaMovement(deltaVector);
     }
 
-    // 身体装备（吞噬物品）
     public boolean hasBodyItem() {
         return !isTiny() && !this.getItemBySlot(EquipmentSlot.HEAD).isEmpty();
     }
 
-    // AI 步进
     @Override
     public void tick() {
         super.tick();
-        if (pickupTimer > 0) {
+        if (!this.level().isClientSide && pickupTimer > 0) {
             pickupTimer--;
         }
     }
@@ -181,25 +176,28 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
     }
 
     private static boolean isSwallowableItem(ItemStack stack) {
-        return true;
-       // return stack.is(ItemTags.SULFUR_CUBE_SWALLOWABLE);
+        return stack.is(ModTags.Items.SulfurCubeSwallowable);
     }
 
     @Override
     public boolean canHoldItem(ItemStack stack) {
-        return !hasBodyItem() && isSwallowableItem(stack) && !isBaby();
+        return !hasBodyItem() && this.pickupTimer <= 0 && isSwallowableItem(stack);
     }
 
-    // 自动拾取物品
     @Override
-    public void onItemPickup(ItemEntity entity) {
-        ItemStack itemStack = entity.getItem();
-        if (this.canHoldItem(itemStack) && this.pickupTimer <= 0) {
-            this.onItemPickup(entity);
-            this.setItemSlot(EquipmentSlot.HEAD, itemStack.split(1));
-            //this.playSound(this.getAbsorbSound());
-            this.setGuaranteedDrop(EquipmentSlot.HEAD);
-            this.take(entity, 1);
+    protected void pickUpItem(ItemEntity itemEntity) {
+        ItemStack itemstack = itemEntity.getItem();
+        if (this.canHoldItem(itemstack)) {
+            int i = itemstack.getCount();
+            if (i > 1) {
+                ItemEntity itementity = new ItemEntity(this.level(), this.getX(), this.getY(), this.getZ(), itemstack.split(i - 1));
+                this.level().addFreshEntity(itementity);
+            }
+            this.onItemPickup(itemEntity);
+            this.setItemSlot(EquipmentSlot.HEAD, itemstack.split(1));
+            this.take(itemEntity, itemstack.getCount());
+            itemEntity.discard();
+            this.pickupTimer = 100;
             this.setNoAi(true);
         }
     }
@@ -211,6 +209,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
             ItemStack oldStack = this.getItemBySlot(EquipmentSlot.HEAD);
             if (!oldStack.isEmpty()){
                 this.spawnAtLocation(oldStack.getItem().getDefaultInstance(), 1.7F);
+                this.pickupTimer = 100;
             }
             this.setItemSlot(EquipmentSlot.HEAD, stack.getItem().getDefaultInstance());
             this.setNoAi(true);
@@ -263,11 +262,9 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
         }
     }
 
-    // 粒子
-    @Nullable
     @Override
     protected ParticleOptions getParticleType() {
-        return ParticleTypes.ITEM_SLIME;
+        return ModEntities.sulfurCubeGoo.get();
     }
 
     @Nullable
@@ -325,6 +322,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
             items.add(this.getItemBySlot(EquipmentSlot.HEAD));
             this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
             this.setNoAi(false);
+            this.pickupTimer = 100;
             return items;
         }
         return Collections.emptyList();
