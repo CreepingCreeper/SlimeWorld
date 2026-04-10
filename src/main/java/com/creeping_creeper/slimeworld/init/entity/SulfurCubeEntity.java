@@ -142,7 +142,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
                 Vec3 playerAimDirection = player.getLookAngle().scale(playerToCubeDirectionEye.length());
                 double hitScale = (double)1.0F / (double)((float)this.getSize() * this.getScale());
                 Vec3 hitVector = playerToCubeDirectionEye.subtract(playerAimDirection).scale(hitScale);
-                hitVector = hitVector.add(cubePosition.subtract(player.position()).normalize().scale(hitScale)).scale((double)0.5F);
+                hitVector = hitVector.add(cubePosition.subtract(player.position()).normalize().scale(hitScale)).scale(0.5F);
                 this.playSound(this.getHurtSound(source));
                 this.applyKnockback(amount, hitVector);
                 return false;
@@ -285,7 +285,6 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
             boolean invulnerable = this.isInvulnerable();
             for(int i = 0; i < 2; ++i) {
                 float x = ((i % 2) - 0.5F) * 0.5F;
-                float z = ((i / 2) - 0.5F) * 0.5F;
                 SulfurCubeEntity slime =  ModEntities.sulfurCubeEntity.get().create(level);
                 assert slime != null;
                 if (this.isPersistenceRequired()) {
@@ -295,7 +294,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable {
                 slime.setNoAi(noAi);
                 slime.setInvulnerable(invulnerable);
                 slime.setSize(1, true);
-                slime.moveTo(this.getX() + x, this.getY() + 0.5D, this.getZ() + z, this.random.nextFloat() * 360.0F, 0.0F);
+                slime.moveTo(this.getX() + x, this.getY() + 0.5D, this.getZ() -0.25F, this.random.nextFloat() * 360.0F, 0.0F);
                 level.addFreshEntity(slime);
             }
         }
