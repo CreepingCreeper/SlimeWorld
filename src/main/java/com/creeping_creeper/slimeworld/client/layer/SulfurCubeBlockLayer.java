@@ -4,14 +4,17 @@ import com.creeping_creeper.slimeworld.init.entity.SulfurCubeEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,7 +25,7 @@ import net.minecraftforge.client.model.data.ModelData;
 public class SulfurCubeBlockLayer<T extends SulfurCubeEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
     private final BlockRenderDispatcher blockRenderer;
 
-    public SulfurCubeBlockLayer(RenderLayerParent<T, M> renderer, EntityModelSet modelSet, BlockRenderDispatcher blockRenderer) {
+    public SulfurCubeBlockLayer(RenderLayerParent<T, M> renderer, BlockRenderDispatcher blockRenderer) {
         super(renderer);
         this.blockRenderer = blockRenderer;
     }
@@ -34,9 +37,15 @@ public class SulfurCubeBlockLayer<T extends SulfurCubeEntity, M extends EntityMo
             poseStack.pushPose();
             poseStack.mulPose(Axis.XP.rotationDegrees(180.0F));
             poseStack.translate(-0.5F, -0.518F, -0.5F);
-            this.blockRenderer.renderSingleBlock(blockState, poseStack, buffer, packedLight, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.translucent());
+            this.blockRenderer.renderSingleBlock(blockState, poseStack, buffer, getLightLevel(livingEntity.level(), livingEntity.blockPosition()), OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.translucent());
             poseStack.popPose();
         }
+    }
+
+    private int getLightLevel(Level level, BlockPos pos){
+        int bLight = level.getBrightness(LightLayer.BLOCK,pos);
+        int sLight = level.getBrightness(LightLayer.SKY,pos);
+        return LightTexture.pack(bLight,sLight);
     }
 }
 

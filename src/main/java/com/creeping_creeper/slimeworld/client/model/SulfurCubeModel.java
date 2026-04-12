@@ -22,13 +22,6 @@ public class SulfurCubeModel<T extends SulfurCubeEntity> extends HierarchicalMod
         this.block = root.getChild("block");
     }
 
-    public static LayerDefinition createOuterBodyLayer() {
-        MeshDefinition mesh = new MeshDefinition();
-        PartDefinition root = mesh.getRoot();
-        root.addOrReplaceChild("cube", CubeListBuilder.create().texOffs(0, 0).addBox(-9.0F, -9.0F, -9.0F, 18.0F, 18.0F, 18.0F), PartPose.ZERO);
-        return LayerDefinition.create(mesh, 128, 128);
-    }
-
     public static LayerDefinition createInnerBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();

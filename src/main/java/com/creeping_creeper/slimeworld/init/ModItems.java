@@ -13,10 +13,12 @@ import com.creeping_creeper.slimeworld.init.block.bush.SlimeBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.flower.*;
 import com.creeping_creeper.slimeworld.init.block.grass.*;
 import com.creeping_creeper.slimeworld.init.item.BurnableBlockTooltipItem;
+import com.creeping_creeper.slimeworld.init.item.EmptyMobBucketItem;
 import com.creeping_creeper.slimeworld.init.item.ModFood;
 import com.creeping_creeper.slimeworld.init.item.NecroticBoneMealItem;
 import com.creeping_creeper.slimeworld.init.world.MagicbubbleTreeGrower;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -141,6 +143,8 @@ public class ModItems {
     public static final ItemObject<Block> OceanSlimeBubble = BLOCKS.register("ocean_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_BLUE)), ModFluids.OceanSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.sulfurCubeEntity, () -> SoundEvents.BUCKET_EMPTY_AXOLOTL, (new Item.Properties()).stacksTo(1)));
+
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(NecroticBoneMeal);
@@ -216,6 +220,7 @@ public class ModItems {
         output.accept(HoneyBubble);
         output.accept(VenomBubble);
 
+        output.accept(SulfurCubeBucket);
         output.accept(ModEntities.oceanSlimeEntity);
         output.accept(ModEntities.ichorSlimeEntity);
         output.accept(ModEntities.originSlimeEntity);

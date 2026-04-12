@@ -15,6 +15,16 @@ import static slimeknights.mantle.Mantle.commonResource;
 public class ModTags {
     public static class Items {
         public static final TagKey<Item> SulfurCubeSwallowable = local("sulfur_cube_swallowable");
+        public static final TagKey<Item> ArchetypeBouncy = local("sulfur_cube_archetype/bouncy");
+        public static final TagKey<Item> ArchetypeFastFlat = local("sulfur_cube_archetype/fast_flat");
+        public static final TagKey<Item> ArchetypeFastSliding = local("sulfur_cube_archetype/fast_sliding");
+        public static final TagKey<Item> ArchetypeHighResistance = local("sulfur_cube_archetype/high_resistance");
+        public static final TagKey<Item> ArchetypeLight = local("sulfur_cube_archetype/light");
+        public static final TagKey<Item> ArchetypeRegular = local("sulfur_cube_archetype/regular");
+        public static final TagKey<Item> ArchetypeSlowFlat = local("sulfur_cube_archetype/slow_flat");
+        public static final TagKey<Item> ArchetypeSlowSliding = local("sulfur_cube_archetype/slow_sliding");
+        public static final TagKey<Item> ArchetypeSticky = local("sulfur_cube_archetype/sticky");
+
         private static TagKey<Item> local(String name) {
             return TagKey.create(Registries.ITEM, SlimeWorld.getResource(name));
         }

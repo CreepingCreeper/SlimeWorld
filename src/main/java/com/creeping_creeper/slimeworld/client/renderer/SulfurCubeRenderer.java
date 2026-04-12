@@ -21,7 +21,7 @@ public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCube
 
     public SulfurCubeRenderer(final EntityRendererProvider.Context context) {
         super(context, new SulfurCubeModel<>(context.bakeLayer(ModLayers.SulferCubeInner)), 0.25F);
-        addLayer(new SulfurCubeBlockLayer<>(this, context.getModelSet(), context.getBlockRenderDispatcher()));
+        addLayer(new SulfurCubeBlockLayer<>(this, context.getBlockRenderDispatcher()));
         addLayer(new SulfurCubeOuterLayer<>(this, context.getModelSet()));
     }
 
