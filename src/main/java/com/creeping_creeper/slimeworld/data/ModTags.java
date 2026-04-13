@@ -53,6 +53,7 @@ public class ModTags {
     public static class EntityTypes {
         /** any entity types that immunize to the damage from ore berry bushes */
         public static final TagKey<EntityType<?>> OreBerryBushesImmune = local("ore_berry_bushes_immune");
+        public static final TagKey<EntityType<?>> PlaySulfurCube = local("play_sulfur_cube");
         private static TagKey<EntityType<?>> local(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, SlimeWorld.getResource(name));
         }

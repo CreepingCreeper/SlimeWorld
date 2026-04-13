@@ -45,9 +45,26 @@ public class WorldEvents {
                 }
             }
         };
+        DispenseItemBehavior dispenseEmptyMobBucket = new DefaultDispenseItemBehavior() {
+            private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
+
+            @Override
+            public ItemStack execute(BlockSource source, ItemStack stack) {
+                DispensibleContainerItem container = (DispensibleContainerItem)stack.getItem();
+                BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+                Level level = source.getLevel();
+                if (container.emptyContents(null, level, blockpos, null, stack)) {
+                    container.checkExtraContent(null, level, stack, blockpos);
+                    return new ItemStack(Items.BUCKET);
+                } else {
+                    return this.defaultDispenseItemBehavior.dispense(source, stack);
+                }
+            }
+        };
 
         DispenserBlock.registerBehavior(ModFluids.OceanSlime, dispenseBucket);
         DispenserBlock.registerBehavior(ModFluids.ResonanceSlime, dispenseBucket);
+        DispenserBlock.registerBehavior(ModItems.SulfurCubeBucket, dispenseBucket);
 
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFlammable(ModItems.Magicbubbleleaves.get(), 30, 60);

@@ -143,7 +143,7 @@ public class ModItems {
     public static final ItemObject<Block> OceanSlimeBubble = BLOCKS.register("ocean_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_BLUE)), ModFluids.OceanSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.sulfurCubeEntity, () -> SoundEvents.BUCKET_EMPTY_AXOLOTL, (new Item.Properties()).stacksTo(1)));
+    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.sulfurCubeEntity, () -> SoundEvents.EMPTY, (new Item.Properties()).stacksTo(1)));
 
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {

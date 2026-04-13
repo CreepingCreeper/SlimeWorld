@@ -15,6 +15,7 @@
   "block.slimeworld.ocean_slime.tooltip": "只能与没有黏性的方块黏结",
   "block.slimeworld.ocean_congealed_slime": "凝固海洋黏液块",
   "block.slimeworld.ocean_congealed_slime.tooltip": "能让你跳得非常高",
+  "item.slimeworld.sulfur_goo": "硫黄胶",
 
   "item.slimeworld.ocean_slime_crystal": "海洋黏液水晶",
   "block.slimeworld.ocean_slime_crystal_block": "海洋黏液水晶块",
@@ -35,6 +36,7 @@
   "block.slimeworld.deepslate_glowstone_ore": "深层荧石矿石",
   "block.slimeworld.isomeric_glowstone": "异构荧石",
   "block.slimeworld.isomeric_redstone_block": "异构红石块",
+  
   "block.slimeworld.ocean_cake": "海洋黏液蛋糕",
   "block.slimeworld.slime_berry_bush": "黏液莓",
   "block.slimeworld.berriper_bush": "莓力怕",
@@ -77,6 +79,10 @@
   "item.slimeworld.ichor_slime_spawn_egg": "灵浆史莱姆刷怪蛋",
   "entity.slimeworld.origin_slime": "原初史莱姆",
   "item.slimeworld.origin_slime_spawn_egg": "原初史莱姆刷怪蛋",
+  "entity.slimeworld.sulfur_cube": "硫黄怪",
+  "item.slimeworld.sulfur_cube_bucket": "硫黄怪桶",
+  "item.slimeworld.sulfur_cube_spawn_egg": "硫黄怪刷怪蛋",
+  
   "entity.slimeworld.bogged": "沼骸",
   "item.slimeworld.bogged_spawn_egg": "沼骸刷怪蛋",
   "entity.slimeworld.parched": "焦骸",
@@ -142,9 +148,19 @@
 
   "attribute.name.tconstruct.generic.bouncy": "弹性",
 
+  "subtitles.entity.sulfur_cube.absorb": "硫黄怪：填充",
+  "subtitles.entity.sulfur_cube.bounce": "硫黄怪：弹起",
+  "subtitles.entity.sulfur_cube.death": "硫黄怪：死亡",
+  "subtitles.entity.sulfur_cube.eject": "方块：被移除",
+  "subtitles.entity.sulfur_cube.hit": "硫黄怪：受击",
+  "subtitles.entity.sulfur_cube.hurt": "硫黄怪：受伤",
+  "subtitles.entity.sulfur_cube.push": "硫黄怪：被推动",
+  "subtitles.entity.sulfur_cube.squish": "硫黄怪：弹起",
+
   "subtitles.entity.bogged.ambient": "沼骸：咯咯声",
   "subtitles.entity.bogged.death": "沼骸：死亡",
   "subtitles.entity.bogged.hurt": "沼骸：受伤",
+  
   "subtitles.entity.parched.ambient": "焦骸：咯咯声",
   "subtitles.entity.parched.death": "焦骸：死亡",
   "subtitles.entity.parched.hurt": "焦骸：受伤"

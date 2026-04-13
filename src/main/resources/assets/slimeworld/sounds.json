@@ -1,4 +1,146 @@
 {
+  "entity.sulfur_cube.absorb": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/absorb1",
+      {
+        "name": "slimeworld:mob/sulfur_cube/absorb2",
+        "weight": 2
+      }
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.absorb"
+  },
+  "entity.sulfur_cube.bounce": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/ball/bounce1",
+      "slimeworld:mob/sulfur_cube/ball/bounce2",
+      "slimeworld:mob/sulfur_cube/ball/bounce3",
+      "slimeworld:mob/sulfur_cube/ball/bounce4",
+      "slimeworld:mob/sulfur_cube/ball/bounce5",
+      "slimeworld:mob/sulfur_cube/ball/bounce6",
+      "slimeworld:mob/sulfur_cube/ball/bounce7",
+      "slimeworld:mob/sulfur_cube/ball/bounce8"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.bounce"
+  },
+  "entity.sulfur_cube.death": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/death"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.death"
+  },
+  "entity.sulfur_cube.eject": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/eject1",
+      "slimeworld:mob/sulfur_cube/eject2"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.eject"
+  },
+  "entity.sulfur_cube.hit": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/ball/hit1",
+      "slimeworld:mob/sulfur_cube/ball/hit2",
+      "slimeworld:mob/sulfur_cube/ball/hit3",
+      "slimeworld:mob/sulfur_cube/ball/hit4"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.hit"
+  },
+  "entity.sulfur_cube.hurt": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/hit1",
+      "slimeworld:mob/sulfur_cube/hit2",
+      "slimeworld:mob/sulfur_cube/hit3",
+      "slimeworld:mob/sulfur_cube/hit4"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.hurt"
+  },
+  "entity.sulfur_cube.jump": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/jump1",
+      "slimeworld:mob/sulfur_cube/jump2",
+      "slimeworld:mob/sulfur_cube/jump3",
+      "slimeworld:mob/sulfur_cube/jump4",
+      "slimeworld:mob/sulfur_cube/jump5",
+      "slimeworld:mob/sulfur_cube/jump6",
+      "slimeworld:mob/sulfur_cube/jump7",
+      "slimeworld:mob/sulfur_cube/jump8",
+      "slimeworld:mob/sulfur_cube/jump9",
+      "slimeworld:mob/sulfur_cube/jump10",
+      "slimeworld:mob/sulfur_cube/jump11"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.squish"
+  },
+  "entity.sulfur_cube.push": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/ball/push1",
+      "slimeworld:mob/sulfur_cube/ball/push2",
+      "slimeworld:mob/sulfur_cube/ball/push3",
+      "slimeworld:mob/sulfur_cube/ball/push4"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.push"
+  },
+  "entity.sulfur_cube.squish": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/squish1",
+      "slimeworld:mob/sulfur_cube/squish2",
+      "slimeworld:mob/sulfur_cube/squish3",
+      "slimeworld:mob/sulfur_cube/squish4",
+      "slimeworld:mob/sulfur_cube/squish5",
+      "slimeworld:mob/sulfur_cube/squish6",
+      "slimeworld:mob/sulfur_cube/squish7",
+      "slimeworld:mob/sulfur_cube/squish8",
+      "slimeworld:mob/sulfur_cube/squish9",
+      "slimeworld:mob/sulfur_cube/squish10",
+      "slimeworld:mob/sulfur_cube/squish11"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.squish"
+  },
+
+  "entity.small_sulfur_cube.death": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/death"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.death"
+  },
+  "entity.small_sulfur_cube.hurt": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/hit1",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/hit2",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/hit3",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/hit4"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.hurt"
+  },
+  "entity.small_sulfur_cube.jump": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump1",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump2",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump3",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump4",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump5",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump6",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump7",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump8",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump9",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump10",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/jump11"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.squish"
+  },
+  "entity.small_sulfur_cube.squish": {
+    "sounds": [
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish1",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish2",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish3",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish4",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish5",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish6",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish7",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish8",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish9",
+      "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish10"
+    ],
+    "subtitle": "subtitles.entity.sulfur_cube.squish"
+  },
   "entity.bogged.ambient": {
     "sounds": [
       "slimeworld:mob/bogged/ambient1",

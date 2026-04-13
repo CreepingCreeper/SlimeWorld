@@ -15,6 +15,7 @@
   "block.slimeworld.ocean_slime.tooltip": "只能与没有黏性的方块黏结",
   "block.slimeworld.ocean_congealed_slime": "Congealed OceansLime Block",
   "block.slimeworld.ocean_congealed_slime.tooltip": "Lets you jump really high",
+  "item.slimeworld.sulfur_goo": "Sulfur Goo",
 
   "item.slimeworld.ocean_slime_crystal": "OceansLime Crystal",
   "block.slimeworld.ocean_slime_crystal_block": "OceansLime Crystal Block",
@@ -78,6 +79,10 @@
   "item.slimeworld.ichor_slime_spawn_egg": "Ichorslime Spawn Egg",
   "entity.slimeworld.origin_slime": "Originslime",
   "item.slimeworld.origin_slime_spawn_egg": "Originslime Spawn Egg",
+  "entity.slimeworld.sulfur_cube": "Sulfur Cube",
+  "item.slimeworld.sulfur_cube_bucket": "Bucket of Sulfur Cube",
+  "item.slimeworld.sulfur_cube_spawn_egg": "Sulfur Cube Spawn Egg",
+
   "entity.slimeworld.bogged": "Bogged",
   "item.slimeworld.bogged_spawn_egg": "Bogged Spawn Egg",
   "entity.slimeworld.parched": "Parched",
@@ -142,6 +147,15 @@
   "item.minecraft.tipped_arrow.effect.slimeworld.floating": "Arrow of Floating",
 
   "attribute.name.tconstruct.generic.bouncy": "Bouncy",
+
+  "subtitles.entity.sulfur_cube.absorb": "Sulfur Cube full",
+  "subtitles.entity.sulfur_cube.bounce": "Sulfur Cube bounces",
+  "subtitles.entity.sulfur_cube.death": "Sulfur Cube dies",
+  "subtitles.entity.sulfur_cube.eject": "Block removed",
+  "subtitles.entity.sulfur_cube.hit": "Sulfur Cube hit",
+  "subtitles.entity.sulfur_cube.hurt": "Sulfur Cube hurts",
+  "subtitles.entity.sulfur_cube.push": "Sulfur Cube pushed",
+  "subtitles.entity.sulfur_cube.squish": "Sulfur Cube bounces",
 
   "subtitles.entity.bogged.ambient": "Bogged rattles",
   "subtitles.entity.bogged.death": "Bogged dies",

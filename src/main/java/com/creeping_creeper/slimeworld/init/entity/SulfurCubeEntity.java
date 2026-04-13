@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -85,9 +86,9 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     @Override
     public void setSize(int size, boolean resetHealth) {
         super.setSize(size, resetHealth);
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getSize() * 5.0 - 1);
+        this.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(8.0);
         if(resetHealth){
-            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getSize() * 5.0 - 1);
-            this.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(8.0);
             this.setHealth(this.getMaxHealth());
         }
     }
@@ -116,6 +117,11 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         compound.putInt("Size", this.getSize());
         compound.putInt("Age", this.age);
         compound.putInt("PickupTimer", this.pickupTimer);
+        if (hasBodyItem()){
+            CompoundTag compoundtag = new CompoundTag();
+            this.getItemBySlot(EquipmentSlot.HEAD).save(compoundtag);
+            compound.put("BodyItems", compoundtag);
+        }
     }
 
     @Override
@@ -127,9 +133,12 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         if (compound.contains("Age")) {
             this.age = compound.getInt("Age");
         }
-        SulfurCubeArchetype.getArchetype(this);
         if (compound.contains("PickupTimer")) {
             this.pickupTimer = compound.getInt("PickupTimer");
+        }
+        if (compound.contains("BodyItems", Tag.TAG_COMPOUND)) {
+            CompoundTag compoundtag = compound.getCompound("BodyItems");
+            this.setItemSlot(EquipmentSlot.HEAD, ItemStack.of(compoundtag));
         }
     }
 
@@ -349,7 +358,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     public boolean hurt(DamageSource source, float amount) {
         if (this.hasBodyItem() && source.is(ModTags.DamageTypes.SULFUR_CUBE_IMMUNE)) {
             Entity var5 = source.getEntity();
-            if (var5 instanceof Player player) {
+            if (var5 instanceof LivingEntity player && var5.getType().is(ModTags.EntityTypes.PlaySulfurCube)) {
                 this.playerHit(player, amount);
                 return false;
             } else {
@@ -360,7 +369,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         }
     }
 
-    private void playerHit(final Player player, final float damage) {
+    private void playerHit(LivingEntity player, float damage) {
         Vec3 playerEyePosition = player.getEyePosition();
         Vec3 cubePosition = this.getBoundingBox().getCenter();
         Vec3 playerToCubeDirectionEye = cubePosition.subtract(playerEyePosition);
@@ -368,7 +377,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         double hitScale = (double)1.0F / (double)((float)this.getSize() * this.getScale());
         Vec3 hitVector = playerToCubeDirectionEye.subtract(playerAimDirection).scale(hitScale);
         hitVector = hitVector.add(cubePosition.subtract(player.position()).normalize().scale(hitScale)).scale(0.5F);
-        //this.playSound(this.getHitSound());
+        this.playSound(this.getHitSound());
         this.applyKnockback(damage, hitVector);
     }
 
@@ -473,6 +482,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
             this.onItemPickup(itemEntity);
             this.setItemSlot(EquipmentSlot.HEAD, itemstack.split(1));
             this.take(itemEntity, itemstack.getCount());
+            this.playSound(this.getAbsorbSound());
             itemEntity.discard();
             this.pickupTimer = 100;
         }
@@ -510,10 +520,11 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
                  this.setItemSlot(EquipmentSlot.HEAD, stack.getItem().getDefaultInstance());
                  stack.shrink(1);
                  this.setPersistenceRequired();
+                 this.playSound(this.getAbsorbSound());
                  return InteractionResult.SUCCESS;
              }
             }else if (isFoodItem(stack)) {
-                this.age += (int) (this.age * 0.1);
+                this.age -= (int) (this.age * 0.1);
                 ServerLevel server = (ServerLevel)this.level();
                 server.sendParticles(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0F), this.getRandomY() + (double)0.5F, this.getRandomZ(1.0F), 0, 0.0F, 0.0F, 0.0F, 0);
                 stack.shrink(1);
@@ -567,21 +578,17 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
        playerPush(player);
     }
 
-    private Vec3 horizontal(Vec3 vec3) {
-        return new Vec3(vec3.x, 0.0F, vec3.z);
-    }
-
     private void playerPush(Player player) {
         if (this.hasBodyItem()) {
             Vec3 cubeToPlayer = this.position().subtract(player.position());
             if (cubeToPlayer.horizontalDistance() < (double)1.3F && player.getY() <= this.getY() + (double)this.getBbHeight()) {
                 double knockback = Math.max(0.0F, (double)1.0F - this.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE));
-                Vec3 pushDirection = horizontal(cubeToPlayer).normalize().scale(knockback);
+                Vec3 pushDirection =  new Vec3(cubeToPlayer.x, 0.0F, cubeToPlayer.z).normalize().scale(knockback);
                 double playerSpeed = player.getDeltaMovement().length() * (double)2.0F * (double)0.3F;
                 playerSpeed = Mth.clamp(playerSpeed, 0.0F, 0.5F);
                 Vec3 pushVelocity = (new Vec3(pushDirection.x, this.onGround() ? knockback * (double)0.3F : (double)0.0F, pushDirection.z)).scale(playerSpeed);
                 if (pushVelocity.lengthSqr() > (double)0.25F) {
-                    this.playSound(this.getSquishSound());
+                    this.playSound(this.getPushSound());
                 }
 
                 this.addDeltaMovement(pushVelocity);
@@ -636,28 +643,52 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         this.invalidateCaps();
     }
 
+    @Override
+    public int getExperienceReward() {
+        return this.isTiny() ? 0 : 1 + this.random.nextInt(2);
+    }
+
     private SoundEvent getFallDamageSound(int height) {
         return height > 4 ? this.getFallSounds().big() : this.getFallSounds().small();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource) {
-        return this.isTiny() ? SoundEvents.SLIME_HURT_SMALL : SoundEvents.SLIME_HURT;
+        return this.isTiny() ? ModSounds.SULFUR_CUBE_HURT_SMALL.get() : ModSounds.SULFUR_CUBE_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return this.isTiny() ? SoundEvents.SLIME_DEATH_SMALL : SoundEvents.SLIME_DEATH;
-    }
-
-    @Override
-    protected SoundEvent getSquishSound() {
-        return this.isTiny() ? SoundEvents.SLIME_SQUISH_SMALL : SoundEvents.SLIME_SQUISH;
+        return this.isTiny() ? ModSounds.SULFUR_CUBE_DEATH_SMALL.get() : ModSounds.SULFUR_CUBE_DEATH.get();
     }
 
     @Override
     protected SoundEvent getJumpSound() {
-        return this.isTiny() ? SoundEvents.SLIME_JUMP_SMALL : SoundEvents.SLIME_JUMP;
+        return this.isTiny() ? ModSounds.SULFUR_CUBE_JUMP_SMALL.get() : ModSounds.SULFUR_CUBE_JUMP.get();
+    }
+
+    @Override
+    protected SoundEvent getSquishSound() {
+        if (this.isTiny()) {
+            return ModSounds.SULFUR_CUBE_SQUISH_SMALL.get();
+        }
+        return this.hasBodyItem() ? ModSounds.SULFUR_CUBE_BOUNCE.get() : ModSounds.SULFUR_CUBE_SQUISH.get();
+    }
+
+    protected SoundEvent getHitSound() {
+        return ModSounds.SULFUR_CUBE_HIT.get();
+    }
+
+    private SoundEvent getPushSound() {
+        return ModSounds.SULFUR_CUBE_PUSH.get();
+    }
+
+    private SoundEvent getAbsorbSound() {
+        return ModSounds.SULFUR_CUBE_ABSORB.get();
+    }
+
+    private SoundEvent getEjectSound() {
+        return ModSounds.SULFUR_CUBE_EJECT.get();
     }
 
     @Override
@@ -667,7 +698,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
 
     @Override
     public @NotNull List<ItemStack> onSheared(@Nullable Player player, @NotNull ItemStack item, Level world, BlockPos pos, int fortune) {
-        world.playSound(null, this, ModSounds.BOGGED_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
+        world.playSound(null, this, this.getEjectSound(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         this.gameEvent(GameEvent.SHEAR, player);
         if (!world.isClientSide()) {
             List<ItemStack> items = new ArrayList<>();
@@ -729,8 +760,8 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
                 SulfurCubeEntity.this.lookAt(this.temptingPlayer, 10.0F, 10.0F);
             }
              MoveControl var2 = SulfurCubeEntity.this.getMoveControl();
-            if (var2 instanceof SulfurCubeMoveControl moveControl) {
-                moveControl.setDirection(SulfurCubeEntity.this.getYRot(), true);
+            if (var2 instanceof SulfurCubeMoveControl cubeMoveControl) {
+                cubeMoveControl.setDirection(SulfurCubeEntity.this.getYRot(), true);
             }
 
         }
@@ -764,8 +795,8 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
                 SulfurCubeEntity.this.lookAt(this.targetItem, 10.0F, 10.0F);
             }
             MoveControl var2 = SulfurCubeEntity.this.getMoveControl();
-            if (var2 instanceof SulfurCubeMoveControl moveControl) {
-                moveControl.setDirection(SulfurCubeEntity.this.getYRot(), true);
+            if (var2 instanceof SulfurCubeMoveControl cubeMoveControl) {
+                cubeMoveControl.setDirection(SulfurCubeEntity.this.getYRot(), true);
             }
 
         }
