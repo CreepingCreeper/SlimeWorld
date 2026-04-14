@@ -3,6 +3,8 @@ package com.creeping_creeper.slimeworld.init;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraftforge.common.util.ForgeSoundType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -10,6 +12,19 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SlimeWorld.MODID);
+
+    public static final RegistryObject<SoundEvent> SULFUR_BREAK = registerSoundEvent("block.sulfur.break");
+    public static final RegistryObject<SoundEvent> SULFUR_STEP = registerSoundEvent("block.sulfur.step");
+    public static final RegistryObject<SoundEvent> SULFUR_PLACE = registerSoundEvent("block.sulfur.place");
+    public static final RegistryObject<SoundEvent> SULFUR_HIT = registerSoundEvent("block.sulfur.hit");
+    public static final RegistryObject<SoundEvent> SULFUR_FALL = registerSoundEvent("block.sulfur.fall");
+
+    public static final RegistryObject<SoundEvent> POTENT_SULFUR_BREAK = registerSoundEvent("block.potent_sulfur.break");
+    public static final RegistryObject<SoundEvent> POTENT_SULFUR_STEP = registerSoundEvent("block.potent_sulfur.step");
+    public static final RegistryObject<SoundEvent> POTENT_SULFUR_PLACE = registerSoundEvent("block.potent_sulfur.place");
+    public static final RegistryObject<SoundEvent> POTENT_SULFUR_HIT = registerSoundEvent("block.potent_sulfur.hit");
+    public static final RegistryObject<SoundEvent> POTENT_SULFUR_FALL = registerSoundEvent("block.potent_sulfur.fall");
+    public static final RegistryObject<SoundEvent> NOXIOUS_GAS = registerSoundEvent("block.potent_sulfur.noxious_gas");
 
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_HURT = registerSoundEvent("entity.sulfur_cube.hurt");
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_DEATH = registerSoundEvent("entity.sulfur_cube.death");
@@ -36,6 +51,9 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PARCHED_HURT = registerSoundEvent("entity.parched.hurt");
     public static final RegistryObject<SoundEvent> PARCHED_DEATH = registerSoundEvent("entity.parched.death");
     public static final RegistryObject<SoundEvent> PARCHED_STEP = registerSoundEvent("entity.parched.step");
+
+    public static final SoundType SULFUR = new ForgeSoundType(1.0F, 1.0F, SULFUR_BREAK, SULFUR_STEP, SULFUR_PLACE, SULFUR_HIT, SULFUR_FALL);
+    public static final SoundType POTENT_SULFUR = new ForgeSoundType(1.0F, 1.0F, SULFUR_BREAK, SULFUR_STEP, SULFUR_PLACE, SULFUR_HIT, SULFUR_FALL);
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = SlimeWorld.getResource(name);

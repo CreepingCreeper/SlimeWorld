@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModItems;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -56,9 +57,9 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
                     Slime slime = switch (i){
                         case 1 -> EntityType.SLIME.create(level);
                         case 2 -> TinkerWorld.skySlimeEntity.get().create(level);
-                        case 3 -> ModEntities.ichorSlimeEntity.get().create(level);
+                        case 3 -> ModEntities.IchorSlimeEntity.get().create(level);
                         case 4 -> TinkerWorld.enderSlimeEntity.get().create(level);
-                        default -> ModEntities.oceanSlimeEntity.get().create(level);
+                        default -> ModEntities.OceanSlimeEntity.get().create(level);
                     };
                     assert slime != null;
                     transform(slime);
@@ -90,7 +91,7 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
 
     @Override
     protected ParticleOptions getParticleType() {
-        return ModEntities.originSlimeParticle.get();
+        return ModParticles.OriginSlimeParticle.get();
     }
 
     @Override

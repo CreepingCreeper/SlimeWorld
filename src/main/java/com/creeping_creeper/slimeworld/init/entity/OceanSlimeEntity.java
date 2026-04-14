@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
-import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
@@ -80,7 +80,7 @@ public class OceanSlimeEntity extends TravelersPlateSlimeEntity {
 
     @Override
     protected ParticleOptions getParticleType() {
-        return ModEntities.oceanSlimeParticle.get();
+        return ModParticles.OceanSlimeParticle.get();
     }
 
     @Nullable

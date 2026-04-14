@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
-import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import com.creeping_creeper.slimeworld.client.layer.InvertedSlimeArmorLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
@@ -27,7 +27,7 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
     private final ResourceLocation slime, metal;
 
     public InvertedSlimeRenderer(EntityRendererProvider.Context context, ResourceLocation slime, ResourceLocation metal) {
-        super(context, new SlimeModel<>(context.bakeLayer(ModLayers.InvertedSlimeInner)), 0.25F);
+        super(context, new SlimeModel<>(context.bakeLayer(ModModelLayers.InvertedSlimeInner)), 0.25F);
         this.addLayer(new SlimeOuterLayer<>(this, context.getModelSet()));
         this.slime = slime;
         this.metal = metal;

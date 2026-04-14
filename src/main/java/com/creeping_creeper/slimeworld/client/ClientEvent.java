@@ -4,10 +4,12 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.client.model.BoggedModel;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeOuterModel;
+import com.creeping_creeper.slimeworld.client.particle.*;
 import com.creeping_creeper.slimeworld.client.renderer.*;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -52,40 +54,46 @@ public class ClientEvent extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ModEntities.magicbubble.get(), FloatingWindRenderer::new);
-        event.registerEntityRenderer(ModEntities.oceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
-        event.registerEntityRenderer(ModEntities.ichorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
-        event.registerEntityRenderer(ModEntities.originSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
-        event.registerEntityRenderer(ModEntities.sulfurCubeEntity.get(), SulfurCubeRenderer::new);
-        event.registerEntityRenderer(ModEntities.steelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
-        event.registerEntityRenderer(ModEntities.boggedEntity.get(), BoggedRenderer::new);
-        event.registerEntityRenderer(ModEntities.parchedEntity.get(), ParchedRenderer::new);
+        event.registerEntityRenderer(ModEntities.Magicbubble.get(), FloatingWindRenderer::new);
+        event.registerEntityRenderer(ModEntities.OceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.IchorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.OriginSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.SulfurCubeEntity.get(), SulfurCubeRenderer::new);
+        event.registerEntityRenderer(ModEntities.SteelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.BoggedEntity.get(), BoggedRenderer::new);
+        event.registerEntityRenderer(ModEntities.ParchedEntity.get(), ParchedRenderer::new);
     }
 
     @SubscribeEvent
     static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-        event.registerSpriteSet(ModEntities.magicbubbleParticle.get(), sprite -> new StaticColorParticle.Provider(sprite, 0.95F, 0.38F, 0.73F));
-        event.registerSpecial(ModEntities.oceanSlimeParticle.get(), new SlimeParticle.Factory(ModItems.OceanSlimeBall));
-        event.registerSpecial(ModEntities.ichorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
-        event.registerSpecial(ModEntities.originSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));
-        event.registerSpecial(ModEntities.steelSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.slimesteel.getIngot()));
-        event.registerSpecial(ModEntities.sulfurCubeGoo.get(), new SlimeParticle.Factory(ModItems.SulfurGoo));
-        event.registerSpriteSet(ModEntities.whiteSporeParticle.get(), SporeParticle.WhiteSporeProvider::new);
-        event.registerSpriteSet(ModEntities.blackSporeParticle.get(), SporeParticle.BlackSporeProvider::new);
+        event.registerSpriteSet(ModParticles.MagicbubbleParticle.get(), sprite -> new StaticColorParticle.Provider(sprite, 0.95F, 0.38F, 0.73F));
+
+        event.registerSpecial(ModParticles.OceanSlimeParticle.get(), new SlimeParticle.Factory(ModItems.OceanSlimeBall));
+        event.registerSpecial(ModParticles.IchorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
+        event.registerSpecial(ModParticles.OriginSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));
+        event.registerSpecial(ModParticles.SteelSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.slimesteel.getIngot()));
+        event.registerSpecial(ModParticles.SulfurCubeGoo.get(), new SlimeParticle.Factory(ModItems.SulfurGoo));
+
+        event.registerSpriteSet(ModParticles.SulfurBubbles.get(), SulfurBubbleParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.NoxiousGas.get(), NoxiousGasParticle.Provider::new);
+        event.registerSpecial(ModParticles.NoxiousGasCloud.get(), new NoxiousGasCloudParticle.Provider());
+
+        event.registerSpriteSet(ModParticles.WhiteSporeParticle.get(), SporeParticle.WhiteSporeProvider::new);
+        event.registerSpriteSet(ModParticles.BlackSporeParticle.get(), SporeParticle.BlackSporeProvider::new);
     }
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(ModLayers.InvertedSlimeInner, InvertedSlimeRenderer::createInnerBodyLayer);
-        event.registerLayerDefinition(ModLayers.Bogged, BoggedModel::createBodyLayer);
-        event.registerLayerDefinition(ModLayers.BoggedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
-        event.registerLayerDefinition(ModLayers.BoggedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
-        event.registerLayerDefinition(ModLayers.BoggedOuterLayer, () -> LayerDefinition.create(HumanoidModel.createMesh(new CubeDeformation(0.25F), 0.0F), 64, 32));
-        event.registerLayerDefinition(ModLayers.Parched, ParchedRenderer::createSingleModelDualBodyLayer);
-        event.registerLayerDefinition(ModLayers.ParchedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
-        event.registerLayerDefinition(ModLayers.ParchedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
-        event.registerLayerDefinition(ModLayers.SulferCube, SulfurCubeOuterModel::createOuterBodyLayer);
-        event.registerLayerDefinition(ModLayers.SulferCubeInner, SulfurCubeModel::createInnerBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.InvertedSlimeInner, InvertedSlimeRenderer::createInnerBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.Bogged, BoggedModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.BoggedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModModelLayers.BoggedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModModelLayers.BoggedOuterLayer, () -> LayerDefinition.create(HumanoidModel.createMesh(new CubeDeformation(0.25F), 0.0F), 64, 32));
+        event.registerLayerDefinition(ModModelLayers.Parched, ParchedRenderer::createSingleModelDualBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.ParchedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModModelLayers.ParchedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));
+        event.registerLayerDefinition(ModModelLayers.SulferCube, SulfurCubeOuterModel::createOuterBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.SulferCubeInner, SulfurCubeModel::createInnerBodyLayer);
     }
     public record SlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {
         @Override

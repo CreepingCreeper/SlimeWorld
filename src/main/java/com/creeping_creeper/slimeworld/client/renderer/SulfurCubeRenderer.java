@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import com.creeping_creeper.slimeworld.client.layer.SulfurCubeBlockLayer;
 import com.creeping_creeper.slimeworld.client.layer.SulfurCubeOuterLayer;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
@@ -20,7 +20,7 @@ public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCube
     private static final ResourceLocation SULFUR_CUBE_LOCATION = SlimeWorld.getResource("textures/entity/sulfur_cube/sulfur_cube.png");
 
     public SulfurCubeRenderer(final EntityRendererProvider.Context context) {
-        super(context, new SulfurCubeModel<>(context.bakeLayer(ModLayers.SulferCubeInner)), 0.25F);
+        super(context, new SulfurCubeModel<>(context.bakeLayer(ModModelLayers.SulferCubeInner)), 0.25F);
         addLayer(new SulfurCubeBlockLayer<>(this, context.getBlockRenderDispatcher()));
         addLayer(new SulfurCubeOuterLayer<>(this, context.getModelSet()));
     }

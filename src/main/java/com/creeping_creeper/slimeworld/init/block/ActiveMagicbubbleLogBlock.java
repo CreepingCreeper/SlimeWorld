@@ -16,7 +16,7 @@ public class ActiveMagicbubbleLogBlock extends RotatedPillarBlock {
     @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (level.isRaining() || level.isThundering()) return;
-        MagicbubbleEntity entity = new MagicbubbleEntity(ModEntities.magicbubble.get(), level);
+        MagicbubbleEntity entity = new MagicbubbleEntity(ModEntities.Magicbubble.get(), level);
         entity.setPos(pos.getX() + getPos(random), pos.getY() + 0.5, pos.getZ() + getPos(random));
         level.addFreshEntity(entity);
     }

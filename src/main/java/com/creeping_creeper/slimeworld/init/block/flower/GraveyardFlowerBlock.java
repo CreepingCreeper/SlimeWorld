@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.init.block.flower;
 
 import com.creeping_creeper.slimeworld.init.ModEffects;
-import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
@@ -27,6 +27,6 @@ public class GraveyardFlowerBlock extends BaseFlowerBlock {
 
     @Override
     public SimpleParticleType particleType(){
-        return ModEntities.blackSporeParticle.get();
+        return ModParticles.BlackSporeParticle.get();
     }
 }

@@ -1,4 +1,145 @@
 {
+  "block.sulfur.break": {
+    "sounds": [
+      "slimeworld:block/sulfur/break1",
+      "slimeworld:block/sulfur/break2",
+      "slimeworld:block/sulfur/break3",
+      "slimeworld:block/sulfur/break4",
+      "slimeworld:block/sulfur/break5",
+      "slimeworld:block/sulfur/break6",
+      "slimeworld:block/sulfur/break7"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.sulfur.fall": {
+    "sounds": [
+      "slimeworld:block/sulfur/hit1",
+      "slimeworld:block/sulfur/hit2",
+      "slimeworld:block/sulfur/hit3",
+      "slimeworld:block/sulfur/hit4",
+      "slimeworld:block/sulfur/hit5",
+      "slimeworld:block/sulfur/hit6",
+      "slimeworld:block/sulfur/hit7"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.sulfur.hit": {
+    "sounds": [
+      "slimeworld:block/sulfur/hit1",
+      "slimeworld:block/sulfur/hit2",
+      "slimeworld:block/sulfur/hit3",
+      "slimeworld:block/sulfur/hit4",
+      "slimeworld:block/sulfur/hit5",
+      "slimeworld:block/sulfur/hit6",
+      "slimeworld:block/sulfur/hit7"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.sulfur.place": {
+    "sounds": [
+      "slimeworld:block/sulfur/place1",
+      "slimeworld:block/sulfur/place2",
+      "slimeworld:block/sulfur/place3",
+      "slimeworld:block/sulfur/place4",
+      "slimeworld:block/sulfur/place5",
+      "slimeworld:block/sulfur/place6",
+      "slimeworld:block/sulfur/place7",
+      "slimeworld:block/sulfur/place8"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.sulfur.step": {
+    "sounds": [
+      "slimeworld:block/sulfur/step1",
+      "slimeworld:block/sulfur/step2",
+      "slimeworld:block/sulfur/step3",
+      "slimeworld:block/sulfur/step4",
+      "slimeworld:block/sulfur/step5",
+      "slimeworld:block/sulfur/step6",
+      "slimeworld:block/sulfur/step7"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.potent_sulfur.break": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/break1",
+      "slimeworld:block/potent_sulfur/break2",
+      "slimeworld:block/potent_sulfur/break3",
+      "slimeworld:block/potent_sulfur/break4",
+      "slimeworld:block/potent_sulfur/break5",
+      "slimeworld:block/potent_sulfur/break6",
+      "slimeworld:block/potent_sulfur/break7"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.potent_sulfur.fall": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/hit1",
+      "slimeworld:block/potent_sulfur/hit2",
+      "slimeworld:block/potent_sulfur/hit3",
+      "slimeworld:block/potent_sulfur/hit4",
+      "slimeworld:block/potent_sulfur/hit5",
+      "slimeworld:block/potent_sulfur/hit6",
+      "slimeworld:block/potent_sulfur/hit7"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.potent_sulfur.hit": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/hit1",
+      "slimeworld:block/potent_sulfur/hit2",
+      "slimeworld:block/potent_sulfur/hit3",
+      "slimeworld:block/potent_sulfur/hit4",
+      "slimeworld:block/potent_sulfur/hit5",
+      "slimeworld:block/potent_sulfur/hit6",
+      "slimeworld:block/potent_sulfur/hit7"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.potent_sulfur.place": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/place1",
+      "slimeworld:block/potent_sulfur/place2",
+      "slimeworld:block/potent_sulfur/place3",
+      "slimeworld:block/potent_sulfur/place4",
+      "slimeworld:block/potent_sulfur/place5",
+      "slimeworld:block/potent_sulfur/place6",
+      "slimeworld:block/potent_sulfur/place7",
+      "slimeworld:block/potent_sulfur/place8"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.potent_sulfur.step": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/step1",
+      "slimeworld:block/potent_sulfur/step2",
+      "slimeworld:block/potent_sulfur/step3",
+      "slimeworld:block/potent_sulfur/step4",
+      "slimeworld:block/potent_sulfur/step5",
+      "slimeworld:block/potent_sulfur/step6",
+      "slimeworld:block/potent_sulfur/step7"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.potent_sulfur.noxious_gas": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient1",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient2",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient3",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient4",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient5",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient6",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient7",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient8",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient9",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient10",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient11",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient12",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient13",
+      "slimeworld:block/potent_sulfur/noxious_gas/ambient14"
+    ],
+    "subtitle": "subtitles.block.potent_sulfur.noxious_gas"
+  },
   "entity.sulfur_cube.absorb": {
     "sounds": [
       "slimeworld:mob/sulfur_cube/absorb1",

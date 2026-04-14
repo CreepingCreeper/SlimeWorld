@@ -1,6 +1,7 @@
 package com.creeping_creeper.slimeworld.init.modifiers;
 
 import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.library.ParticleUtil;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,7 +35,7 @@ public class SputteringModifier extends Modifier implements ProjectileHitModifie
         if (target != null) {
             Level level = projectile.level();
             int i = modifier.getLevel();
-            ParticleUtil.slimeParticle(level, ModEntities.oceanSlimeParticle.get(), 12, i, projectile.getX(), projectile.getY() - 0.1, projectile.getZ());
+            ParticleUtil.slimeParticle(level, ModParticles.OceanSlimeParticle.get(), 12, i, projectile.getX(), projectile.getY() - 0.1, projectile.getZ());
             List<LivingEntity> list = level.getEntitiesOfClass(LivingEntity.class, projectile.getBoundingBox().inflate(i, 1, i));
             list.remove(target);
             list.remove(attacker);

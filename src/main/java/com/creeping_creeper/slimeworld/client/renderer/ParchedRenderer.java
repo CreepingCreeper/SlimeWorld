@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -20,7 +20,7 @@ public class ParchedRenderer extends HumanoidMobRenderer<AbstractSkeleton, Skele
     private static final ResourceLocation PARCHED_SKELETON_LOCATION = SlimeWorld.getResource("textures/entity/parched.png");
 
     public ParchedRenderer(EntityRendererProvider.Context context) {
-        this(context, ModLayers.Parched, ModLayers.ParchedInnerArmor, ModLayers.ParchedOuterArmor);
+        this(context, ModModelLayers.Parched, ModModelLayers.ParchedInnerArmor, ModModelLayers.ParchedOuterArmor);
     }
 
     public ParchedRenderer(EntityRendererProvider.Context context, ModelLayerLocation skeletonLayer, ModelLayerLocation innerModelLayer, ModelLayerLocation outerModelLayer) {

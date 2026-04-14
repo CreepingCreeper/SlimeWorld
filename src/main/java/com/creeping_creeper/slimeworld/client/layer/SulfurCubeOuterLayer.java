@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.client.layer;
 
-import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeModel;
 import com.creeping_creeper.slimeworld.client.model.SulfurCubeOuterModel;
 import com.creeping_creeper.slimeworld.init.entity.SulfurCubeEntity;
@@ -23,7 +23,7 @@ public class SulfurCubeOuterLayer<T extends SulfurCubeEntity> extends RenderLaye
 
     public SulfurCubeOuterLayer(RenderLayerParent<T, SulfurCubeModel<T>> renderer, EntityModelSet modelSet) {
         super(renderer);
-        this.model = new SulfurCubeOuterModel<>(modelSet.bakeLayer(ModLayers.SulferCube));
+        this.model = new SulfurCubeOuterModel<>(modelSet.bakeLayer(ModModelLayers.SulferCube));
     }
 
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {

@@ -20,22 +20,22 @@ import slimeknights.tconstruct.world.entity.SlimePlacementPredicate;
 public class RegisterEvents {
     @SubscribeEvent
     static void entityAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.oceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
-        event.put(ModEntities.ichorSlimeEntity.get(), Monster.createMonsterAttributes().build());
-        event.put(ModEntities.originSlimeEntity.get(), Monster.createMonsterAttributes().build());
-        event.put(ModEntities.sulfurCubeEntity.get(), Monster.createMonsterAttributes().build());
-        event.put(ModEntities.boggedEntity.get(), BoggedEntity.createAttributes().build());
-        event.put(ModEntities.parchedEntity.get(), ParchedEntity.createAttributes().build());
-        event.put(ModEntities.steelSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());
+        event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
+        event.put(ModEntities.IchorSlimeEntity.get(), Monster.createMonsterAttributes().build());
+        event.put(ModEntities.OriginSlimeEntity.get(), Monster.createMonsterAttributes().build());
+        event.put(ModEntities.SulfurCubeEntity.get(), Monster.createMonsterAttributes().build());
+        event.put(ModEntities.BoggedEntity.get(), BoggedEntity.createAttributes().build());
+        event.put(ModEntities.ParchedEntity.get(), ParchedEntity.createAttributes().build());
+        event.put(ModEntities.SteelSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());
     }
 
     @SubscribeEvent
     static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
-        event.register(ModEntities.oceanSlimeEntity.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OceanSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(ModEntities.ichorSlimeEntity.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IchorSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(ModEntities.originSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.SAND), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.OceanSlimeEntity.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OceanSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.IchorSlimeEntity.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IchorSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.OriginSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.SAND), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.TerracubeSpawn, ModTags.Blocks.TerracubeSpawn, 8), SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(ModEntities.boggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(ModEntities.parchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.BoggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.ParchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
     }
 }

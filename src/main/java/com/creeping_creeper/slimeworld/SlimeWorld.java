@@ -36,6 +36,7 @@ public class SlimeWorld {
       ModEffects.registers(bus);
       ModEntities.registers(bus);
       ModFeature.registers(bus);
+      ModParticles.registers(bus);
       ModSounds.registers(bus);
     }
     public void commonSetup(final FMLCommonSetupEvent event) {

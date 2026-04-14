@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
-import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -49,7 +49,7 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
 
     @Override
     protected ParticleOptions getParticleType() {
-        return ModEntities.steelSlimeParticle.get();
+        return ModParticles.SteelSlimeParticle.get();
     }
 
     @Override

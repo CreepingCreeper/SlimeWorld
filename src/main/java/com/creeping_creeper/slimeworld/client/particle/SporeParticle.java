@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.client;
+package com.creeping_creeper.slimeworld.client.particle;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;

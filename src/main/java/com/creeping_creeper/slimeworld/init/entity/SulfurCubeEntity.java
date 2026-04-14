@@ -4,6 +4,7 @@ package com.creeping_creeper.slimeworld.init.entity;
 import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModItems;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.init.ModSounds;
 import com.creeping_creeper.slimeworld.library.ModUtil;
 import net.minecraft.core.BlockPos;
@@ -599,7 +600,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
 
     @Override
     protected ParticleOptions getParticleType() {
-        return ModEntities.sulfurCubeGoo.get();
+        return ModParticles.SulfurCubeGoo.get();
     }
 
     @Nullable
@@ -622,7 +623,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
             boolean invulnerable = this.isInvulnerable();
             for(int i = 0; i < 2; ++i) {
                 float x = ((i % 2) - 0.5F) * 0.5F;
-                SulfurCubeEntity slime =  ModEntities.sulfurCubeEntity.get().create(level);
+                SulfurCubeEntity slime =  ModEntities.SulfurCubeEntity.get().create(level);
                 assert slime != null;
                 if (this.isPersistenceRequired()) {
                     slime.setPersistenceRequired();

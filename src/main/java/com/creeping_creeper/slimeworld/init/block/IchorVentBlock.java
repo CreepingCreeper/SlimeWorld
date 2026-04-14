@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block;
 
-import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.library.ParticleUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,7 +30,7 @@ public class IchorVentBlock extends Block {
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         if (!entity.isSteppingCarefully() && !level.canSeeSkyFromBelowWater(pos.above()) && entity instanceof LivingEntity living && !living.hasEffect(TinkerEffects.antigravity.get())) {
             if(living.addEffect(new MobEffectInstance(TinkerEffects.antigravity.get(), 300))){
-                ParticleUtil.slimeParticle(level, ModEntities.ichorSlimeParticle.get(), 12, 1, living.getX(), living.getY() + 0.1, living.getZ());
+                ParticleUtil.slimeParticle(level, ModParticles.IchorSlimeParticle.get(), 12, 1, living.getX(), living.getY() + 0.1, living.getZ());
             }
         }
         super.stepOn(level, pos, state, entity);

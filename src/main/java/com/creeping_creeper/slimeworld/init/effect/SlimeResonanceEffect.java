@@ -40,7 +40,7 @@ public class SlimeResonanceEffect extends TinkerEffect {
             if (server == null) return;
             ServerLevel serverLevel = level.dimension() == SlimeWorld.SLIMEWORLD ? server.getLevel(Level.OVERWORLD) : server.getLevel(SlimeWorld.SLIMEWORLD);
             if (serverLevel != null) {
-                ParticleUtil.slimeParticle(level,ParticleTypes.ITEM_SLIME, 12, 1, living.getX(), living.getY() + 0.1, living.getZ());
+                ParticleUtil.slimeParticle(level, ParticleTypes.ITEM_SLIME, 12, 1, living.getX(), living.getY() + 0.1, living.getZ());
                 living.teleportTo(serverLevel, living.getX(), 256 ,living.getZ(), DEFAULT_TELEPORT_FLAGS, living.getYRot(), living.getXRot());
                 living.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 200, 4));
                 living.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 400));

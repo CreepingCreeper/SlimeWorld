@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.data.ModTags;
-import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.library.InvertedGroundPathNavigation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -65,7 +65,7 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
 
     @Override
     protected ParticleOptions getParticleType() {
-        return ModEntities.ichorSlimeParticle.get();
+        return ModParticles.IchorSlimeParticle.get();
     }
 
     @Override

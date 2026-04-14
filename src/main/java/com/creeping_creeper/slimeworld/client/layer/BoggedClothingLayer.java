@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.client.layer;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import com.creeping_creeper.slimeworld.init.entity.BoggedEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.EntityModel;
@@ -21,7 +21,7 @@ public class BoggedClothingLayer<T extends BoggedEntity, M extends EntityModel<T
 
     public BoggedClothingLayer(RenderLayerParent<T, M> renderer, EntityModelSet modelSet) {
         super(renderer);
-        this.layerModel = new SkeletonModel<>(modelSet.bakeLayer(ModLayers.BoggedOuterLayer));
+        this.layerModel = new SkeletonModel<>(modelSet.bakeLayer(ModModelLayers.BoggedOuterLayer));
     }
 
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, T livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {

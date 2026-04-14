@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
-import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
@@ -53,7 +53,7 @@ public class MagicbubbleEntity extends Entity {
             if (!level().getBlockState(BlockPos.containing(this.getX(), this.getY(), this.getZ())).isAir()){
                 this.age+=9;
             }
-        }else level().addParticle(ModEntities.magicbubbleParticle.get(), this.getX(), this.getY(), this.getZ(), 0, 0 ,0);
+        }else level().addParticle(ModParticles.MagicbubbleParticle.get(), this.getX(), this.getY(), this.getZ(), 0, 0 ,0);
     }
 
     @Override

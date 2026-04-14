@@ -10,6 +10,7 @@ import com.creeping_creeper.slimeworld.init.block.bubble.WaterBubbleBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.CommonBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.OreBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.SlimeBerryBushBlock;
+import com.creeping_creeper.slimeworld.init.block.entity.PotentSulfurBlockEntity;
 import com.creeping_creeper.slimeworld.init.block.flower.*;
 import com.creeping_creeper.slimeworld.init.block.grass.*;
 import com.creeping_creeper.slimeworld.init.item.BurnableBlockTooltipItem;
@@ -19,8 +20,10 @@ import com.creeping_creeper.slimeworld.init.item.NecroticBoneMealItem;
 import com.creeping_creeper.slimeworld.init.world.MagicbubbleTreeGrower;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.Fluids;
@@ -31,6 +34,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.item.BlockTooltipItem;
 import slimeknights.mantle.item.BurnableBlockItem;
+import slimeknights.mantle.registration.deferred.BlockEntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
@@ -53,6 +57,8 @@ import static net.minecraft.world.level.block.SweetBerryBushBlock.AGE;
 public class ModItems {
     protected static final ItemDeferredRegisterExtension ITEMS = new ItemDeferredRegisterExtension(SlimeWorld.MODID);
     protected static final BlockDeferredRegisterExtension BLOCKS = new BlockDeferredRegisterExtension(SlimeWorld.MODID);
+    protected static final BlockEntityTypeDeferredRegister BLOCK_ENTITIES = new BlockEntityTypeDeferredRegister(SlimeWorld.MODID);
+
     protected static final SynchronizedDeferredRegister<CreativeModeTab> CREATIVE_TABS = SynchronizedDeferredRegister.create(Registries.CREATIVE_MODE_TAB, SlimeWorld.MODID);
 
     public static final RegistryObject<CreativeModeTab> tab = CREATIVE_TABS.register(
@@ -81,6 +87,10 @@ public class ModItems {
     public static final GeodeItemObject OceanGeode = BLOCKS.registerGeode("ocean_slime_crystal", MapColor.COLOR_BLUE, Sounds.ENDER_CRYSTAL, Sounds.ENDER_CRYSTAL_CHIME.getSound(), Sounds.ENDER_CRYSTAL_CLUSTER, 5, GENERAL_PROPS);
     public static final ItemObject<Block> SlimeGravel = BLOCKS.register("slime_gravel", () -> new SlimeGravelBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.GRAVEL).instrument(NoteBlockInstrument.SNARE).strength(0.6F)), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
+
+    public static final ItemObject<Block> Sulfur = BLOCKS.register("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM).strength(1.5F, 6.0F).requiresCorrectToolForDrops()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> PotentSulfur = BLOCKS.register("potent_sulfur", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+
     public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", () -> new Block(builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> IsomericGlowstone = BLOCKS.register("isomeric_glowstone", () -> new Block(builder(MapColor.SAND).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.PLING).strength(5.0F, 6.0F).sound(METAL).lightLevel((p_50874_) -> 15).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
@@ -143,7 +153,9 @@ public class ModItems {
     public static final ItemObject<Block> OceanSlimeBubble = BLOCKS.register("ocean_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_BLUE)), ModFluids.OceanSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.sulfurCubeEntity, () -> SoundEvents.EMPTY, (new Item.Properties()).stacksTo(1)));
+    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, () -> SoundEvents.EMPTY, (new Item.Properties()).stacksTo(1)));
+
+    public static final RegistryObject<BlockEntityType<PotentSulfurBlockEntity>> PotentSulfurEntity = BLOCK_ENTITIES.register("potent_sulfur", PotentSulfurBlockEntity::new, PotentSulfur);
 
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
@@ -171,6 +183,9 @@ public class ModItems {
 
         output.accept(SlimeGravel);
         output.accept(IchorVent);
+
+        output.accept(Sulfur);
+        output.accept(PotentSulfur);
         output.accept(GlowstoneOre);
         output.accept(DeepSlateGlowstoneOre);
         output.accept(IsomericGlowstone);
@@ -221,12 +236,12 @@ public class ModItems {
         output.accept(VenomBubble);
 
         output.accept(SulfurCubeBucket);
-        output.accept(ModEntities.oceanSlimeEntity);
-        output.accept(ModEntities.ichorSlimeEntity);
-        output.accept(ModEntities.originSlimeEntity);
-        output.accept(ModEntities.sulfurCubeEntity);
-        output.accept(ModEntities.boggedEntity);
-        output.accept(ModEntities.parchedEntity);
+        output.accept(ModEntities.OceanSlimeEntity);
+        output.accept(ModEntities.IchorSlimeEntity);
+        output.accept(ModEntities.OriginSlimeEntity);
+        output.accept(ModEntities.SulfurCubeEntity);
+        output.accept(ModEntities.BoggedEntity);
+        output.accept(ModEntities.ParchedEntity);
     }
 
     protected static BlockBehaviour.Properties grass() {
@@ -269,6 +284,7 @@ public class ModItems {
     public static void registers(IEventBus bus) {
         ITEMS.register(bus);
         BLOCKS.register(bus);
+        BLOCK_ENTITIES.register(bus);
         CREATIVE_TABS.register(bus);
     }
 }

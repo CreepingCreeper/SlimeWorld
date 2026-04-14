@@ -1,13 +1,12 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.client.ModLayers;
+import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import com.creeping_creeper.slimeworld.client.layer.BoggedClothingLayer;
 import com.creeping_creeper.slimeworld.client.model.BoggedModel;
 import com.creeping_creeper.slimeworld.init.entity.BoggedEntity;
 import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
@@ -20,7 +19,7 @@ public class BoggedRenderer extends HumanoidMobRenderer<BoggedEntity, BoggedMode
     private static final ResourceLocation BOGGED_SKELETON_LOCATION = SlimeWorld.getResource("textures/entity/bogged.png");
 
     public BoggedRenderer(EntityRendererProvider.Context context) {
-        this(context, ModLayers.Bogged, ModLayers.BoggedInnerArmor, ModLayers.BoggedOuterArmor);
+        this(context, ModModelLayers.Bogged, ModModelLayers.BoggedInnerArmor, ModModelLayers.BoggedOuterArmor);
         this.addLayer(new BoggedClothingLayer<>(this, context.getModelSet()));
     }
 

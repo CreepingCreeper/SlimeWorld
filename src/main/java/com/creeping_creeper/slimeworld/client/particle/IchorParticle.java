@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.client;
+package com.creeping_creeper.slimeworld.client.particle;
 
 import lombok.RequiredArgsConstructor;
 import net.minecraft.client.multiplayer.ClientLevel;
