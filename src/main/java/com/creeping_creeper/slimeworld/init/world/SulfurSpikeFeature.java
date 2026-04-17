@@ -63,7 +63,7 @@ public class SulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
         }
 
         if (height >= 1) {
-            blockSetter.accept(SulfurSpike(Direction.UP, false ? DripstoneThickness.TIP_MERGE : DripstoneThickness.TIP));
+            blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.TIP));
         }
 
     }
