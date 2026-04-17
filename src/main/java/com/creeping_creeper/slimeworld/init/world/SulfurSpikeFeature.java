@@ -51,25 +51,25 @@ public class SulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
 
     protected static void buildBaseToTipColumn(int height, Consumer<BlockState> blockSetter) {
         if (height >= 3) {
-            blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.BASE));
+            blockSetter.accept(SulfurSpike(DripstoneThickness.BASE));
 
             for(int i = 0; i < height - 3; ++i) {
-                blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.MIDDLE));
+                blockSetter.accept(SulfurSpike(DripstoneThickness.MIDDLE));
             }
         }
 
         if (height >= 2) {
-            blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.FRUSTUM));
+            blockSetter.accept(SulfurSpike(DripstoneThickness.FRUSTUM));
         }
 
         if (height >= 1) {
-            blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.TIP));
+            blockSetter.accept(SulfurSpike(DripstoneThickness.TIP));
         }
 
     }
     
-    private static BlockState SulfurSpike(Direction direction, DripstoneThickness dripstoneThickness) {
-        return ModItems.SulfurSpike.get().defaultBlockState().setValue(SulfurSpikeBlock.TIP_DIRECTION, direction).setValue(SulfurSpikeBlock.THICKNESS, dripstoneThickness);
+    private static BlockState SulfurSpike(DripstoneThickness dripstoneThickness) {
+        return ModItems.SulfurSpike.get().defaultBlockState().setValue(SulfurSpikeBlock.TIP_DIRECTION, Direction.UP).setValue(SulfurSpikeBlock.THICKNESS, dripstoneThickness);
     }
 
     public static boolean isSulfurSpikeBase(LevelAccessor level, BlockPos pos) {
