@@ -52,7 +52,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PARCHED_STEP = registerSoundEvent("entity.parched.step");
 
     public static final SoundType SULFUR = new ForgeSoundType(1.0F, 1.0F, SULFUR_BREAK, SULFUR_STEP, SULFUR_PLACE, SULFUR_HIT, SULFUR_FALL);
-    public static final SoundType POTENT_SULFUR = new ForgeSoundType(1.0F, 1.0F, SULFUR_BREAK, SULFUR_STEP, SULFUR_PLACE, SULFUR_HIT, SULFUR_FALL);
+    public static final SoundType POTENT_SULFUR = new ForgeSoundType(1.0F, 1.0F, POTENT_SULFUR_BREAK, POTENT_SULFUR_STEP, POTENT_SULFUR_PLACE, POTENT_SULFUR_HIT, POTENT_SULFUR_FALL);
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(SlimeWorld.getResource(name)));
