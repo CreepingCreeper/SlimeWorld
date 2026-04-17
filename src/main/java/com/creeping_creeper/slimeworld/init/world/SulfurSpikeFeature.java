@@ -37,7 +37,7 @@ public class SulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
     protected static void growSulfurSpike(LevelAccessor level, BlockPos pos, int height) {
         if (isSulfurSpikeBase(level, pos)) {
             BlockPos.MutableBlockPos blockpos$mutableblockpos = pos.mutable();
-            buildBaseToTipColumn(Direction.UP, height, false, (p_277326_) -> {
+            buildBaseToTipColumn(height, (p_277326_) -> {
                 if (p_277326_.is(ModItems.SulfurSpike.get())) {
                     p_277326_ = p_277326_.setValue(SulfurSpikeBlock.WATERLOGGED, level.isWaterAt(blockpos$mutableblockpos));
                 }
@@ -49,21 +49,21 @@ public class SulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
 
     }
 
-    protected static void buildBaseToTipColumn(Direction direction, int height, boolean mergeTip, Consumer<BlockState> blockSetter) {
+    protected static void buildBaseToTipColumn(int height, Consumer<BlockState> blockSetter) {
         if (height >= 3) {
-            blockSetter.accept(SulfurSpike(direction, DripstoneThickness.BASE));
+            blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.BASE));
 
             for(int i = 0; i < height - 3; ++i) {
-                blockSetter.accept(SulfurSpike(direction, DripstoneThickness.MIDDLE));
+                blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.MIDDLE));
             }
         }
 
         if (height >= 2) {
-            blockSetter.accept(SulfurSpike(direction, DripstoneThickness.FRUSTUM));
+            blockSetter.accept(SulfurSpike(Direction.UP, DripstoneThickness.FRUSTUM));
         }
 
         if (height >= 1) {
-            blockSetter.accept(SulfurSpike(direction, mergeTip ? DripstoneThickness.TIP_MERGE : DripstoneThickness.TIP));
+            blockSetter.accept(SulfurSpike(Direction.UP, false ? DripstoneThickness.TIP_MERGE : DripstoneThickness.TIP));
         }
 
     }

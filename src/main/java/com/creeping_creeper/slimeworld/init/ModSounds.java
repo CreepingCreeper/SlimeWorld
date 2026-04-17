@@ -1,7 +1,6 @@
 package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.util.ForgeSoundType;
