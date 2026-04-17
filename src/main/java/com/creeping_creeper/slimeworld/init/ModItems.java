@@ -89,7 +89,14 @@ public class ModItems {
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
 
     public static final ItemObject<Block> Sulfur = BLOCKS.register("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM).strength(1.5F, 6.0F).requiresCorrectToolForDrops()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> PotentSulfur = BLOCKS.register("potent_sulfur", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> SulfurMud = BLOCKS.register("sulfur_mud", () -> new Block(BlockBehaviour.Properties.copy(Sulfur.get()).sound(SoundType.MUD)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> PotentSulfurNausea = BLOCKS.register("potent_sulfur_nausea", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> PotentSulfurBlindness = BLOCKS.register("potent_sulfur_blindness", () -> new PotentSulfurBlock(() -> MobEffects.BLINDNESS, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> PotentSulfurWeakness = BLOCKS.register("potent_sulfur_weakness", () -> new PotentSulfurBlock(() -> MobEffects.WEAKNESS, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> PotentSulfurRegeneration = BLOCKS.register("potent_sulfur_regeneration", () -> new PotentSulfurBlock(() -> MobEffects.REGENERATION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> PotentSulfurStrength = BLOCKS.register("potent_sulfur_strength", () -> new PotentSulfurBlock(() -> MobEffects.DAMAGE_BOOST, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
+
+    public static final ItemObject<Block> SulfurSpike = BLOCKS.register("sulfur_spike", () -> new SulfurSpikeBlock(builder(MapColor.TERRACOTTA_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never).noOcclusion()), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", () -> new Block(builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
@@ -155,8 +162,7 @@ public class ModItems {
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, () -> SoundEvents.EMPTY, (new Item.Properties()).stacksTo(1)));
 
-    public static final RegistryObject<BlockEntityType<PotentSulfurBlockEntity>> PotentSulfurEntity = BLOCK_ENTITIES.register("potent_sulfur", PotentSulfurBlockEntity::new, PotentSulfur);
-
+    public static final RegistryObject<BlockEntityType<PotentSulfurBlockEntity>> PotentSulfurEntity = BLOCK_ENTITIES.register("potent_sulfur", PotentSulfurBlockEntity::new, set -> set.add(PotentSulfurNausea.get(), PotentSulfurBlindness.get(), PotentSulfurWeakness.get(), PotentSulfurRegeneration.get(), PotentSulfurStrength.get()));
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
         output.accept(NecroticBoneMeal);
@@ -185,7 +191,14 @@ public class ModItems {
         output.accept(IchorVent);
 
         output.accept(Sulfur);
-        output.accept(PotentSulfur);
+        output.accept(SulfurMud);
+        output.accept(PotentSulfurNausea);
+        output.accept(PotentSulfurBlindness);
+        output.accept(PotentSulfurWeakness);
+        output.accept(PotentSulfurRegeneration);
+        output.accept(PotentSulfurStrength);
+        output.accept(SulfurSpike);
+
         output.accept(GlowstoneOre);
         output.accept(DeepSlateGlowstoneOre);
         output.accept(IsomericGlowstone);

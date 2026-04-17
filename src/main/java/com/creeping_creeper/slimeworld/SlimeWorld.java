@@ -4,6 +4,7 @@ import com.creeping_creeper.slimeworld.events.EntityEvents;
 import com.creeping_creeper.slimeworld.events.WorldEvents;
 import com.creeping_creeper.slimeworld.init.*;
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -11,11 +12,14 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
 
@@ -39,27 +43,41 @@ public class SlimeWorld {
       ModParticles.registers(bus);
       ModSounds.registers(bus);
     }
-    public void commonSetup(final FMLCommonSetupEvent event) {
-       ModEffects.init();
-       WorldEvents.init();
-       MinecraftForge.EVENT_BUS.register(new EntityEvents());
+
+    void commonSetup(final FMLCommonSetupEvent event) {
+        ModEffects.init();
+        WorldEvents.init();
+        MinecraftForge.EVENT_BUS.register(new EntityEvents());
+    }
+
+    @SubscribeEvent
+    static void gatherData(GatherDataEvent event) {
     }
 
     public static String makeTranslationKey(String base, String name) {
         return Util.makeTranslationKey(base, getResource(name));
     }
+
     public static MutableComponent makeTranslation(String base, String name) {
         return Component.translatable(makeTranslationKey(base, name));
     }
+
     public static MutableComponent makeTranslation(String base, String name, Object... arguments) {
         return Component.translatable(makeTranslationKey(base, name), arguments);
     }
+
+    public static <T> ResourceKey<T> key(ResourceKey<? extends Registry<T>> registry, String name) {
+        return ResourceKey.create(registry, TConstruct.getResource(name));
+    }
+
     public static String makeDescriptionId(String type, String name) {
         return type + "." + MODID + "." + name;
     }
+
     public static ResourceLocation getResource(String name) {
         return new ResourceLocation(MODID, name);
     }
+
     public static <T> TinkerDataCapability.TinkerDataKey<T> createKey(String name) {
         return TinkerDataCapability.TinkerDataKey.of(getResource(name));
     }

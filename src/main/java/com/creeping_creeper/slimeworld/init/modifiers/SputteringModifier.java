@@ -1,6 +1,5 @@
 package com.creeping_creeper.slimeworld.init.modifiers;
 
-import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.library.ParticleUtil;
 import net.minecraft.world.damagesource.DamageSource;

@@ -36,6 +36,7 @@ public class ModTags {
         /** any entity types that immunize to the damage from ore berry bushes */
         public static final TagKey<Block> NecroticClonable = local("necrotic_clonable");
         public static final TagKey<Block> IchorSlimeSpawn = local("ichor_slime_spawn");
+        public static final TagKey<Block> SulfurFeatureBase = local("sulfur_feature_base");
         public static final TagKey<Block> TerracubeSpawn = local("terracube_spawn");
         public static final TagKey<Block> Slimy = local("slimy");
         private static TagKey<Block> local(String name) {

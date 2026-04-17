@@ -42,7 +42,7 @@ public class ModEntities {
                     .setShouldReceiveVelocityUpdates(true)
                     .setTrackingRange(20)
                     .sized(1.96F, 1.96F).clientTrackingRange(10)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SulfurCubeEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SulfurCubeEntity.get().create(world)), 0xecf390, 0xd1af8a);
 
     public static final EntityObject<BoggedEntity> BoggedEntity = ENTITIES.registerWithEgg("bogged", () ->
             EntityType.Builder.of(BoggedEntity::new, MobCategory.MONSTER)
@@ -54,12 +54,12 @@ public class ModEntities {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.ParchedEntity.get().create(world)), 0xddc38e, 0x4a473d);
-    public static final EntityObject<SteelSlimeBossEntity> SteelSlimeBossEntity = ENTITIES.registerWithEgg("steel_slime_boss", () ->
+    public static final RegistryObject<EntityType<SteelSlimeBossEntity>> SteelSlimeBossEntity = ENTITIES.register("steel_slime_boss", () ->
             EntityType.Builder.of(SteelSlimeBossEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)
                     .setTrackingRange(20)
                     .sized(2.04F, 2.04F)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SteelSlimeBossEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SteelSlimeBossEntity.get().create(world)));
 
     public static void registers(IEventBus bus) {
         ENTITIES.register(bus);

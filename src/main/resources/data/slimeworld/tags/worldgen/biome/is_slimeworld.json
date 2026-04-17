@@ -3,6 +3,7 @@
     "slimeworld:honey_fields",
     "slimeworld:deep_forgotten_ocean",
     "slimeworld:forgotten_ocean",
+    "slimeworld:river",
     "slimeworld:red_beach",
     "slimeworld:clay_waste",
     "slimeworld:earth_plains",
@@ -11,6 +12,7 @@
     "slimeworld:ender_swamp",
     "slimeworld:lacerated_land",
     "slimeworld:crystal_desert",
+    "slimeworld:sulfur_springs",
     "slimeworld:ichor_caves"
   ]
 }

@@ -56,8 +56,7 @@ public class ModSounds {
     public static final SoundType POTENT_SULFUR = new ForgeSoundType(1.0F, 1.0F, SULFUR_BREAK, SULFUR_STEP, SULFUR_PLACE, SULFUR_HIT, SULFUR_FALL);
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
-        ResourceLocation id = SlimeWorld.getResource(name);
-        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(id));
+        return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(SlimeWorld.getResource(name)));
     }
 
     public static void registers(IEventBus bus) {

@@ -11,6 +11,13 @@
     "slimeworld:bronze_cluster",
     "slimeworld:glowstone_ore",
     "slimeworld:deepslate_glowstone_ore",
-    "slimeworld:isomeric_glowstone"
+    "slimeworld:isomeric_glowstone",
+    "slimeworld:sulfur",
+    "slimeworld:potent_sulfur_nausea",
+    "slimeworld:potent_sulfur_blindness",
+    "slimeworld:potent_sulfur_weakness",
+    "slimeworld:potent_sulfur_regeneration",
+    "slimeworld:potent_sulfur_strength",
+    "slimeworld:sulfur_spike"
   ]
 }

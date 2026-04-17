@@ -1,0 +1,7 @@
+{
+  "parent": "block/pointed_dripstone",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "slimeworld:block/spike/sulfur_spike_up_frustum"
+  }
+}

@@ -32,6 +32,15 @@
   "item.slimeworld.ocean_slime_bottle": "OceansLime Bottle",
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
+  "block.slimeworld.sulfur": "Sulfur",
+  "block.slimeworld.sulfur_mud": "Sulfur Mud",
+  "block.slimeworld.potent_sulfur_nausea": "Potent Sulfur",
+  "block.slimeworld.potent_sulfur_blindness": "Potent Sulfur",
+  "block.slimeworld.potent_sulfur_weakness": "Potent Sulfur",
+  "block.slimeworld.potent_sulfur_regeneration": "Potent Sulfur",
+  "block.slimeworld.potent_sulfur_strength": "Potent Sulfur",
+  "block.slimeworld.sulfur_spike": "Sulfur Spike",
+
   "block.slimeworld.glowstone_ore": "Glowstone Ore",
   "block.slimeworld.deepslate_glowstone_ore": "Deepslate Glowstone Ore",
   "block.slimeworld.isomeric_glowstone": "Isomeric Glowstone",
@@ -147,6 +156,8 @@
   "item.minecraft.tipped_arrow.effect.slimeworld.floating": "Arrow of Floating",
 
   "attribute.name.tconstruct.generic.bouncy": "Bouncy",
+
+  "subtitles.block.potent_sulfur.noxious_gas": "Noxious gas appears",
 
   "subtitles.entity.sulfur_cube.absorb": "Sulfur Cube full",
   "subtitles.entity.sulfur_cube.bounce": "Sulfur Cube bounces",

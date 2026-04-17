@@ -19,35 +19,75 @@
         },
         {
           "biome": "slimeworld:red_beach",
-          "parameters": { "temperature": 0, "humidity": [0, 1], "continentalness": [-0.19, -0.11], "erosion": [-0.78, 0.05], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [0, 1], "continentalness": [-0.19, -0.11], "erosion": [-0.78, 0.05], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:red_beach",
+          "parameters": { "temperature": 0, "humidity": [0, 1], "continentalness": [-0.19, -0.11], "erosion": [-0.78, 0.05], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
         },
         {
           "biome": "slimeworld:clay_waste",
-          "parameters": { "temperature": 0, "humidity": [-1, 0], "continentalness": [-0.19, -0.11], "erosion": [-0.375, 0.45], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [-1, 0], "continentalness": [-0.19, -0.11], "erosion": [-0.375, 0.45], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:clay_waste",
+          "parameters": { "temperature": 0, "humidity": [-1, 0], "continentalness": [-0.19, -0.11], "erosion": [-0.375, 0.45], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
         },
         {
           "biome": "slimeworld:earth_plains",
-          "parameters": { "temperature": 0, "humidity": [-0.35, -0.1], "continentalness": [-0.11, 0.3], "erosion": [-0.2225, 0.55], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [-0.35, -0.1], "continentalness": [-0.11, 0.3], "erosion": [-0.2225, 0.55], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:earth_plains",
+          "parameters": { "temperature": 0, "humidity": [-0.35, -0.1], "continentalness": [-0.11, 0.3], "erosion": [-0.2225, 0.55], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
         },
         {
           "biome": "slimeworld:sky_hills",
-          "parameters": { "temperature": 0, "humidity": [-0.1, 0.1], "continentalness": [-0.11, 0.3], "erosion": [-1, -0.375], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [-0.1, 0.1], "continentalness": [-0.11, 0.3], "erosion": [-1, -0.375], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:sky_hills",
+          "parameters": { "temperature": 0, "humidity": [-0.1, 0.1], "continentalness": [-0.11, 0.3], "erosion": [-1, -0.375], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
         },
         {
           "biome": "slimeworld:blood_forest",
-          "parameters": { "temperature": 0, "humidity": [0.1, 0.3], "continentalness": [-0.11, 0.3], "erosion": [-0.78, 0.45], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [0.1, 0.3], "continentalness": [-0.11, 0.3], "erosion": [-0.78, 0.45], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:blood_forest",
+          "parameters": { "temperature": 0, "humidity": [0.1, 0.3], "continentalness": [-0.11, 0.3], "erosion": [-0.78, 0.45], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:river",
+          "parameters": { "temperature": 0, "humidity": [-1, 1], "continentalness": [-0.11, 0.3], "erosion": [-0.78, 0.45], "depth": [-1, 1], "weirdness": [-0.05, 0.05], "offset": 0 }
         },
         {
           "biome": "slimeworld:ender_swamp",
-          "parameters": { "temperature": 0, "humidity": [0.3, 1], "continentalness": [-0.11, 0.3], "erosion": [0.55, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [-1, 1], "continentalness": [0.3, 2], "erosion": [0.55, 1], "depth": [-1, 1], "weirdness": [-0.05, 0.05], "offset": 0 }
         },
         {
           "biome": "slimeworld:lacerated_land",
-          "parameters": { "temperature": 0, "humidity": [0, 1], "continentalness": [0.3, 2], "erosion": [-1, 0], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [0.1, 1], "continentalness": [0.3, 2], "erosion": [-1, -0.375], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:lacerated_land",
+          "parameters": { "temperature": 0, "humidity": [0.1, 1], "continentalness": [0.3, 2], "erosion": [-1, -0.375], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:sulfur_springs",
+          "parameters": { "temperature": 0, "humidity": [-0.1, 0.1], "continentalness": [0.3, 2], "erosion": [-0.375, 0.05], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:sulfur_springs",
+          "parameters": { "temperature": 0, "humidity": [-0.1, 0.1], "continentalness": [0.3, 2], "erosion": [-0.375, 0.05], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
         },
         {
           "biome": "slimeworld:crystal_desert",
-          "parameters": { "temperature": 0, "humidity": [-1, 0], "continentalness": [0.3, 2], "erosion": [0, 1], "depth": [-1, 1], "weirdness": 0, "offset": 0 }
+          "parameters": { "temperature": 0, "humidity": [-1, -0.1], "continentalness": [0.3, 2], "erosion": [0.45, 1], "depth": [-1, 1], "weirdness": [-1, -0.05], "offset": 0 }
+        },
+        {
+          "biome": "slimeworld:crystal_desert",
+          "parameters": { "temperature": 0, "humidity": [-1, -0.1], "continentalness": [0.3, 2], "erosion": [0.45, 1], "depth": [-1, 1], "weirdness": [0.05, 1], "offset": 0 }
         },
         {
           "biome": "slimeworld:ichor_caves",
