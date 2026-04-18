@@ -6,25 +6,33 @@
       "minecraft:canyon"
     ]
   },
-  "downfall": 0.4,
+  "downfall": 0.9,
   "effects": {
     "fog_color": 12638463,
+    "foliage_color": 6975545,
+    "grass_color_modifier": "swamp",
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000
     },
+    "music": {
+      "max_delay": 24000,
+      "min_delay": 12000,
+      "replace_current_music": false,
+      "sound": "minecraft:music.overworld.meadow"
+    },
     "sky_color": 7907327,
-    "water_color": 3456905,
-    "water_fog_color": 1528892
+    "water_color": 6388580,
+    "water_fog_color": 2302743
   },
   "features": [
     [],
     [
+      "slimeworld:lake_liquid_mud",
       "minecraft:lake_lava_underground",
-      "minecraft:lake_lava_surface",
-      "slimeworld:sulfur_pool"
+      "minecraft:lake_lava_surface"
     ],
     [
     ],
@@ -33,7 +41,6 @@
       "minecraft:monster_room_deep"
     ],
     [
-      "slimeworld:huge_sulfur_spike"
     ],
     [],
     [
@@ -66,22 +73,22 @@
       "minecraft:disk_clay",
       "minecraft:disk_gravel"
     ],
-    [
-      "slimeworld:sulfur_spike"
-    ],
+    [],
     [
       "minecraft:spring_water",
       "minecraft:spring_lava"
     ],
     [
       "minecraft:glow_lichen",
-      "slimeworld:berriper_bush"
+      "minecraft:patch_dead_bush_2",
+      "minecraft:patch_tall_grass_2",
+      "minecraft:patch_grass_plain"
     ],
     [
       "minecraft:freeze_top_layer"
     ]
   ],
-  "has_precipitation": true,
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],
@@ -90,38 +97,32 @@
     "misc": [],
     "monster": [
       {
-        "type": "slimeworld:sulfur_cube",
-        "maxCount": 4,
-        "minCount": 2,
-        "weight": 100
-      },
-      {
-        "type": "minecraft:creeper",
-        "maxCount": 2,
-        "minCount": 2,
-        "weight": 200
-      },
-      {
-        "type": "minecraft:skeleton",
-        "maxCount": 2,
-        "minCount": 2,
-        "weight": 50
-      },
-      {
         "type": "minecraft:spider",
-        "maxCount": 1,
-        "minCount": 1,
+        "maxCount": 4,
+        "minCount": 4,
         "weight": 100
       },
       {
         "type": "minecraft:zombie",
-        "maxCount": 2,
-        "minCount": 2,
-        "weight": 45
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 95
+      },
+      {
+        "type": "minecraft:skeleton",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
+      },
+      {
+        "type": "minecraft:creeper",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 100
       },
       {
         "type": "minecraft:enderman",
-        "maxCount": 1,
+        "maxCount": 4,
         "minCount": 1,
         "weight": 10
       }
@@ -137,5 +138,5 @@
     "water_ambient": [],
     "water_creature": []
   },
-  "temperature": 0.8
+  "temperature": 2.0
 }

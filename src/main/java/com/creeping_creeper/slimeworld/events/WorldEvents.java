@@ -64,6 +64,7 @@ public class WorldEvents {
 
         DispenserBlock.registerBehavior(ModFluids.OceanSlime, dispenseBucket);
         DispenserBlock.registerBehavior(ModFluids.ResonanceSlime, dispenseBucket);
+        DispenserBlock.registerBehavior(ModFluids.LiquidMud, dispenseBucket);
         DispenserBlock.registerBehavior(ModItems.SulfurCubeBucket, dispenseBucket);
 
         FireBlock fireblock = (FireBlock) Blocks.FIRE;

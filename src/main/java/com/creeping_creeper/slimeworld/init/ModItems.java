@@ -236,6 +236,7 @@ public class ModItems {
         output.accept(CobaltBerryBush);
         output.accept(ModFluids.OceanSlime);
         output.accept(ModFluids.ResonanceSlime);
+        output.accept(ModFluids.LiquidMud);
 
         output.accept(Bubble);
         output.accept(WaterBubble);

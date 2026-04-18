@@ -86,7 +86,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
 
     @Override
     public void setSize(int size, boolean resetHealth) {
-        super.setSize(size, resetHealth);
+        super.setSize(size < 4 ? size : 2, resetHealth);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(this.getSize() * 5.0 - 1);
         this.getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(8.0);
         if(resetHealth){
@@ -98,7 +98,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.goalSelector.addGoal(2, new SulfurCubeTemptGoal((itemStack) -> isTiny() ? isFoodItem(itemStack) : isSwallowableItem(itemStack)));
+        this.goalSelector.addGoal(2, new SulfurCubeTemptGoal((itemStack) -> isTiny() ? isFood(itemStack) : isSwallowableItem(itemStack)));
         this.goalSelector.addGoal(3, new SulfurCubeSearchForItemsGoal());
 
     }
@@ -422,7 +422,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         return stack.is(ModTags.Items.SulfurCubeSwallowable);
     }
 
-    private static boolean isFoodItem(ItemStack stack) {
+    private static boolean isFood(ItemStack stack) {
         return stack.is(Tags.Items.SLIMEBALLS);
     }
 
@@ -511,27 +511,29 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         if (!level().isClientSide()){
-            if (!isTiny()) {
-             if (isSwallowableItem(stack)){
+            if (!isTiny() && isFood(stack)) {
+                this.age -= (int) (this.age * 0.1);
+                ServerLevel server = (ServerLevel)this.level();
+                server.sendParticles(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0F), this.getRandomY() + (double)0.5F, this.getRandomZ(1.0F), 0, 0.0F, 0.0F, 0.0F, 0);
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+                this.setPersistenceRequired();
+                return InteractionResult.SUCCESS;
+            }else if (isSwallowableItem(stack)){
                  ItemStack oldStack = this.getItemBySlot(EquipmentSlot.HEAD);
                  if (!oldStack.isEmpty()) {
                      this.spawnAtLocation(oldStack.getItem().getDefaultInstance(), 1.7F);
                      this.pickupTimer = 100;
                  }
                  this.setItemSlot(EquipmentSlot.HEAD, stack.getItem().getDefaultInstance());
-                 stack.shrink(1);
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
                  this.setPersistenceRequired();
                  this.playSound(this.getAbsorbSound());
                  return InteractionResult.SUCCESS;
              }
-            }else if (isFoodItem(stack)) {
-                this.age -= (int) (this.age * 0.1);
-                ServerLevel server = (ServerLevel)this.level();
-                server.sendParticles(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0F), this.getRandomY() + (double)0.5F, this.getRandomZ(1.0F), 0, 0.0F, 0.0F, 0.0F, 0);
-                stack.shrink(1);
-                this.setPersistenceRequired();
-                return InteractionResult.SUCCESS;
-            }
         }
         return bucketMobPickup(player, hand).orElse(super.mobInteract(player, hand));
     }
@@ -605,13 +607,8 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
 
     @Nullable
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
-       if (reason == MobSpawnType.BUCKET){
-           return spawnData;
-       }
-       SpawnGroupData data = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
-       this.setSize(Math.min(2, this.getSize()), true);
        this.armorDropChances[EquipmentSlot.HEAD.getIndex()] = 1.0F;
-       return data;
+       return super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
     }
 
     @Override
@@ -782,7 +779,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         }
 
         public boolean canUse() {
-            if (!SulfurCubeEntity.this.isTiny() && SulfurCubeEntity.this.pickupTimer <= 0) {
+            if (!SulfurCubeEntity.this.isTiny() && SulfurCubeEntity.this.pickupTimer <= 0 && !hasBodyItem()) {
                 List<ItemEntity> list = SulfurCubeEntity.this.level().getEntitiesOfClass(ItemEntity.class, SulfurCubeEntity.this.getBoundingBox().inflate(8.0F, 8.0F, 8.0F), ALLOWED_ITEMS);
                 this.targetItem = list.isEmpty() ? null : list.get(0);
                 return this.targetItem != null;

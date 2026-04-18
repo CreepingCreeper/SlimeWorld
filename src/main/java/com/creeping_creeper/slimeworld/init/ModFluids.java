@@ -13,16 +13,17 @@ import slimeknights.tconstruct.common.registration.FluidDeferredRegisterExtensio
 import slimeknights.tconstruct.fluids.fluids.SlimeFluid;
 import slimeknights.tconstruct.shared.TinkerEffects;
 
-import static net.minecraft.world.level.material.MapColor.COLOR_BLUE;
-import static net.minecraft.world.level.material.MapColor.COLOR_RED;
+import static com.creeping_creeper.slimeworld.init.block.MudLiquidBlock.createMud;
+import static net.minecraft.world.level.material.MapColor.*;
 import static slimeknights.tconstruct.fluids.block.BurningLiquidBlock.createBurning;
 import static slimeknights.tconstruct.fluids.block.MobEffectLiquidBlock.createEffect;
 
 public class ModFluids {
     protected static final FluidDeferredRegisterExtension FLUIDS = new FluidDeferredRegisterExtension(SlimeWorld.MODID);
 
-    public static final FlowingFluidObject<SlimeFluid> OceanSlime = FLUIDS.registerSlime("ocean_slime").type(slime("ocean_slime").temperature(370).lightLevel(1)).block(createEffect(COLOR_BLUE,1, () -> new MobEffectInstance(TinkerEffects.doubleJump.get(), 5*20))).bucket().flowing(SlimeFluid.Source::new, SlimeFluid.Flowing::new);
+    public static final FlowingFluidObject<SlimeFluid> OceanSlime = FLUIDS.registerSlime("ocean_slime").type(slime("ocean_slime").temperature(370).lightLevel(1)).block(createEffect(COLOR_BLUE,1, () -> new MobEffectInstance(TinkerEffects.doubleJump.get(), 5 * 20))).bucket().flowing(SlimeFluid.Source::new, SlimeFluid.Flowing::new);
     public static final FlowingFluidObject<ForgeFlowingFluid> ResonanceSlime = FLUIDS.registerSlime("resonance_slime").type(hot("resonance_slime").temperature(1250).lightLevel(15)).block(createBurning(COLOR_RED,12, 10, 4f)).bucket().flowing();
+    public static final FlowingFluidObject<ForgeFlowingFluid> LiquidMud = FLUIDS.registerSlime("liquid_mud").type(slime("liquid_mud").temperature(300).lightLevel(0)).block(createMud(TERRACOTTA_CYAN,0)).bucket().flowing();
 
     private static FluidType.Properties gas(String name) {
         return base(name).density(-2000)
