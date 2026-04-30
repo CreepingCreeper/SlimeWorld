@@ -27,17 +27,6 @@ public class SlimeBerryBushBlock extends CommonBerryBushBlock{
     }
 
     @Override
-    public Item getBerry(BlockState state){
-        return switch (state.getValue(BERRY)){
-            case 1 -> ModItems.EarthSlimeBerry.asItem();
-            case 2 -> ModItems.SkySlimeBerry.asItem();
-            case 4 -> ModItems.EnderSlimeBerry.asItem();
-            case 5 -> ModItems.BloodSlimeBerry.asItem();
-            default -> Items.SUGAR;
-        };
-    }
-
-    @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         int i = 0;
         Block dirt = context.getLevel().getBlockState(context.getClickedPos().below()).getBlock();
@@ -52,5 +41,16 @@ public class SlimeBerryBushBlock extends CommonBerryBushBlock{
             i = 5;
         }
         return this.defaultBlockState().setValue(BERRY, i);
+    }
+
+    @Override
+    public Item getBerry(BlockState state){
+        return switch (state.getValue(BERRY)){
+            case 1 -> ModItems.EarthSlimeBerry.asItem();
+            case 2 -> ModItems.SkySlimeBerry.asItem();
+            case 4 -> ModItems.EnderSlimeBerry.asItem();
+            case 5 -> ModItems.BloodSlimeBerry.asItem();
+            default -> Items.SUGAR;
+        };
     }
 }

@@ -77,6 +77,10 @@ public class ClientEvent extends ClientEventBase {
         event.registerSpriteSet(ModParticles.SulfurBubbles.get(), SulfurBubbleParticle.Provider::new);
         event.registerSpriteSet(ModParticles.NoxiousGas.get(), NoxiousGasParticle.Provider::new);
         event.registerSpecial(ModParticles.NoxiousGasCloud.get(), new NoxiousGasCloudParticle.Provider());
+        event.registerSpriteSet(ModParticles.Geyser.get(), GeyserEruptionParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.GeyserBase.get(), GeyserBaseParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.GeyserPoof.get(), GeyserBaseParticle.Provider::new);
+        event.registerSpriteSet(ModParticles.GeyserPlume.get(), GeyserPlumeParticle.Provider::new);
 
         event.registerSpriteSet(ModParticles.WhiteSporeParticle.get(), SporeParticle.WhiteSporeProvider::new);
         event.registerSpriteSet(ModParticles.BlackSporeParticle.get(), SporeParticle.BlackSporeProvider::new);

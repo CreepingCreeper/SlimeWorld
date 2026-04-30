@@ -1,10 +1,15 @@
 package com.creeping_creeper.slimeworld.init.block.entity;
 
+import com.creeping_creeper.slimeworld.client.particle.GeyserParticleOptions;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.init.block.PotentSulfurBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySelector;
@@ -12,6 +17,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
@@ -23,14 +29,13 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class PotentSulfurBlockEntity extends BlockEntity {
+    public int waitingCountdown = -1;
+    public int geyserEruptionTime = -1;
+    public int dormantGeyserTime = -1;
+    public long eruptionTick = -1L;
     private static final Predicate<Entity> EFFECT_PREDICATE = EntitySelector.NO_SPECTATORS.and(EntitySelector.ENTITY_STILL_ALIVE);
-
-    public PotentSulfurBlockEntity(BlockPos pos, BlockState state) {
-        super(ModItems.PotentSulfurEntity.get(), pos, state);
-    }
-
-    public static void serverTick(Level level, BlockPos pos, BlockState state, PotentSulfurBlockEntity potentSulfur) {
-        if (level.getGameTime() % 10L == 0L && isUnderwater(level, pos)) {
+    public static BlockEntityTicker<PotentSulfurBlockEntity> SERVER_NAUSEA_EFFECT_TICKER = (level, pos, state, potentSulfur) -> {
+        if (level.getGameTime() % 10L == 0L) {
             BlockPos sourceBlock = findNoxiousGasSourceBlock(level, pos);
             if (sourceBlock != null) {
                 for(LivingEntity entity : getNearbyLivingEntities(level, sourceBlock)) {
@@ -41,6 +46,102 @@ public class PotentSulfurBlockEntity extends BlockEntity {
 
             }
         }
+    };
+
+    public static BlockEntityTicker<PotentSulfurBlockEntity> CLIENT_NOXIOUS_GAS_TICKER = (level, pos, state, entity) -> {
+        if (level.getGameTime() % 20L == 0L) {
+            BlockPos sourceBlock = findNoxiousGasSourceBlock(level, pos);
+            if (sourceBlock != null) {
+                spawnNoxiousGasCloudParticle(level, sourceBlock.getCenter());
+            }
+
+        }
+    };
+
+    public static BlockEntityTicker<PotentSulfurBlockEntity> CLIENT_GEYSER_PLUME_TICKER = (level, pos, state, entity) -> {
+        BlockPos sourceBlock = findNoxiousGasSourceBlock(level, pos);
+        if (sourceBlock != null) {
+            if ((level.getGameTime() - entity.eruptionTick) % 20L == 0L) {
+                spawnGeyserParticle(level, pos.getCenter(), getBottomCenter(sourceBlock));
+            }
+
+        }
+    };
+
+    public static BlockEntityTicker<PotentSulfurBlockEntity> SERVER_WAITING_COUNTDOWN_TICKER = (level, pos, state, entity) -> {
+        if (level.getGameTime() % 20L == 0L) {
+            BlockPos sourceBlock = findNoxiousGasSourceBlock(level, pos);
+            if (sourceBlock != null) {
+                if (entity.waitingCountdown <= 0) {
+                    int waterBlocks = (int)Math.floor(getBottomCenter(sourceBlock).y - pos.getCenter().y);
+                    if (state.getValue(PotentSulfurBlock.TYPE) == 2) {
+                        entity.waitingCountdown = 10 * (waterBlocks - 1) + entity.dormantGeyserTime;
+                    } else {
+                        entity.waitingCountdown = waterBlocks - 1 + entity.geyserEruptionTime;
+                    }
+                }
+
+                if (entity.waitingCountdown > 0) {
+                    --entity.waitingCountdown;
+                }
+
+                if (entity.waitingCountdown == 0) {
+                    level.setBlock(pos, state.setValue(PotentSulfurBlock.TYPE, state.getValue(PotentSulfurBlock.TYPE) == 2 ? 3 : 2), 3);
+                }
+
+            }
+        }
+        if (state.getValue(PotentSulfurBlock.TYPE) == 2){
+            SERVER_NAUSEA_EFFECT_TICKER.tick(level, pos, state, entity);
+        }
+    };
+
+    public static BlockEntityTicker<PotentSulfurBlockEntity> SERVER_LAUNCH_ENTITY_TICKER = (level, pos, state, entity) -> {
+        BlockPos sourceBlock = findNoxiousGasSourceBlock(level, pos);
+        if (sourceBlock != null) {
+            int waterBlocks = (int)Math.floor(getBottomCenter(sourceBlock).y - pos.getCenter().y);
+            AABB aabb = (new AABB(pos)).inflate(0.0F, waterBlocks * 5, 0.0F).move(0.0F, waterBlocks, 0.0F);
+
+            for(Entity entityToBeLaunched : level.getEntitiesOfClass(Entity.class, aabb, EFFECT_PREDICATE)) {
+                Vec3 entityVelocity = entityToBeLaunched.getDeltaMovement();
+                if (entityVelocity.y < (double)0.3F + (double)waterBlocks * 0.1 && haveLineOfSight(level, sourceBlock.below().getCenter(), entityToBeLaunched.getEyePosition())) {
+                    entityToBeLaunched.addDeltaMovement(new Vec3(0.0F, 0.2F, 0.0F));
+                    entityToBeLaunched.hurtMarked = true;
+                  }
+            }
+
+            if (level.getGameTime() % 20L == 0L) {
+                //level.playSound((Entity)null, pos, SoundEvents.GEYSER_ERUPTION_ACTIVE, SoundSource.BLOCKS, 1.0F * (float)waterBlocks, 1.0F);
+            }
+
+        }
+        if (state.getValue(PotentSulfurBlock.TYPE) == 3){
+            SERVER_WAITING_COUNTDOWN_TICKER.tick(level, pos, state, entity);
+        }
+    };
+
+    public PotentSulfurBlockEntity(BlockPos pos, BlockState state) {
+        super(ModItems.PotentSulfurEntity.get(), pos, state);
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putInt("dormant_time", this.dormantGeyserTime);
+        tag.putInt("eruption_time", this.geyserEruptionTime);
+        tag.putInt("countdown", this.waitingCountdown);
+    }
+
+    @Override
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        this.dormantGeyserTime = tag.getInt("dormant_time");
+        this.geyserEruptionTime = tag.getInt("eruption_time");
+        this.waitingCountdown = tag.getInt("countdown");
+    }
+
+    public void resetCountdown() {
+        this.waitingCountdown = -1;
     }
 
     private static void applyEffect(LivingEntity entity, PotentSulfurBlock block) {
@@ -52,14 +153,9 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         return level.getEntitiesOfClass(LivingEntity.class, aabb, EFFECT_PREDICATE);
     }
 
-    public static void clientTick(Level level, BlockPos pos, BlockState state, PotentSulfurBlockEntity entity) {
-        if (level.getGameTime() % 20L == 0L && isUnderwater(level, pos)) {
-            BlockPos sourceBlock = findNoxiousGasSourceBlock(level, pos);
-            if (sourceBlock != null) {
-                spawnNoxiousGasCloudParticle(level, sourceBlock.getCenter());
-            }
-
-        }
+    private static void spawnGeyserParticle(Level level, Vec3 sulfurPos, Vec3 sourcePos) {
+        int waterBlocks = (int)Math.floor(sourcePos.y - sulfurPos.y);
+        level.addParticle(new GeyserParticleOptions(ModParticles.Geyser.get(), waterBlocks), sourcePos.x, sourcePos.y, sourcePos.z, 0.0F, 0.0F, 0.0F);
     }
 
     private static void spawnNoxiousGasCloudParticle(Level level, Vec3 pos) {
@@ -111,5 +207,9 @@ public class PotentSulfurBlockEntity extends BlockEntity {
 
     private static boolean isAir(Level level, Vec3 pos) {
         return level.getBlockState(BlockPos.containing(pos)).isAir();
+    }
+
+    private static Vec3 getBottomCenter(BlockPos pos) {
+        return Vec3.atBottomCenterOf(pos);
     }
 }

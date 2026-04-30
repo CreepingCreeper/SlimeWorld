@@ -13,10 +13,7 @@ import com.creeping_creeper.slimeworld.init.block.bush.SlimeBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.entity.PotentSulfurBlockEntity;
 import com.creeping_creeper.slimeworld.init.block.flower.*;
 import com.creeping_creeper.slimeworld.init.block.grass.*;
-import com.creeping_creeper.slimeworld.init.item.BurnableBlockTooltipItem;
-import com.creeping_creeper.slimeworld.init.item.EmptyMobBucketItem;
-import com.creeping_creeper.slimeworld.init.item.ModFood;
-import com.creeping_creeper.slimeworld.init.item.NecroticBoneMealItem;
+import com.creeping_creeper.slimeworld.init.item.*;
 import com.creeping_creeper.slimeworld.init.world.MagicbubbleTreeGrower;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;
@@ -39,6 +36,7 @@ import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
 import slimeknights.tconstruct.common.Sounds;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.registration.BlockDeferredRegisterExtension;
 import slimeknights.tconstruct.common.registration.GeodeItemObject;
 import slimeknights.tconstruct.common.registration.ItemDeferredRegisterExtension;
@@ -162,6 +160,8 @@ public class ModItems {
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, () -> SoundEvents.EMPTY, (new Item.Properties()).stacksTo(1)));
 
+    public static final ItemObject<Item> Crystal = ITEMS.register("crystal", () -> new CrystalItem(TinkerTags.Items.WORN_ARMOR, (new Item.Properties()).stacksTo(16)));
+
     public static final RegistryObject<BlockEntityType<PotentSulfurBlockEntity>> PotentSulfurEntity = BLOCK_ENTITIES.register("potent_sulfur", PotentSulfurBlockEntity::new, set -> set.add(PotentSulfurNausea.get(), PotentSulfurBlindness.get(), PotentSulfurWeakness.get(), PotentSulfurRegeneration.get(), PotentSulfurStrength.get()));
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
@@ -248,6 +248,8 @@ public class ModItems {
         output.accept(OceanSlimeBubble);
         output.accept(HoneyBubble);
         output.accept(VenomBubble);
+
+        output.accept(Crystal);
 
         output.accept(SulfurCubeBucket);
         output.accept(ModEntities.OceanSlimeEntity);

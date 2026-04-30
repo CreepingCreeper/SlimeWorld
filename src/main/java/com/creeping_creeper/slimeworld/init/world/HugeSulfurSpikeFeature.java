@@ -100,7 +100,7 @@ public class HugeSulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
     }
 
     private void setBlock(WorldGenLevel worldgenlevel, BlockPos blockPos){
-        Block block = worldgenlevel.getRandom().nextInt(8) == 0 ? Blocks.MAGMA_BLOCK : ModItems.Sulfur.get();
+        Block block = worldgenlevel.getRandom().nextInt(8) == 0 ? ModItems.SulfurMud.get() : ModItems.Sulfur.get();
         this.setBlock(worldgenlevel, blockPos, block.defaultBlockState());
     }
 }

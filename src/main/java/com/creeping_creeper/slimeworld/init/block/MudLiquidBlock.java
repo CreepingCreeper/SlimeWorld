@@ -21,12 +21,12 @@ public class MudLiquidBlock extends LiquidBlock {
     @SuppressWarnings("deprecation")
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (!entity.fireImmune() && entity.getFluidTypeHeight(getFluid().getFluidType()) > 0) {
-            entity.makeStuckInBlock(state, new Vec3(0.7F, 1.2F, 0.7F));
+        if (entity.getFluidTypeHeight(getFluid().getFluidType()) > 0) {
+            entity.makeStuckInBlock(state, new Vec3(0.6F, 1.2F, 0.6F));
         }
     }
 
-    public static Function<Supplier<? extends FlowingFluid>, LiquidBlock> createMud(MapColor color, int lightLevel) {
-        return fluid -> new MudLiquidBlock(fluid, FluidDeferredRegister.createProperties(color, lightLevel));
+    public static Function<Supplier<? extends FlowingFluid>, LiquidBlock> createMud(MapColor color) {
+        return fluid -> new MudLiquidBlock(fluid, FluidDeferredRegister.createProperties(color, 0));
     }
 }

@@ -10,6 +10,33 @@
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
+    },
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/spawner/sky_slime",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/spawner/ocean_slime",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":1,
+      "element": {
+        "location": "slimeworld:great_wall/spawner/ender_slime",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
     }
   ]
 }

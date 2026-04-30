@@ -3,7 +3,7 @@
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight":80,
+      "weight":70,
       "element": {
         "location": "slimeworld:great_wall/wall/common",
         "processors": "minecraft:empty",
@@ -15,6 +15,15 @@
       "weight":10,
       "element": {
         "location": "slimeworld:great_wall/wall/beacon",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight":10,
+      "element": {
+        "location": "slimeworld:great_wall/wall/ladder",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
