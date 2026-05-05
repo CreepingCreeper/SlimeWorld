@@ -5,8 +5,10 @@ import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.LakeFeature;
+import org.jetbrains.annotations.NotNull;
 
 public class SulfurPoolFeature extends LakeFeature {
     public SulfurPoolFeature(Codec<Configuration> codec) {
@@ -14,7 +16,7 @@ public class SulfurPoolFeature extends LakeFeature {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<Configuration> context) {
+    public boolean place(@NotNull FeaturePlaceContext<Configuration> context) {
         boolean place = super.place(context);
         findSolidUnderLake(context.level(), context.origin().offset(8, 0, 8));
         return place;
@@ -32,6 +34,9 @@ public class SulfurPoolFeature extends LakeFeature {
                     if (!level.getFluidState(pos.below(down)).isEmpty()) {
                         if (level.getBlockState(pos.below(down + 1)).isSolid()) {
                              level.setBlock(pos.below(down + 1), getPotentSulfur(level).defaultBlockState(), 2);
+                             if (level.getRandom().nextInt(5) == 0){
+                                 level.setBlock(pos.below(down + 2), Blocks.MAGMA_BLOCK.defaultBlockState(), 2);
+                             }
                              return;
                         }
                     }

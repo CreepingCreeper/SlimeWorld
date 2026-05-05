@@ -16,7 +16,6 @@ import com.creeping_creeper.slimeworld.init.block.grass.*;
 import com.creeping_creeper.slimeworld.init.item.*;
 import com.creeping_creeper.slimeworld.init.world.MagicbubbleTreeGrower;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
@@ -88,13 +87,12 @@ public class ModItems {
 
     public static final ItemObject<Block> Sulfur = BLOCKS.register("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM).strength(1.5F, 6.0F).requiresCorrectToolForDrops()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> SulfurMud = BLOCKS.register("sulfur_mud", () -> new Block(BlockBehaviour.Properties.copy(Sulfur.get()).sound(SoundType.MUD)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> SulfurSpike = BLOCKS.register("sulfur_spike", () -> new SulfurSpikeBlock(builder(MapColor.TERRACOTTA_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(ModSounds.SULFUR).randomTicks().strength(1.5F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurNausea = BLOCKS.register("potent_sulfur_nausea", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurBlindness = BLOCKS.register("potent_sulfur_blindness", () -> new PotentSulfurBlock(() -> MobEffects.BLINDNESS, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurWeakness = BLOCKS.register("potent_sulfur_weakness", () -> new PotentSulfurBlock(() -> MobEffects.WEAKNESS, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurRegeneration = BLOCKS.register("potent_sulfur_regeneration", () -> new PotentSulfurBlock(() -> MobEffects.REGENERATION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurStrength = BLOCKS.register("potent_sulfur_strength", () -> new PotentSulfurBlock(() -> MobEffects.DAMAGE_BOOST, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
-
-    public static final ItemObject<Block> SulfurSpike = BLOCKS.register("sulfur_spike", () -> new SulfurSpikeBlock(builder(MapColor.TERRACOTTA_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(SoundType.POINTED_DRIPSTONE).randomTicks().strength(1.5F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never).noOcclusion()), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", () -> new Block(builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
@@ -158,7 +156,7 @@ public class ModItems {
     public static final ItemObject<Block> OceanSlimeBubble = BLOCKS.register("ocean_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_BLUE)), ModFluids.OceanSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, () -> SoundEvents.EMPTY, (new Item.Properties()).stacksTo(1)));
+    public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, ModSounds.BUCKET_EMPTY_SULFUR_CUBE, (new Item.Properties()).stacksTo(1)));
 
     public static final ItemObject<Item> Crystal = ITEMS.register("crystal", () -> new CrystalItem(TinkerTags.Items.WORN_ARMOR, (new Item.Properties()).stacksTo(16)));
 

@@ -24,6 +24,7 @@ public class ModTags {
         public static final TagKey<Item> ArchetypeSlowFlat = local("sulfur_cube_archetype/slow_flat");
         public static final TagKey<Item> ArchetypeSlowSliding = local("sulfur_cube_archetype/slow_sliding");
         public static final TagKey<Item> ArchetypeSticky = local("sulfur_cube_archetype/sticky");
+        public static final TagKey<Item> ArchetypeExplosive = local("sulfur_cube_archetype/explosive");
 
         private static TagKey<Item> local(String name) {
             return TagKey.create(Registries.ITEM, SlimeWorld.getResource(name));

@@ -11,13 +11,14 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalInt;
 import java.util.UUID;
 
 public class SulfurCubeArchetype {
     public static final UUID KNOCKBACK_RESISTANCE = UUID.fromString("2737DE5E-7CE8-4030-940E-514C1F175601");
 
     private static final ArrayList<TagKey<Item>> Archetype = new ArrayList<>(List.of(ModTags.Items.ArchetypeBouncy, ModTags.Items.ArchetypeFastFlat, ModTags.Items.ArchetypeFastSliding, ModTags.Items.ArchetypeHighResistance,
-            ModTags.Items.ArchetypeLight, ModTags.Items.ArchetypeRegular, ModTags.Items.ArchetypeSlowFlat, ModTags.Items.ArchetypeSlowSliding, ModTags.Items.ArchetypeSticky));
+            ModTags.Items.ArchetypeLight, ModTags.Items.ArchetypeRegular, ModTags.Items.ArchetypeSlowFlat, ModTags.Items.ArchetypeSlowSliding, ModTags.Items.ArchetypeSticky, ModTags.Items.ArchetypeExplosive));
 
     public static int getIndex(ItemStack item){
         int index = 0;
@@ -41,10 +42,15 @@ public class SulfurCubeArchetype {
             case 6 -> applyArchetype(entity, 0.699999988079071F, 0.20000000298023224F, -0.699999988079071F, -0.8999999985098839F, false);
             case 7 -> applyArchetype(entity, 0.800000011920929F, 0.10000000149011612F, -0.9499999992549419F, -0.9900000002235174F, true);
             case 8 -> applyArchetype(entity, -2.0F, 0.0F, 1.0F, -0.9900000002235174F, true);
+            case 9 -> applyArchetype(entity, -1.0F, 0.5F, -0.699999988079071F, -0.699999988079071F, true, 120);
         }
     }
 
     private static void applyArchetype(SulfurCubeEntity entity, float knockback, float bounciness, float frictionModifier, float airDragModifier, boolean floatsInLiquids){
+        applyArchetype(entity, knockback, bounciness, frictionModifier, airDragModifier, floatsInLiquids, -1);
+    }
+
+    private static void applyArchetype(SulfurCubeEntity entity, float knockback, float bounciness, float frictionModifier, float airDragModifier, boolean floatsInLiquids, int maxFuse){
         AttributeInstance attribute = entity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
         if (attribute != null) {
             if (attribute.getModifier(KNOCKBACK_RESISTANCE) != null) {
@@ -56,6 +62,7 @@ public class SulfurCubeArchetype {
         entity.frictionModifier = 1.0F + frictionModifier;
         entity.airDragModifier = 1.0F + airDragModifier;
         entity.floatsInLiquids = floatsInLiquids;
+        entity.maxFuseFromArchetype = maxFuse;
     }
 
     public static void resetArchetype(SulfurCubeEntity entity){
@@ -69,5 +76,6 @@ public class SulfurCubeArchetype {
         entity.frictionModifier = 1.0F;
         entity.airDragModifier = 1.0F;
         entity.floatsInLiquids = false;
+        entity.maxFuseFromArchetype = -1;
     }
 }

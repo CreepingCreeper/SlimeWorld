@@ -11,6 +11,7 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class SulfurCubeModel<T extends SulfurCubeEntity> extends HierarchicalModel<T> {
@@ -35,7 +36,7 @@ public class SulfurCubeModel<T extends SulfurCubeEntity> extends HierarchicalMod
     }
 
     @Override
-    public ModelPart root() {
+    public @NotNull ModelPart root() {
         return this.root;
     }
 }

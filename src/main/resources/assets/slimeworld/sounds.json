@@ -121,6 +121,31 @@
     ],
     "subtitle": "subtitles.block.generic.footsteps"
   },
+  "block.potent_sulfur.geyser_eruption": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption1",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption2",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption3",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption4",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption5",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption6",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption7",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption8"
+    ],
+    "subtitle": "subtitles.block.potent_sulfur.geyser_eruption"
+  },
+  "block.potent_sulfur.geyser_eruption_active": {
+    "sounds": [
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active1",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active2",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active3",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active4",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active5",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active6",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active7",
+      "slimeworld:block/potent_sulfur/sulfur_spring/eruption_active8"
+    ]
+  },
   "block.potent_sulfur.noxious_gas": {
     "sounds": [
       "slimeworld:block/potent_sulfur/noxious_gas/ambient1",
@@ -281,6 +306,22 @@
       "slimeworld:mob/sulfur_cube/small_sulfur_cube/squish10"
     ],
     "subtitle": "subtitles.entity.sulfur_cube.squish"
+  },
+  "item.bucket.fill_sulfur_cube": {
+    "sounds": [
+      "slimeworld:item/bucket/fillsulfurcube1",
+      "slimeworld:item/bucket/fillsulfurcube2",
+      "slimeworld:item/bucket/fillsulfurcube3"
+    ],
+    "subtitle": "subtitles.item.bucket.fill_sulfur_cube"
+  },
+  "item.bucket.empty_sulfur_cube": {
+    "sounds": [
+      "slimeworld:item/bucket/emptysulfurcube1",
+      "slimeworld:item/bucket/emptysulfurcube2",
+      "slimeworld:item/bucket/emptysulfurcube3"
+    ],
+    "subtitle": "subtitles.item.bucket.empty"
   },
   "entity.bogged.ambient": {
     "sounds": [

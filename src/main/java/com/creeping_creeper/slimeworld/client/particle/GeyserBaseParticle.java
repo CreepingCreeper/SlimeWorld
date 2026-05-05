@@ -6,8 +6,11 @@ import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.util.RandomSource;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class GeyserBaseParticle extends BaseAshSmokeParticle {
     private GeyserBaseParticle(ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux, int waterBlocks, float burstImpulseBase, SpriteSet sprites) {
         super(level, x, y, z, burstImpulse(burstImpulseBase, waterBlocks), burstImpulse(burstImpulseBase, waterBlocks), burstImpulse(burstImpulseBase, waterBlocks), xAux, yAux, zAux, 3.0F + 0.125F * (float)waterBlocks, sprites, 0.0F, 0, 0.0F, true);

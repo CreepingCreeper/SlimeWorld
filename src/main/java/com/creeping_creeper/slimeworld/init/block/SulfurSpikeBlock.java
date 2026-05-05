@@ -34,6 +34,7 @@ import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -63,12 +64,12 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return isValidPointedDripstonePlacement(level, pos, state.getValue(TIP_DIRECTION));
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction p_direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction p_direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
@@ -96,7 +97,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public void onProjectileHit(Level level, BlockState state, BlockHitResult hit, Projectile projectile) {
+    public void onProjectileHit(Level level, @NotNull BlockState state, BlockHitResult hit, @NotNull Projectile projectile) {
         BlockPos blockpos = hit.getBlockPos();
         if (!level.isClientSide && projectile.mayInteract(level, blockpos) && projectile instanceof ThrownTrident && projectile.getDeltaMovement().length() > 0.6) {
             level.destroyBlock(blockpos, true);
@@ -105,7 +106,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+    public void fallOn(@NotNull Level level, BlockState state, @NotNull BlockPos pos, @NotNull Entity entity, float fallDistance) {
         if (state.getValue(TIP_DIRECTION) == Direction.UP && state.getValue(THICKNESS) == DripstoneThickness.TIP) {
             entity.causeFallDamage(fallDistance + 2.0F, 2.0F, level.damageSources().stalagmite());
         } else {
@@ -115,7 +116,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (canDrip(state)) {
             float f = random.nextFloat();
             if (!(f > 0.12F)) {
@@ -126,7 +127,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (isStalagmite(state) && !this.canSurvive(state, level, pos)) {
             level.destroyBlock(pos, true);
         } else {
@@ -136,7 +137,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, RandomSource random) {
         if (random.nextFloat() < 0.011377778F && isStalactiteStartPos(state, level, pos)) {
             growStalactiteOrStalagmiteIfPossible(state, level, pos, random);
         }
@@ -165,12 +166,12 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+    public @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return Shapes.empty();
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         DripstoneThickness dripstonethickness = state.getValue(THICKNESS);
         VoxelShape voxelshape;
         if (dripstonethickness == DripstoneThickness.TIP_MERGE) {
@@ -194,7 +195,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter level, BlockPos pos) {
+    public boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return false;
     }
 
@@ -223,7 +224,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
             FallingBlockEntity fallingblockentity = FallingBlockEntity.fall(level, blockpos$mutableblockpos, blockstate);
             if (isTip(blockstate, true)) {
                 int i = Math.max(1 + pos.getY() - blockpos$mutableblockpos.getY(), 6);
-                float f = 1.0F * (float)i;
+                float f = (float) i;
                 fallingblockentity.setHurtsEntities(f, 40);
                 break;
             }
@@ -238,7 +239,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
         BlockState blockstate = level.getBlockState(pos.above(1));
         BlockState blockstate1 = level.getBlockState(pos.above(2));
         if (canGrow(blockstate, blockstate1)) {
-            BlockPos blockpos = findTip(state, level, pos, 7, false);
+            BlockPos blockpos = findTip(state, level, pos);
             if (blockpos != null) {
                 BlockState blockstate2 = level.getBlockState(blockpos);
                 if (canDrip(blockstate2) && canTipGrow(blockstate2, level, blockpos)) {
@@ -322,13 +323,13 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Nullable
-    private static BlockPos findTip(BlockState state, LevelAccessor level, BlockPos pos, int maxIterations, boolean isTipMerge) {
-        if (isTip(state, isTipMerge)) {
+    private static BlockPos findTip(BlockState state, LevelAccessor level, BlockPos pos) {
+        if (isTip(state, false)) {
             return pos;
         } else {
             Direction direction = state.getValue(TIP_DIRECTION);
             BiPredicate<BlockPos, BlockState> bipredicate = (p_202023_, p_202024_) -> p_202024_.is(ModItems.SulfurSpike.get()) && p_202024_.getValue(TIP_DIRECTION) == direction;
-            return findBlockVertical(level, pos, direction.getAxisDirection(), bipredicate, (p_154168_) -> isTip(p_154168_, isTipMerge), maxIterations).orElse((BlockPos)null);
+            return findBlockVertical(level, pos, direction.getAxisDirection(), bipredicate, (p_154168_) -> isTip(p_154168_, false), 7).orElse(null);
         }
     }
 
@@ -379,7 +380,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
         if (!blockstate.getFluidState().isEmpty()) {
             return false;
         } else {
-            return blockstate.isAir() ? true : isUnmergedTipWithDirection(blockstate, direction.getOpposite());
+            return blockstate.isAir() || isUnmergedTipWithDirection(blockstate, direction.getOpposite());
         }
     }
 
@@ -421,7 +422,7 @@ public class SulfurSpikeBlock extends Block implements Fallable, SimpleWaterlogg
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
+    public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull PathComputationType type) {
         return false;
     }
 

@@ -6,9 +6,13 @@ import net.minecraft.client.particle.NoRenderParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
+@OnlyIn(Dist.CLIENT)
 public class GeyserEruptionParticle extends NoRenderParticle {
     private final int waterBlocks;
     private final double xa;
@@ -54,7 +58,7 @@ public class GeyserEruptionParticle extends NoRenderParticle {
         public Provider(SpriteSet sprites) {}
 
         @Override
-        public @Nullable Particle createParticle(GeyserParticleOptions options, ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
+        public @Nullable Particle createParticle(@NotNull GeyserParticleOptions options, @NotNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
             return new GeyserEruptionParticle(level, x, y, z, xAux, yAux, zAux, options);
         }
     }

@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -69,21 +70,32 @@ public class PotentSulfurBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+    public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
         return new PotentSulfurBlockEntity(pos, state);
     }
 
     @Override
-    public @NotNull BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         return validBlockState(state, level, pos);
     }
 
     @Override
-    public @NotNull RenderShape getRenderShape(BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
         return RenderShape.MODEL;
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    @Override
+    public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
+        super.onPlace(state, level, pos, oldState, movedByPiston);
+        if (state.getValue(TYPE) == 3) {
+            level.blockEvent(pos, this, 0, 0);
+            level.playSound((Entity)null, pos, ModSounds.GEYSER_ERUPTION_START.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        }
+
+    }
+
+    @Override
+    public void animateTick(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (state.getValue(TYPE) > 0) {
             spawnBubbleParticlesAt(level, random, pos.getX(), pos.getY() + 1, pos.getZ());
             spawnBubbleParticlesAt(level, random, pos.getX(), pos.getY() + 1, pos.getZ());
@@ -99,18 +111,16 @@ public class PotentSulfurBlock extends BaseEntityBlock {
     }
 
     @Override
-    public <T extends BlockEntity> @Nullable BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> type) {
-        boolean client = level.isClientSide();
-        BlockEntityType<PotentSulfurBlockEntity> type1 = ModItems.PotentSulfurEntity.get();
-        BlockEntityTicker type2;
-        switch (blockState.getValue(TYPE)) {
-            case 1 -> type2 = client ? PotentSulfurBlockEntity.CLIENT_NOXIOUS_GAS_TICKER : PotentSulfurBlockEntity.SERVER_NAUSEA_EFFECT_TICKER;
-            case 2 -> type2 = client ? PotentSulfurBlockEntity.CLIENT_NOXIOUS_GAS_TICKER : PotentSulfurBlockEntity.SERVER_WAITING_COUNTDOWN_TICKER;
-            case 3 -> type2 = client ? PotentSulfurBlockEntity.CLIENT_GEYSER_PLUME_TICKER : PotentSulfurBlockEntity.SERVER_LAUNCH_ENTITY_TICKER;
-            default -> type2 = null;
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
+        if (level.isClientSide()) {
+            return switch (state.getValue(TYPE)) {
+                case 1, 2 -> createTickerHelper(type, ModItems.PotentSulfurEntity.get(), PotentSulfurBlockEntity.CLIENT_NOXIOUS_GAS_TICKER);
+                case 3 -> createTickerHelper(type, ModItems.PotentSulfurEntity.get(), PotentSulfurBlockEntity.CLIENT_GEYSER_PLUME_TICKER);
+                default -> null;
+            };
+        } else {
+            return createTickerHelper(type, ModItems.PotentSulfurEntity.get(), PotentSulfurBlockEntity.SERVER_TICKER);
         }
-
-        return createTickerHelper(type, type1, type2);
     }
 
     public MobEffect getEffect() {

@@ -25,6 +25,9 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> POTENT_SULFUR_FALL = registerSoundEvent("block.potent_sulfur.fall");
     public static final RegistryObject<SoundEvent> NOXIOUS_GAS = registerSoundEvent("block.potent_sulfur.noxious_gas");
 
+    public static final RegistryObject<SoundEvent> GEYSER_ERUPTION_START = registerSoundEvent("block.potent_sulfur.geyser_eruption");
+    public static final RegistryObject<SoundEvent> GEYSER_ERUPTION_ACTIVE = registerSoundEvent("block.potent_sulfur.geyser_eruption_active");
+
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_HURT = registerSoundEvent("entity.sulfur_cube.hurt");
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_DEATH = registerSoundEvent("entity.sulfur_cube.death");
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_JUMP = registerSoundEvent("entity.sulfur_cube.jump");
@@ -34,6 +37,8 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_PUSH = registerSoundEvent("entity.sulfur_cube.push");
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_ABSORB = registerSoundEvent("entity.sulfur_cube.absorb");
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_EJECT = registerSoundEvent("entity.sulfur_cube.eject");
+    public static final RegistryObject<SoundEvent> BUCKET_FILL_SULFUR_CUBE = registerSoundEvent("item.bucket.fill_sulfur_cube");
+    public static final RegistryObject<SoundEvent> BUCKET_EMPTY_SULFUR_CUBE = registerSoundEvent("item.bucket.empty_sulfur_cube");
 
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_HURT_SMALL = registerSoundEvent("entity.small_sulfur_cube.hurt");
     public static final RegistryObject<SoundEvent> SULFUR_CUBE_DEATH_SMALL = registerSoundEvent("entity.small_sulfur_cube.death");

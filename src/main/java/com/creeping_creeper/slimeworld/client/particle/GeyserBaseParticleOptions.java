@@ -1,6 +1,5 @@
 package com.creeping_creeper.slimeworld.client.particle;
 
-import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -9,7 +8,7 @@ import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.FriendlyByteBuf;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.serialization.Codec;
+import org.jetbrains.annotations.NotNull;
 
 // 1.20.1 不支持 record，改用普通类
 public class GeyserBaseParticleOptions implements ParticleOptions {
@@ -17,7 +16,7 @@ public class GeyserBaseParticleOptions implements ParticleOptions {
     // 1.20.1 必须的反序列化器（命令 + 网络）
     public static final Deserializer<GeyserBaseParticleOptions> DESERIALIZER = new Deserializer<>() {
         @Override
-        public GeyserBaseParticleOptions fromCommand(ParticleType<GeyserBaseParticleOptions> type, StringReader reader) throws CommandSyntaxException {
+        public @NotNull GeyserBaseParticleOptions fromCommand(ParticleType<GeyserBaseParticleOptions> type, StringReader reader) throws CommandSyntaxException {
             reader.expect(' ');
             int waterBlocks = reader.readInt();
             reader.expect(' ');
@@ -26,7 +25,7 @@ public class GeyserBaseParticleOptions implements ParticleOptions {
         }
 
         @Override
-        public GeyserBaseParticleOptions fromNetwork(ParticleType<GeyserBaseParticleOptions> type, FriendlyByteBuf buf) {
+        public @NotNull GeyserBaseParticleOptions fromNetwork(ParticleType<GeyserBaseParticleOptions> type, FriendlyByteBuf buf) {
             int waterBlocks = buf.readInt();
             float burstImpulseBase = buf.readFloat();
             return new GeyserBaseParticleOptions(type, waterBlocks, burstImpulseBase);
@@ -63,13 +62,13 @@ public class GeyserBaseParticleOptions implements ParticleOptions {
 
     // 命令字符串
     @Override
-    public String writeToString() {
+    public @NotNull String writeToString() {
         return getType() + " " + this.waterBlocks + " " + this.burstImpulseBase;
     }
 
     // 必须实现
     @Override
-    public ParticleType<GeyserBaseParticleOptions> getType() {
+    public @NotNull ParticleType<GeyserBaseParticleOptions> getType() {
         return this.type;
     }
 
