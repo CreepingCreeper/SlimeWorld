@@ -13,8 +13,6 @@ import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.block.SlimeType;
 
-import javax.annotation.Nullable;
-
 @OnlyIn(Dist.CLIENT)
 public class IchorParticle extends BreakingItemParticle {
     public IchorParticle(ClientLevel level, double x, double y, double z, ItemStack stack) {

@@ -9,7 +9,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public class GeyserBaseParticle extends BaseAshSmokeParticle {
