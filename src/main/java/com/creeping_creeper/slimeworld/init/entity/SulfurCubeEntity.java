@@ -77,6 +77,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     boolean floatsInLiquids = false;
     int maxFuseFromArchetype = -1;
     private int fuse = -1;
+    float damage = -1;
 
     public SulfurCubeEntity(EntityType<? extends SulfurCubeEntity> type, Level worldIn) {
         super(type, worldIn);
@@ -692,6 +693,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         compound.putBoolean("FloatsInLiquids", floatsInLiquids);
         compound.putInt("MaxFuseFromArchetype", maxFuseFromArchetype);
         compound.putInt("Fuse", getFuse());
+        compound.putFloat("Damage", damage);
         compound.putBoolean("FromBucket", fromBucket());
     }
 
@@ -706,7 +708,14 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         floatsInLiquids = compound.getBoolean("FloatsInLiquids");
         maxFuseFromArchetype = compound.getInt("MaxFuseFromArchetype");
         setFuse(compound.getInt("Fuse"));
+        damage = compound.getFloat("Damage");
         setFromBucket(compound.getBoolean("FromBucket"));
+    }
+
+    @Override
+    protected void doPush(@NotNull Entity entity) {
+        super.doPush(entity);
+        this.applyContactDamage(entity);
     }
 
     @Override
@@ -728,8 +737,16 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
                 }
 
                 this.addDeltaMovement(pushVelocity);
+                this.applyContactDamage(player);
             }
 
+        }
+    }
+
+    private void applyContactDamage(Entity entity) {
+        Level level = this.level();
+        if (level instanceof ServerLevel && this.damage >= 0.0) {
+            entity.hurt(new DamageSource(this.damageSources().hotFloor().typeHolder(), this, this), this.damage);
         }
     }
 

@@ -30,6 +30,7 @@ import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.ClientEventBase;
@@ -101,18 +102,18 @@ public class ClientEvent extends ClientEventBase {
     }
     public record SlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {
         @Override
-        public EntityRenderer<Slime> create(Context context) {
+        public @NotNull EntityRenderer<Slime> create(@NotNull Context context) {
             return new TinkerSlimeRenderer(context, slime, metal);
         }
     }
 
     public record InvertedSlimeFactory(ResourceLocation slime, ResourceLocation metal) implements EntityRendererProvider<Slime> {
         @Override
-        public EntityRenderer<Slime> create(Context context) {return new InvertedSlimeRenderer(context, slime, metal);}}
+        public @NotNull EntityRenderer<Slime> create(@NotNull Context context) {return new InvertedSlimeRenderer(context, slime, metal);}}
 
     public record BossSlimeFactory(ResourceLocation slime) implements EntityRendererProvider<Slime> {
         @Override
-        public EntityRenderer<Slime> create(Context context) {
+        public @NotNull EntityRenderer<Slime> create(@NotNull Context context) {
             return new BossSlimeRenderer(context, slime);
         }
     }

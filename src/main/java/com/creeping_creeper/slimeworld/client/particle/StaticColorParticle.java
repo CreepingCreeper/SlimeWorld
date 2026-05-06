@@ -28,7 +28,7 @@ public class StaticColorParticle extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
@@ -47,26 +47,16 @@ public class StaticColorParticle extends TextureSheetParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Provider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprite;
-        private final float red;
-        private final float green;
-        private final float blue;
-
-        public Provider(SpriteSet sprite, float red, float green, float blue) {
-            this.sprite = sprite;
-            this.red = red;
-            this.green = green;
-            this.blue = blue;
-        }
+        public record Provider(SpriteSet sprite, float red, float green,
+                               float blue) implements ParticleProvider<SimpleParticleType> {
 
         @Override
-        @NotNull
-        public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            StaticColorParticle particle = new StaticColorParticle(level, x, y, z, this.sprite);
-            particle.setColor(this.red, this.green, this.blue);
+            @NotNull
+            public Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+                StaticColorParticle particle = new StaticColorParticle(level, x, y, z, this.sprite);
+                particle.setColor(this.red, this.green, this.blue);
 
-            return particle;
+                return particle;
+            }
         }
-    }
 }

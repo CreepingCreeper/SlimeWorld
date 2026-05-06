@@ -1,6 +1,5 @@
 package com.creeping_creeper.slimeworld.client.particle;
 
-import lombok.RequiredArgsConstructor;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.BreakingItemParticle;
 import net.minecraft.client.particle.Particle;
@@ -10,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.block.SlimeType;
 
@@ -27,18 +27,14 @@ public class IchorParticle extends BreakingItemParticle {
         this.gravity = -1;
     }
 
-    @RequiredArgsConstructor
-    public static class Factory implements ParticleProvider<SimpleParticleType> {
-        private final ItemLike slime;
+    public record Factory(ItemLike slime) implements ParticleProvider<SimpleParticleType> {
+            public Factory(SlimeType type) {
+                this(TinkerCommons.slimeball.get(type));
+            }
 
-        public Factory(SlimeType type) {
-            this.slime = TinkerCommons.slimeball.get(type);
+            @Override
+            public @NotNull Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+                return new IchorParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, new ItemStack(slime));
+            }
         }
-
-        @Nullable
-        @Override
-        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-            return new IchorParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed, new ItemStack(slime));
-        }
-    }
 }

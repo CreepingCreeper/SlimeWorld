@@ -42,15 +42,17 @@ public class SulfurCubeArchetype {
             case 6 -> applyArchetype(entity, 0.699999988079071F, 0.20000000298023224F, -0.699999988079071F, -0.8999999985098839F, false);
             case 7 -> applyArchetype(entity, 0.800000011920929F, 0.10000000149011612F, -0.9499999992549419F, -0.9900000002235174F, true);
             case 8 -> applyArchetype(entity, -2.0F, 0.0F, 1.0F, -0.9900000002235174F, true);
-            case 9 -> applyArchetype(entity, -1.0F, 0.5F, -0.699999988079071F, -0.699999988079071F, true, 120);
+            case 9 -> applyArchetype(entity, -1.0F, 0.5F, -0.699999988079071F, -0.699999988079071F, true, 120, -1.0F);
+            case 10 -> applyArchetype(entity, 0.4000000059604645F, 0.6000000238418579F, -0.699999988079071F,  -0.9499999992549419F, true);
+            case 11 -> applyArchetype(entity, -1.0F, 0.5F, -0.699999988079071F, -0.8999999985098839F, true, -1, 1.0F);
         }
     }
 
     private static void applyArchetype(SulfurCubeEntity entity, float knockback, float bounciness, float frictionModifier, float airDragModifier, boolean floatsInLiquids){
-        applyArchetype(entity, knockback, bounciness, frictionModifier, airDragModifier, floatsInLiquids, -1);
+        applyArchetype(entity, knockback, bounciness, frictionModifier, airDragModifier, floatsInLiquids, -1, -1.0F);
     }
 
-    private static void applyArchetype(SulfurCubeEntity entity, float knockback, float bounciness, float frictionModifier, float airDragModifier, boolean floatsInLiquids, int maxFuse){
+    private static void applyArchetype(SulfurCubeEntity entity, float knockback, float bounciness, float frictionModifier, float airDragModifier, boolean floatsInLiquids, int maxFuse, float damage){
         AttributeInstance attribute = entity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
         if (attribute != null) {
             if (attribute.getModifier(KNOCKBACK_RESISTANCE) != null) {
@@ -63,6 +65,7 @@ public class SulfurCubeArchetype {
         entity.airDragModifier = 1.0F + airDragModifier;
         entity.floatsInLiquids = floatsInLiquids;
         entity.maxFuseFromArchetype = maxFuse;
+        entity.damage = damage;
     }
 
     public static void resetArchetype(SulfurCubeEntity entity){
@@ -77,5 +80,6 @@ public class SulfurCubeArchetype {
         entity.airDragModifier = 1.0F;
         entity.floatsInLiquids = false;
         entity.maxFuseFromArchetype = -1;
+        entity.damage = -1.0F;
     }
 }

@@ -8,6 +8,7 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @OnlyIn(Dist.CLIENT)
@@ -27,19 +28,14 @@ public class GeyserBaseParticle extends BaseAshSmokeParticle {
        return burstImpulseBase + 0.25F * (float)waterBlocks;
     }
 
-    public static class Provider implements ParticleProvider<GeyserBaseParticleOptions> {
-        private final SpriteSet sprites;
-
-        public Provider(SpriteSet sprites) {
-            this.sprites = sprites;
-        }
+    public record Provider(SpriteSet sprites) implements ParticleProvider<GeyserBaseParticleOptions> {
 
         @Override
-        public @Nullable Particle createParticle(GeyserBaseParticleOptions options, ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
+        public @NotNull Particle createParticle(GeyserBaseParticleOptions options, ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
             RandomSource random = level.getRandom();
-            double randomX = x + (double)((random.nextFloat() - 0.5F) * 0.5F);
-            double randomY = y + ((random.nextFloat() - 0.5F) * 0.5F) + (double)0.2F;
-            double randomZ = z + (double)((random.nextFloat() - 0.5F) * 0.5F);
+            double randomX = x + (double) ((random.nextFloat() - 0.5F) * 0.5F);
+            double randomY = y + ((random.nextFloat() - 0.5F) * 0.5F) + (double) 0.2F;
+            double randomZ = z + (double) ((random.nextFloat() - 0.5F) * 0.5F);
             return new GeyserBaseParticle(level, randomX, randomY, randomZ, xAux, yAux, zAux, options.waterBlocks, options.burstImpulseBase, this.sprites);
         }
     }

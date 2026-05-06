@@ -7,7 +7,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class GeyserPlumeParticle extends SingleQuadParticle {
@@ -62,7 +62,7 @@ public class GeyserPlumeParticle extends SingleQuadParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
+    public @NotNull ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
@@ -96,15 +96,10 @@ public class GeyserPlumeParticle extends SingleQuadParticle {
         this.sprite = icon;
     }
 
-    public static class Provider implements ParticleProvider<GeyserParticleOptions> {
-        private final SpriteSet sprites;
-
-        public Provider(final SpriteSet sprites) {
-            this.sprites = sprites;
-        }
+    public record Provider(SpriteSet sprites) implements ParticleProvider<GeyserParticleOptions> {
 
         @Override
-        public @Nullable Particle createParticle(GeyserParticleOptions options, ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
+        public @NotNull Particle createParticle(@NotNull GeyserParticleOptions options, ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
             RandomSource random = level.getRandom();
             double randomX = x + (double) ((random.nextFloat() - 0.5F) * 0.2F);
             double randomY = y + (double) random.nextFloat();

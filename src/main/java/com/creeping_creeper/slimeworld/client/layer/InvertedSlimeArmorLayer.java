@@ -35,6 +35,7 @@ import net.minecraft.world.level.block.SkullBlock.Type;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.world.client.SlimeArmorLayer;
 
 import java.util.Map;
@@ -51,7 +52,7 @@ public class InvertedSlimeArmorLayer<T extends Slime, M extends HierarchicalMode
     }
 
     @Override
-    public void render(PoseStack matrices, MultiBufferSource buffer, int packedLight, T entity, float pLimbSwing, float swing, float partialTicks, float age, float headYaw, float headPitch) {
+    public void render(@NotNull PoseStack matrices, @NotNull MultiBufferSource buffer, int packedLight, T entity, float pLimbSwing, float swing, float partialTicks, float age, float headYaw, float headPitch) {
         ItemStack helmet = entity.getItemBySlot(EquipmentSlot.HEAD);
         if (!helmet.isEmpty()) {
             matrices.pushPose();
