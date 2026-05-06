@@ -21,11 +21,12 @@ public class ModTags {
         public static final TagKey<Item> ArchetypeHighResistance = local("sulfur_cube_archetype/high_resistance");
         public static final TagKey<Item> ArchetypeLight = local("sulfur_cube_archetype/light");
         public static final TagKey<Item> ArchetypeRegular = local("sulfur_cube_archetype/regular");
+        public static final TagKey<Item> ArchetypeSlowBouncy = local("sulfur_cube_archetype/slow_bouncy");
         public static final TagKey<Item> ArchetypeSlowFlat = local("sulfur_cube_archetype/slow_flat");
         public static final TagKey<Item> ArchetypeSlowSliding = local("sulfur_cube_archetype/slow_sliding");
         public static final TagKey<Item> ArchetypeSticky = local("sulfur_cube_archetype/sticky");
         public static final TagKey<Item> ArchetypeExplosive = local("sulfur_cube_archetype/explosive");
-
+        public static final TagKey<Item> ArchetypeHot = local("sulfur_cube_archetype/hot");
         private static TagKey<Item> local(String name) {
             return TagKey.create(Registries.ITEM, SlimeWorld.getResource(name));
         }
