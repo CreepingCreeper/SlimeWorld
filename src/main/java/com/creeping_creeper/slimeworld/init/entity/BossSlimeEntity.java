@@ -18,6 +18,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.RandomMaterial;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
@@ -85,7 +86,7 @@ public abstract class BossSlimeEntity extends Slime {
         super.setSize(size, false);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200);
         this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4F + 0.1F * (float)size);
-        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(32/size);
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(32.0/size);
         if (resetHealth) {
             this.setHealth(this.getMaxHealth());
         }
@@ -101,7 +102,7 @@ public abstract class BossSlimeEntity extends Slime {
 
     @Override
     @Nullable
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor level, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag dataTag) {
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag dataTag) {
         SpawnGroupData spawnData = super.finalizeSpawn(level, difficulty, reason, pSpawnData, dataTag);
         this.setSize(8, true);
         this.setItemSlot(EquipmentSlot.HEAD, tool(getPlating()).createStack());
@@ -110,7 +111,7 @@ public abstract class BossSlimeEntity extends Slime {
     }
 
     @Override
-    protected void actuallyHurt(DamageSource damageSource, float damageAmount) {
+    protected void actuallyHurt(@NotNull DamageSource damageSource, float damageAmount) {
         super.actuallyHurt(damageSource, damageAmount);
         Level level = level();
         int count = this.random.nextInt(4 - this.getSize() / 4);
@@ -138,7 +139,7 @@ public abstract class BossSlimeEntity extends Slime {
     }
 
     @Override
-    public void remove(Entity.RemovalReason reason) {
+    public void remove(Entity.@NotNull RemovalReason reason) {
         this.setRemoved(reason);
         if (reason == Entity.RemovalReason.KILLED) {
             this.gameEvent(GameEvent.ENTITY_DIE);
@@ -151,7 +152,7 @@ public abstract class BossSlimeEntity extends Slime {
     protected abstract MaterialId getSummonedPlating();
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("cooling", this.getCooling());
     }

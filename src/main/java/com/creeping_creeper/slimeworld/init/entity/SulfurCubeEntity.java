@@ -27,6 +27,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -55,9 +56,13 @@ import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.IForgeShearable;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.common.TinkerDamageTypes;
+import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
+import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import javax.annotation.Nullable;
+import javax.tools.Tool;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -744,9 +749,15 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     }
 
     private void applyContactDamage(Entity entity) {
-        Level level = this.level();
+        Level level = entity.level();
         if (level instanceof ServerLevel && this.damage >= 0.0) {
-            entity.hurt(new DamageSource(this.damageSources().hotFloor().typeHolder(), this, this), this.damage);
+            DamageSource source = TinkerDamageTypes.source(level.registryAccess(), DamageTypes.HOT_FLOOR, this);
+            AttributeInstance knockbackResistance = null;
+            if (entity instanceof LivingEntity living){
+                knockbackResistance = ToolAttackUtil.disableKnockback(living);
+            }
+            entity.hurt(source, this.damage);
+            ToolAttackUtil.enableKnockback(knockbackResistance);
         }
     }
 

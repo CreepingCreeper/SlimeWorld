@@ -26,6 +26,7 @@ import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.build.ConditionalStatModifierHook;
@@ -147,7 +148,7 @@ public class ModifiableBowTask implements IRangedAttackTask {
     }
 
     @Override
-    public boolean isWeapon(EntityMaid maid, ItemStack stack) {
+    public boolean isWeapon(EntityMaid maid, @NotNull ItemStack stack) {
         ItemStack item = maid.getMainHandItem();
         return item.getItem() instanceof ModifiableBowItem && !ToolStack.from(item).isBroken();
     }
@@ -166,8 +167,7 @@ public class ModifiableBowTask implements IRangedAttackTask {
             return null;
         }
         ArrowItem arrowItem = ammo.getItem() instanceof ArrowItem arrow ? arrow : (ArrowItem)Items.ARROW;
-        AbstractArrow arrowEntity = arrowItem.createArrow(maid.level(), ammo, maid);
-        return arrowEntity;
+        return arrowItem.createArrow(maid.level(), ammo, maid);
     }
 
     private boolean farAway(LivingEntity target, EntityMaid maid) {

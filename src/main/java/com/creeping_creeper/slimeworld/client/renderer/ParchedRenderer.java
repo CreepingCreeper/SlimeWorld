@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class ParchedRenderer extends HumanoidMobRenderer<AbstractSkeleton, SkeletonModel<AbstractSkeleton>> {
@@ -29,7 +30,7 @@ public class ParchedRenderer extends HumanoidMobRenderer<AbstractSkeleton, Skele
     }
 
     @Override
-    public ResourceLocation getTextureLocation(AbstractSkeleton entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull AbstractSkeleton entity) {
         return PARCHED_SKELETON_LOCATION;
     }
 

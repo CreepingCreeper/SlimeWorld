@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
@@ -40,19 +41,19 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
     }
 
     @Override
-    protected PathNavigation createNavigation(Level level) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level level) {
         return new InvertedGroundPathNavigation(this, level);
     }
 
     @Override
-    public void setOnGroundWithKnownMovement(boolean onGround, Vec3 movement) {
+    public void setOnGroundWithKnownMovement(boolean onGround, @NotNull Vec3 movement) {
         boolean underGround = this.verticalCollision && this.getDeltaMovement().y > (double)0.0F;
         this.onGround = underGround;
         this.checkSupportingBlock(underGround, movement);
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntityDimensions size) {
+    protected float getStandingEyeHeight(@NotNull Pose pose, EntityDimensions size) {
         return 0.375F * size.height;
     }
 
@@ -64,7 +65,7 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
     }
 
     @Override
-    protected ParticleOptions getParticleType() {
+    protected @NotNull ParticleOptions getParticleType() {
         return ModParticles.IchorSlimeParticle.get();
     }
 
@@ -82,7 +83,7 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
     }
 
     @Override
-    public boolean causeFallDamage(float distance, float damageMultiplier, DamageSource source) {
+    public boolean causeFallDamage(float distance, float damageMultiplier, @NotNull DamageSource source) {
         if (isSuppressingBounce()) {
             return super.causeFallDamage(distance, damageMultiplier * 0.2f, source);
         }
@@ -105,7 +106,7 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
     }
 
     @Override
-    public void move(MoverType typeIn, Vec3 pos) {
+    public void move(@NotNull MoverType typeIn, @NotNull Vec3 pos) {
         super.move(typeIn, pos);
         if (bounceAmount < 0) {
             Vec3 motion = getDeltaMovement();
@@ -115,7 +116,7 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
     }
 
     @Override
-    protected MaterialId getPlating() {
+    protected @NotNull MaterialId getPlating() {
         return MaterialIds.cobalt;
     }
 }

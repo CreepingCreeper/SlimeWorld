@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.shared.TinkerEffects;
 
 public class IchorVentBlock extends Block {
@@ -22,12 +23,12 @@ public class IchorVentBlock extends Block {
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, Entity entity) {
         if (!entity.isSteppingCarefully() && !level.canSeeSkyFromBelowWater(pos.above()) && entity instanceof LivingEntity living && !living.hasEffect(TinkerEffects.antigravity.get())) {
             if(living.addEffect(new MobEffectInstance(TinkerEffects.antigravity.get(), 300))){
                 ParticleUtil.slimeParticle(level, ModParticles.IchorSlimeParticle.get(), 12, 1, living.getX(), living.getY() + 0.1, living.getZ());

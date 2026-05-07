@@ -43,7 +43,7 @@ public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
         super(entityType, level);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
+    public static AttributeSupplier.@NotNull Builder createAttributes() {
         return AbstractSkeleton.createAttributes().add(Attributes.MAX_HEALTH, 16.0F);
     }
 
@@ -74,22 +74,22 @@ public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
+    protected @NotNull SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return ModSounds.BOGGED_HURT.get();
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return ModSounds.BOGGED_DEATH.get();
     }
 
     @Override
-    protected SoundEvent getStepSound() {
+    protected @NotNull SoundEvent getStepSound() {
         return ModSounds.BOGGED_STEP.get();
     }
 
     @Override
-    protected AbstractArrow getArrow(ItemStack arrowStack, float distanceFactor) {
+    protected @NotNull AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor) {
         AbstractArrow abstractarrow = super.getArrow(arrowStack, distanceFactor);
         if (abstractarrow instanceof Arrow) {
             ((Arrow)abstractarrow).addEffect(new MobEffectInstance(MobEffects.POISON, 80));
@@ -113,19 +113,19 @@ public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putBoolean("sheared", this.isSheared());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.setSheared(compound.getBoolean("sheared"));
     }
 
     @Override
-    protected InteractionResult mobInteract(Player player, InteractionHand hand) {
+    protected @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
         player.getItemInHand(hand);
         return InteractionResult.PASS;
     }
@@ -141,7 +141,7 @@ public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
         this.gameEvent(GameEvent.SHEAR, player);
         if (!world.isClientSide()) {
             this.setSheared(true);
-            List<ItemStack> items = new ArrayList();
+            List<ItemStack> items = new ArrayList<>();
             for (int i = 0; i < 2; i++) {
                 Item item1 = this.random.nextBoolean() ? Items.RED_MUSHROOM : Items.BROWN_MUSHROOM;
                 items.add(item1.getDefaultInstance());
