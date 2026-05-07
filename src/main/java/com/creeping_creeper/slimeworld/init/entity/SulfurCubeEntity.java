@@ -58,11 +58,9 @@ import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerDamageTypes;
 import slimeknights.tconstruct.library.tools.helper.ToolAttackUtil;
-import slimeknights.tconstruct.library.tools.helper.ToolDamageUtil;
 import slimeknights.tconstruct.tools.TinkerTools;
 
 import javax.annotation.Nullable;
-import javax.tools.Tool;
 import java.util.*;
 import java.util.function.Predicate;
 
