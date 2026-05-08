@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.init.modifiers.SputteringModifier;
+import com.creeping_creeper.slimeworld.init.modifiers.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
@@ -9,6 +9,7 @@ import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 public class ModModifiers {
     private static final ModifierDeferredRegister MODIFIERS = ModifierDeferredRegister.create(SlimeWorld.MODID);
     public static final StaticModifier<SputteringModifier> sputtering = MODIFIERS.register("sputtering", SputteringModifier::new);
+    public static final StaticModifier<FrugalModifier> frugal = MODIFIERS.register("sputtering", FrugalModifier::new);
 
     public static void registers(IEventBus bus) {
         MODIFIERS.register(bus);
