@@ -13,6 +13,7 @@ import slimeknights.tconstruct.library.modifiers.hook.ranged.ProjectileLaunchMod
 import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
+import slimeknights.tconstruct.tools.entity.ModifiableArrow;
 
 import javax.annotation.Nullable;
 
@@ -25,10 +26,8 @@ public class FrugalModifier extends Modifier implements ProjectileLaunchModifier
 
     @Override
     public void onProjectileLaunch(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull LivingEntity shooter, @NotNull Projectile projectile, @Nullable AbstractArrow arrow, @NotNull ModDataNBT persistentData, boolean primary) {
-        if (arrow != null && shooter instanceof Player player && arrow.pickup != AbstractArrow.Pickup.ALLOWED && RANDOM.nextFloat() > modifier.getLevel() * 0.2F){
-            if (arrow.getPickResult() != null){
-                ItemHandlerHelper.giveItemToPlayer(player, arrow.getPickResult());
-            }
+        if (arrow instanceof ModifiableArrow arrow1 && shooter instanceof Player player && arrow.pickup == AbstractArrow.Pickup.ALLOWED && RANDOM.nextFloat() < modifier.getLevel() * 0.2F){
+            ItemHandlerHelper.giveItemToPlayer(player, arrow1.getPickupItem());
             arrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
         }
     }
