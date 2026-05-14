@@ -418,7 +418,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
             }
             if (source.is(ModTags.DamageTypes.SULFUR_CUBE_IMMUNE)) {
                 Entity var5 = source.getEntity();
-                if (var5 instanceof LivingEntity player && var5.getType().is(ModTags.EntityTypes.PlaySulfurCube) && !source.is(DamageTypeTags.IS_EXPLOSION)) {
+                if (var5 instanceof LivingEntity player && var5.getType().is(ModTags.EntityTypes.PLAY_SULFUR_CUBE) && !source.is(DamageTypeTags.IS_EXPLOSION)) {
                     this.playerHit(player, amount);
                     return false;
                 } else {
@@ -536,7 +536,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     }
 
     private static boolean isSwallowableItem(ItemStack stack) {
-        return stack.is(ModTags.Items.SulfurCubeSwallowable);
+        return stack.is(ModTags.Items.SULFUR_CUBE_SWALLOWABLE);
     }
 
     private static boolean isFood(ItemStack stack) {

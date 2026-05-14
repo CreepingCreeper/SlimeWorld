@@ -27,7 +27,7 @@ public class HugeSulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
         for(worldgenlevel = p_159882_.level(); worldgenlevel.isEmptyBlock(blockpos) && blockpos.getY() > worldgenlevel.getMinBuildHeight() + 2; blockpos = blockpos.below()) {
         }
 
-        if (!worldgenlevel.getBlockState(blockpos).is(ModTags.Blocks.SulfurFeatureBase)) {
+        if (!worldgenlevel.getBlockState(blockpos).is(ModTags.Blocks.SULFUR_FEATURE_BASE)) {
             return false;
         } else {
             blockpos = blockpos.above(randomsource.nextInt(4));
@@ -80,7 +80,7 @@ public class HugeSulfurSpikeFeature extends Feature<NoneFeatureConfiguration> {
 
                     while(blockpos1.getY() > 50) {
                         BlockState blockstate1 = worldgenlevel.getBlockState(blockpos1);
-                        if (!blockstate1.isAir() && !blockstate1.is(ModTags.Blocks.SulfurFeatureBase)) {
+                        if (!blockstate1.isAir() && !blockstate1.is(ModTags.Blocks.SULFUR_FEATURE_BASE)) {
                             break;
                         }
 

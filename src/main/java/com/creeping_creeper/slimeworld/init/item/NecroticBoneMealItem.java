@@ -46,7 +46,7 @@ public class NecroticBoneMealItem extends Item {
         if (hook != 0) {
             return hook > 0;
         } else {
-            if (blockstate.is(ModTags.Blocks.NecroticClonable)){
+            if (blockstate.is(ModTags.Blocks.NECROTIC_CLONABLE)){
                 if (level instanceof ServerLevel) {
                     player.hurt(TinkerDamageTypes.source(level.registryAccess(), TinkerDamageTypes.BLEEDING), 5);
                     ItemEntity itementity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(blockstate.getBlock().asItem()));

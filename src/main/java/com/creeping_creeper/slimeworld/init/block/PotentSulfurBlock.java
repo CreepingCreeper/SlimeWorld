@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block;
 
+import com.creeping_creeper.slimeworld.data.ModTags;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.init.ModSounds;
@@ -29,7 +30,7 @@ import javax.annotation.Nullable;
 import java.util.function.Supplier;
 
 public class PotentSulfurBlock extends BaseEntityBlock {
-    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 3);
+    public static final IntegerProperty TYPE = IntegerProperty.create("type", 0, 4);
     private final Supplier<? extends MobEffect> effect;
 
     public PotentSulfurBlock(Supplier<? extends MobEffect> effect, BlockBehaviour.Properties properties) {
@@ -53,17 +54,17 @@ public class PotentSulfurBlock extends BaseEntityBlock {
             return state.setValue(TYPE, 0);
         } else {
             BlockState belowState = level.getBlockState(pos.below());
-            if (!belowState.is(Blocks.MAGMA_BLOCK)) {
-                return state.setValue(TYPE, 1);
+            if (belowState.is(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS)) {
+                return state.setValue(TYPE, 4);
             } else {
-                boolean isGeyser = state.getValue(TYPE) > 1;
-                if (!isGeyser) {
+                if (!belowState.is(ModTags.Blocks.CAUSES_PERIODIC_GEYSER_ERUPTIONS)) {
+                    return state.setValue(TYPE, 1);
+                } else if (state.getValue(TYPE) < 2) {
                     BlockEntity var6 = level.getBlockEntity(pos);
                     if (var6 instanceof PotentSulfurBlockEntity potentSulfurEntity) {
                         potentSulfurEntity.resetCountdown();
                     }
                 }
-
                 return state.getValue(TYPE) == 3 ? state : state.setValue(TYPE, 2);
             }
         }
@@ -87,7 +88,7 @@ public class PotentSulfurBlock extends BaseEntityBlock {
     @Override
     public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
         super.onPlace(state, level, pos, oldState, movedByPiston);
-        if (state.getValue(TYPE) == 3) {
+        if (state.getValue(TYPE) > 2) {
             level.blockEvent(pos, this, 0, 0);
             level.playSound((Entity)null, pos, ModSounds.GEYSER_ERUPTION_START.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
@@ -115,7 +116,7 @@ public class PotentSulfurBlock extends BaseEntityBlock {
         if (level.isClientSide()) {
             return switch (state.getValue(TYPE)) {
                 case 1, 2 -> createTickerHelper(type, ModItems.PotentSulfurEntity.get(), PotentSulfurBlockEntity.CLIENT_NOXIOUS_GAS_TICKER);
-                case 3 -> createTickerHelper(type, ModItems.PotentSulfurEntity.get(), PotentSulfurBlockEntity.CLIENT_GEYSER_PLUME_TICKER);
+                case 3, 4 -> createTickerHelper(type, ModItems.PotentSulfurEntity.get(), PotentSulfurBlockEntity.CLIENT_GEYSER_PLUME_TICKER);
                 default -> null;
             };
         } else {

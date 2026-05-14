@@ -16,8 +16,8 @@ import java.util.UUID;
 public class SulfurCubeArchetype {
     public static final UUID KNOCKBACK_RESISTANCE = UUID.fromString("2737DE5E-7CE8-4030-940E-514C1F175601");
 
-    private static final ArrayList<TagKey<Item>> Archetype = new ArrayList<>(List.of(ModTags.Items.ArchetypeBouncy, ModTags.Items.ArchetypeFastFlat, ModTags.Items.ArchetypeFastSliding, ModTags.Items.ArchetypeHighResistance,
-            ModTags.Items.ArchetypeLight, ModTags.Items.ArchetypeRegular, ModTags.Items.ArchetypeSlowBouncy, ModTags.Items.ArchetypeSlowFlat, ModTags.Items.ArchetypeSlowSliding, ModTags.Items.ArchetypeSticky, ModTags.Items.ArchetypeExplosive, ModTags.Items.ArchetypeHot));
+    private static final ArrayList<TagKey<Item>> Archetype = new ArrayList<>(List.of(ModTags.Items.ARCHETYPE_BOUNCY, ModTags.Items.ARCHETYPE_FAST_FLAT, ModTags.Items.ARCHETYPE_FAST_SLIDING, ModTags.Items.ARCHETYPE_HIGH_RESISTANCE,
+            ModTags.Items.ARCHETYPE_LIGHT, ModTags.Items.ARCHETYPE_REGULAR, ModTags.Items.ARCHETYPE_SLOW_BOUNCY, ModTags.Items.ARCHETYPE_SLOW_FLAT, ModTags.Items.ARCHETYPE_SLOW_SLIDING, ModTags.Items.ARCHETYPE_STICKY, ModTags.Items.ARCHETYPE_EXPLOSIVE, ModTags.Items.ARCHETYPE_HOT));
 
     public static int getIndex(ItemStack item){
         int index = 0;
@@ -38,7 +38,7 @@ public class SulfurCubeArchetype {
             case 3 -> applyArchetype(entity, 0.699999988079071F, 0.20000000298023224F, 0.0F, -0.9900000002235174F, false);
             case 4 -> applyArchetype(entity, -1.0F, 1.0F, -0.699999988079071F, 0.7999999523162842F, true);
             case 5 -> applyArchetype(entity, -1.0F, 0.5F, -0.699999988079071F, -0.8999999985098839F, true);
-            case 6 -> applyArchetype(entity, 0.4000000059604645F, 0.6000000238418579F, -0.699999988079071F,  -0.9499999992549419F, true);
+            case 6 -> applyArchetype(entity, 0.4000000059604645F, 0.6000000238418579F, -0.699999988079071F,  -0.9499999992549419F, false);
             case 7 -> applyArchetype(entity, 0.699999988079071F, 0.20000000298023224F, -0.699999988079071F, -0.8999999985098839F, false);
             case 8 -> applyArchetype(entity, 0.800000011920929F, 0.10000000149011612F, -0.9499999992549419F, -0.9900000002235174F, true);
             case 9 -> applyArchetype(entity, -2.0F, 0.0F, 1.0F, -0.9900000002235174F, true);

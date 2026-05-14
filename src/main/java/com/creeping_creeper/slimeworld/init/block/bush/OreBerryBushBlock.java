@@ -91,7 +91,7 @@ public class OreBerryBushBlock extends BushBlock implements NecroticBonemealable
     }
 
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (entity instanceof LivingEntity && !entity.getType().is(ModTags.EntityTypes.OreBerryBushesImmune)) {
+        if (entity instanceof LivingEntity && !entity.getType().is(ModTags.EntityTypes.ORE_BERRY_BUSHES_IMMUNE)) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75F, 0.8F));
             if (!level.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
                 double d0 = Math.abs(entity.getX() - entity.xOld);

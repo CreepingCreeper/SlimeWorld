@@ -33,7 +33,7 @@ public class SlimeGravelBlock extends FallingBlock {
 
     private boolean isSlimy(BlockGetter level, BlockPos pos){
         BlockState blockstate = level.getBlockState(pos);
-        return blockstate.is(this) || blockstate.is(ModTags.Blocks.Slimy);
+        return blockstate.is(this) || blockstate.is(ModTags.Blocks.SLIMY);
     }
 
     @Override

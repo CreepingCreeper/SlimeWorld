@@ -67,7 +67,7 @@ public class PotentSulfurBlockEntity extends BlockEntity {
 
         if (type > 2)tickLaunchEntity(level, pos, sourceBlock);
 
-        if (type > 1)tickWaitingCountdown(level, pos, state, entity, sourceBlock);
+        if (type > 1 && type < 4)tickWaitingCountdown(level, pos, state, entity, sourceBlock);
     };
 
     private static void tickWaitingCountdown(Level level, BlockPos pos, BlockState state, PotentSulfurBlockEntity entity, BlockPos sourceBlock) {
@@ -78,7 +78,6 @@ public class PotentSulfurBlockEntity extends BlockEntity {
             if (state.getValue(PotentSulfurBlock.TYPE) == 2) {
                 entity.waitingCountdown = 10 * (waterBlocks - 1) + entity.dormantGeyserTime;
             } else {
-                entity.waitingCountdown = waterBlocks - 1 + entity.geyserEruptionTime;
                 entity.waitingCountdown = waterBlocks - 1 + entity.geyserEruptionTime;
             }
         }
