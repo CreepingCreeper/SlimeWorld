@@ -1,6 +1,10 @@
 {
   "itemGroup.slimeworld.common": "Slime World",
 
+  "item.slimeworld.rune.format": "%s Rune",
+  "item.slimeworld.rune.tooltip": "Apply to a tool to gain 1 level of the modifier.",
+  "item.slimeworld.rune.max_level": "Max Level: %s",
+
   "item.slimeworld.necrotic_bone_meal": "Necrotic Bone Meal",
   "item.slimeworld.copper_shard": "Copper Shard",
   "item.slimeworld.iron_shard": "Iron Shard",

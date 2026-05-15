@@ -1,6 +1,10 @@
 {
   "itemGroup.slimeworld.common": "黏液世界",
 
+  "item.slimeworld.rune.format": "%s符文",
+  "item.slimeworld.rune.tooltip": "加持后工具对应强化等级增加1级。",
+  "item.slimeworld.rune.max_level": "最高等级: %s",
+
   "item.slimeworld.necrotic_bone_meal": "噬生骨粉",
   "item.slimeworld.copper_shard": "铜碎片",
   "item.slimeworld.iron_shard": "铁碎片",

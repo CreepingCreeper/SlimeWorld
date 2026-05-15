@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "modifier": "tconstruct:fiery",
+              "max_level": 5,
+              "function": "slimeworld:add_modifier"
+            }
+          ],
+          "name": "slimeworld:melee_rune"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tconstruct:seared_lantern"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly"
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 10.0,
+        "min": 4.0
+      }
+    }
+  ],
+  "random_sequence": "slimeworld:chests/magic_tower_hidden"
+}

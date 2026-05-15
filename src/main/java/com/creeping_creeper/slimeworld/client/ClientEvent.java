@@ -10,6 +10,7 @@ import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
+import com.creeping_creeper.slimeworld.init.item.ModifierRuneItem;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.model.HumanoidArmorModel;
@@ -31,10 +32,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.mantle.client.ResourceColorManager;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.ClientEventBase;
 import slimeknights.tconstruct.library.client.particle.SlimeParticle;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
+import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.world.block.FoliageType;
@@ -161,6 +165,14 @@ public class ClientEvent extends ClientEventBase {
         registerBlockItemColorAlias(blockColors, itemColors, ModItems.IronBerryBush);
         registerBlockItemColorAlias(blockColors, itemColors, ModItems.GoldBerryBush);
         registerBlockItemColorAlias(blockColors, itemColors, ModItems.CobaltBerryBush);
+
+        event.register((stack, index) -> {
+            ModifierId modifier = ModifierRuneItem.getModifier(stack);
+            if (modifier != null) {
+                return ResourceColorManager.getColor(Util.makeTranslationKey("modifier", modifier));
+            }
+            return -1;
+        }, ModItems.MeleeRune, ModItems.RangedRune, ModItems.ArmorRune);
     }
 
     private static int getSlimeColorByPos(@Nullable BlockPos pos, FoliageType type) {

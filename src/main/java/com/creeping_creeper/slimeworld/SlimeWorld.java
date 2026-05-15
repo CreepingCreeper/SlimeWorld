@@ -39,7 +39,7 @@ public class SlimeWorld {
       ModModifiers.registers(bus);
       ModEffects.registers(bus);
       ModEntities.registers(bus);
-      ModFeature.registers(bus);
+      ModOthers.registers(bus);
       ModParticles.registers(bus);
       ModSounds.registers(bus);
     }

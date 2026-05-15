@@ -158,7 +158,9 @@ public class ModItems {
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, ModSounds.BUCKET_EMPTY_SULFUR_CUBE, (new Item.Properties()).stacksTo(1)));
 
-    public static final ItemObject<Item> Crystal = ITEMS.register("crystal", () -> new CrystalItem(TinkerTags.Items.WORN_ARMOR, (new Item.Properties()).stacksTo(16)));
+    public static final ItemObject<Item> MeleeRune = ITEMS.register("melee_rune", () -> new ModifierRuneItem(TinkerTags.Items.MELEE, (new Item.Properties()).stacksTo(16)));
+    public static final ItemObject<Item> RangedRune = ITEMS.register("ranged_rune", () -> new ModifierRuneItem(TinkerTags.Items.RANGED, (new Item.Properties()).stacksTo(16)));
+    public static final ItemObject<Item> ArmorRune = ITEMS.register("armor_rune", () -> new ModifierRuneItem(TinkerTags.Items.ARMOR, (new Item.Properties()).stacksTo(16)));
 
     public static final RegistryObject<BlockEntityType<PotentSulfurBlockEntity>> PotentSulfurEntity = BLOCK_ENTITIES.register("potent_sulfur", PotentSulfurBlockEntity::new, set -> set.add(PotentSulfurNausea.get(), PotentSulfurBlindness.get(), PotentSulfurWeakness.get(), PotentSulfurRegeneration.get(), PotentSulfurStrength.get()));
 
@@ -247,7 +249,7 @@ public class ModItems {
         output.accept(HoneyBubble);
         output.accept(VenomBubble);
 
-        output.accept(Crystal);
+        output.accept(MeleeRune);
 
         output.accept(SulfurCubeBucket);
         output.accept(ModEntities.OceanSlimeEntity);

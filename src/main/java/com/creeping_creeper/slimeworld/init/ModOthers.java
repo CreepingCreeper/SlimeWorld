@@ -1,11 +1,13 @@
 package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
+import com.creeping_creeper.slimeworld.init.item.AddModifierFunction;
 import com.creeping_creeper.slimeworld.init.world.*;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,9 +15,10 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.tconstruct.world.worldgen.trees.config.SlimeFungusConfig;
 
-public class ModFeature {
+public class ModOthers {
     protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, SlimeWorld.MODID);
     protected static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SlimeWorld.MODID);
+    protected static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTIONS = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, SlimeWorld.MODID);
 
     public static final RegistryObject<OceanLakeFeature> OceanLake = FEATURES.register("ocean_lake", () -> new OceanLakeFeature(OceanLakeFeature.Configuration.CODEC));
     public static final RegistryObject<InvertedLakeFeature> InvertedLake = FEATURES.register("inverted_lake", () -> new InvertedLakeFeature(InvertedLakeFeature.Configuration.CODEC));
@@ -25,11 +28,15 @@ public class ModFeature {
     public static final RegistryObject<HugeSulfurSpikeFeature> HugeSulfurSpike = FEATURES.register("huge_sulfur_spike", () -> new HugeSulfurSpikeFeature(NoneFeatureConfiguration.CODEC));
     public static final RegistryObject<SulfurSpikeFeature> SulfurSpike = FEATURES.register("sulfur_spike", () -> new SulfurSpikeFeature(NoneFeatureConfiguration.CODEC));
 
+
+    public static final RegistryObject<LootItemFunctionType> AddModifier = LOOT_FUNCTIONS.register("add_modifier", () -> new LootItemFunctionType(AddModifierFunction.SERIALIZER));
+
     public static final RegistryObject<Codec<? extends BiomeModifier>> MODIFY_SPAWNS =
             BIOME_MODIFIER_SERIALIZERS.register("modify_spawns", () -> ModifySpawnsBiomeModifier.CODEC);
 
     public static void registers(IEventBus bus) {
         FEATURES.register(bus);
         BIOME_MODIFIER_SERIALIZERS.register(bus);
+        LOOT_FUNCTIONS.register(bus);
     }
 }
