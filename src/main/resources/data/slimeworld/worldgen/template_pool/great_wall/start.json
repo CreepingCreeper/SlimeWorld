@@ -6,7 +6,9 @@
       "weight":1,
       "element": {
         "location": "slimeworld:great_wall/wall/start",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

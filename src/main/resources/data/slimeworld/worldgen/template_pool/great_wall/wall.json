@@ -6,7 +6,9 @@
       "weight":70,
       "element": {
         "location": "slimeworld:great_wall/wall/common",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -15,7 +17,9 @@
       "weight":10,
       "element": {
         "location": "slimeworld:great_wall/wall/beacon",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -24,7 +28,9 @@
       "weight":10,
       "element": {
         "location": "slimeworld:great_wall/wall/ladder",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -33,7 +39,9 @@
       "weight":5,
       "element": {
         "location": "slimeworld:great_wall/wall/corner_left",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
@@ -42,7 +50,9 @@
       "weight":5,
       "element": {
         "location": "slimeworld:great_wall/wall/corner_right",
-        "processors": "minecraft:empty",
+        "processors": {
+          "processors": []
+        },
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }

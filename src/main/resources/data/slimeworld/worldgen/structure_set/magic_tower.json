@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "frequency": 0.3,
+    "salt": 24382928,
+    "separation": 10,
+    "spacing": 15
+  },
+  "structures": [
+    {
+      "structure": "slimeworld:magic_tower",
+      "weight": 1
+    }
+  ]
+}

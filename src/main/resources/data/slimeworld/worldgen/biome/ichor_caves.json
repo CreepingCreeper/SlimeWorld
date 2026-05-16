@@ -1,7 +1,7 @@
 {
   "carvers": {
     "air": [
-      "slimeworld:large_cave",
+      "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"
     ]

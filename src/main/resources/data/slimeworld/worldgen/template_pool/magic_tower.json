@@ -1,11 +1,10 @@
 {
-  "name": "slimeworld:grout_start",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight":1,
       "element": {
-        "location": "slimeworld:grout",
+        "location": "slimeworld:magic_tower",
         "processors": {
           "processors": []
         },
