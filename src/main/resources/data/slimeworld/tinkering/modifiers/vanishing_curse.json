@@ -1,0 +1,11 @@
+{
+  "level_display": "tconstruct:no_levels",
+  "modules": [
+    {
+      "type": "tconstruct:constant_enchantment",
+      "level": 1,
+      "name": "minecraft:vanishing_curse"
+    }
+  ],
+  "tooltip_display": "always"
+}

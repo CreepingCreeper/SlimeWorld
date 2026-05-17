@@ -249,7 +249,7 @@ public class ModItems {
         output.accept(HoneyBubble);
         output.accept(VenomBubble);
 
-        output.accept(MeleeRune);
+        //output.accept(MeleeRune);
 
         output.accept(SulfurCubeBucket);
         output.accept(ModEntities.OceanSlimeEntity);

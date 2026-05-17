@@ -54,6 +54,12 @@ public class ModEntities {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.ParchedEntity.get().create(world)), 0xddc38e, 0x4a473d);
+    public static final EntityObject<SlimeGolemEntity> SlimeGolemEntity = ENTITIES.registerWithEgg("slime_golem", () ->
+            EntityType.Builder.of(SlimeGolemEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(8)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+
     public static final RegistryObject<EntityType<SteelSlimeBossEntity>> SteelSlimeBossEntity = ENTITIES.register("steel_slime_boss", () ->
             EntityType.Builder.of(SteelSlimeBossEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)
