@@ -258,6 +258,7 @@ public class ModItems {
         output.accept(ModEntities.SulfurCubeEntity);
         output.accept(ModEntities.BoggedEntity);
         output.accept(ModEntities.ParchedEntity);
+        output.accept(ModEntities.SlimeGolemEntity);
     }
 
     protected static BlockBehaviour.Properties grass() {
