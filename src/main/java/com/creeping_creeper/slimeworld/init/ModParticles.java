@@ -10,6 +10,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 public class ModParticles {
     protected static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, SlimeWorld.MODID);
@@ -27,25 +28,25 @@ public class ModParticles {
     public static final RegistryObject<SimpleParticleType> NoxiousGasCloud = PARTICLE_TYPES.register("noxious_gas_cloud", () -> new SimpleParticleType(false));
     public static final RegistryObject<ParticleType<GeyserParticleOptions>> Geyser = PARTICLE_TYPES.register("geyser", () -> new ParticleType<>(true, GeyserParticleOptions.DESERIALIZER) {
         @Override
-        public Codec<GeyserParticleOptions> codec() {
+        public @NotNull Codec<GeyserParticleOptions> codec() {
             return GeyserParticleOptions.codec(this);
         }
     });
     public static final RegistryObject<ParticleType<GeyserBaseParticleOptions>> GeyserBase = PARTICLE_TYPES.register("geyser_base", () -> new ParticleType<>(true, GeyserBaseParticleOptions.DESERIALIZER) {
         @Override
-        public Codec<GeyserBaseParticleOptions> codec() {
+        public @NotNull Codec<GeyserBaseParticleOptions> codec() {
             return GeyserBaseParticleOptions.codec(this);
         }
     });
     public static final RegistryObject<ParticleType<GeyserBaseParticleOptions>> GeyserPoof = PARTICLE_TYPES.register("geyser_poof", () -> new ParticleType<>(true, GeyserBaseParticleOptions.DESERIALIZER) {
         @Override
-        public Codec<GeyserBaseParticleOptions> codec() {
+        public @NotNull Codec<GeyserBaseParticleOptions> codec() {
             return GeyserBaseParticleOptions.codec(this);
         }
     });
     public static final RegistryObject<ParticleType<GeyserParticleOptions>> GeyserPlume = PARTICLE_TYPES.register("geyser_plume", () -> new ParticleType<>(true, GeyserParticleOptions.DESERIALIZER) {
         @Override
-        public Codec<GeyserParticleOptions> codec() {
+        public @NotNull Codec<GeyserParticleOptions> codec() {
             return GeyserParticleOptions.codec(this);
         }
     });

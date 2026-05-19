@@ -102,8 +102,8 @@ public class OceanSlimeEntity extends TravelersPlateSlimeEntity {
                 default -> EntityType.PUFFERFISH.create(level);
             };
                if (fish != null) {
-                   this.spawnJockey(pLevel, difficulty, fish);;
-            }
+                   this.spawnJockey(pLevel, difficulty, fish);
+               }
         }
         return super.finalizeSpawn(pLevel, difficulty, pReason, pSpawnData, pDataTag);
     }
