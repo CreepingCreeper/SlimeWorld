@@ -2,53 +2,97 @@ package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
-import slimeknights.tconstruct.library.utils.SlimeBounceHandler;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
+import slimeknights.tconstruct.world.entity.SkySlimeEntity;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class SteelSlimeBossEntity extends BossSlimeEntity {
+    private int immuneTick;
+    private boolean isImmune;
+
     public SteelSlimeBossEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
         if (!level.isClientSide) {
-            tryAddAttribute(Attributes.ARMOR, new AttributeModifier("tconstruct.small_armor_bonus", 4, AttributeModifier.Operation.ADDITION));
-            tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("tconstruct.small_toughness_bonus", 3, AttributeModifier.Operation.ADDITION));
+            tryAddAttribute(Attributes.ARMOR, new AttributeModifier("slimeworld.small_armor_bonus", 4, AttributeModifier.Operation.ADDITION));
+            tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("slimeworld.small_toughness_bonus", 3, AttributeModifier.Operation.ADDITION));
+          }
+        this.isImmune = false;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.level().isClientSide) return;
+
+        // 满足条件：有目标+地面+无冷却+无眩晕+不在冲刺
+        if (getTarget() != null && onGround() && !isCooling() && isImmobile() && !isImmune) {
+            this.setStunnedTick(40);
+            startImmune();
+            addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 0, false, false));
+        }
+
+
+        // 冲刺计时衰减
+        if (isImmune && immuneTick > 0) {
+            immuneTick--;
+            if (immuneTick <= 0) tryEndImmune();
         }
     }
 
     @Override
-    public void travel(Vec3 travelVector) {
-        if (this.isEffectiveAi() && this.getTarget() != null && this.onGround() && !isCooling()) {
-            int force = 16 / this.getSize();
-            this.lookAt(this.getTarget(), 10.0F, 10.0F);
-            Vec3 look = this.getLookAngle();
-            this.push(force * look.x, 0.02,force * look.z);
-            SlimeBounceHandler.addBounceHandler(this);
-            this.setCooling(200);
-            this.setNoGravity(true);
-            this.addEffect(new MobEffectInstance(MobEffects.GLOWING, 200));
-        }else super.travel(travelVector);
-    }
-
-    @Override
-    public void setOnGroundWithKnownMovement(boolean onGround, Vec3 movement) {
-        if (this.isNoGravity() && onGround){
-            this.setNoGravity(false);
+    public void push(@NotNull Entity entity) {
+        super.push(entity);
+        if (entity instanceof LivingEntity living) {
+            strongKnockback(living);
         }
-        super.setOnGroundWithKnownMovement(onGround, movement);
+    }
+
+    private void startImmune() {
+        this.isImmune = true;
+        this.immuneTick = 40;
+        List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(32, 3, 32));
+        for (SkySlimeEntity slime : list){
+            slime.addEffect(new MobEffectInstance(MobEffects.GLOWING, -1));
+        }
+    }
+
+    private void tryEndImmune(){
+        List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(32, 3, 32));
+        if (list.isEmpty()){
+            isImmune = false;
+            this.immuneTick = 0;
+            setCooling(400 + random.nextInt(10) * 20);
+            this.setStunnedTick(40);
+        }else  this.immuneTick = 20;
     }
 
     @Override
-    protected ParticleOptions getParticleType() {
+    public boolean isInvulnerableTo(@NotNull DamageSource source) {
+        return this.isImmune || super.isInvulnerableTo(source);
+    }
+
+    @Nullable
+    @Override
+    public LivingEntity getControllingPassenger() {
+        return null;
+    }
+
+    @Override
+    protected @NotNull ParticleOptions getParticleType() {
         return ModParticles.SteelSlimeParticle.get();
     }
 

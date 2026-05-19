@@ -28,6 +28,7 @@ public class RegisterEvents {
         event.put(ModEntities.ParchedEntity.get(), ParchedEntity.createAttributes().build());
         event.put(ModEntities.SlimeGolemEntity.get(), SlimeGolemEntity.createAttributes().build());
         event.put(ModEntities.SteelSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());
+        event.put(ModEntities.KnightSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());
     }
 
     @SubscribeEvent

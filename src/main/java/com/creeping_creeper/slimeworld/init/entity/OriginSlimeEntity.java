@@ -19,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.Tags;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.TinkerWorld;
@@ -75,7 +76,7 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
     }
 
     @Override
-    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+    public @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack =  player.getItemInHand(hand);
         Level level = this.level();
         if (!level.isClientSide()) {
@@ -132,29 +133,29 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
     }
 
     @Override
-    public boolean canAttack(LivingEntity target) {
+    public boolean canAttack(@NotNull LivingEntity target) {
         return false;
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Age", age);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         age = compound.getInt("Age");
     }
 
     @Override
-    protected ParticleOptions getParticleType() {
+    protected @NotNull ParticleOptions getParticleType() {
         return ModParticles.OriginSlimeParticle.get();
     }
 
     @Override
-    protected MaterialId getPlating() {
+    protected @NotNull MaterialId getPlating() {
         return MaterialIds.copper;
     }
 

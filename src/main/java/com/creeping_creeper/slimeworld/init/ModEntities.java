@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.entity.*;
+import com.creeping_creeper.slimeworld.init.entity.KnightSlimeBossEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -59,13 +60,19 @@ public class ModEntities {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.SlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
-
     public static final RegistryObject<EntityType<SteelSlimeBossEntity>> SteelSlimeBossEntity = ENTITIES.register("steel_slime_boss", () ->
             EntityType.Builder.of(SteelSlimeBossEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)
-                    .setTrackingRange(20)
+                    .setTrackingRange(48)
                     .sized(2.04F, 2.04F)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.SteelSlimeBossEntity.get().create(world)));
+
+    public static final RegistryObject<EntityType<KnightSlimeBossEntity>> KnightSlimeBossEntity = ENTITIES.register("knight_slime_boss", () ->
+            EntityType.Builder.of(KnightSlimeBossEntity::new, MobCategory.MONSTER)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .setTrackingRange(48)
+                    .sized(2.04F, 2.04F)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.KnightSlimeBossEntity.get().create(world)));
 
     public static void registers(IEventBus bus) {
         ENTITIES.register(bus);

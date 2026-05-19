@@ -19,6 +19,7 @@ public class ModParticles {
     public static final RegistryObject<SimpleParticleType> IchorSlimeParticle = PARTICLE_TYPES.register("ichor_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> OriginSlimeParticle = PARTICLE_TYPES.register("origin_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SteelSlimeParticle = PARTICLE_TYPES.register("steel_slime", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> KnightSlimeParticle = PARTICLE_TYPES.register("knight_slime", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> SulfurCubeGoo = PARTICLE_TYPES.register("sulfur_cube_goo", () -> new SimpleParticleType(false));
 
     public static final RegistryObject<SimpleParticleType> SulfurBubbles = PARTICLE_TYPES.register("sulfur_bubbles", () -> new SimpleParticleType(false));

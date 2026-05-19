@@ -132,10 +132,6 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         return this.fuse;
     }
 
-    public int getMaxFuse() {
-        return this.maxFuseFromArchetype;
-    }
-
     public void onSyncedDataUpdated(@NotNull EntityDataAccessor<?> accessor) {
         if (MAX_FUSE.equals(accessor)) {
             this.setFuse(this.entityData.get(MAX_FUSE));

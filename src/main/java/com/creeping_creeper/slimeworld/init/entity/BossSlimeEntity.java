@@ -12,8 +12,12 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -33,13 +37,13 @@ import java.util.List;
 
 public abstract class BossSlimeEntity extends Slime {
     private static final EntityDataAccessor<Integer> COOLING = SynchedEntityData.defineId(BossSlimeEntity.class, EntityDataSerializers.INT);
+    private int stunnedTick;
 
     public BossSlimeEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
         if (!level.isClientSide) {
             tryAddAttribute(Attributes.ARMOR, new AttributeModifier("tconstruct.small_armor_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
             tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("tconstruct.small_toughness_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            tryAddAttribute(Attributes.KNOCKBACK_RESISTANCE, new AttributeModifier("tconstruct.small_resistence_bonus", 1, AttributeModifier.Operation.ADDITION));
         }
     }
 
@@ -57,7 +61,7 @@ public abstract class BossSlimeEntity extends Slime {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes();
+        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 48.0F).add(Attributes.KNOCKBACK_RESISTANCE, 1.0);
     }
 
     protected void setCooling(int cooling) {
@@ -75,9 +79,44 @@ public abstract class BossSlimeEntity extends Slime {
     @Override
     public void tick() {
         super.tick();
-        if (!this.level().isClientSide && isCooling()){
-            setCooling(this.getCooling() - 1);
+        if (!this.level().isClientSide){
+            if (isCooling()) setCooling(this.getCooling() - 1);
+            if (this.stunnedTick > 0) if (--this.stunnedTick == 0) {
+                this.goalSelector.enableControlFlag(Goal.Flag.MOVE);
+            }
         }
+    }
+//
+//    @Override
+//    public void travel(@NotNull Vec3 travelVector) {
+//        if (isImmobile()) {
+//            // 蓄力眩晕完全禁移；冲刺阶段只走锁定方向，禁止玩家/AI操控转向移动
+//            if (stunnedTick > 1) {
+//                this.goalSelector.disableControlFlag(Goal.Flag.LOOK);
+//                setDeltaMovement(getDeltaMovement().multiply(0, 1, 0));
+//                return;
+//            }
+//        }
+//        super.travel(travelVector);
+//    }
+
+    protected void setStunnedTick(int tick){
+        this.stunnedTick = tick;
+        this.goalSelector.disableControlFlag(Goal.Flag.MOVE);
+    }
+
+    @Override
+    public float getJumpPower() {
+        return this.isImmobile() ? 0.0F : super.getJumpPower();
+    }
+
+    @Override
+    protected boolean isImmobile() {
+        return this.stunnedTick > 0 || super.isImmobile();
+    }
+
+    public boolean hasLineOfSight(@NotNull Entity entity) {
+        return !isImmobile() && super.hasLineOfSight(entity) ;
     }
 
     @Override
@@ -151,10 +190,18 @@ public abstract class BossSlimeEntity extends Slime {
     protected abstract EntityType<? extends ArmoredSlimeEntity> getSummonedEntity();
     protected abstract MaterialId getSummonedPlating();
 
+    protected void strongKnockback(Entity entity) {
+        double d0 = entity.getX() - this.getX();
+        double d1 = entity.getZ() - this.getZ();
+        double d2 = Math.max(d0 * d0 + d1 * d1, 0.001);
+        entity.push(d0 / d2 * 4.0D, 0.4D, d1 / d2 * 4.0D);
+    }
+
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("cooling", this.getCooling());
+        compound.putInt("stunTick", this.stunnedTick);
     }
 
     @Override
@@ -162,5 +209,6 @@ public abstract class BossSlimeEntity extends Slime {
         this.setSize(compound.getInt("Size") + 1, false);
         super.readAdditionalSaveData(compound);
         this.setCooling(compound.getInt("cooling"));
+        this.setStunnedTick(compound.getInt("stunnedTick"));
     }
 }

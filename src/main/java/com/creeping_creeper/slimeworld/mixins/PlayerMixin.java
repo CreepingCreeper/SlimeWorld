@@ -6,6 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
@@ -17,7 +18,7 @@ public abstract class PlayerMixin extends LivingEntity{
     }
 
     @Unique
-    public boolean canStandOnFluid(FluidState fluidState){
+    public boolean canStandOnFluid(@NotNull FluidState fluidState){
         return (!this.isSteppingCarefully() && this.hasEffect(ModEffects.Floating.get())) || super.canStandOnFluid(fluidState);
     }
 }

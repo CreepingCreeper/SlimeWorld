@@ -65,6 +65,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.OriginSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.SulfurCubeEntity.get(), SulfurCubeRenderer::new);
         event.registerEntityRenderer(ModEntities.SteelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.KnightSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.BoggedEntity.get(), BoggedRenderer::new);
         event.registerEntityRenderer(ModEntities.ParchedEntity.get(), ParchedRenderer::new);
         event.registerEntityRenderer(ModEntities.SlimeGolemEntity.get(), SlimeGolemRenderer::new);
@@ -78,6 +79,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerSpecial(ModParticles.IchorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
         event.registerSpecial(ModParticles.OriginSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));
         event.registerSpecial(ModParticles.SteelSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.slimesteel.getIngot()));
+        event.registerSpecial(ModParticles.KnightSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.knightslime.getIngot()));
         event.registerSpecial(ModParticles.SulfurCubeGoo.get(), new SlimeParticle.Factory(ModItems.SulfurGoo));
 
         event.registerSpriteSet(ModParticles.SulfurBubbles.get(), SulfurBubbleParticle.Provider::new);

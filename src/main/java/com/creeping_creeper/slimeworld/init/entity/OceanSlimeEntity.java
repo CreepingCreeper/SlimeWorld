@@ -18,6 +18,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.entity.TravelersPlateSlimeEntity;
@@ -40,17 +41,17 @@ public class OceanSlimeEntity extends TravelersPlateSlimeEntity {
         return world.getFluidState(pos).is(FluidTags.WATER) && pos.getY() > world.getSeaLevel() - 6 && random.nextInt(200) == 0;
     }
 
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.WATER;
     }
 
     @Override
-    protected PathNavigation createNavigation(Level level) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level level) {
         return new AmphibiousPathNavigation(this, level);
     }
 
     @Override
-    public void travel(Vec3 travelVector) {
+    public void travel(@NotNull Vec3 travelVector) {
         LivingEntity target = this.getTarget();
         if (this.isEffectiveAi() && target != null) {
             double length = 1D + this.getSize();
@@ -79,7 +80,7 @@ public class OceanSlimeEntity extends TravelersPlateSlimeEntity {
     public boolean canBreatheUnderwater() {return true;}
 
     @Override
-    protected ParticleOptions getParticleType() {
+    protected @NotNull ParticleOptions getParticleType() {
         return ModParticles.OceanSlimeParticle.get();
     }
 
@@ -91,7 +92,7 @@ public class OceanSlimeEntity extends TravelersPlateSlimeEntity {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance difficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
         Level level = pLevel.getLevel();
         if (this.random.nextInt(5) == 0) {
             int random = this.random.nextInt(3);
@@ -101,20 +102,20 @@ public class OceanSlimeEntity extends TravelersPlateSlimeEntity {
                 default -> EntityType.PUFFERFISH.create(level);
             };
                if (fish != null) {
-                   this.spawnJockey(pLevel, difficulty, fish, null);;
+                   this.spawnJockey(pLevel, difficulty, fish);;
             }
         }
         return super.finalizeSpawn(pLevel, difficulty, pReason, pSpawnData, pDataTag);
     }
 
-    private void spawnJockey(ServerLevelAccessor serverLevel, DifficultyInstance difficulty, Mob jockey, @Nullable SpawnGroupData spawnData) {
+    private void spawnJockey(ServerLevelAccessor serverLevel, DifficultyInstance difficulty, Mob jockey) {
         jockey.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), this.getXRot());
-        jockey.finalizeSpawn(serverLevel, difficulty, MobSpawnType.JOCKEY, spawnData, null);
+        jockey.finalizeSpawn(serverLevel, difficulty, MobSpawnType.JOCKEY, null, null);
         jockey.startRiding(this, true);
     }
 
     @Override
-    protected MaterialId getPlating() {
+    protected @NotNull MaterialId getPlating() {
         return MaterialIds.bronze;
     }
 }
