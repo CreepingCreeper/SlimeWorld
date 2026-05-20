@@ -55,7 +55,8 @@ public class ClientEvent extends ClientEventBase {
     public static final SlimeFactory OCEAN_SLIME_FACTORY = new SlimeFactory(SlimeWorld.getResource("textures/entity/ocean_slime.png"), SlimeWorld.getResource("textures/entity/bronze_slime.png"));
     public static final InvertedSlimeFactory ICHOR_SLIME_FACTORY = new InvertedSlimeFactory(SlimeWorld.getResource("textures/entity/ichor_slime.png"), SlimeWorld.getResource("textures/entity/cobalt_slime.png"));
     public static final SlimeFactory ORIGIN_SLIME_FACTORY = new SlimeFactory(TConstruct.getResource("textures/entity/slime.png"), TConstruct.getResource("textures/entity/slime.png"));
-    public static final BossSlimeFactory STEEL_SLIME_FACTORY = new BossSlimeFactory(SlimeWorld.getResource("textures/entity/steel_slime_boss.png"));
+    public static final BossSlimeFactory STEELSLIME_FACTORY = new BossSlimeFactory(SlimeWorld.getResource("textures/entity/steelslime_boss.png"));
+    public static final BossSlimeFactory KNIGHTSLIME_FACTORY = new BossSlimeFactory(SlimeWorld.getResource("textures/entity/knightslime_boss.png"));
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
@@ -64,8 +65,8 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.IchorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.OriginSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.SulfurCubeEntity.get(), SulfurCubeRenderer::new);
-        event.registerEntityRenderer(ModEntities.SteelSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
-        event.registerEntityRenderer(ModEntities.KnightSlimeBossEntity.get(), STEEL_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.SteelSlimeBossEntity.get(), STEELSLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.KnightSlimeBossEntity.get(), KNIGHTSLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.BoggedEntity.get(), BoggedRenderer::new);
         event.registerEntityRenderer(ModEntities.ParchedEntity.get(), ParchedRenderer::new);
         event.registerEntityRenderer(ModEntities.SlimeGolemEntity.get(), SlimeGolemRenderer::new);

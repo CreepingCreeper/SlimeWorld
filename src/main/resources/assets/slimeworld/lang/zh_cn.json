@@ -95,6 +95,9 @@
   "entity.slimeworld.sulfur_cube": "硫方怪",
   "item.slimeworld.sulfur_cube_bucket": "硫方怪桶",
   "item.slimeworld.sulfur_cube_spawn_egg": "硫方怪刷怪蛋",
+
+  "entity.slimeworld.steelslime_boss": "钢史莱姆",
+  "entity.slimeworld.knightslime_boss": "骑士史莱姆",
   
   "entity.slimeworld.bogged": "沼骸",
   "item.slimeworld.bogged_spawn_egg": "沼骸刷怪蛋",

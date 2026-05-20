@@ -550,6 +550,11 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     }
 
     @Override
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return false;
+    }
+
+    @Override
     protected boolean shouldDespawnInPeaceful() {
         return false;
     }

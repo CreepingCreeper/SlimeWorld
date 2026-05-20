@@ -1,8 +1,11 @@
 {
   "values": [
+    "minecraft:magma_cube",
     "slimeworld:ocean_slime",
     "slimeworld:ichor_slime",
     "slimeworld:origin_slime",
-    "slimeworld:steel_slime_boss"
+    "slimeworld:steelslime_boss",
+    "slimeworld:knightslime_boss",
+    "slimeworld:slime_golem"
   ]
 }

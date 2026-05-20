@@ -96,6 +96,9 @@
   "item.slimeworld.sulfur_cube_bucket": "Bucket of Sulfur Cube",
   "item.slimeworld.sulfur_cube_spawn_egg": "Sulfur Cube Spawn Egg",
 
+  "entity.slimeworld.steelslime_boss": "Steelslime",
+  "entity.slimeworld.knightslime_boss": "Knightslime",
+
   "entity.slimeworld.bogged": "Bogged",
   "item.slimeworld.bogged_spawn_egg": "Bogged Spawn Egg",
   "entity.slimeworld.parched": "Parched",

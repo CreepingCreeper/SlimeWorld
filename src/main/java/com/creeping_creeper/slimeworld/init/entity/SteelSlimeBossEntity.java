@@ -2,6 +2,8 @@ package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -9,6 +11,9 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Slime;
+import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.item.armortrim.TrimPattern;
+import net.minecraft.world.item.armortrim.TrimPatterns;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
@@ -21,7 +26,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class SteelSlimeBossEntity extends BossSlimeEntity {
-    private int immuneTick;
     private boolean isImmune;
 
     public SteelSlimeBossEntity(EntityType<? extends Slime> entityType, Level level) {
@@ -47,9 +51,9 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
 
 
         // 冲刺计时衰减
-        if (isImmune && immuneTick > 0) {
-            immuneTick--;
-            if (immuneTick <= 0) tryEndImmune();
+        if (isImmune && skillTick > 0) {
+            skillTick--;
+            if (skillTick <= 0) tryEndImmune();
         }
     }
 
@@ -63,7 +67,7 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
 
     private void startImmune() {
         this.isImmune = true;
-        this.immuneTick = 40;
+        this.skillTick = 40;
         List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(32, 3, 32));
         for (SkySlimeEntity slime : list){
             slime.addEffect(new MobEffectInstance(MobEffects.GLOWING, -1));
@@ -74,10 +78,10 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
         List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(32, 3, 32));
         if (list.isEmpty()){
             isImmune = false;
-            this.immuneTick = 0;
+            this.skillTick = 0;
             setCooling(400 + random.nextInt(10) * 20);
             this.setStunnedTick(40);
-        }else  this.immuneTick = 20;
+        }else  this.skillTick = 20;
     }
 
     @Override
@@ -109,5 +113,10 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
     @Override
     protected MaterialId getSummonedPlating() {
         return MaterialIds.steel;
+    }
+
+    @Override
+    protected ResourceKey<TrimPattern> getTrimPattern() {
+        return TrimPatterns.SENTRY;
     }
 }

@@ -3,18 +3,20 @@ package com.creeping_creeper.slimeworld.init.entity;
 import com.creeping_creeper.slimeworld.events.SlimeBossTeleportEvent;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.armortrim.TrimPattern;
+import net.minecraft.world.item.armortrim.TrimPatterns;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.utils.TeleportHelper;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
@@ -28,17 +30,11 @@ import java.util.List;
 public class KnightSlimeBossEntity extends BossSlimeEntity {
     private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new SlimeBossTeleportEvent(entity, x, y, z, this);
     private Vec3 bounce = Vec3.ZERO;
-    private int sprintTick;
-    // 蓄力锁定的冲刺朝向
     private Vec3 chargeForwardDir;
-    // 冲刺是否正在进行标记
     private boolean isChargingSprint;
 
     public KnightSlimeBossEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
-        if (!level.isClientSide) {
-            tryAddAttribute(Attributes.MOVEMENT_SPEED, new AttributeModifier("slimeworld.speed_bonus", 0.1, AttributeModifier.Operation.ADDITION));
-        }
         this.isChargingSprint = false;
         this.chargeForwardDir = Vec3.ZERO;
     }
@@ -48,32 +44,24 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
         super.tick();
         if (this.level().isClientSide) return;
 
-        // 满足条件：有目标+地面+无冷却+无眩晕+不在冲刺
-        if (getTarget() != null && onGround() && !isCooling() && !isImmobile() && !isChargingSprint) {
+        if (getTarget() != null && onGround() && !isCooling() && !canNotMove()) {
             TeleportHelper.randomNearbyTeleport(this, teleportPredicate);
-            // 1. 朝向玩家
-            lookAt(getTarget(), 180F, 180F);
-            // 2. 锁定当前前方朝向，冲刺全程不再更改
+            lookAt(getTarget(), 180F, 360F);
             this.chargeForwardDir = getLookAngle();
-            // 3. 眩晕1秒 = 20tick 蓄力
-            this.setStunnedTick(30);
-            addEffect(new MobEffectInstance(MobEffects.GLOWING, 200, 0, false, false));
+            this.setStunnedTick(this.getSize() / 2 * 5 + 10);
             setCooling(100 + random.nextInt(10) * 20);
         }
 
-        // 眩晕结束 触发直线冲刺
-        if (!isImmobile() && !chargeForwardDir.equals(Vec3.ZERO) && !isChargingSprint) {
+        if (!canNotMove() && !chargeForwardDir.equals(Vec3.ZERO)) {
             startSprint();
         }
 
-        // 冲刺计时衰减
-        if (isChargingSprint && sprintTick > 0) {
-            sprintTick--;
-            if (sprintTick <= 0) endSprint();
+        if (isChargingSprint && skillTick > 0) {
+            skillTick--;
+            if (skillTick <= 0) endSprint();
         }
     }
 
-    // 冲刺移动+撞墙反弹保留
     @Override
     public void move(@NotNull MoverType type, @NotNull Vec3 pos) {
         super.move(type, pos);
@@ -95,12 +83,12 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
         }
         if (this.verticalCollision && Math.abs(bounce.y) > 1.0E-7) {
             y *= -0.6;
+            shouldBounce = true;
         }
-
         if (shouldBounce) {
-            sprintTick = 40;
             setDeltaMovement(new Vec3(x, y, z));
         } else if (hasCollision) {
+            this.skillTick = 0;
             endSprint();
         }
         bounce = getDeltaMovement();
@@ -109,8 +97,12 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
     @Override
     public void push(@NotNull Entity entity) {
         super.push(entity);
-        if (entity instanceof LivingEntity living) {
+        if (isChargingSprint && entity instanceof LivingEntity living) {
             strongKnockback(living);
+            if (!entity.getType().is(TinkerTags.EntityTypes.SLIMES) && this.isDealsDamage()){
+                this.dealDamage(living);
+                living.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 0, false, false));
+            }
         }
     }
 
@@ -132,48 +124,40 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
         }
     }
 
-    // 冲刺可破盾
     @Override
     public boolean canDisableShield() {
         return isChargingSprint();
     }
 
     @Override
-    protected boolean isImmobile() {
-        return isChargingSprint || super.isImmobile();
+    protected boolean canNotMove(){
+        return isChargingSprint || super.canNotMove();
     }
 
     private void startSprint() {
         this.isChargingSprint = true;
-        this.sprintTick = 40;
-        int force = 36 / this.getSize();
+        this.skillTick = 20;
+        int force = 8 - this.getSize() / 2;
         push(chargeForwardDir.x * force, 0.2D, chargeForwardDir.z * force);
     }
 
     private void endSprint(){
         isChargingSprint = false;
-        this.sprintTick = 0;
         chargeForwardDir = Vec3.ZERO;
     }
 
-    /**
-     * 玩家随机丢弃一件 盔甲/主手/副手 物品
-     */
     private void tryDropRandomItem(LivingEntity living) {
         List<ItemStack> dropCandidates = new ArrayList<>();
-        // 收集全身盔甲
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             ItemStack stack = living.getItemBySlot(slot);
             if (!stack.isEmpty()) {
                 dropCandidates.add(stack);
             }
         }
-        // 收集手持物品
 
         if (dropCandidates.isEmpty()) return;
-        // 随机选一个丢弃
         ItemStack dropStack = dropCandidates.get(random.nextInt(dropCandidates.size()));
-        ItemStack drop = dropStack.split(1);
+        ItemStack drop = dropStack.copyAndClear();
         ItemEntity item = new ItemEntity(living.level(), living.getX(), living.getY(), living.getZ(), drop);
         item.setPickUpDelay(100);
         living.level().addFreshEntity(item);
@@ -207,5 +191,10 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
     @Override
     protected MaterialId getSummonedPlating() {
         return MaterialIds.knightmetal;
+    }
+
+    @Override
+    protected ResourceKey<TrimPattern> getTrimPattern() {
+        return TrimPatterns.SPIRE;
     }
 }

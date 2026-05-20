@@ -1,9 +1,0 @@
-{
-  "parts": [
-    {
-      "path": "slimeworld:block/grayscale-image",
-      "stat_type": "tconstruct:repair_kit"
-    }
-  ],
-"replace": false
-}

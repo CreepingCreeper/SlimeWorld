@@ -1,10 +1,16 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
+import com.creeping_creeper.slimeworld.data.ModModifierIds;
 import com.google.common.annotations.VisibleForTesting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -16,17 +22,26 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.item.armortrim.TrimMaterials;
+import net.minecraft.world.item.armortrim.TrimPattern;
+import net.minecraft.world.item.armortrim.TrimPatterns;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.RandomMaterial;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
+import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.definition.module.material.ToolMaterialHook;
 import slimeknights.tconstruct.library.tools.item.IModifiable;
+import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
+import slimeknights.tconstruct.tools.data.ModifierIds;
+import slimeknights.tconstruct.tools.modules.cosmetic.TrimModule;
 import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 
 import javax.annotation.Nullable;
@@ -35,9 +50,12 @@ import java.util.List;
 public abstract class BossSlimeEntity extends Slime {
     private static final EntityDataAccessor<Integer> COOLING = SynchedEntityData.defineId(BossSlimeEntity.class, EntityDataSerializers.INT);
     private int stunnedTick;
+    protected int skillTick;
+    private final ServerBossEvent bossEvent;
 
     public BossSlimeEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
+        this.bossEvent = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
         if (!level.isClientSide) {
             tryAddAttribute(Attributes.ARMOR, new AttributeModifier("tconstruct.small_armor_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
             tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("tconstruct.small_toughness_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
@@ -104,7 +122,7 @@ public abstract class BossSlimeEntity extends Slime {
 
     @Override
     public float getJumpPower() {
-        return this.isImmobile() ? 0.0F : super.getJumpPower();
+        return this.canNotMove() ? 0.0F : super.getJumpPower();
     }
 
     @Override
@@ -115,25 +133,37 @@ public abstract class BossSlimeEntity extends Slime {
     public boolean hasLineOfSight(@NotNull Entity entity) {
         return !isImmobile() && super.hasLineOfSight(entity) ;
     }
+    
+    protected boolean canNotMove(){
+        return this.isImmobile();
+    }
 
     @Override
     @VisibleForTesting
     public void setSize(int size, boolean resetHealth) {
         super.setSize(size, false);
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(200);
-        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.4F + 0.1F * (float)size);
-        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(32.0/size);
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(1.4F - 0.1F * (float)size);
+        this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(32.0F / size);
         if (resetHealth) {
             this.setHealth(this.getMaxHealth());
         }
+        this.resetBarColor();
     }
 
     private ToolStack tool(MaterialId id){
         IModifiable helmetItem = TinkerTools.plateArmor.get(ArmorItem.Type.HELMET);
         ToolDefinition definition = helmetItem.getToolDefinition();
-        return ToolStack.createTool(
+        ToolStack tool = ToolStack.createTool(
                 helmetItem.asItem(), definition,
                 RandomMaterial.build(ToolMaterialHook.stats(definition), List.of(RandomMaterial.fixed(id), RandomMaterial.fixed(id)), random));
+        tool.addModifier(ModModifierIds.vanishingCurse, 1);
+        ModDataNBT persistentData = tool.getPersistentData();
+        ModifierId trimId = TinkerModifiers.trim.getId();
+        persistentData.putString(TrimModule.materialKey(trimId), getSummonedPlating().toString());
+        persistentData.putString(TrimModule.patternKey(trimId), getTrimPattern().location().toString());
+        tool.addModifier(TinkerModifiers.trim.getId(), 1);
+        return tool;
     }
 
     @Override
@@ -142,7 +172,6 @@ public abstract class BossSlimeEntity extends Slime {
         SpawnGroupData spawnData = super.finalizeSpawn(level, difficulty, reason, pSpawnData, dataTag);
         this.setSize(8, true);
         this.setItemSlot(EquipmentSlot.HEAD, tool(getPlating()).createStack());
-        this.armorDropChances[EquipmentSlot.HEAD.getIndex()] = 0.0F;
         return spawnData;
     }
 
@@ -163,7 +192,6 @@ public abstract class BossSlimeEntity extends Slime {
             slime.setSize(this.random.nextInt(2) * 2 +2, true);
             slime.setItemSlot(EquipmentSlot.HEAD, tool(getSummonedPlating()).createStack());
             slime.moveTo(this.getX() + x, this.getY() + 0.5D, this.getZ() + z, this.random.nextFloat() * 360.0F, 0.0F);
-            slime.armorDropChances[EquipmentSlot.HEAD.getIndex()] = 0.0F;
             level.addFreshEntity(slime);
         }
     }
@@ -186,6 +214,7 @@ public abstract class BossSlimeEntity extends Slime {
     protected abstract MaterialId getPlating();
     protected abstract EntityType<? extends ArmoredSlimeEntity> getSummonedEntity();
     protected abstract MaterialId getSummonedPlating();
+    protected abstract ResourceKey<TrimPattern> getTrimPattern();
 
     protected void strongKnockback(Entity entity) {
         double d0 = entity.getX() - this.getX();
@@ -199,6 +228,7 @@ public abstract class BossSlimeEntity extends Slime {
         super.addAdditionalSaveData(compound);
         compound.putInt("cooling", this.getCooling());
         compound.putInt("stunTick", this.stunnedTick);
+        compound.putInt("skillTick", this.skillTick);
     }
 
     @Override
@@ -207,5 +237,51 @@ public abstract class BossSlimeEntity extends Slime {
         super.readAdditionalSaveData(compound);
         this.setCooling(compound.getInt("cooling"));
         this.setStunnedTick(compound.getInt("stunnedTick"));
+        this.skillTick = (compound.getInt("skillTick"));
+        if (this.hasCustomName()) {
+            this.bossEvent.setName(this.getDisplayName());
+        }
+    }
+
+    @Override
+    public void setCustomName(@Nullable Component name) {
+        super.setCustomName(name);
+        this.bossEvent.setName(this.getDisplayName());
+    }
+
+    @Override
+    public void startSeenByPlayer(@NotNull ServerPlayer player) {
+        super.startSeenByPlayer(player);
+        this.bossEvent.addPlayer(player);
+    }
+
+    @Override
+    public void stopSeenByPlayer(@NotNull ServerPlayer player) {
+        super.stopSeenByPlayer(player);
+        this.bossEvent.removePlayer(player);
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        this.bossEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double distanceToClosestPlayer) {
+        return false;
+    }
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return false;
+    }
+
+    private void resetBarColor(){
+        BossEvent.BossBarColor color =  switch (getSize() / 2){
+            case 4 -> BossEvent.BossBarColor.RED;
+            case 2 -> BossEvent.BossBarColor.YELLOW;
+            default -> BossEvent.BossBarColor.BLUE;
+        };
+        this.bossEvent.setColor(color);
     }
 }
