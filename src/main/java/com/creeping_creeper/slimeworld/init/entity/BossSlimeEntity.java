@@ -22,16 +22,15 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.item.ArmorItem;
-import net.minecraft.world.item.armortrim.TrimMaterial;
-import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.item.armortrim.TrimPattern;
-import net.minecraft.world.item.armortrim.TrimPatterns;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.materials.RandomMaterial;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
+import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.tools.definition.ToolDefinition;
 import slimeknights.tconstruct.library.tools.definition.module.material.ToolMaterialHook;
@@ -40,7 +39,6 @@ import slimeknights.tconstruct.library.tools.nbt.ModDataNBT;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.tools.TinkerTools;
-import slimeknights.tconstruct.tools.data.ModifierIds;
 import slimeknights.tconstruct.tools.modules.cosmetic.TrimModule;
 import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 
@@ -158,11 +156,19 @@ public abstract class BossSlimeEntity extends Slime {
                 helmetItem.asItem(), definition,
                 RandomMaterial.build(ToolMaterialHook.stats(definition), List.of(RandomMaterial.fixed(id), RandomMaterial.fixed(id)), random));
         tool.addModifier(ModModifierIds.vanishingCurse, 1);
+        tool.addModifier(ModModifierIds.slimeBalance, 1);
         ModDataNBT persistentData = tool.getPersistentData();
         ModifierId trimId = TinkerModifiers.trim.getId();
-        persistentData.putString(TrimModule.materialKey(trimId), getSummonedPlating().toString());
+        persistentData.putString(TrimModule.materialKey(trimId), getTrimMaterial().toString());
         persistentData.putString(TrimModule.patternKey(trimId), getTrimPattern().location().toString());
         tool.addModifier(TinkerModifiers.trim.getId(), 1);
+        if (!getModifier().isEmpty()){
+            int t = 0;
+            for (Modifier modifier : getModifier()){
+                tool.addModifier(modifier.getId(), getModifierLevel().get(t));
+                t++;
+            }
+        }
         return tool;
     }
 
@@ -173,6 +179,20 @@ public abstract class BossSlimeEntity extends Slime {
         this.setSize(8, true);
         this.setItemSlot(EquipmentSlot.HEAD, tool(getPlating()).createStack());
         return spawnData;
+    }
+
+    protected void pushLiving(@NotNull LivingEntity living){
+        if (!living.getType().is(TinkerTags.EntityTypes.SLIMES) && this.isDealsDamage()){
+            this.dealDamage(living);
+        }
+    }
+
+    @Override
+    public void push(@NotNull Entity entity) {
+        super.push(entity);
+        if (entity instanceof LivingEntity living){
+            this.pushLiving(living);
+        }
     }
 
     @Override
@@ -214,6 +234,13 @@ public abstract class BossSlimeEntity extends Slime {
     protected abstract MaterialId getPlating();
     protected abstract EntityType<? extends ArmoredSlimeEntity> getSummonedEntity();
     protected abstract MaterialId getSummonedPlating();
+    protected abstract MaterialId getTrimMaterial();
+    protected List<Modifier> getModifier(){
+        return List.of();
+    }
+    protected List<Integer> getModifierLevel(){
+        return List.of();
+    }
     protected abstract ResourceKey<TrimPattern> getTrimPattern();
 
     protected void strongKnockback(Entity entity) {

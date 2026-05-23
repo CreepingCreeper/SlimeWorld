@@ -5,8 +5,6 @@ import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Slime;
@@ -16,7 +14,6 @@ import net.minecraft.world.item.armortrim.TrimPatterns;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.library.utils.TeleportHelper;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
@@ -95,14 +92,10 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
     }
 
     @Override
-    public void push(@NotNull Entity entity) {
-        super.push(entity);
-        if (isChargingSprint && entity instanceof LivingEntity living) {
+    protected void pushLiving(@NotNull LivingEntity living) {
+        super.pushLiving(living);
+        if (isChargingSprint) {
             strongKnockback(living);
-            if (!entity.getType().is(TinkerTags.EntityTypes.SLIMES) && this.isDealsDamage()){
-                this.dealDamage(living);
-                living.addEffect(new MobEffectInstance(MobEffects.GLOWING, 40, 0, false, false));
-            }
         }
     }
 
@@ -191,6 +184,11 @@ public class KnightSlimeBossEntity extends BossSlimeEntity {
     @Override
     protected MaterialId getSummonedPlating() {
         return MaterialIds.knightmetal;
+    }
+
+    @Override
+    protected MaterialId getTrimMaterial() {
+        return MaterialIds.iron;
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,7 +10,6 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Slime;
-import net.minecraft.world.item.armortrim.TrimMaterial;
 import net.minecraft.world.item.armortrim.TrimPattern;
 import net.minecraft.world.item.armortrim.TrimPatterns;
 import net.minecraft.world.level.Level;
@@ -22,7 +20,6 @@ import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 import slimeknights.tconstruct.world.entity.SkySlimeEntity;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class SteelSlimeBossEntity extends BossSlimeEntity {
@@ -58,11 +55,8 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
     }
 
     @Override
-    public void push(@NotNull Entity entity) {
-        super.push(entity);
-        if (entity instanceof LivingEntity living) {
-            strongKnockback(living);
-        }
+    protected void pushLiving(@NotNull LivingEntity living) {
+        super.pushLiving(living);
     }
 
     private void startImmune() {
@@ -89,11 +83,6 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
         return this.isImmune || super.isInvulnerableTo(source);
     }
 
-    @Nullable
-    @Override
-    public LivingEntity getControllingPassenger() {
-        return null;
-    }
 
     @Override
     protected @NotNull ParticleOptions getParticleType() {
@@ -113,6 +102,11 @@ public class SteelSlimeBossEntity extends BossSlimeEntity {
     @Override
     protected MaterialId getSummonedPlating() {
         return MaterialIds.steel;
+    }
+
+    @Override
+    protected MaterialId getTrimMaterial() {
+        return MaterialIds.iron;
     }
 
     @Override
