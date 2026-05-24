@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "frequency": 0.3,
+    "salt": 87397481,
+    "separation": 9,
+    "spacing": 15
+  },
+  "structures": [
+    {
+      "structure": "slimeworld:smelting_workshop",
+      "weight": 1
+    }
+  ]
+}
