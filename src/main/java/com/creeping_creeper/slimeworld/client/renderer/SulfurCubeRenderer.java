@@ -15,7 +15,6 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import slimeknights.tconstruct.TConstruct;
 
 @OnlyIn(Dist.CLIENT)
 public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCubeModel<SulfurCubeEntity>> {
