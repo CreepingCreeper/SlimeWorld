@@ -64,6 +64,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.OceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.IchorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.OriginSlimeEntity.get(), ORIGIN_SLIME_FACTORY);
+        event.registerEntityRenderer(ModEntities.TomatoSlimeEntity.get(), TomatoSlimeRenderer::new);
         event.registerEntityRenderer(ModEntities.SulfurCubeEntity.get(), SulfurCubeRenderer::new);
         event.registerEntityRenderer(ModEntities.SteelSlimeBossEntity.get(), STEELSLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.KnightSlimeBossEntity.get(), KNIGHTSLIME_FACTORY);

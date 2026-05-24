@@ -23,6 +23,7 @@ public class RegisterEvents {
         event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.IchorSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.OriginSlimeEntity.get(), Monster.createMonsterAttributes().build());
+        event.put(ModEntities.TomatoSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.SulfurCubeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.BoggedEntity.get(), BoggedEntity.createAttributes().build());
         event.put(ModEntities.ParchedEntity.get(), ParchedEntity.createAttributes().build());

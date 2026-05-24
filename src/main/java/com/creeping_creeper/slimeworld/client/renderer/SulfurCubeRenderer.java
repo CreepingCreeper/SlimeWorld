@@ -15,6 +15,7 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.TConstruct;
 
 @OnlyIn(Dist.CLIENT)
 public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCubeModel<SulfurCubeEntity>> {
@@ -66,7 +67,7 @@ public class SulfurCubeRenderer extends MobRenderer<SulfurCubeEntity, SulfurCube
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull SulfurCubeEntity sulfurCubeEntity) {
-    return SULFUR_CUBE_LOCATION;
-}
+        return SULFUR_CUBE_LOCATION;
+    }
 }
 

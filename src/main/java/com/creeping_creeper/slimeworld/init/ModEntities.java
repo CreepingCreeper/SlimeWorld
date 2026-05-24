@@ -38,6 +38,12 @@ public class ModEntities {
                     .setTrackingRange(20)
                     .sized(2.04F, 2.04F)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.OriginSlimeEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
+    public static final EntityObject<TomatoSlimeEntity> TomatoSlimeEntity = ENTITIES.registerWithEgg("tomato_slime", () ->
+            EntityType.Builder.of(TomatoSlimeEntity::new, MobCategory.MONSTER)
+                    .setShouldReceiveVelocityUpdates(true)
+                    .setTrackingRange(20)
+                    .sized(2.04F, 2.04F)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.TomatoSlimeEntity.get().create(world)), 0xb7b7b7, 0x8b8b8b);
     public static final EntityObject<SulfurCubeEntity> SulfurCubeEntity = ENTITIES.registerWithEgg("sulfur_cube", () ->
             EntityType.Builder.of(SulfurCubeEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)

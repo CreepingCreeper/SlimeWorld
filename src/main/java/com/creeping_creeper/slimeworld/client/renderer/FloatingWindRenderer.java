@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
@@ -26,7 +27,7 @@ public class FloatingWindRenderer extends EntityRenderer<MagicbubbleEntity> {
     }
 
     @Override
-    public void render(MagicbubbleEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+    public void render(@NotNull MagicbubbleEntity entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         poseStack.pushPose();
         poseStack.scale(0.35F, 0.35F, 0.35F);
         poseStack.mulPose(this.entityRenderDispatcher.cameraOrientation());
@@ -48,7 +49,7 @@ public class FloatingWindRenderer extends EntityRenderer<MagicbubbleEntity> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(MagicbubbleEntity pEntity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull MagicbubbleEntity entity) {
         return TEXTURE_LOCATION;
     }
 }
