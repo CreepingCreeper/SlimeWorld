@@ -17,6 +17,6 @@ public class ModFood {
     public static final FoodProperties ENDER_SLIME_BERRY = new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(() -> new MobEffectInstance(MobEffects.SATURATION,  5), 0.2f).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,  300), 0.8f).build();
 
     public static final FoodProperties BERRIPER = new FoodProperties.Builder().fast().nutrition(5).saturationMod(0.5F).effect(() -> new MobEffectInstance(TinkerEffects.selfDestructing.get(),  300), 0.05f).effect(() -> new MobEffectInstance(MobEffects.REGENERATION,  300), 1.0f).build();
-    public static final FoodProperties DRIED_SLIME_KELP = new FoodProperties.Builder().fast().nutrition(1).saturationMod(0.3F).effect(() -> new MobEffectInstance(MobEffects.WATER_BREATHING,  300), 0.6f).build();
+    public static final FoodProperties TOMATO_PUDDING = new FoodProperties.Builder().nutrition(3).saturationMod(0.5F).effect(() -> new MobEffectInstance(MobEffects.GLOWING,  300), 0.6f).build();
 
 }

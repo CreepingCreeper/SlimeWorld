@@ -80,6 +80,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerSpecial(ModParticles.OceanSlimeParticle.get(), new SlimeParticle.Factory(ModItems.OceanSlimeBall));
         event.registerSpecial(ModParticles.IchorSlimeParticle.get(), new IchorParticle.Factory(SlimeType.ICHOR));
         event.registerSpecial(ModParticles.OriginSlimeParticle.get(), new SlimeParticle.Factory(ModItems.IronShard));
+        event.registerSpecial(ModParticles.TomatoSlimeParticle.get(), new SlimeParticle.Factory(ModItems.TomatoPudding));
         event.registerSpecial(ModParticles.SteelSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.slimesteel.getIngot()));
         event.registerSpecial(ModParticles.KnightSlimeParticle.get(), new SlimeParticle.Factory(TinkerMaterials.knightslime.getIngot()));
         event.registerSpecial(ModParticles.SulfurCubeGoo.get(), new SlimeParticle.Factory(ModItems.SulfurGoo));

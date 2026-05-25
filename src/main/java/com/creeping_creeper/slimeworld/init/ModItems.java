@@ -133,6 +133,7 @@ public class ModItems {
     public static final ItemObject<Item> EnderSlimeBerry = ITEMS.register("ender_slime_berries", () -> new BlockItem(SlimeBerryBush.get(),new Item.Properties().food(ModFood.ENDER_SLIME_BERRY)));
     public static final ItemObject<Item> BloodSlimeBerry = ITEMS.register("blood_slime_berries", () -> new BlockItem(SlimeBerryBush.get(),new Item.Properties().food(ModFood.BLOOD_SLIME_BERRY)));
     public static final ItemObject<Item> Berriper = ITEMS.register("berripers", () -> new BlockItem(BerriperBush.get(),new Item.Properties().food(ModFood.BERRIPER).rarity(Rarity.UNCOMMON)));
+    public static final ItemObject<Item> TomatoPudding = ITEMS.register("tomato_pudding", new Item.Properties().food(ModFood.TOMATO_PUDDING));
 
     public static final ItemObject<Item> CopperShard = ITEMS.register("copper_shard", GENERAL_PROPS);
     public static final ItemObject<Item> IronShard = ITEMS.register("iron_shard", GENERAL_PROPS);
@@ -179,6 +180,7 @@ public class ModItems {
         output.accept(EnderSlimeBerry);
         output.accept(BloodSlimeBerry);
         output.accept(Berriper);
+        output.accept(TomatoPudding);
 
         output.accept(CopperShard);
         output.accept(IronShard);
@@ -255,6 +257,7 @@ public class ModItems {
         output.accept(ModEntities.OceanSlimeEntity);
         output.accept(ModEntities.IchorSlimeEntity);
         output.accept(ModEntities.OriginSlimeEntity);
+        output.accept(ModEntities.TomatoSlimeEntity);
         output.accept(ModEntities.SulfurCubeEntity);
         output.accept(ModEntities.BoggedEntity);
         output.accept(ModEntities.ParchedEntity);

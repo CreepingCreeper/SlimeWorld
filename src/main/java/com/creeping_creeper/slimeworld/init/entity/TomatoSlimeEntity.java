@@ -1,18 +1,17 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
+import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.DifficultyInstance;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.ServerLevelAccessor;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.entity.TravelersPlateSlimeEntity;
-
-import javax.annotation.Nullable;
 
 public class TomatoSlimeEntity extends TravelersPlateSlimeEntity {
     public TomatoSlimeEntity(EntityType<? extends TomatoSlimeEntity> type, Level worldIn) {
@@ -21,18 +20,24 @@ public class TomatoSlimeEntity extends TravelersPlateSlimeEntity {
 
     @Override
     protected @NotNull ParticleOptions getParticleType() {
-        return ModParticles.OceanSlimeParticle.get();
+        return ModParticles.TomatoSlimeParticle.get();
     }
 
-    @Nullable
-    @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
 
-        return super.finalizeSpawn(pLevel, difficulty, pReason, pSpawnData, pDataTag);
+    @Override
+    protected void actuallyHurt(@NotNull DamageSource damageSrc, float damageAmount) {
+        super.actuallyHurt(damageSrc, damageAmount);
+        if (damageSrc.getEntity() instanceof LivingEntity living) {
+            living.heal(this.getSize());
+            level().playSound(null, living.getX(), living.getY(), living.getZ(), SoundEvents.GENERIC_EAT, living.getSoundSource(), 1, 0.5f);
+            if (living instanceof Player player){
+                player.eat(level(), ModItems.TomatoPudding.get().getDefaultInstance());
+            }
+        }
     }
 
     @Override
     protected @NotNull MaterialId getPlating() {
-        return MaterialIds.bronze;
+        return MaterialIds.iron;
     }
 }

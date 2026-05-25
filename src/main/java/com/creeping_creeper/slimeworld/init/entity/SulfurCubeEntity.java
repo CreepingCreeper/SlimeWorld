@@ -522,11 +522,6 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     }
 
     @Override
-    public boolean isBaby() {
-        return this.isTiny();
-    }
-
-    @Override
     public float getStepHeight() {
         return hasBodyItem() ? 0.0F : super.getStepHeight();
     }

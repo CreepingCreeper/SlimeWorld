@@ -167,5 +167,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "tconstruct:entities/sky_slime"
+  "random_sequence": "slimeworld:entities/ocean_slime"
 }

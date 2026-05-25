@@ -53,6 +53,7 @@
   "block.slimeworld.ocean_cake": "OceansLime Cake",
   "block.slimeworld.slime_berry_bush": "Slimeberries",
   "block.slimeworld.berriper_bush": "Berripers",
+  "item.slimeworld.tomato_pudding": "Tomato Pudding",
 
   "block.slimeworld.fiery_flower": "Fierycoreopsis",
   "block.slimeworld.poison_flower": "Poisonthorn",
@@ -92,6 +93,8 @@
   "item.slimeworld.ichor_slime_spawn_egg": "Ichorslime Spawn Egg",
   "entity.slimeworld.origin_slime": "Originslime",
   "item.slimeworld.origin_slime_spawn_egg": "Originslime Spawn Egg",
+  "entity.slimeworld.tomato_slime": "Tomatoslime",
+  "item.slimeworld.tomato_slime_spawn_egg": "Tomatoslime Spawn Egg",
   "entity.slimeworld.sulfur_cube": "Sulfur Cube",
   "item.slimeworld.sulfur_cube_bucket": "Bucket of Sulfur Cube",
   "item.slimeworld.sulfur_cube_spawn_egg": "Sulfur Cube Spawn Egg",
