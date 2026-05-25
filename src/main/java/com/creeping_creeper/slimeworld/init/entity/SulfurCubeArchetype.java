@@ -60,8 +60,8 @@ public class SulfurCubeArchetype {
             attribute.addPermanentModifier(new AttributeModifier(KNOCKBACK_RESISTANCE, "slimeworld.sulfur_cube.knockback_resistance", knockback, AttributeModifier.Operation.ADDITION));
         }
         entity.bounciness = bounciness;
-        entity.frictionModifier = 1.0F + frictionModifier;
-        entity.airDragModifier = 1.0F + airDragModifier;
+        entity.frictionModifier = frictionModifier;
+        entity.airDragModifier = airDragModifier;
         entity.floatsInLiquids = floatsInLiquids;
         entity.maxFuseFromArchetype = maxFuse;
         entity.damage = damage;
@@ -79,6 +79,6 @@ public class SulfurCubeArchetype {
         entity.airDragModifier = 1.0F;
         entity.floatsInLiquids = false;
         entity.maxFuseFromArchetype = -1;
-        entity.damage = -1.0F;
+        entity.damage = 0.0F;
     }
 }

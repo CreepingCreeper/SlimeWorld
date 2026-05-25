@@ -75,12 +75,12 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     private int pickupTimer = 0;
     float bounciness = 0;
     private Vec3 bounce = Vec3.ZERO;
-    float frictionModifier = 1.0F;
-    float airDragModifier = 1.0F;
+    float frictionModifier;
+    float airDragModifier;
     boolean floatsInLiquids = false;
     int maxFuseFromArchetype = -1;
     private int fuse = -1;
-    float damage = -1;
+    float damage = 0.0F;
 
     public SulfurCubeEntity(EntityType<? extends SulfurCubeEntity> type, Level worldIn) {
         super(type, worldIn);
@@ -341,7 +341,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
                 }
             } else {
                 BlockPos blockpos = this.getBlockPosBelowThatAffectsMyMovement();
-                float blockFriction = this.onGround() ? computeModifiedFriction(this.level().getBlockState(blockpos).getBlock().getFriction(), this.frictionModifier) : 1.0F;
+                float blockFriction = this.onGround() ? computeModifiedFriction(this.level().getBlockState(blockpos).getBlock().getFriction(), this.frictionModifier + 1.0F) : 1.0F;
                 Vec3 vec35 = this.handleRelativeFrictionAndCalculateMovement(travelVector, blockFriction);
                 double d2 = vec35.y;
                 if (this.hasEffect(MobEffects.LEVITATION)) {
@@ -359,7 +359,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
                 if (this.shouldDiscardFriction()) {
                     this.setDeltaMovement(vec35.x, d2, vec35.z);
                 } else {
-                    float entityAirDragModifier = this.airDragModifier;
+                    float entityAirDragModifier = this.airDragModifier + 1.0F;
                     float airDrag = computeModifiedFriction(0.91F, entityAirDragModifier);
                     double friction = (double) blockFriction * airDrag;
                     this.setDeltaMovement(vec35.x * friction, d2 * friction, vec35.z * friction);
@@ -744,7 +744,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
 
     private void applyContactDamage(Entity entity) {
         Level level = entity.level();
-        if (level instanceof ServerLevel && this.damage >= 0.0) {
+        if (level instanceof ServerLevel && this.damage > 0.0F) {
             DamageSource source = TinkerDamageTypes.source(level.registryAccess(), DamageTypes.HOT_FLOOR, this);
             AttributeInstance knockbackResistance = null;
             if (entity instanceof LivingEntity living){
