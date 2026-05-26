@@ -8,6 +8,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
+import org.jetbrains.annotations.NotNull;
 
 public class MagicbubbleEntity extends Entity {
     private int age = 0;
@@ -17,7 +18,7 @@ public class MagicbubbleEntity extends Entity {
     }
 
     @Override
-    public boolean isInvulnerableTo(DamageSource source) {
+    public boolean isInvulnerableTo(@NotNull DamageSource source) {
         return this.isRemoved() || !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY);
     }
 

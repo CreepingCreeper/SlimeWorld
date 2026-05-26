@@ -1,10 +1,9 @@
 package com.creeping_creeper.slimeworld.events;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.init.entity.BoggedEntity;
-import com.creeping_creeper.slimeworld.init.entity.BossSlimeEntity;
-import com.creeping_creeper.slimeworld.init.entity.IchorSlimeEntity;
-import com.creeping_creeper.slimeworld.init.entity.ParchedEntity;
+import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.entity.*;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -16,8 +15,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SkullBlock;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -79,6 +80,19 @@ public class EntityEvents {
                         event.getDrops().add(dying.spawnAtLocation(TinkerWorld.heads.get(TinkerHeadType.BLAZING_BONE)));
                     }
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    static void projectileHit(ProjectileImpactEvent event) {
+        Entity entity = event.getEntity();
+        Level level = entity.level();
+        if (entity.getType().is(ModTags.EntityTypes.SUMMON_TOMATO_SLIME) && level.random.nextInt(10) == 0){
+            TomatoSlimeEntity slime = ModEntities.TomatoSlimeEntity.get().create(level);
+            if (slime != null) {
+                slime.moveTo(entity.getX(), entity.getY(), entity.getZ(), entity.getYRot(), entity.getXRot());
+                level.addFreshEntity(slime);
             }
         }
     }

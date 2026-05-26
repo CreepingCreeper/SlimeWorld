@@ -9,9 +9,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
 import slimeknights.mantle.registration.object.EntityObject;
+import slimeknights.tconstruct.tools.entity.FluidEffectProjectile;
 
 public class ModEntities {
     protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(SlimeWorld.MODID);
+
+    public static final RegistryObject<EntityType<TomatoProjectile>> TomatoProjectileEntity = ENTITIES.register("tomato_projectile", () ->
+            EntityType.Builder.<TomatoProjectile>of(TomatoProjectile::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).setShouldReceiveVelocityUpdates(false));
 
     public static final RegistryObject<EntityType<MagicbubbleEntity>> Magicbubble = ENTITIES.register("magicbubble", () ->
             EntityType.Builder.of(MagicbubbleEntity::new, MobCategory.MISC)
@@ -20,6 +24,7 @@ public class ModEntities {
                     .clientTrackingRange(16)
                     .updateInterval(1)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.Magicbubble.get().create(world)));
+
     public static final EntityObject<OceanSlimeEntity> OceanSlimeEntity = ENTITIES.registerWithEgg("ocean_slime", () ->
             EntityType.Builder.of(OceanSlimeEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)

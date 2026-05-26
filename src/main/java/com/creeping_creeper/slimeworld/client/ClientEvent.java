@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Slime;
@@ -41,6 +42,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.shared.block.SlimeType;
+import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.world.block.FoliageType;
 import slimeknights.tconstruct.world.client.SlimeColorizer;
 import slimeknights.tconstruct.world.client.TinkerSlimeRenderer;
@@ -60,6 +62,7 @@ public class ClientEvent extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntities.TomatoProjectileEntity.get(), context -> new ThrownItemRenderer<>(context, 0.75f, true));
         event.registerEntityRenderer(ModEntities.Magicbubble.get(), FloatingWindRenderer::new);
         event.registerEntityRenderer(ModEntities.OceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.IchorSlimeEntity.get(), ICHOR_SLIME_FACTORY);
