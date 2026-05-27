@@ -42,7 +42,6 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.shared.block.SlimeType;
-import slimeknights.tconstruct.tools.TinkerModifiers;
 import slimeknights.tconstruct.world.block.FoliageType;
 import slimeknights.tconstruct.world.client.SlimeColorizer;
 import slimeknights.tconstruct.world.client.TinkerSlimeRenderer;
@@ -95,7 +94,6 @@ public class ClientEvent extends ClientEventBase {
         event.registerSpriteSet(ModParticles.GeyserBase.get(), GeyserBaseParticle.Provider::new);
         event.registerSpriteSet(ModParticles.GeyserPoof.get(), GeyserBaseParticle.Provider::new);
         event.registerSpriteSet(ModParticles.GeyserPlume.get(), GeyserPlumeParticle.Provider::new);
-
         event.registerSpriteSet(ModParticles.WhiteSporeParticle.get(), SporeParticle.WhiteSporeProvider::new);
         event.registerSpriteSet(ModParticles.BlackSporeParticle.get(), SporeParticle.BlackSporeProvider::new);
     }

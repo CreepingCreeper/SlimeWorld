@@ -9,7 +9,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
 import slimeknights.mantle.registration.object.EntityObject;
-import slimeknights.tconstruct.tools.entity.FluidEffectProjectile;
 
 public class ModEntities {
     protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(SlimeWorld.MODID);

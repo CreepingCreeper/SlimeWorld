@@ -4,7 +4,6 @@ import com.creeping_creeper.slimeworld.init.entity.TomatoProjectile;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -17,7 +16,6 @@ import slimeknights.tconstruct.library.module.ModuleHookMap;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.item.ranged.ModifiableLauncherItem;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
-import slimeknights.tconstruct.tools.entity.FluidEffectProjectile;
 
 public class OverTomatoModifier extends Modifier implements MeleeHitModifierHook {
     @Override
@@ -28,7 +26,7 @@ public class OverTomatoModifier extends Modifier implements MeleeHitModifierHook
 
     @Override
     public void afterMeleeHit(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull ToolAttackContext context, float damageDealt) {
-     if (OverslimeModule.getCapacity(tool) > 0 && RANDOM.nextFloat() > modifier.getLevel() * 0.15F){
+     if (OverslimeModule.getCapacity(tool) > 0 && RANDOM.nextFloat() < modifier.getLevel() * 0.15F){
          LivingEntity living = context.getAttacker();
          Level level = context.getLevel();
          int shots = 1 + 2 * modifier.getLevel();

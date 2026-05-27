@@ -37,6 +37,7 @@ public class RegisterEvents {
         event.register(ModEntities.OceanSlimeEntity.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OceanSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.IchorSlimeEntity.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IchorSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.OriginSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.SAND), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.TomatoSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.DIRT), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.TerracubeSpawn, ModTags.Blocks.TERRACUBE_SPAWN, 8), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.BoggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ParchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);

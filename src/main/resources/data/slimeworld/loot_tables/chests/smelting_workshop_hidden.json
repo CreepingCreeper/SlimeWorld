@@ -8,9 +8,9 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "modifier": "tconstruct:fiery",
+              "tag": "tconstruct:overslime_friend",
               "max_level": 5,
-              "function": "slimeworld:add_modifier"
+              "function": "slimeworld:random_modifier"
             }
           ],
           "name": "slimeworld:melee_rune"

@@ -97,6 +97,12 @@
     "misc": [],
     "monster": [
       {
+        "type": "slimeworld:tomato_slime",
+        "maxCount": 4,
+        "minCount": 2,
+        "weight": 100
+      },
+      {
         "type": "minecraft:spider",
         "maxCount": 4,
         "minCount": 4,
