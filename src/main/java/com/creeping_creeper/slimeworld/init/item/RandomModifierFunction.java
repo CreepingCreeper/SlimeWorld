@@ -46,7 +46,7 @@ public class RandomModifierFunction extends LootItemConditionalFunction {
         return stack;
     }
 
-    public static ItemStack withModifier(ItemStack stack, ModifierId modifier, int maxLevel) {
+    private static ItemStack withModifier(ItemStack stack, ModifierId modifier, int maxLevel) {
         ItemStack stack1 = stack.copy();
         stack1.getOrCreateTag().putString(ModifierRuneItem.TAG_MODIFIER, modifier.toString());
         stack1.getOrCreateTag().putInt(ModifierRuneItem.MAX_LEVEL, maxLevel);
@@ -58,7 +58,7 @@ public class RandomModifierFunction extends LootItemConditionalFunction {
         return ModOthers.RandomModifier.get();
     }
 
-    public static Builder addModifier(TagKey<Modifier> tag, int maxLevel) {
+    public static Builder randomModifier(TagKey<Modifier> tag, int maxLevel) {
         return new RandomModifierFunction.Builder(tag, maxLevel);
     }
 

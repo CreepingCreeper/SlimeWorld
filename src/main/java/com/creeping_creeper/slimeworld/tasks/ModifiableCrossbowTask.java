@@ -25,6 +25,7 @@ import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.tconstruct.library.modifiers.hook.ranged.BowAmmoModifierHook;
 import slimeknights.tconstruct.library.tools.item.ranged.ModifiableCrossbowItem;
@@ -41,22 +42,22 @@ public class ModifiableCrossbowTask implements IRangedAttackTask {
     public static final ResourceLocation UID = new ResourceLocation(SlimeWorld.MODID, "crossbow_attack");
 
     @Override
-    public ResourceLocation getUid() {
+    public @NotNull ResourceLocation getUid() {
         return UID;
     }
 
     @Override
-    public ItemStack getIcon() {
+    public @NotNull ItemStack getIcon() {
         return TinkerTools.crossbow.get().getRenderTool();
     }
 
     @Override
-    public SoundEvent getAmbientSound(EntityMaid maid) {
+    public SoundEvent getAmbientSound(@NotNull EntityMaid maid) {
         return SoundUtil.attackSound(maid, InitSounds.MAID_RANGE_ATTACK.get(), 0.5F);
     }
 
     @Override
-    public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
+    public @NotNull List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(@NotNull EntityMaid maid) {
         BehaviorControl<EntityMaid> supplementedTask = StartAttacking.create(e -> hasBow(e) && hasArrow(e), IRangedAttackTask::findFirstValidAttackTarget);
         BehaviorControl<EntityMaid> findTargetTask = StopAttackingIfTargetInvalid.create((target) -> !hasBow(maid) || !hasArrow(maid) || farAway(target, maid));
         BehaviorControl<EntityMaid> moveToTargetTask = MaidRangedWalkToTarget.create(0.6f);
@@ -73,7 +74,7 @@ public class ModifiableCrossbowTask implements IRangedAttackTask {
     }
 
     @Override
-    public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createRideBrainTasks(EntityMaid maid) {
+    public @NotNull List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createRideBrainTasks(@NotNull EntityMaid maid) {
         BehaviorControl<EntityMaid> supplementedTask = StartAttacking.create(e -> hasBow(e) && hasArrow(e), IRangedAttackTask::findFirstValidAttackTarget);
         BehaviorControl<EntityMaid> findTargetTask = StopAttackingIfTargetInvalid.create((target) -> !hasBow(maid) || !hasArrow(maid) || farAway(target, maid));
         BehaviorControl<EntityMaid> shootTargetTask = new MaidShootTargetTask();
@@ -86,7 +87,7 @@ public class ModifiableCrossbowTask implements IRangedAttackTask {
     }
 
     @Override
-    public void performRangedAttack(EntityMaid entityMaid, LivingEntity livingEntity, float v) {
+    public void performRangedAttack(@NotNull EntityMaid entityMaid, @NotNull LivingEntity livingEntity, float v) {
         InteractionHand interactionhand = ProjectileUtil.getWeaponHoldingHand(entityMaid, (item) -> item instanceof CrossbowItem);
         ItemStack itemstack = entityMaid.getItemInHand(interactionhand);
         if (entityMaid.isHolding((is) -> is.getItem() instanceof ModifiableCrossbowItem)) {
@@ -109,7 +110,7 @@ public class ModifiableCrossbowTask implements IRangedAttackTask {
     }
 
     @Override
-    public boolean isWeapon(EntityMaid maid, ItemStack stack) {
+    public boolean isWeapon(EntityMaid maid, @NotNull ItemStack stack) {
         ItemStack item = maid.getMainHandItem();
         return item.getItem() instanceof ModifiableCrossbowItem && !ToolStack.from(item).isBroken();
     }
@@ -128,8 +129,7 @@ public class ModifiableCrossbowTask implements IRangedAttackTask {
             return null;
         }
         ArrowItem arrowItem = ammo.getItem() instanceof ArrowItem arrow ? arrow : (ArrowItem) Items.ARROW;
-        AbstractArrow arrowEntity = arrowItem.createArrow(maid.level(), ammo, maid);
-        return arrowEntity;
+        return arrowItem.createArrow(maid.level(), ammo, maid);
     }
 
     private boolean farAway(LivingEntity target, EntityMaid maid) {

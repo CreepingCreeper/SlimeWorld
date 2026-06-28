@@ -49,28 +49,27 @@ public class ModifiableBowTask implements IRangedAttackTask {
     public static final ResourceLocation UID = new ResourceLocation(SlimeWorld.MODID, "ranged_attack");
 
     @Override
-    public ResourceLocation getUid() {
+    public @NotNull ResourceLocation getUid() {
         return UID;
     }
 
     @Override
-    public ItemStack getIcon() {
+    public @NotNull ItemStack getIcon() {
         return TinkerTools.longbow.get().getRenderTool();
     }
 
     @Override
-    public SoundEvent getAmbientSound(EntityMaid maid) {
+    public SoundEvent getAmbientSound(@NotNull EntityMaid maid) {
         return SoundUtil.attackSound(maid, InitSounds.MAID_RANGE_ATTACK.get(), 0.5F);
     }
 
     @Override
-    public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(EntityMaid maid) {
+    public @NotNull List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createBrainTasks(@NotNull EntityMaid maid) {
         BehaviorControl<EntityMaid> supplementedTask = StartAttacking.create(e -> hasBow(e) && hasArrow(e), IRangedAttackTask::findFirstValidAttackTarget);
         BehaviorControl<EntityMaid> findTargetTask = StopAttackingIfTargetInvalid.create((target) -> !hasBow(maid) || !hasArrow(maid) || farAway(target, maid));
         BehaviorControl<EntityMaid> moveToTargetTask = MaidRangedWalkToTarget.create(0.6f);
         BehaviorControl<EntityMaid> maidAttackStrafingTask = new MaidAttackStrafingTask();
         BehaviorControl<EntityMaid> shootTargetTask = new MaidShootTargetTask();
-
         return Lists.newArrayList(
                 Pair.of(5, supplementedTask),
                 Pair.of(5, findTargetTask),
@@ -81,7 +80,7 @@ public class ModifiableBowTask implements IRangedAttackTask {
     }
 
     @Override
-    public List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createRideBrainTasks(EntityMaid maid) {
+    public @NotNull List<Pair<Integer, BehaviorControl<? super EntityMaid>>> createRideBrainTasks(@NotNull EntityMaid maid) {
         BehaviorControl<EntityMaid> supplementedTask = StartAttacking.create(e -> hasBow(e) && hasArrow(e), IRangedAttackTask::findFirstValidAttackTarget);
         BehaviorControl<EntityMaid> findTargetTask = StopAttackingIfTargetInvalid.create((target) -> !hasBow(maid) || !hasArrow(maid) || farAway(target, maid));
         BehaviorControl<EntityMaid> shootTargetTask = new MaidShootTargetTask();
@@ -94,7 +93,7 @@ public class ModifiableBowTask implements IRangedAttackTask {
     }
 
     @Override
-    public void performRangedAttack(EntityMaid shooter, LivingEntity target, float distanceFactor) {
+    public void performRangedAttack(@NotNull EntityMaid shooter, @NotNull LivingEntity target, float distanceFactor) {
         AbstractArrow entityArrow = getArrow(shooter);
         if (entityArrow != null) {
             ItemStack mainHandItem = shooter.getMainHandItem();

@@ -2,13 +2,13 @@
   "placement": {
     "type": "minecraft:random_spread",
     "frequency": 0.5,
-    "salt": 67350080,
+    "salt": 22625445,
     "separation": 7,
     "spacing": 15
   },
   "structures": [
     {
-      "structure": "slimeworld:grout",
+      "structure": "slimeworld:bakery",
       "weight": 1
     }
   ]

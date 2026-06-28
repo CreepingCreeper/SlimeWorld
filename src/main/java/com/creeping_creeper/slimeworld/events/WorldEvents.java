@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import org.jetbrains.annotations.NotNull;
 
 public class WorldEvents {
     public static void init() {
@@ -33,23 +34,7 @@ public class WorldEvents {
             private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
 
             @Override
-            public ItemStack execute(BlockSource source, ItemStack stack) {
-                DispensibleContainerItem container = (DispensibleContainerItem)stack.getItem();
-                BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
-                Level level = source.getLevel();
-                if (container.emptyContents(null, level, blockpos, null, stack)) {
-                    container.checkExtraContent(null, level, stack, blockpos);
-                    return new ItemStack(Items.BUCKET);
-                } else {
-                    return this.defaultDispenseItemBehavior.dispense(source, stack);
-                }
-            }
-        };
-        DispenseItemBehavior dispenseEmptyMobBucket = new DefaultDispenseItemBehavior() {
-            private final DefaultDispenseItemBehavior defaultDispenseItemBehavior = new DefaultDispenseItemBehavior();
-
-            @Override
-            public ItemStack execute(BlockSource source, ItemStack stack) {
+            public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
                 DispensibleContainerItem container = (DispensibleContainerItem)stack.getItem();
                 BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
                 Level level = source.getLevel();

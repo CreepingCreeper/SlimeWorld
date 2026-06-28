@@ -18,7 +18,7 @@ public class GeyserParticleOptions implements ParticleOptions {
         @Override
         public @NotNull GeyserParticleOptions fromCommand(@NotNull ParticleType<GeyserParticleOptions> type, StringReader reader) throws CommandSyntaxException {
             reader.expect(' ');
-            int waterBlocks = reader.readInt(); // 读取整数
+            int waterBlocks = reader.readInt();
             return new GeyserParticleOptions(type, waterBlocks);
         }
 
