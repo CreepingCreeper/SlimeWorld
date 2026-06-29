@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "slimeworld:block/sulfur_bricks_slab"
+    },
+    "type=double": {
+      "model": "slimeworld:block/sulfur_bricks_planks"
+    },
+    "type=top": {
+      "model": "slimeworld:block/sulfur_bricks_slab_top"
+    }
+  }
+}

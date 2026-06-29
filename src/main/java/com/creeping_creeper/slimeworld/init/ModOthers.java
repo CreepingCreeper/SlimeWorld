@@ -19,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.tconstruct.world.worldgen.trees.config.SlimeFungusConfig;
 
+@SuppressWarnings("unused")
 public class ModOthers {
     protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, SlimeWorld.MODID);
     protected static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SlimeWorld.MODID);

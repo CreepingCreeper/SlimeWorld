@@ -26,6 +26,7 @@ import slimeknights.tconstruct.common.TinkerEffect;
 import slimeknights.tconstruct.shared.TinkerAttributes;
 import slimeknights.tconstruct.shared.TinkerEffects;
 
+@SuppressWarnings("unused")
 public class ModEffects {
     protected static final EnumDeferredRegister<MobEffect> MOB_EFFECTS = new EnumDeferredRegister<>(Registries.MOB_EFFECT, SlimeWorld.MODID);
     protected static final PotionDeferredRegister POTIONS = new PotionDeferredRegister(SlimeWorld.MODID);

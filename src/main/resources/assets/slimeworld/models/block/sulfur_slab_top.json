@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab_top",
+  "textures": {
+    "bottom": "slimeworld:block/sulfur",
+    "side": "slimeworld:block/sulfur",
+    "top": "slimeworld:block/sulfur"
+  }
+}

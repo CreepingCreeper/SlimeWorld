@@ -32,8 +32,10 @@ import slimeknights.mantle.item.BlockTooltipItem;
 import slimeknights.mantle.item.BurnableBlockItem;
 import slimeknights.mantle.registration.deferred.BlockEntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
+import slimeknights.mantle.registration.object.BuildingBlockObject;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
+import slimeknights.mantle.registration.object.WallBuildingBlockObject;
 import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.registration.BlockDeferredRegisterExtension;
@@ -71,7 +73,11 @@ public class ModItems {
     protected static final Function<Block,? extends BlockItem> UNCOMMON_BLOCK_ITEM = (b) -> new BlockItem(b, new Item.Properties().rarity(Rarity.UNCOMMON));
 
     protected static BlockBehaviour.Properties metalBuilder(MapColor color) {
-        return builder(color).sound(METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0f);
+        return builder(color).sound(METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F);
+    }
+
+    protected static BlockBehaviour.Properties buildingBuilder(MapColor color) {
+        return builder(color).requiresCorrectToolForDrops().strength(1.5F,6);
     }
 
     public static final ItemObject<Item> NecroticBoneMeal = ITEMS.register("necrotic_bone_meal", () -> new NecroticBoneMealItem(GENERAL_PROPS));
@@ -85,7 +91,9 @@ public class ModItems {
     public static final ItemObject<Block> SlimeGravel = BLOCKS.register("slime_gravel", () -> new SlimeGravelBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.GRAVEL).instrument(NoteBlockInstrument.SNARE).strength(0.6F)), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
 
-    public static final ItemObject<Block> Sulfur = BLOCKS.register("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM).strength(1.5F, 6.0F).requiresCorrectToolForDrops()), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject Sulfur = BLOCKS.registerWallBuilding("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM)), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject PolishedSulfur = BLOCKS.registerWallBuilding("polished_sulfur", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject SulfurBricks = BLOCKS.registerWallBuilding("sulfur_bricks", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> SulfurMud = BLOCKS.register("sulfur_mud", () -> new Block(BlockBehaviour.Properties.copy(Sulfur.get()).sound(SoundType.MUD)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> SulfurSpike = BLOCKS.register("sulfur_spike", () -> new SulfurSpikeBlock(builder(MapColor.TERRACOTTA_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(ModSounds.SULFUR).randomTicks().strength(1.5F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurNausea = BLOCKS.register("potent_sulfur_nausea", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
@@ -193,6 +201,9 @@ public class ModItems {
         output.accept(IchorVent);
 
         output.accept(Sulfur);
+        acceptWallBuilding(output, Sulfur);
+        acceptWallBuilding(output, PolishedSulfur);
+        acceptWallBuilding(output, SulfurBricks);
         output.accept(SulfurMud);
         output.accept(PotentSulfurNausea);
         output.accept(PotentSulfurBlindness);
@@ -299,6 +310,13 @@ public class ModItems {
         for (GeodeItemObject.BudSize size : GeodeItemObject.BudSize.values()) {
             output.accept(geode.getBud(size));
         }
+    }
+
+    private static void acceptWallBuilding(CreativeModeTab.Output output, WallBuildingBlockObject building) {
+        output.accept(building.get());
+        output.accept(building.getStairs());
+        output.accept(building.getSlab());
+        output.accept(building.getWall());
     }
 
     public static void registers(IEventBus bus) {

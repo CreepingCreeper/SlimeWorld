@@ -23,6 +23,7 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
 
+@SuppressWarnings("unused")
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SlimeWorld {

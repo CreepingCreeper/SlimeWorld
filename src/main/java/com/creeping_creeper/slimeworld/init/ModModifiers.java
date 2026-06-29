@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import slimeknights.tconstruct.library.modifiers.util.ModifierDeferredRegister;
 import slimeknights.tconstruct.library.modifiers.util.StaticModifier;
 
+@SuppressWarnings("unused")
 public class ModModifiers {
     private static final ModifierDeferredRegister MODIFIERS = ModifierDeferredRegister.create(SlimeWorld.MODID);
     public static final StaticModifier<SputteringModifier> sputtering = MODIFIERS.register("sputtering", SputteringModifier::new);
