@@ -1,6 +1,5 @@
 package com.creeping_creeper.slimeworld.library;
 
-import lombok.RequiredArgsConstructor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
@@ -13,7 +12,6 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 
-@RequiredArgsConstructor
 public class BiomeSlimePlacementPredicate <T extends Slime> implements SpawnPlacements.SpawnPredicate<T> {
     private TagKey<Biome> biomeTag;
     private TagKey<Block> blockTag;

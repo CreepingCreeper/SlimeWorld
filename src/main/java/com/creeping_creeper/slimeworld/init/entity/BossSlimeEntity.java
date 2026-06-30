@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
-import com.creeping_creeper.slimeworld.data.ModModifierIds;
+import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
 import com.google.common.annotations.VisibleForTesting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

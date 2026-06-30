@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.client.particle;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -37,7 +36,6 @@ public class GeyserParticleOptions implements ParticleOptions {
 
     private final ParticleType<GeyserParticleOptions> type;
     public final int waterBlocks;
-    @Getter
     private BlockPos pos;
 
     public GeyserParticleOptions(ParticleType<GeyserParticleOptions> type, int waterBlocks) {

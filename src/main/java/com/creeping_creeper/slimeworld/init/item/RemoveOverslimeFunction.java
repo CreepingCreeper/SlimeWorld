@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.init.item;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.data.ModModifierIds;
+import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
 import com.creeping_creeper.slimeworld.init.ModOthers;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;

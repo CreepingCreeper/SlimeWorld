@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.item;
 
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.block.NecroticBonemealableBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;

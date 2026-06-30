@@ -1,8 +1,8 @@
 package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.data.ModResourceKeys;
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModResourceKeys;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.block.*;
 import com.creeping_creeper.slimeworld.init.block.bubble.BubbleBlock;
 import com.creeping_creeper.slimeworld.init.block.bubble.SlimeBubbleBlock;
@@ -32,7 +32,6 @@ import slimeknights.mantle.item.BlockTooltipItem;
 import slimeknights.mantle.item.BurnableBlockItem;
 import slimeknights.mantle.registration.deferred.BlockEntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
-import slimeknights.mantle.registration.object.BuildingBlockObject;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
 import slimeknights.mantle.registration.object.WallBuildingBlockObject;

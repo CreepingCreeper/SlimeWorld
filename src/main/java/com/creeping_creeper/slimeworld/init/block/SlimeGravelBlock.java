@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block;
 
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

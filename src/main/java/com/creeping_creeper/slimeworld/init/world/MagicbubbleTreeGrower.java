@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.world;
 
-import com.creeping_creeper.slimeworld.data.ModResourceKeys;
+import com.creeping_creeper.slimeworld.data.key.ModResourceKeys;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;

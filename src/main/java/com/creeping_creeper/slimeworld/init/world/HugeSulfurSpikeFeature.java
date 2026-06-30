@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.world;
 
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;

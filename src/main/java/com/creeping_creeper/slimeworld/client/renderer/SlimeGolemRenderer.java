@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("removal")
 public class SlimeGolemRenderer extends HumanoidMobRenderer<SlimeGolemEntity, SlimeGolemModel<SlimeGolemEntity>>{
     private static final ResourceLocation SKELETON_LOCATION = new ResourceLocation("textures/entity/skeleton/skeleton.png");
 

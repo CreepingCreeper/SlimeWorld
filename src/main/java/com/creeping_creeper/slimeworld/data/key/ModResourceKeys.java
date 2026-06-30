@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.data;
+package com.creeping_creeper.slimeworld.data.key;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import net.minecraft.core.Registry;

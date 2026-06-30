@@ -1,17 +1,24 @@
 package com.creeping_creeper.slimeworld;
 
+import com.creeping_creeper.slimeworld.data.provider.ModRecipeProvider;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
 import com.creeping_creeper.slimeworld.events.WorldEvents;
 import com.creeping_creeper.slimeworld.init.*;
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,7 +30,10 @@ import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
 
-@SuppressWarnings("unused")
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+
+@SuppressWarnings("unused, removal")
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SlimeWorld {
@@ -33,18 +43,19 @@ public class SlimeWorld {
     public static final ResourceKey<Level> SLIMEWORLD = ResourceKey.create(Registries.DIMENSION, SLIMEWORLD_LOCATION);
 
     public SlimeWorld() {
-      IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-      bus.addListener(this::commonSetup);
-      ModItems.registers(bus);
-      ModFluids.registers(bus);
-      ModModifiers.registers(bus);
-      ModEffects.registers(bus);
-      ModEntities.registers(bus);
-      ModOthers.registers(bus);
-      ModParticles.registers(bus);
-      ModSounds.registers(bus);
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+        //bus.addListener(this::commonSetup);
+        ModItems.registers(bus);
+        ModFluids.registers(bus);
+        ModModifiers.registers(bus);
+        ModEffects.registers(bus);
+        ModEntities.registers(bus);
+        ModOthers.registers(bus);
+        ModParticles.registers(bus);
+        ModSounds.registers(bus);
     }
 
+    @SubscribeEvent
     void commonSetup(final FMLCommonSetupEvent event) {
         ModEffects.init();
         WorldEvents.init();
@@ -52,7 +63,17 @@ public class SlimeWorld {
     }
 
     @SubscribeEvent
-    static void gatherData(GatherDataEvent event) {
+    static void gatherData(final GatherDataEvent event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        boolean server = event.includeServer();
+        RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder();
+        DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
+
+        generator.addProvider(server, datapackProvider);
+        generator.addProvider(server, new ModRecipeProvider(output));
     }
 
     public static String makeTranslationKey(String base, String name) {

@@ -1,7 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block.grass;
 
 import com.google.common.collect.Lists;
-import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +25,6 @@ import java.util.List;
 public class IchorTallGrassBlock extends BushBlock implements IForgeShearable {
   private static final VoxelShape SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 13.0D, 14.0D);
 
-  @Getter
   private final FoliageType foliageType;
   public IchorTallGrassBlock(Properties properties, FoliageType foliageType) {
     super(properties);

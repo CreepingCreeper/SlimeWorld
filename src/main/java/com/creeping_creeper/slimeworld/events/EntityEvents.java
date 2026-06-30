@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.events;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.entity.*;
 import net.minecraft.world.damagesource.DamageSource;

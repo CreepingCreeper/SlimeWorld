@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block;
 
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.init.ModSounds;

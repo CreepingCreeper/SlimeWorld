@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block.bush;
 
-import com.creeping_creeper.slimeworld.data.ModTags;
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.block.NecroticBonemealableBlock;
 import com.google.common.collect.Lists;
