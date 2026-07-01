@@ -33,15 +33,13 @@ import slimeknights.tconstruct.library.utils.Util;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("unused, removal")
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SlimeWorld {
     public static final String MODID = "slimeworld";
     public static final Logger LOG = LogUtils.getLogger();
-    public static final ResourceLocation SLIMEWORLD_LOCATION = SlimeWorld.getResource("slimeworld");
-    public static final ResourceKey<Level> SLIMEWORLD = ResourceKey.create(Registries.DIMENSION, SLIMEWORLD_LOCATION);
 
+    @SuppressWarnings("removal")
     public SlimeWorld() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         //bus.addListener(this::commonSetup);
@@ -96,6 +94,7 @@ public class SlimeWorld {
         return type + "." + MODID + "." + name;
     }
 
+    @SuppressWarnings("removal")
     public static ResourceLocation getResource(String name) {
         return new ResourceLocation(MODID, name);
     }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "slimeworld:ocean_slime",
+  "key": {
+    "#": {
+      "item": "slimeworld:ocean_slime_ball"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "slimeworld:ocean_slime"
+  },
+  "show_notification": true
+}

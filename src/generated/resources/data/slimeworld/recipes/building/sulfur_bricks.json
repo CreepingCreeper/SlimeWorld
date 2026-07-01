@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "slimeworld:sulfur_bricks",
+  "key": {
+    "B": {
+      "item": "slimeworld:polished_sulfur"
+    }
+  },
+  "pattern": [
+    "BBB",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "item": "slimeworld:sulfur_bricks"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "slimeworld:ocean_slime_ball",
+  "ingredients": [
+    {
+      "item": "slimeworld:ocean_congealed_slime"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "slimeworld:ocean_slime_ball"
+  }
+}
