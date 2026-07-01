@@ -91,8 +91,8 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         InventoryChangeTrigger.TriggerInstance hasBlock = RecipeProvider.has(before);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, after, 4)
                 .define('B', before)
-                .pattern("BBB")
-                .pattern("BBB")
+                .pattern("BB")
+                .pattern("BB")
                 .unlockedBy("has_item", hasBlock)
                 .group(afterId.toString())
                 .save(consumer, location(folder + afterId.getPath()));
@@ -104,7 +104,7 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         }
     }
 
-    private void smeltingRecipes(Consumer<FinishedRecipe> consumer,RecipeCategory category, ItemLike before, ItemLike after, String folder, float exp, int time, boolean addBlasting) {
+    private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike before, ItemLike after, String folder, float exp, int time, boolean addBlasting) {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(before), category, after, exp, time)
                 .unlockedBy("has_item", has(before))
                 .save(consumer, wrap(id(after), folder, "_smelting"));
