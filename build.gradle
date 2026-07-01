@@ -118,22 +118,22 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-//if (lljij.toBoolean()) {
-//
-//    reobf {
-//        jarJar {}
-//    }
-//
-//    tasks.jarJar.finalizedBy('reobfJarJar')
-//
-//    tasks.jarJar.configure {
-//        archiveClassifier.set('')
-//    }
-//
-//    jar {
-//        archiveClassifier.set('slim')
-//    }
-//}
+if (lljij.toBoolean()) {
+
+    reobf {
+        jarJar {}
+    }
+
+    tasks.jarJar.finalizedBy('reobfJarJar')
+
+    tasks.jarJar.configure {
+        archiveClassifier.set('')
+    }
+
+    jar {
+        archiveClassifier.set('slim')
+    }
+}
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"

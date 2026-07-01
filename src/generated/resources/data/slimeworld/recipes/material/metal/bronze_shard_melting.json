@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "slimeworld:bronze_shard"
+  },
+  "result": {
+    "amount": 10,
+    "tag": "forge:molten_bronze"
+  },
+  "temperature": 700,
+  "time": 28
+}

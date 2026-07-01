@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "slimeworld:copper_shard"
+  },
+  "result": {
+    "amount": 10,
+    "tag": "forge:molten_copper"
+  },
+  "temperature": 500,
+  "time": 25
+}

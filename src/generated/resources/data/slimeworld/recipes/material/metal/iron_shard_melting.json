@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "item": "slimeworld:iron_shard"
+  },
+  "result": {
+    "amount": 10,
+    "tag": "forge:molten_iron"
+  },
+  "temperature": 800,
+  "time": 30
+}

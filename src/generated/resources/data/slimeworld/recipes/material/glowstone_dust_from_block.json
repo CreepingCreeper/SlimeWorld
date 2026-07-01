@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "slimeworld:glowstone_dust",
+  "ingredients": [
+    {
+      "item": "slimeworld:isomeric_glowstone"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "minecraft:glowstone_dust"
+  }
+}

@@ -4,6 +4,7 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
+import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -16,8 +17,11 @@ import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.recipe.data.ICommonRecipeHelper;
 import slimeknights.mantle.recipe.data.IRecipeHelper;
 import slimeknights.mantle.registration.object.FluidObject;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.registration.GeodeItemObject;
+import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.FluidValues;
+import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.IMeltingContainer;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
@@ -44,14 +48,58 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         polishingRecipes(consumer, ModItems.PolishedSulfur, ModItems.SulfurBricks, building, true);
         stairSlabWallCrafting(consumer, ModItems.SulfurBricks, building, true);
 
-        String metal = "material/metal/";
+        String gadgets = "gadgets/";
+        AlloyRecipeBuilder.alloy(ModFluids.ResonanceSlime, FluidValues.SLIMEBALL * 2)
+                .addInput(TinkerTags.Fluids.SLIME, FluidValues.SLIMEBALL)
+                .addInput(TinkerTags.Fluids.SLIME, FluidValues.SLIMEBALL)
+                .addInput(TinkerFluids.moltenEnder.ingredient(FluidValues.SLIMEBALL))
+                .save(consumer, prefix(ModFluids.ResonanceSlime, gadgets));
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.PotentSulfurNausea)
+                .define('#', ModItems.Sulfur)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_item", RecipeProvider.has(ModItems.Sulfur))
+                .save(consumer, location(gadgets + id(ModItems.PotentSulfurNausea).getPath()));
+
+        String material = "material/";
+        smeltingRecipes(consumer, RecipeCategory.MISC, Ingredient.of(ModItems.GlowstoneOre, ModItems.DeepSlateGlowstoneOre), has(ModTags.Items.GLOWSTONE_ORE), Items.GLOWSTONE_DUST, material, 0.7F, 200, true);
+        packingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "block", ModItems.IsomericGlowstone, "dust", Items.GLOWSTONE_DUST, material);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.IsomericRedstoneBlock)
+                .define('#', Items.REDSTONE)
+                .pattern("##")
+                .pattern("##")
+                .unlockedBy("has_item", RecipeProvider.has(Items.REDSTONE))
+                .save(consumer, wrap(id(ModItems.IsomericRedstoneBlock), material, String.format("_from_%ss", id(Items.REDSTONE).getPath())));
+
+        String metal = material + "metal/";
         metalCrafting(consumer, ModItems.Bronze, metal);
+        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.BronzeCluster), TinkerFluids.moltenBronze, FluidValues.NUGGET * 4, 5/2f)
+                .save(consumer, location(metal + id(ModItems.BronzeCluster).getPath() + "_melting"));
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.BronzeShard, ModItems.Bronze.getNugget(), metal, 0.2F, 50, true);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.CopperShard, TinkerMaterials.copperNugget, metal, 0.2F, 50, true);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.IronShard, Items.IRON_NUGGET, metal, 0.2F, 50, true);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.GoldShard, Items.GOLD_NUGGET, metal, 0.2F, 50, true);
+        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.BronzeShard), TinkerFluids.moltenBronze, FluidValues.NUGGET, 1/2f)
+                .save(consumer, location(metal + id(ModItems.BronzeShard).getPath() + "_melting"));
+        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.CopperShard), TinkerFluids.moltenCopper, FluidValues.NUGGET, 1/2f)
+                .save(consumer, location(metal + id(ModItems.CopperShard).getPath() + "_melting"));
+        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.IronShard), TinkerFluids.moltenIron, FluidValues.NUGGET, 1/2f)
+                .save(consumer, location(metal + id(ModItems.IronShard).getPath() + "_melting"));
+        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.GoldShard), TinkerFluids.moltenGold, FluidValues.NUGGET, 1/2f)
+                .save(consumer, location(metal + id(ModItems.GoldShard).getPath() + "_melting"));
 
-        String slime = "material/ocean_slime/";
+        String slime = material + "ocean_slime/";
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.OceanCake)
+                .define('M', ModFluids.OceanSlime.asItem())
+                .define('S', Ingredient.of(Items.SUGAR))
+                .define('E', Items.EGG)
+                .define('W', Items.SEAGRASS)
+                .pattern("MMM").
+                pattern("SES").
+                pattern("WWW")
+                .unlockedBy("has_item", RecipeProvider.has(Items.SEAGRASS))
+                .save(consumer, location(gadgets + id(ModItems.OceanCake).getPath()));
         geodeRecipes(consumer, ModItems.OceanGeode, ModItems.OceanSlimeBall, ModItems.SlimeGravel, ModFluids.OceanSlime, slime);
         packingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "block", ModItems.OceanSlime, "ball", ModItems.OceanSlimeBall, slime);
         smallPackingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "congealed", ModItems.OceanCongealedSlime, "ball", ModItems.OceanSlimeBall, slime);
@@ -105,17 +153,21 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
     }
 
     private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike before, ItemLike after, String folder, float exp, int time, boolean addBlasting) {
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(before), category, after, exp, time)
-                .unlockedBy("has_item", has(before))
+        smeltingRecipes(consumer, category, Ingredient.of(before), has(before), after, folder, exp, time, addBlasting);
+    }
+
+    private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, Ingredient before, CriterionTriggerInstance instance, ItemLike after, String folder, float exp, int time, boolean addBlasting) {
+        SimpleCookingRecipeBuilder.smelting(before, category, after, exp, time)
+                .unlockedBy("has_item", instance)
                 .save(consumer, wrap(id(after), folder, "_smelting"));
         if (addBlasting){
-            SimpleCookingRecipeBuilder.blasting(Ingredient.of(before), category, after, exp, time / 2)
-                    .unlockedBy("has_item", has(before))
+            SimpleCookingRecipeBuilder.blasting(before, category, after, exp, time / 2)
+                    .unlockedBy("has_item", instance)
                     .save(consumer, wrap(id(after), folder, "_blasting"));
         }
     }
 
-        private void geodeRecipes(Consumer<FinishedRecipe> consumer, GeodeItemObject geode, ItemLike slimeBall, ItemLike slimeDirt, FluidObject<?> fluid, String folder) {
+    private void geodeRecipes(Consumer<FinishedRecipe> consumer, GeodeItemObject geode, ItemLike slimeBall, ItemLike slimeDirt, FluidObject<?> fluid, String folder) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, geode.getBlock())
                 .define('#', geode.asItem())
                 .pattern("##")
@@ -137,7 +189,7 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
             int size = bud.getSize();
             MeltingRecipeBuilder.melting(Ingredient.of(geode.getBud(bud)), fluid, FluidValues.SLIMEBALL * size, (size + 1) / 2f)
                     .setOre(IMeltingContainer.OreRateType.GEM)
-                    .save(consumer, location(folder + "bud_" + bud.getName()));
+                    .save(consumer, location(folder + "bud_" + bud.getName() + "_melting"));
         }
     }
 

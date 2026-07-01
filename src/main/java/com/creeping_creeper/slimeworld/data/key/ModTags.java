@@ -15,6 +15,7 @@ import static slimeknights.mantle.Mantle.commonResource;
 public class ModTags {
     public static class Items {
         public static final TagKey<Item> OCEAN_SLIME_BALL = common("slimeball/ocean");
+        public static final TagKey<Item> GLOWSTONE_ORE = common("ores/glowstone");
 
         public static final TagKey<Item> SULFUR_CUBE_SWALLOWABLE = local("sulfur_cube_swallowable");
         public static final TagKey<Item> ARCHETYPE_BOUNCY = local("sulfur_cube_archetype/bouncy");

@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "amount": 250,
+      "tag": "tconstruct:slime"
+    },
+    {
+      "amount": 250,
+      "tag": "tconstruct:slime"
+    },
+    {
+      "amount": 250,
+      "tag": "forge:ender"
+    }
+  ],
+  "result": {
+    "amount": 500,
+    "fluid": "slimeworld:resonance_slime"
+  },
+  "temperature": 950
+}
