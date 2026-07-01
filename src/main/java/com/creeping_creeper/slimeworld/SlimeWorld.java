@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld;
 
-import com.creeping_creeper.slimeworld.data.provider.ModRecipeProvider;
+import com.creeping_creeper.slimeworld.data.provider.*;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
 import com.creeping_creeper.slimeworld.events.WorldEvents;
 import com.creeping_creeper.slimeworld.init.*;
@@ -70,6 +70,11 @@ public class SlimeWorld {
 
         generator.addProvider(server, datapackProvider);
         generator.addProvider(server, new ModRecipeProvider(output));
+        //tags
+        ModBlockTagProvider blockTags = new ModBlockTagProvider(output, lookupProvider, existingFileHelper);
+        generator.addProvider(server, blockTags);
+        generator.addProvider(server, new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+
     }
 
     public static String makeTranslationKey(String base, String name) {
