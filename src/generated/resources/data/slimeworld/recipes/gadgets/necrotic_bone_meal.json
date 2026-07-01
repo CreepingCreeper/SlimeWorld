@@ -1,10 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
-  "group": "bonemeal",
   "ingredients": [
     {
-      "item": "tconstruct:necrotic_bone"
+      "item": "tconstruct:necronium_bone"
     }
   ],
   "result": {

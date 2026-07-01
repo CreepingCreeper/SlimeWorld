@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.data.provider;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
+import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.recipe.data.ICommonRecipeHelper;
 import slimeknights.mantle.recipe.data.IRecipeHelper;
+import slimeknights.mantle.recipe.ingredient.EntityIngredient;
 import slimeknights.mantle.registration.object.FluidObject;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.registration.GeodeItemObject;
@@ -23,9 +25,12 @@ import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
+import slimeknights.tconstruct.library.recipe.entitymelting.EntityMeltingRecipe;
+import slimeknights.tconstruct.library.recipe.entitymelting.EntityMeltingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.IMeltingContainer;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
 import slimeknights.tconstruct.shared.TinkerMaterials;
+import slimeknights.tconstruct.world.TinkerWorld;
 
 import java.util.function.Consumer;
 
@@ -49,6 +54,10 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         stairSlabWallCrafting(consumer, ModItems.SulfurBricks, building, true);
 
         String gadgets = "gadgets/";
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NecroticBoneMeal, 3)
+                .requires(TinkerMaterials.necroniumBone)
+                .unlockedBy("has_item", RecipeProvider.has(TinkerMaterials.necroniumBone))
+                .save(consumer, location(gadgets + id(ModItems.NecroticBoneMeal).getPath()));
         AlloyRecipeBuilder.alloy(ModFluids.ResonanceSlime, FluidValues.SLIMEBALL * 2)
                 .addInput(TinkerTags.Fluids.SLIME, FluidValues.SLIMEBALL)
                 .addInput(TinkerTags.Fluids.SLIME, FluidValues.SLIMEBALL)
@@ -132,6 +141,12 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
                 .setFluidAndTime(ModFluids.OceanSlime, FluidValues.SLIMEBALL * 2)
                 .setCast(Blocks.GRAVEL, true)
                 .save(consumer, location(slime + "gravel_casting"));
+
+        String misc = "misc/";
+        EntityMeltingRecipeBuilder.melting(EntityIngredient.of(ModEntities.IchorSlimeEntity.get()), TinkerFluids.ichor.result(FluidValues.SLIMEBALL / 10))
+                .save(consumer, prefix(ModEntities.IchorSlimeEntity, misc));
+        EntityMeltingRecipeBuilder.melting(EntityIngredient.of(ModEntities.OceanSlimeEntity.get()), ModFluids.OceanSlime.result(FluidValues.SLIMEBALL / 10))
+                .save(consumer, prefix(ModEntities.OceanSlimeEntity, misc));
     }
 
     private void polishingRecipes(Consumer<FinishedRecipe> consumer, ItemLike before, ItemLike after, String folder, boolean addStonecutter) {
