@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "slimeworld:copper_shard"
+    "tag": "forge:raw_nuggets/copper"
   },
   "result": {
     "amount": 10,

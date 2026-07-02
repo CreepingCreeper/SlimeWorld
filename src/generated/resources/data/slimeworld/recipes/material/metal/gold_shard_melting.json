@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "slimeworld:gold_shard"
+    "tag": "forge:raw_nuggets/gold"
   },
   "result": {
     "amount": 10,

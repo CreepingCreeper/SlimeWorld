@@ -87,13 +87,13 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.CopperShard, TinkerMaterials.copperNugget, metal, 0.2F, 50, true);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.IronShard, Items.IRON_NUGGET, metal, 0.2F, 50, true);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.GoldShard, Items.GOLD_NUGGET, metal, 0.2F, 50, true);
-        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.BronzeShard), TinkerFluids.moltenBronze, FluidValues.NUGGET, 1/2f)
+        MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_BRONZE_NUGGET), TinkerFluids.moltenBronze, FluidValues.NUGGET, 1/2f)
                 .save(consumer, location(metal + id(ModItems.BronzeShard).getPath() + "_melting"));
-        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.CopperShard), TinkerFluids.moltenCopper, FluidValues.NUGGET, 1/2f)
+        MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_COPPER_NUGGET), TinkerFluids.moltenCopper, FluidValues.NUGGET, 1/2f)
                 .save(consumer, location(metal + id(ModItems.CopperShard).getPath() + "_melting"));
-        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.IronShard), TinkerFluids.moltenIron, FluidValues.NUGGET, 1/2f)
+        MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_IRON_NUGGET), TinkerFluids.moltenIron, FluidValues.NUGGET, 1/2f)
                 .save(consumer, location(metal + id(ModItems.IronShard).getPath() + "_melting"));
-        MeltingRecipeBuilder.melting(Ingredient.of(ModItems.GoldShard), TinkerFluids.moltenGold, FluidValues.NUGGET, 1/2f)
+        MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_GOLD_NUGGET), TinkerFluids.moltenGold, FluidValues.NUGGET, 1/2f)
                 .save(consumer, location(metal + id(ModItems.GoldShard).getPath() + "_melting"));
 
         String slime = material + "ocean_slime/";

@@ -74,6 +74,7 @@ public class SlimeWorld {
         ModBlockTagProvider blockTags = new ModBlockTagProvider(output, lookupProvider, existingFileHelper);
         generator.addProvider(server, blockTags);
         generator.addProvider(server, new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+        generator.addProvider(server, new ModEntityTypeTagProvider(output, lookupProvider, existingFileHelper));
 
     }
 

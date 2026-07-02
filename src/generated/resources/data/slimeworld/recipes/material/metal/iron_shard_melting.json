@@ -1,7 +1,7 @@
 {
   "type": "tconstruct:melting",
   "ingredient": {
-    "item": "slimeworld:iron_shard"
+    "tag": "forge:raw_nuggets/iron"
   },
   "result": {
     "amount": 10,

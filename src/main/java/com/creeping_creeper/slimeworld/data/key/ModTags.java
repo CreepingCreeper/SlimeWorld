@@ -16,6 +16,12 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> OCEAN_SLIME_BALL = common("slimeball/ocean");
         public static final TagKey<Item> GLOWSTONE_ORE = common("ores/glowstone");
+        public static final TagKey<Item> RAW_BRONZE_NUGGET = common("raw_nuggets/bronze");
+        public static final TagKey<Item> RAW_COPPER_NUGGET = common("raw_nuggets/copper");
+        public static final TagKey<Item> RAW_IRON_NUGGET = common("raw_nuggets/iron");
+        public static final TagKey<Item> RAW_GOLD_NUGGET = common("raw_nuggets/gold");
+        public static final TagKey<Item> RAW_NUGGET = common("raw_nuggets");
+        public static final TagKey<Item> STRIPPED_LOGS = common("stripped_logs");
 
         public static final TagKey<Item> SULFUR_CUBE_SWALLOWABLE = local("sulfur_cube_swallowable");
         public static final TagKey<Item> ARCHETYPE_BOUNCY = local("sulfur_cube_archetype/bouncy");
@@ -38,6 +44,9 @@ public class ModTags {
         }
     }
     public static class Blocks {
+        public static final TagKey<Block> GLOWSTONE_ORE = common("ores/glowstone");
+        public static final TagKey<Block> STRIPPED_LOGS = common("stripped_logs");
+
         /** any entity types that immunize to the damage from ore berry bushes */
         public static final TagKey<Block> NECROTIC_CLONABLE = local("necrotic_clonable");
         public static final TagKey<Block> ICHOR_SLIME_SPAWN = local("ichor_slime_spawn");
@@ -60,6 +69,7 @@ public class ModTags {
         private static TagKey<Block> common(String name) {return TagKey.create(Registries.BLOCK, commonResource(name));}
     }
     public static class EntityTypes {
+        public static final TagKey<EntityType<?>> SLIME = common("slimes");
         /** any entity types that immunize to the damage from ore berry bushes */
         public static final TagKey<EntityType<?>> ORE_BERRY_BUSHES_IMMUNE = local("ore_berry_bushes_immune");
         public static final TagKey<EntityType<?>> PLAY_SULFUR_CUBE = local("play_sulfur_cube");

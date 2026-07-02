@@ -2,7 +2,7 @@
   "values": [
     "slimeworld:tomato_projectile",
     {
-      "id": "armersdelight:rotten_tomato",
+      "id": "farmersdelight:rotten_tomato",
       "required": false
     },
     {
