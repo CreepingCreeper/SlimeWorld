@@ -19,6 +19,7 @@ import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.DirtType;
+import slimeknights.tconstruct.world.block.FoliageType;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -48,6 +49,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(ModItems.Bronze.getBlockTag()).add(ModItems.Bronze.get());
         this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModItems.Bronze.getBlockTag());
         this.tag(ModTags.Blocks.STRIPPED_LOGS).add(ModItems.StrippedSnowaveLog.get());
+        //tconstruct
+        this.tag(TinkerTags.Blocks.HARVESTABLE_INTERACT).add(ModItems.SlimeBerryBush.get(), ModItems.BerriperBush.get(), ModItems.CopperBerryBush.get(), ModItems.IronBerryBush.get(), ModItems.GoldBerryBush.get());
+        this.tag(FoliageType.ICHOR.getGrassBlockTag()).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
+        this.tag(DirtType.ICHOR.getBlockTag()).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
+        this.tag(TinkerTags.Blocks.SLIMY_SOIL).add(ModItems.SulfurMud.get());
         //self
         this.tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
         this.tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());
