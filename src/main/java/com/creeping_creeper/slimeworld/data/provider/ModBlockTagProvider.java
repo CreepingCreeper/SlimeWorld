@@ -15,6 +15,10 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
+import slimeknights.tconstruct.fluids.TinkerFluids;
+import slimeknights.tconstruct.shared.block.SlimeType;
+import slimeknights.tconstruct.world.TinkerWorld;
+import slimeknights.tconstruct.world.block.DirtType;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -45,7 +49,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(ModItems.Bronze.getBlockTag());
         this.tag(ModTags.Blocks.STRIPPED_LOGS).add(ModItems.StrippedSnowaveLog.get());
         //self
-
+        this.tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
+        this.tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());
+        this.tag(ModTags.Blocks.ICHOR_SLIME_SPAWN).addTag(BlockTags.MOSS_REPLACEABLE).add(TinkerWorld.slimeDirt.get(DirtType.ICHOR));
+        this.tag(ModTags.Blocks.ICHOR_SLIME_SPAWN).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
+        this.tag(ModTags.Blocks.NECROTIC_CLONABLE).add(Blocks.WITHER_ROSE, ModItems.FieryFlower.get(), ModItems.PoisonFlower.get(), ModItems.SpringyFlower.get(), ModItems.ConsecratedFlower.get(), ModItems.GraveyardFlower.get());
+        this.tag(ModTags.Blocks.SLIMY).add(Blocks.SLIME_BLOCK, Blocks.HONEY_BLOCK, ModItems.OceanSlime.get());
+        for (SlimeType type : SlimeType.values()) {
+            this.tag(ModTags.Blocks.SLIMY).add(TinkerWorld.slime.get(type));
+        }
+        this.tag(ModTags.Blocks.SULFUR_FEATURE_BASE).add(ModItems.Sulfur.get(), ModItems.SulfurMud.get());
+        this.tag(ModTags.Blocks.TERRACUBE_SPAWN).add(Blocks.CLAY);
         //touhou little maid
         this.tag(MAID_AVOID).add(Blocks.WITHER_ROSE, ModItems.FieryFlower.get(), ModItems.PoisonFlower.get());
     }

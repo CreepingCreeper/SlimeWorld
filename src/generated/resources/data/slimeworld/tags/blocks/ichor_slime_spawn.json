@@ -1,5 +1,7 @@
 {
   "values": [
+    "#minecraft:moss_replaceable",
+    "tconstruct:ichor_slime_dirt",
     "slimeworld:ichor_earth_slime_grass",
     "slimeworld:ichor_sky_slime_grass",
     "slimeworld:ichor_ichor_slime_grass",

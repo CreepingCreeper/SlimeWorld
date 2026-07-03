@@ -1,5 +1,7 @@
 {
   "values": [
+    "minecraft:lava",
+    "tconstruct:blazing_blood_fluid",
     "minecraft:magma_block",
     "tconstruct:magma_fluid"
   ]
