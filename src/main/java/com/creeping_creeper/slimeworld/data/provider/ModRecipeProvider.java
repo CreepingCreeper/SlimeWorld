@@ -141,6 +141,14 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
                 .save(consumer, location(slime + "gravel_casting"));
 
         String misc = "misc/";
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModFluids.LiquidMud)
+                .requires(Ingredient.of(Items.WATER_BUCKET, Items.MUD))
+                .unlockedBy("has_item", RecipeProvider.has(Items.MUD))
+                .save(consumer, location(misc + id(ModFluids.LiquidMud).getPath()));
+        ItemCastingRecipeBuilder.basinRecipe(Items.MUD)
+                .setFluidAndTime(ModFluids.LiquidMud, FluidValues.BRICK * 4)
+                .save(consumer, location(misc + "mud_casting"));
+
         EntityMeltingRecipeBuilder.melting(EntityIngredient.of(ModEntities.IchorSlimeEntity.get()), TinkerFluids.ichor.result(FluidValues.SLIMEBALL / 10))
                 .save(consumer, prefix(ModEntities.IchorSlimeEntity, misc));
         EntityMeltingRecipeBuilder.melting(EntityIngredient.of(ModEntities.OceanSlimeEntity.get()), ModFluids.OceanSlime.result(FluidValues.SLIMEBALL / 10))

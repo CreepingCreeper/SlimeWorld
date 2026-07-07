@@ -40,6 +40,7 @@ import slimeknights.tconstruct.world.client.SlimeArmorLayer;
 
 import java.util.Map;
 
+@SuppressWarnings("UnstableApiUsage")
 @OnlyIn(Dist.CLIENT)
 public class InvertedSlimeArmorLayer<T extends Slime, M extends HierarchicalModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T,M> {
     private final A armorModel;

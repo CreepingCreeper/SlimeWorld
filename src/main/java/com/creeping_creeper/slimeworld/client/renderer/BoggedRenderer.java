@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class BoggedRenderer extends HumanoidMobRenderer<BoggedEntity, BoggedModel<BoggedEntity>> {
@@ -29,7 +30,7 @@ public class BoggedRenderer extends HumanoidMobRenderer<BoggedEntity, BoggedMode
     }
 
     @Override
-    public ResourceLocation getTextureLocation(BoggedEntity entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull BoggedEntity entity) {
         return BOGGED_SKELETON_LOCATION;
     }
 

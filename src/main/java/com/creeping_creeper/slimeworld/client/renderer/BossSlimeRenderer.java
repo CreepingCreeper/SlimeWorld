@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.world.client.SlimeArmorLayer;
 
 @OnlyIn(Dist.CLIENT)
@@ -21,7 +22,7 @@ public class BossSlimeRenderer extends SlimeRenderer {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Slime entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull Slime entity) {
         return slime;
     }
 }

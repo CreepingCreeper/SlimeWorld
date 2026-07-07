@@ -11,14 +11,11 @@ import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 
-public class BiomeSlimePlacementPredicate <T extends Slime> implements SpawnPlacements.SpawnPredicate<T> {
-    private TagKey<Biome> biomeTag;
-    private TagKey<Block> blockTag;
-    private int chance;
-
+public record BiomeSlimePlacementPredicate<T extends Slime>(TagKey<Biome> biomeTag, TagKey<Block> blockTag, int chance) implements SpawnPlacements.SpawnPredicate<T> {
     @Override
-    public boolean test(EntityType<T> entityType, ServerLevelAccessor world, MobSpawnType reason, BlockPos pos, RandomSource random) {
+    public boolean test(@NotNull EntityType<T> entityType, ServerLevelAccessor world, @NotNull MobSpawnType reason, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (world.getDifficulty() == Difficulty.PEACEFUL) {
             return false;
         }
@@ -26,10 +23,5 @@ public class BiomeSlimePlacementPredicate <T extends Slime> implements SpawnPlac
             return true;
         }
         return world.getBiome(pos).is(biomeTag) && world.getBlockState(pos.below()).is(blockTag) && random.nextInt(chance) == 0;
-    }
-    public BiomeSlimePlacementPredicate(TagKey<Biome> biomeTag, TagKey<Block> blockTag, int chance) {
-        this.biomeTag = biomeTag;
-        this.blockTag = blockTag;
-        this.chance = chance;
     }
 }

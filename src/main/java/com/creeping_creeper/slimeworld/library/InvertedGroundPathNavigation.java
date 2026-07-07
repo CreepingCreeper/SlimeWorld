@@ -14,6 +14,7 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathFinder;
 import net.minecraft.world.level.pathfinder.WalkNodeEvaluator;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class InvertedGroundPathNavigation extends PathNavigation {
     public InvertedGroundPathNavigation(Mob mob, Level level) {
@@ -21,13 +22,13 @@ public class InvertedGroundPathNavigation extends PathNavigation {
     }
 
     @Override
-    protected PathFinder createPathFinder(int maxVisitedNodes) {
+    protected @NotNull PathFinder createPathFinder(int maxVisitedNodes) {
         this.nodeEvaluator = new WalkNodeEvaluator();
         this.nodeEvaluator.setCanPassDoors(true);
         return new PathFinder(this.nodeEvaluator, maxVisitedNodes);
     }
 
-    protected Vec3 getTempMobPos() {
+    protected @NotNull Vec3 getTempMobPos() {
         return new Vec3(this.mob.getX(), this.getSurfaceY(), this.mob.getZ());
     }
 
@@ -37,7 +38,7 @@ public class InvertedGroundPathNavigation extends PathNavigation {
     }
 
     @Override
-    public Path createPath(BlockPos pos, int accuracy) {
+    public Path createPath(@NotNull BlockPos pos, int accuracy) {
         if (this.level.getBlockState(pos).isAir()) {
             BlockPos blockpos;
             for(blockpos = pos.above(); blockpos.getY() < this.level.getMaxBuildHeight() && this.level.getBlockState(blockpos).isAir(); blockpos = blockpos.above()) {

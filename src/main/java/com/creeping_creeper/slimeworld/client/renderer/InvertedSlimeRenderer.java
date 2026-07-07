@@ -20,6 +20,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 
 @OnlyIn(Dist.CLIENT)
@@ -35,7 +36,7 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
     }
 
     @Override
-    public void render(Slime entity, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+    public void render(Slime entity, float entityYaw, float partialTicks, @NotNull PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
         this.shadowRadius = 0.25F * (float)entity.getSize();
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }
@@ -51,7 +52,7 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Slime entity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull Slime entity) {
         if (slime != metal && ((ArmoredSlimeEntity) entity).isMetal()) {
             return metal;
         }

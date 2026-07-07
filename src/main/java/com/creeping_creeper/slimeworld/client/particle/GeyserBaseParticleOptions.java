@@ -10,13 +10,12 @@ import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import org.jetbrains.annotations.NotNull;
 
-// 1.20.1 不支持 record，改用普通类
+@SuppressWarnings("deprecated")
 public class GeyserBaseParticleOptions implements ParticleOptions {
-
-    // 1.20.1 必须的反序列化器（命令 + 网络）
     public static final Deserializer<GeyserBaseParticleOptions> DESERIALIZER = new Deserializer<>() {
+
         @Override
-        public @NotNull GeyserBaseParticleOptions fromCommand(ParticleType<GeyserBaseParticleOptions> type, StringReader reader) throws CommandSyntaxException {
+        public @NotNull GeyserBaseParticleOptions fromCommand(@NotNull ParticleType<GeyserBaseParticleOptions> type, StringReader reader) throws CommandSyntaxException {
             reader.expect(' ');
             int waterBlocks = reader.readInt();
             reader.expect(' ');
@@ -25,7 +24,7 @@ public class GeyserBaseParticleOptions implements ParticleOptions {
         }
 
         @Override
-        public @NotNull GeyserBaseParticleOptions fromNetwork(ParticleType<GeyserBaseParticleOptions> type, FriendlyByteBuf buf) {
+        public @NotNull GeyserBaseParticleOptions fromNetwork(@NotNull ParticleType<GeyserBaseParticleOptions> type, FriendlyByteBuf buf) {
             int waterBlocks = buf.readInt();
             float burstImpulseBase = buf.readFloat();
             return new GeyserBaseParticleOptions(type, waterBlocks, burstImpulseBase);

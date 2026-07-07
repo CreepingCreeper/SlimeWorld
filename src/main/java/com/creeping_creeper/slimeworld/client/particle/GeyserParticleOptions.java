@@ -10,6 +10,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecated")
 public class GeyserParticleOptions implements ParticleOptions {
 
      public static final Deserializer<GeyserParticleOptions> DESERIALIZER = new Deserializer<>() {

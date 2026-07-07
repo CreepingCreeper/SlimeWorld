@@ -26,7 +26,7 @@ public class ParchedRenderer extends HumanoidMobRenderer<AbstractSkeleton, Skele
 
     public ParchedRenderer(EntityRendererProvider.Context context, ModelLayerLocation skeletonLayer, ModelLayerLocation innerModelLayer, ModelLayerLocation outerModelLayer) {
         super(context, new SkeletonModel<>(context.bakeLayer(skeletonLayer)), 0.5F);
-        this.addLayer(new HumanoidArmorLayer<>(this, new SkeletonModel(context.bakeLayer(innerModelLayer)), new SkeletonModel(context.bakeLayer(outerModelLayer)), context.getModelManager()));
+        this.addLayer(new HumanoidArmorLayer<>(this, new SkeletonModel<>(context.bakeLayer(innerModelLayer)), new SkeletonModel(context.bakeLayer(outerModelLayer)), context.getModelManager()));
     }
 
     @Override

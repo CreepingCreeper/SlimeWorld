@@ -29,7 +29,7 @@ public class ModFluidTagProvider extends FluidTagsProvider {
         //self
         fluidTag(ModFluids.OceanSlime);
         fluidTag(ModFluids.ResonanceSlime);
-
+        fluidTag(ModFluids.LiquidMud);
     }
 
     private void fluidTag(FlowingFluidObject<?> fluid) {
