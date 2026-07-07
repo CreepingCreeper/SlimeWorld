@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:water_bucket"
+      },
+      {
+        "item": "minecraft:mud"
+      }
+    ]
+  ],
+  "result": {
+    "item": "slimeworld:liquid_mud_bucket"
+  }
+}

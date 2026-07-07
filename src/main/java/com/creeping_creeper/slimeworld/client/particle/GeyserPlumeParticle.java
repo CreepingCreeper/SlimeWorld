@@ -24,7 +24,7 @@ public class GeyserPlumeParticle extends SingleQuadParticle {
 
     private GeyserPlumeParticle(ClientLevel level, double x, double y, double z, double xa, double ya, double za, GeyserParticleOptions options, SpriteSet sprites) {
         super(level, x, y, z, xa, ya, za);
-        int plumeHeight = 5 * Math.max(1, options.waterBlocks);
+        int plumeHeight = 5 * Math.max(1, options.waterBlocks());
         this.hasPhysics = true;
         this.speedUpWhenYMotionIsBlocked = true;
         this.lifetime = plumeHeight * 5;
@@ -34,7 +34,7 @@ public class GeyserPlumeParticle extends SingleQuadParticle {
         this.horizontalSprayX = (level.getRandom().nextFloat() - 0.5F) * 0.2F;
         this.horizontalSprayZ = (level.getRandom().nextFloat() - 0.5F) * 0.2F;
         this.friction = 1.0F;
-        this.initialPropulsion = (options.waterBlocks == 1 ? 1.5F : 1.0F) * (float) plumeHeight * 1.45F;
+        this.initialPropulsion = (options.waterBlocks() == 1 ? 1.5F : 1.0F) * (float) plumeHeight * 1.45F;
         this.gravity = -this.initialPropulsion;
         float initiallyRandomizedSize = this.quadSize * 0.75F;
         this.minSize = initiallyRandomizedSize * (2.0F + (float) plumeHeight / 8.0F);

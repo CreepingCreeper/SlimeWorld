@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 94,
+  "fluid": {
+    "amount": 1000,
+    "tag": "slimeworld:liquid_mud"
+  },
+  "result": "minecraft:mud"
+}

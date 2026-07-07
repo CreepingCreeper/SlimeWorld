@@ -27,7 +27,7 @@ public class GeyserEruptionParticle extends NoRenderParticle {
         this.xa = xAux;
         this.ya = yAux;
         this.za = zAux;
-        this.waterBlocks = options.waterBlocks;
+        this.waterBlocks = options.waterBlocks();
         this.lifetime = 20;
         this.plumeParticle = new GeyserParticleOptions(ModParticles.GeyserPlume.get(), this.waterBlocks);
         this.baseParticle = new GeyserBaseParticleOptions(ModParticles.GeyserBase.get(), this.waterBlocks, 1.5F);

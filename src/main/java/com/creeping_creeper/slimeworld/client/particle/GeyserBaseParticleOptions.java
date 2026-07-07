@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecated")
 public class GeyserBaseParticleOptions implements ParticleOptions {
+    // noinspection deprecated
     public static final Deserializer<GeyserBaseParticleOptions> DESERIALIZER = new Deserializer<>() {
 
         @Override

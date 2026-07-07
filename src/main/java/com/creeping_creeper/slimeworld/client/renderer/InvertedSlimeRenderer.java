@@ -36,7 +36,7 @@ public class InvertedSlimeRenderer extends MobRenderer<Slime, SlimeModel<Slime>>
     }
 
     @Override
-    public void render(Slime entity, float entityYaw, float partialTicks, @NotNull PoseStack poseStack, MultiBufferSource buffer, int packedLight) {
+    public void render(Slime entity, float entityYaw, float partialTicks, @NotNull PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight) {
         this.shadowRadius = 0.25F * (float)entity.getSize();
         super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
     }

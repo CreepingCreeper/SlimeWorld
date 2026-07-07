@@ -86,18 +86,13 @@ public class SulfurBubbleParticle extends SingleQuadParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Provider implements ParticleProvider<SimpleParticleType> {
-        private final SpriteSet sprite;
-
-        public Provider(SpriteSet sprite) {
-            this.sprite = sprite;
-        }
+        public record Provider(SpriteSet sprite) implements ParticleProvider<SimpleParticleType> {
 
         @Override
-        public Particle createParticle(@NotNull SimpleParticleType options, @NotNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
-            return new SulfurBubbleParticle(level, x, y, z, xAux, yAux, this.sprite.get(level.random));
-        }
+            public Particle createParticle(@NotNull SimpleParticleType options, @NotNull ClientLevel level, double x, double y, double z, double xAux, double yAux, double zAux) {
+                return new SulfurBubbleParticle(level, x, y, z, xAux, yAux, this.sprite.get(level.random));
+            }
 
-    }
+        }
 }
 

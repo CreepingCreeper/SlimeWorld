@@ -11,9 +11,9 @@ import com.mojang.serialization.Codec;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecated")
-public class GeyserParticleOptions implements ParticleOptions {
+public record GeyserParticleOptions(ParticleType<GeyserParticleOptions> type, int waterBlocks) implements ParticleOptions {
 
-     public static final Deserializer<GeyserParticleOptions> DESERIALIZER = new Deserializer<>() {
+    public static final Deserializer<GeyserParticleOptions> DESERIALIZER = new Deserializer<>() {
 
         @Override
         public @NotNull GeyserParticleOptions fromCommand(@NotNull ParticleType<GeyserParticleOptions> type, StringReader reader) throws CommandSyntaxException {
@@ -35,15 +35,6 @@ public class GeyserParticleOptions implements ParticleOptions {
                 .apply(instance, (waterBlocks) -> new GeyserParticleOptions(type, waterBlocks)));
     }
 
-    private final ParticleType<GeyserParticleOptions> type;
-    public final int waterBlocks;
-    private BlockPos pos;
-
-    public GeyserParticleOptions(ParticleType<GeyserParticleOptions> type, int waterBlocks) {
-        this.type = type;
-        this.waterBlocks = waterBlocks;
-    }
-
     @Override
     public void writeToNetwork(FriendlyByteBuf buf) {
         buf.writeInt(this.waterBlocks);
@@ -61,7 +52,6 @@ public class GeyserParticleOptions implements ParticleOptions {
     }
 
     public GeyserParticleOptions setPos(BlockPos pos) {
-        this.pos = pos;
         return this;
     }
 }

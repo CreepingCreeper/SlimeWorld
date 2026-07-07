@@ -40,7 +40,6 @@ import slimeknights.tconstruct.world.client.SlimeArmorLayer;
 
 import java.util.Map;
 
-@SuppressWarnings("UnstableApiUsage")
 @OnlyIn(Dist.CLIENT)
 public class InvertedSlimeArmorLayer<T extends Slime, M extends HierarchicalModel<T>, A extends HumanoidModel<T>> extends RenderLayer<T,M> {
     private final A armorModel;
@@ -65,7 +64,7 @@ public class InvertedSlimeArmorLayer<T extends Slime, M extends HierarchicalMode
                 armorModel.setAllVisible(false);
                 armorModel.head.visible = true;
                 armorModel.hat.visible = true;
-
+                //noinspection UnstableApiUsage,UnstableTypeUsedInSignature
                 Model model = ForgeHooksClient.getArmorModel(entity, helmet, EquipmentSlot.HEAD, armorModel);
                 boolean enchanted = helmet.hasFoil();
 
