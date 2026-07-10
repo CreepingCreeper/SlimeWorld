@@ -26,6 +26,7 @@
     "minecraft:podzol",
     "minecraft:grass_block",
     "minecraft:clay",
-    "minecraft:bone_block"
+    "minecraft:bone_block",
+    "slimeworld:sulfur_mud"
   ]
 }

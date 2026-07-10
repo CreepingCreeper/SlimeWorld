@@ -15,6 +15,7 @@ import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
+import slimeknights.tconstruct.common.registration.GeodeItemObject;
 import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.world.TinkerWorld;
@@ -34,6 +35,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
         //vanilla
+        this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModItems.Bronze.get()).add(ModItems.OceanGeode.getBlock()).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.SMALL)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.MEDIUM)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.LARGE))
+                .add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.CLUSTER)).add(ModItems.OceanGeode.getBudding()).add(ModItems.BronzeCluster.get()).add(ModItems.GlowstoneOre.get()).add(ModItems.DeepSlateGlowstoneOre.get()).add(ModItems.IsomericGlowstone.get())
+                .add(ModItems.Sulfur.get()).add(ModItems.Sulfur.getStairs()).add(ModItems.Sulfur.getSlab()).add(ModItems.Sulfur.getWall()).add(ModItems.PolishedSulfur.get()).add(ModItems.PolishedSulfur.getStairs())
+                .add(ModItems.PolishedSulfur.getSlab()).add(ModItems.PolishedSulfur.getWall()).add(ModItems.SulfurBricks.get()).add(ModItems.SulfurBricks.getStairs()).add(ModItems.SulfurBricks.getSlab()).add(ModItems.SulfurBricks.getWall())
+                .add(ModItems.PotentSulfurNausea.get()).add(ModItems.PotentSulfurBlindness.get()).add(ModItems.PotentSulfurWeakness.get()).add(ModItems.PotentSulfurRegeneration.get()).add(ModItems.PotentSulfurStrength.get()).add(ModItems.SulfurSpike.get());
+        this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModItems.OceanCongealedSlime.get()).add(ModItems.SlimeGravel.get()).add(ModItems.IchorEarthSlimeNylium.get()).add(ModItems.IchorSkySlimeNylium.get()).add(ModItems.IchorIchorSlimeNylium.get())
+                .add(ModItems.IchorEnderSlimeNylium.get()).add(ModItems.IchorVanillaSlimeNylium.get()).add(ModItems.SulfurMud.get());
+        this.tag(BlockTags.NEEDS_IRON_TOOL).add(ModItems.Bronze.get()).add(ModItems.IchorEarthSlimeNylium.get()).add(ModItems.IchorSkySlimeNylium.get()).add(ModItems.IchorIchorSlimeNylium.get()).add(ModItems.IchorEnderSlimeNylium.get())
+                .add(ModItems.IchorVanillaSlimeNylium.get());
+        this.tag(BlockTags.NEEDS_STONE_TOOL).add(ModItems.GlowstoneOre.get()).add(ModItems.DeepSlateGlowstoneOre.get());
+        
         this.tag(BlockTags.FALL_DAMAGE_RESETTING).add(ModItems.SlimeBerryBush.get(), ModItems.BerriperBush.get(), ModItems.CopperBerryBush.get(), ModItems.IronBerryBush.get(), ModItems.GoldBerryBush.get());
         this.tag(BlockTags.LEAVES).add(ModItems.Snowaveleaves.get(), ModItems.Magicbubbleleaves.get());
         this.tag(BlockTags.LOGS_THAT_BURN).add(ModItems.SnowaveLog.get(), ModItems.StrippedSnowaveLog.get(), ModItems.MagicbubbleLog.get(), ModItems.ActiveMagicbubbleLog.get());
