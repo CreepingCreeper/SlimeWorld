@@ -4,6 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -14,13 +17,20 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.ToolActions;
+import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 
 public class SlimeGolemEntity extends Monster {
     private int hurtTick = 0;
+    private int shieldTick = 0;
     public final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
         public void stop() {
             super.stop();
@@ -72,16 +82,14 @@ public class SlimeGolemEntity extends Monster {
     }
 
     @Override
-    public boolean hurt(@NotNull DamageSource source, float amount) {
-        if (amount > 0) this.hurtTick = 200;
-        return super.hurt(source, amount);
-    }
-
-    @Override
     public void customServerAiStep() {
-        if (this.tickCount % 10 == 0){
-            if (hurtTick > 0) hurtTick -= 10;
-            else this.heal(1.0F);
+        if (this.tickCount % 20 == 0){
+            if (this.hurtTick > 0) this.hurtTick -= 20;
+            else this.heal(2F);
+            if (this.shieldTick > 0) {
+                this.stopUsingItem();
+                this.shieldTick -= 20;
+            }
         }
     }
 
@@ -95,7 +103,7 @@ public class SlimeGolemEntity extends Monster {
 
     }
 
-    public void reassessWeaponGoal() {
+    private void reassessWeaponGoal() {
         if (!this.level().isClientSide) {
             this.goalSelector.removeGoal(this.meleeGoal);
             this.goalSelector.addGoal(4, this.meleeGoal);
@@ -104,16 +112,89 @@ public class SlimeGolemEntity extends Monster {
     }
 
     @Override
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        if (amount > 0) this.hurtTick = 200;
+        if (!source.is(DamageTypeTags.BYPASSES_SHIELD) && this.getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK)) {
+            boolean isUsingShield = this.shieldTick > 0 || this.isUsingItem() && this.getUsedItemHand() == InteractionHand.OFF_HAND;
+            if (!isUsingShield) {
+                this.startUsingItem(InteractionHand.OFF_HAND);
+                this.shieldTick = 100;
+            }
+        }
+        return super.hurt(source, amount);
+    }
+
+    @Override
+    public void startUsingItem(@NotNull InteractionHand p_21159_) {
+        ItemStack itemstack = this.getItemInHand(p_21159_);
+        if (!itemstack.isEmpty() && !this.isUsingItem()) {
+            //很遗憾地告诉大家，匠魂工具的getUseDuration()和UseAnim()只能在玩家使用时受到特性的影响，所以此处需要特判
+            int duration = ForgeEventFactory.onItemUseStart(this, itemstack, itemstack.getItem() instanceof IModifiableDisplay ? 72000 : itemstack.getUseDuration());
+            if (duration < ForgeConfig.SERVER.getUseItemDuration()) return;
+            this.useItem = itemstack;
+            this.useItemRemaining = duration;
+            if (!this.level().isClientSide) {
+                this.setLivingEntityFlag(1, true);
+                this.setLivingEntityFlag(2, p_21159_ == InteractionHand.OFF_HAND);
+                this.gameEvent(GameEvent.ITEM_INTERACT_START);
+            }
+
+        }
+    }
+
+    @Override
+    public boolean isBlocking() {
+        //取消格挡前摇时间
+        return this.isUsingItem() && !this.useItem.isEmpty() && this.useItem.canPerformAction(ToolActions.SHIELD_BLOCK);
+    }
+
+    @Override
+    protected void blockUsingShield(@NotNull LivingEntity attacker) {
+        super.blockUsingShield(attacker);
+        if (attacker.getMainHandItem().canDisableShield(this.useItem, this, attacker)) {
+            this.stopUsingItem();
+            this.level().broadcastEntityEvent(this, EntityEvent.SHIELD_DISABLED);
+        }
+    }
+
+
+    @Override
+    protected void hurtCurrentlyUsedShield(float damage) {
+        if (this.useItem.canPerformAction(ToolActions.SHIELD_BLOCK) && damage >= 3.0F) {
+            int damageAmount = 1 + Mth.floor(damage);
+            InteractionHand interactionhand = this.getUsedItemHand();
+            this.useItem.hurtAndBreak(damageAmount, this, maid -> {
+                maid.broadcastBreakEvent(interactionhand);
+                maid.stopUsingItem();
+            });
+            if (this.useItem.isEmpty()) {
+                if (interactionhand == InteractionHand.MAIN_HAND) {
+                    this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                } else {
+                    this.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
+                }
+                this.useItem = ItemStack.EMPTY;
+                this.playSound(SoundEvents.SHIELD_BREAK, 0.8F, 0.8F + this.level().random.nextFloat() * 0.4F);
+            } else {
+                this.playSound(SoundEvents.SHIELD_BLOCK, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("hurtTick", this.hurtTick);
+        compound.putInt("shieldTick", this.shieldTick);
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.reassessWeaponGoal();
-        this.hurtTick = (compound.getInt("hurtTick"));
+        this.hurtTick = compound.getInt("hurtTick");
+        this.shieldTick = compound.getInt("shieldTick");
+
     }
 
     @Override

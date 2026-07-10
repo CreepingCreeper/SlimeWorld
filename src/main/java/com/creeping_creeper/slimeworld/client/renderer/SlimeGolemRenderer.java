@@ -2,14 +2,22 @@ package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.client.model.SlimeGolemModel;
 import com.creeping_creeper.slimeworld.init.entity.SlimeGolemEntity;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
@@ -24,7 +32,40 @@ public class SlimeGolemRenderer extends HumanoidMobRenderer<SlimeGolemEntity, Sl
     public SlimeGolemRenderer(EntityRendererProvider.Context context, ModelLayerLocation skeletonLayer, ModelLayerLocation innerModelLayer, ModelLayerLocation outerModelLayer) {
         super(context, new SlimeGolemModel<>(context.bakeLayer(skeletonLayer)), 0.5F);
         this.addLayer(new HumanoidArmorLayer<>(this, new SlimeGolemModel<>(context.bakeLayer(innerModelLayer)), new SlimeGolemModel<>(context.bakeLayer(outerModelLayer)), context.getModelManager()));
+    }
+    @Override
+    public void render(@NotNull SlimeGolemEntity entity, float p_117789_, float p_117790_, @NotNull PoseStack p_117791_, @NotNull MultiBufferSource p_117792_, int p_117793_) {
+        this.setModelProperties(entity);
+        super.render(entity, p_117789_, p_117790_, p_117791_, p_117792_, p_117793_);
+    }
+
+    private void setModelProperties(SlimeGolemEntity entity) {
+        SlimeGolemModel<SlimeGolemEntity> model = this.getModel();
+        HumanoidModel.ArmPose humanoidmodel$armpose = getArmPose(entity, InteractionHand.OFF_HAND);
+        if (entity.getMainArm() == HumanoidArm.RIGHT) {
+            model.leftArmPose = humanoidmodel$armpose;
+        } else {
+            model.rightArmPose = humanoidmodel$armpose;
         }
+    }
+
+    private static HumanoidModel.ArmPose getArmPose(SlimeGolemEntity entity, InteractionHand hand) {
+        ItemStack itemstack = entity.getItemInHand(hand);
+        if (itemstack.isEmpty()) {
+            return HumanoidModel.ArmPose.EMPTY;
+        } else {
+            if (entity.getUsedItemHand() == hand && entity.getUseItemRemainingTicks() > 0) {
+                UseAnim useanim = itemstack.getUseAnimation();
+                //很遗憾地告诉大家，匠魂工具的getUseDuration()和UseAnim()只能在玩家使用时受到特性的影响，所以此处需要特判
+                if (useanim == UseAnim.BLOCK || itemstack.canPerformAction(ToolActions.SHIELD_BLOCK)) {
+                    return HumanoidModel.ArmPose.BLOCK;
+                }
+
+            }
+
+            return HumanoidModel.ArmPose.ITEM;
+        }
+    }
 
     public @NotNull ResourceLocation getTextureLocation(@NotNull SlimeGolemEntity entity) {
         return SKELETON_LOCATION;

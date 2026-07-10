@@ -18,14 +18,15 @@ import slimeknights.tconstruct.common.data.tags.ItemTagProvider;
 
 import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("removal, unchecked")
 public class ModItemTagProvider extends ItemTagProvider {
+    @SuppressWarnings("removal")
     private static final TagKey<Item> MAID_TAMED = ItemTags.create(new ResourceLocation("touhou_little_maid", "maid_tamed_item"));
 
     public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, blockTagProvider, existingFileHelper);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
         //vanilla
