@@ -27,7 +27,8 @@ public class RegisterEvents {
         event.put(ModEntities.SulfurCubeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.BoggedEntity.get(), BoggedEntity.createAttributes().build());
         event.put(ModEntities.ParchedEntity.get(), ParchedEntity.createAttributes().build());
-        event.put(ModEntities.SlimeGolemEntity.get(), SlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.SkySlimeGolemEntity.get(), EarthSlimeGolemEntity.createAttributes().build());
         event.put(ModEntities.SteelSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());
         event.put(ModEntities.KnightSlimeBossEntity.get(), BossSlimeEntity.createAttributes().build());
     }

@@ -72,7 +72,8 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.KnightSlimeBossEntity.get(), KNIGHTSLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.BoggedEntity.get(), BoggedRenderer::new);
         event.registerEntityRenderer(ModEntities.ParchedEntity.get(), ParchedRenderer::new);
-        event.registerEntityRenderer(ModEntities.SlimeGolemEntity.get(), SlimeGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.SkySlimeGolemEntity.get(), SlimeGolemRenderer::new);
     }
 
     @SubscribeEvent

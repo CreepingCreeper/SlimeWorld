@@ -65,11 +65,17 @@ public class ModEntities {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.ParchedEntity.get().create(world)), 0xddc38e, 0x4a473d);
-    public static final EntityObject<SlimeGolemEntity> SlimeGolemEntity = ENTITIES.registerWithEgg("slime_golem", () ->
-            EntityType.Builder.of(SlimeGolemEntity::new, MobCategory.MONSTER)
+    public static final EntityObject<EarthSlimeGolemEntity> EarthSlimeGolemEntity = ENTITIES.registerWithEgg("slime_golem", () ->
+            EntityType.Builder.of(EarthSlimeGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.EarthSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+    public static final EntityObject<SkySlimeGolemEntity> SkySlimeGolemEntity = ENTITIES.registerWithEgg("sky_slime_golem", () ->
+            EntityType.Builder.of(SkySlimeGolemEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(8)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SkySlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+
     public static final RegistryObject<EntityType<SteelSlimeBossEntity>> SteelSlimeBossEntity = ENTITIES.register("steelslime_boss", () ->
             EntityType.Builder.of(SteelSlimeBossEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)
