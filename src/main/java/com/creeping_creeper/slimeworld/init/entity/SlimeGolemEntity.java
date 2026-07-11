@@ -2,6 +2,9 @@ package com.creeping_creeper.slimeworld.init.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -29,6 +32,8 @@ import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 
 public class SlimeGolemEntity extends Monster {
+    private static final EntityDataAccessor<Boolean> DATA_SHIELD = SynchedEntityData.defineId(SlimeGolemEntity.class, EntityDataSerializers.BOOLEAN);
+
     private int hurtTick = 0;
     private int shieldTick = 0;
     public final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
@@ -64,6 +69,20 @@ public class SlimeGolemEntity extends Monster {
         return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25F).add(ForgeMod.ENTITY_REACH.get(), 1.0F);
     }
 
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(DATA_SHIELD, false);
+    }
+
+    public boolean isUsingShield() {
+        return this.entityData.get(DATA_SHIELD);
+    }
+
+    public void setUsingShield(boolean using) {
+        this.entityData.set(DATA_SHIELD, using);
+    }
+
     protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState block) {
        this.playSound(this.getStepSound(), 0.15F, 1.0F);
     }
@@ -83,13 +102,16 @@ public class SlimeGolemEntity extends Monster {
 
     @Override
     public void customServerAiStep() {
-        if (this.tickCount % 20 == 0){
-            if (this.hurtTick > 0) this.hurtTick -= 20;
-            else this.heal(2F);
-            if (this.shieldTick > 0) {
+        if (this.tickCount % 10 == 0){
+            if (this.hurtTick > 0) this.hurtTick -= 10;
+            else this.heal(1F);
+        }
+        if (this.shieldTick > -100) {
+            if(this.shieldTick <= 60) {
                 this.stopUsingItem();
-                this.shieldTick -= 20;
+                setUsingShield(false);
             }
+            this.shieldTick --;
         }
     }
 
@@ -115,9 +137,9 @@ public class SlimeGolemEntity extends Monster {
     public boolean hurt(@NotNull DamageSource source, float amount) {
         if (amount > 0) this.hurtTick = 200;
         if (!source.is(DamageTypeTags.BYPASSES_SHIELD) && this.getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK)) {
-            boolean isUsingShield = this.shieldTick > 0 || this.isUsingItem() && this.getUsedItemHand() == InteractionHand.OFF_HAND;
-            if (!isUsingShield) {
+            if (this.shieldTick <= 0 && random.nextInt(100) < -this.shieldTick) {
                 this.startUsingItem(InteractionHand.OFF_HAND);
+                setUsingShield(true);
                 this.shieldTick = 100;
             }
         }
@@ -160,17 +182,15 @@ public class SlimeGolemEntity extends Monster {
 
     @Override
     protected void hurtCurrentlyUsedShield(float damage) {
-        if (this.useItem.canPerformAction(ToolActions.SHIELD_BLOCK) && damage >= 3.0F) {
+        if (this.useItem.canPerformAction(ToolActions.SHIELD_BLOCK) && damage >= 3.0F ) {
             int damageAmount = 1 + Mth.floor(damage);
             InteractionHand interactionhand = this.getUsedItemHand();
-            this.useItem.hurtAndBreak(damageAmount, this, maid -> {
-                maid.broadcastBreakEvent(interactionhand);
-                maid.stopUsingItem();
+            this.useItem.hurtAndBreak(damageAmount, this, slime -> {
+                slime.broadcastBreakEvent(interactionhand);
+                slime.stopUsingItem();
             });
             if (this.useItem.isEmpty()) {
-                if (interactionhand == InteractionHand.MAIN_HAND) {
-                    this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
-                } else {
+                if (interactionhand == InteractionHand.OFF_HAND && !(this.getOffhandItem().getItem() instanceof IModifiableDisplay)) {
                     this.setItemSlot(EquipmentSlot.OFFHAND, ItemStack.EMPTY);
                 }
                 this.useItem = ItemStack.EMPTY;
@@ -186,6 +206,7 @@ public class SlimeGolemEntity extends Monster {
         super.addAdditionalSaveData(compound);
         compound.putInt("hurtTick", this.hurtTick);
         compound.putInt("shieldTick", this.shieldTick);
+        compound.putBoolean("usingShield", this.isUsingShield());
     }
 
     @Override
@@ -194,7 +215,7 @@ public class SlimeGolemEntity extends Monster {
         this.reassessWeaponGoal();
         this.hurtTick = compound.getInt("hurtTick");
         this.shieldTick = compound.getInt("shieldTick");
-
+        this.setUsingShield(compound.getBoolean("usingShield"));
     }
 
     @Override
