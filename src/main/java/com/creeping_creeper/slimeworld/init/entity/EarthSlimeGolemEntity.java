@@ -1,72 +1,30 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.ForgeConfig;
-import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.tools.item.IModifiableDisplay;
 
-public class SlimeGolemEntity extends Monster {
-    private static final EntityDataAccessor<Boolean> DATA_SHIELD = SynchedEntityData.defineId(SlimeGolemEntity.class, EntityDataSerializers.BOOLEAN);
-
-    private int hurtTick = 0;
+public class EarthSlimeGolemEntity extends BaseSlimeGolemEntity {
+    private static final EntityDataAccessor<Boolean> DATA_SHIELD = SynchedEntityData.defineId(EarthSlimeGolemEntity.class, EntityDataSerializers.BOOLEAN);
     private int shieldTick = 0;
-    public final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2, false) {
-        public void stop() {
-            super.stop();
-            SlimeGolemEntity.this.setAggressive(false);
-        }
-
-        public void start() {
-            super.start();
-            SlimeGolemEntity.this.setAggressive(true);
-        }
-    };
-
-    public SlimeGolemEntity(EntityType<? extends SlimeGolemEntity> entityType, Level level) {
+    public EarthSlimeGolemEntity(EntityType<? extends EarthSlimeGolemEntity> entityType, Level level) {
         super(entityType, level);
-        this.setCanPickUpLoot(true);
-        this.reassessWeaponGoal();
-    }
-
-    @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0F));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-     }
-
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25F).add(ForgeMod.ENTITY_REACH.get(), 1.0F);
     }
 
     @Override
@@ -83,29 +41,8 @@ public class SlimeGolemEntity extends Monster {
         this.entityData.set(DATA_SHIELD, using);
     }
 
-    protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState block) {
-       this.playSound(this.getStepSound(), 0.15F, 1.0F);
-    }
-
-
-    protected @NotNull SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
-        return SoundEvents.SLIME_HURT;
-    }
-
-    protected @NotNull SoundEvent getDeathSound() {
-        return SoundEvents.SLIME_DEATH;
-    }
-
-    protected SoundEvent getStepSound() {
-        return SoundEvents.SLIME_SQUISH;
-    }
-
     @Override
     public void customServerAiStep() {
-        if (this.tickCount % 10 == 0){
-            if (this.hurtTick > 0) this.hurtTick -= 10;
-            else this.heal(1F);
-        }
         if (this.shieldTick > -100) {
             if(this.shieldTick <= 60) {
                 this.stopUsingItem();
@@ -125,17 +62,8 @@ public class SlimeGolemEntity extends Monster {
 
     }
 
-    private void reassessWeaponGoal() {
-        if (!this.level().isClientSide) {
-            this.goalSelector.removeGoal(this.meleeGoal);
-            this.goalSelector.addGoal(4, this.meleeGoal);
-        }
-
-    }
-
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
-        if (amount > 0) this.hurtTick = 200;
         if (!source.is(DamageTypeTags.BYPASSES_SHIELD) && this.getOffhandItem().canPerformAction(ToolActions.SHIELD_BLOCK)) {
             if (this.shieldTick <= 0 && random.nextInt(100) < -this.shieldTick) {
                 this.startUsingItem(InteractionHand.OFF_HAND);
@@ -204,7 +132,6 @@ public class SlimeGolemEntity extends Monster {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("hurtTick", this.hurtTick);
         compound.putInt("shieldTick", this.shieldTick);
         compound.putBoolean("usingShield", this.isUsingShield());
     }
@@ -213,18 +140,7 @@ public class SlimeGolemEntity extends Monster {
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         this.reassessWeaponGoal();
-        this.hurtTick = compound.getInt("hurtTick");
         this.shieldTick = compound.getInt("shieldTick");
         this.setUsingShield(compound.getBoolean("usingShield"));
-    }
-
-    @Override
-    protected float getStandingEyeHeight(@NotNull Pose pose, @NotNull EntityDimensions size) {
-        return 1.74F;
-    }
-
-    @Override
-    public double getMyRidingOffset() {
-        return -0.6;
     }
 }

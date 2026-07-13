@@ -1,8 +1,5 @@
 {
   "values": [
-    {
-      "id": "#tconstruct:slimy_nylium",
-      "required": false
-    }
+    "#tconstruct:slimy_nylium"
   ]
 }

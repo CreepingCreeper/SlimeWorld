@@ -6,12 +6,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
@@ -36,7 +33,7 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 
 public class SkySlimeGolemEntity extends BaseSlimeGolemEntity implements RangedAttackMob {
-    private final SpecialBowAttackGoal bowGoal = new SpecialBowAttackGoal(this, 1.0D, 20, 15.0F);
+    private final SpecialBowAttackGoal<SkySlimeGolemEntity> bowGoal = new SpecialBowAttackGoal<>(this, 1.0D, 20, 15.0F);
 
     public SkySlimeGolemEntity(EntityType<? extends BaseSlimeGolemEntity> entityType, Level level) {
         super(entityType, level);
@@ -66,35 +63,31 @@ public class SkySlimeGolemEntity extends BaseSlimeGolemEntity implements RangedA
     public void performRangedAttack(@NotNull LivingEntity target, float distanceFactor) {
         AbstractArrow entityArrow = getArrow(this);
         ItemStack mainHandItem = this.getMainHandItem();
-        if (mainHandItem.getItem() instanceof ModifiableBowItem) {
-            IToolStackView tool = ToolStack.from(mainHandItem);
-            if (tool.isBroken()) {
-                return;
-            }
-            double x = target.getX() - this.getX();
-            double y = target.getY(0.3333333333333333D) - entityArrow.getY();
-            double z = target.getZ() - this.getZ();
-            // 依据距离调整箭速和不准确度
-            float distance = this.distanceTo(target);
-            float velocity = Mth.clamp(distance / 10f, 1.6f, 3.2f) * ConditionalStatModifierHook.getModifiedStat(tool, this, ToolStats.VELOCITY);
-            float inaccuracy = 1 - Mth.clamp(distance / 200f, ModifierUtil.getInaccuracy(tool, this), 0.9f);
-            //为了触发某些特性，箭必须暴击，为此需要降低基础伤害以平衡
-            float multiplier = 0.67f;
-            float baseArrowDamage = (float)(entityArrow.getBaseDamage() - 2 + tool.getStats().get(ToolStats.PROJECTILE_DAMAGE));
-            entityArrow.setBaseDamage(ConditionalStatModifierHook.getModifiedStat(tool, this, ToolStats.PROJECTILE_DAMAGE, baseArrowDamage) * multiplier);
-            entityArrow.shoot(x, y, z, velocity, inaccuracy);
-            mainHandItem.hurtAndBreak(1, this, (slime) -> slime.broadcastBreakEvent(InteractionHand.MAIN_HAND));
-            ModifierNBT modifiers = tool.getModifiers();
-            EntityModifierCapability.getCapability(entityArrow).addModifiers(modifiers);
-            ModDataNBT arrowData = PersistentDataCapability.getOrWarn(entityArrow);
-            entityArrow.setCritArrow(true);
-            for (ModifierEntry entry : modifiers.getModifiers()) {
-                entry.getHook(ModifierHooks.PROJECTILE_LAUNCH).onProjectileLaunch(tool, entry, this, findAmmo(this), entityArrow, entityArrow, arrowData, true);
-            }
-            ToolDamageUtil.damageAnimated(tool, 1, this, this.getUsedItemHand());
-            this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-            this.level().addFreshEntity(entityArrow);
+        IToolStackView tool = ToolStack.from(mainHandItem);
+        if (tool.isBroken()) {
+            return;
         }
+        double x = target.getX() - this.getX();
+        double y = target.getY(0.3333333333333333D) - entityArrow.getY();
+        double z = target.getZ() - this.getZ();
+        // 依据距离调整箭速
+        float distance = this.distanceTo(target);
+        float velocity = Mth.clamp(distance / 10f, 1.6f, 3.2f) * ConditionalStatModifierHook.getModifiedStat(tool, this, ToolStats.VELOCITY);
+        //为了触发某些特性，箭必须暴击，为此需要降低基础伤害以平衡
+        float multiplier = 0.67f;
+        float baseArrowDamage = (float)(entityArrow.getBaseDamage() - 2 + tool.getStats().get(ToolStats.PROJECTILE_DAMAGE));
+        entityArrow.setBaseDamage(ConditionalStatModifierHook.getModifiedStat(tool, this, ToolStats.PROJECTILE_DAMAGE, baseArrowDamage) * multiplier);
+        entityArrow.shoot(x, y + Math.sqrt(x * x + z * z) * (double)0.2F, z, velocity, ModifierUtil.getInaccuracy(tool, this));
+        ModifierNBT modifiers = tool.getModifiers();
+        EntityModifierCapability.getCapability(entityArrow).addModifiers(modifiers);
+        ModDataNBT arrowData = PersistentDataCapability.getOrWarn(entityArrow);
+        entityArrow.setCritArrow(true);
+        for (ModifierEntry entry : modifiers.getModifiers()) {
+            entry.getHook(ModifierHooks.PROJECTILE_LAUNCH).onProjectileLaunch(tool, entry, this, findAmmo(this), entityArrow, entityArrow, arrowData, true);
+        }
+        ToolDamageUtil.damageAnimated(tool, 1, this, this.getUsedItemHand());
+        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.level().addFreshEntity(entityArrow);
     }
 
     private AbstractArrow getArrow(SkySlimeGolemEntity slime) {
@@ -112,9 +105,12 @@ public class SkySlimeGolemEntity extends BaseSlimeGolemEntity implements RangedA
     }
 
     @Override
-    public void onItemPickup(@NotNull ItemEntity item) {
-        super.onItemPickup(item);
-        this.reassessWeaponGoal();
+    public @NotNull ItemStack equipItemIfPossible(ItemStack itemStack) {
+        if (itemStack.getItem() instanceof ArrowItem && this.getOffhandItem().isEmpty()){
+            this.setItemSlot(EquipmentSlot.OFFHAND, itemStack);
+            return itemStack;
+        }
+        return super.equipItemIfPossible(itemStack);
     }
 
     @Override
