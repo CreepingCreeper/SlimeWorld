@@ -36,7 +36,6 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
         if (reason == MobSpawnType.SPAWNER) {
             return true;
         }
-        world.getBlockState(pos).isSolid();
         return !world.canSeeSky(pos) && (world.getBiome(pos).is(ModTags.Biomes.IchorSlimeSpawn) || world.getBlockState(pos.above(3)).is(ModTags.Blocks.ICHOR_SLIME_SPAWN));
     }
 

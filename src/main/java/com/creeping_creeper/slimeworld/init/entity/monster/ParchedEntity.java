@@ -17,13 +17,14 @@ import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class ParchedEntity extends AbstractSkeleton {
     public ParchedEntity(EntityType<? extends AbstractSkeleton> entityType, Level level) {
         super(entityType, level);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
+    public static AttributeSupplier.@NotNull Builder createAttributes() {
         return AbstractSkeleton.createAttributes().add(Attributes.MAX_HEALTH, 16.0F);
     }
 
@@ -54,22 +55,22 @@ public class ParchedEntity extends AbstractSkeleton {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
+    protected @NotNull SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return ModSounds.PARCHED_HURT.get();
     }
 
     @Override
-    protected SoundEvent getDeathSound() {
+    protected @NotNull SoundEvent getDeathSound() {
         return ModSounds.PARCHED_DEATH.get();
     }
 
     @Override
-    protected SoundEvent getStepSound() {
+    protected @NotNull SoundEvent getStepSound() {
         return ModSounds.PARCHED_STEP.get();
     }
 
     @Override
-    protected AbstractArrow getArrow(ItemStack arrowStack, float distanceFactor) {
+    protected @NotNull AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor) {
         AbstractArrow abstractarrow = super.getArrow(arrowStack, distanceFactor);
         if (abstractarrow instanceof Arrow) {
             ((Arrow)abstractarrow).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600));
