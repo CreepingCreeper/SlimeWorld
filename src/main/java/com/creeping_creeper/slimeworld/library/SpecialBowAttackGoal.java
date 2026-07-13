@@ -1,19 +1,18 @@
 package com.creeping_creeper.slimeworld.library;
 
+import com.creeping_creeper.slimeworld.init.entity.SpecialRangedMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.BowItem;
-import slimeknights.tconstruct.library.tools.item.ranged.ModifiableBowItem;
+import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.EnumSet;
 
-@SuppressWarnings("unchecked")
-public class SpecialBowAttackGoal<T extends net.minecraft.world.entity.Mob & RangedAttackMob> extends Goal {
+@SuppressWarnings("unused")
+public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal {
     protected final T mob;
     private final double speedModifier;
     private int attackIntervalMin;
@@ -23,10 +22,6 @@ public class SpecialBowAttackGoal<T extends net.minecraft.world.entity.Mob & Ran
     private boolean strafingClockwise;
     private boolean strafingBackwards;
     private int strafingTime = -1;
-
-    public <M extends Monster & RangedAttackMob> SpecialBowAttackGoal(M p_25792_, double p_25793_, int p_25794_, float p_25795_){
-        this((T) p_25792_, p_25793_, p_25794_, p_25795_);
-    }
 
     public SpecialBowAttackGoal(T p_25792_, double p_25793_, int p_25794_, float p_25795_) {
         this.mob = p_25792_;
@@ -39,13 +34,17 @@ public class SpecialBowAttackGoal<T extends net.minecraft.world.entity.Mob & Ran
     public void setMinAttackInterval(int p_25798_) {
         this.attackIntervalMin = p_25798_;
     }
+    
+    private ToolStack toolStack(){
+        return ToolStack.from(this.mob.getUseItem());
+    }
 
     public boolean canUse() {
         return this.mob.getTarget() != null && this.isHoldingBow();
     }
 
     protected boolean isHoldingBow() {
-        return this.mob.isHolding(is -> is.getItem() instanceof ModifiableBowItem);
+        return this.mob.isHolding(this.mob.canRangedAttack());
     }
 
     public boolean canContinueToUse() {
@@ -63,7 +62,9 @@ public class SpecialBowAttackGoal<T extends net.minecraft.world.entity.Mob & Ran
         this.seeTime = 0;
         this.attackTime = -1;
         this.mob.stopUsingItem();
+        GeneralInteractionModifierHook.finishUsing(toolStack());
     }
+    
 
     public boolean requiresUpdateEveryTick() {
         return true;
@@ -128,14 +129,18 @@ public class SpecialBowAttackGoal<T extends net.minecraft.world.entity.Mob & Ran
                     this.mob.stopUsingItem();
                 } else if (flag) {
                     int i = this.mob.getTicksUsingItem();
-                    if (i >= 20) {
+                    float charge = GeneralInteractionModifierHook.getToolCharge(toolStack(), i);
+                    if (charge == 1){
                         this.mob.stopUsingItem();
-                        this.mob.performRangedAttack(livingentity, BowItem.getPowerForTime(i));
+                        this.mob.performRangedAttack(livingentity, 1);
+                        GeneralInteractionModifierHook.finishUsing(toolStack());
                         this.attackTime = this.attackIntervalMin;
                     }
                 }
             } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, item -> item instanceof ModifiableBowItem));
+                this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, this.mob.canStartRangedAttack()));
+                GeneralInteractionModifierHook.startDrawing(toolStack(), this.mob, 1);
+                this.mob.startDrawing(toolStack());
             }
 
         }

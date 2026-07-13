@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.entity;
+package com.creeping_creeper.slimeworld.init.entity.boss;
 
 import com.creeping_creeper.slimeworld.events.SlimeBossTeleportEvent;
 import com.creeping_creeper.slimeworld.init.ModParticles;
@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KnightSlimeBossEntity extends BossSlimeEntity {
+public class KnightSlimeBossEntity extends BaseBossSlimeEntity {
     private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new SlimeBossTeleportEvent(entity, x, y, z, this);
     private Vec3 bounce = Vec3.ZERO;
     private Vec3 chargeForwardDir;

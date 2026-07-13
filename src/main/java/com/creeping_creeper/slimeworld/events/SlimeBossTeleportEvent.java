@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.events;
 
-import com.creeping_creeper.slimeworld.init.entity.KnightSlimeBossEntity;
+import com.creeping_creeper.slimeworld.init.entity.boss.KnightSlimeBossEntity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.EntityTeleportEvent;
 import net.minecraftforge.eventbus.api.Cancelable;

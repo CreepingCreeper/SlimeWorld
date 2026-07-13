@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.entity;
+package com.creeping_creeper.slimeworld.init.entity.golem;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.entity;
+package com.creeping_creeper.slimeworld.init.entity.boss;
 
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
 import com.google.common.annotations.VisibleForTesting;
@@ -45,13 +45,13 @@ import slimeknights.tconstruct.world.entity.ArmoredSlimeEntity;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class BossSlimeEntity extends Slime {
-    private static final EntityDataAccessor<Integer> COOLING = SynchedEntityData.defineId(BossSlimeEntity.class, EntityDataSerializers.INT);
+public abstract class BaseBossSlimeEntity extends Slime {
+    private static final EntityDataAccessor<Integer> COOLING = SynchedEntityData.defineId(BaseBossSlimeEntity.class, EntityDataSerializers.INT);
     private int stunnedTick;
     protected int skillTick;
     private final ServerBossEvent bossEvent;
 
-    public BossSlimeEntity(EntityType<? extends Slime> entityType, Level level) {
+    public BaseBossSlimeEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
         this.bossEvent = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
         if (!level.isClientSide) {

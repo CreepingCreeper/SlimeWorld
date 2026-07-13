@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.entity;
+package com.creeping_creeper.slimeworld.init.entity.monster;
 
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModParticles;

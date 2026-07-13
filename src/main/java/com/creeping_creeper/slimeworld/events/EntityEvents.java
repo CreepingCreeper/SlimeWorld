@@ -3,7 +3,11 @@ package com.creeping_creeper.slimeworld.events;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
-import com.creeping_creeper.slimeworld.init.entity.*;
+import com.creeping_creeper.slimeworld.init.entity.boss.BaseBossSlimeEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.IchorSlimeEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.ParchedEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.TomatoSlimeEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -42,7 +46,7 @@ public class EntityEvents {
     @SubscribeEvent
     public void onLivingDying(LivingDeathEvent event){
         LivingEntity living = event.getEntity();
-        if (living instanceof BossSlimeEntity boss && boss.getSize() > 2) {
+        if (living instanceof BaseBossSlimeEntity boss && boss.getSize() > 2) {
             boss.setSize(boss.getSize() / 2, true);
             event.setCanceled(true);
         }

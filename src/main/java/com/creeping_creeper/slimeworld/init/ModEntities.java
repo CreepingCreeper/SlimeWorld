@@ -2,7 +2,11 @@ package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.entity.*;
-import com.creeping_creeper.slimeworld.init.entity.KnightSlimeBossEntity;
+import com.creeping_creeper.slimeworld.init.entity.boss.KnightSlimeBossEntity;
+import com.creeping_creeper.slimeworld.init.entity.boss.SteelSlimeBossEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.EarthSlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.SkySlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -65,7 +69,7 @@ public class ModEntities {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.ParchedEntity.get().create(world)), 0xddc38e, 0x4a473d);
-    public static final EntityObject<EarthSlimeGolemEntity> EarthSlimeGolemEntity = ENTITIES.registerWithEgg("slime_golem", () ->
+    public static final EntityObject<EarthSlimeGolemEntity> EarthSlimeGolemEntity = ENTITIES.registerWithEgg("earth_slime_golem", () ->
             EntityType.Builder.of(EarthSlimeGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)

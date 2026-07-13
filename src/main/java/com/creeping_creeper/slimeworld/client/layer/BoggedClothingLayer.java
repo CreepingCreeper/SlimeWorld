@@ -2,7 +2,7 @@ package com.creeping_creeper.slimeworld.client.layer;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.client.ModModelLayers;
-import com.creeping_creeper.slimeworld.init.entity.BoggedEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.SkeletonModel;

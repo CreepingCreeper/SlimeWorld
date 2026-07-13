@@ -1,8 +1,8 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.client.model.SlimeGolemModel;
-import com.creeping_creeper.slimeworld.init.entity.BaseSlimeGolemEntity;
-import com.creeping_creeper.slimeworld.init.entity.EarthSlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.EarthSlimeGolemEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;

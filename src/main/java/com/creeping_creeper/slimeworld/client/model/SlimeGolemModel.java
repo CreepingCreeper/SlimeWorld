@@ -7,11 +7,9 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
-import slimeknights.tconstruct.library.tools.item.ranged.ModifiableBowItem;
 
 @OnlyIn(Dist.CLIENT)
 public class SlimeGolemModel<T extends Mob > extends HumanoidModel<T> {
@@ -22,8 +20,7 @@ public class SlimeGolemModel<T extends Mob > extends HumanoidModel<T> {
     @Override
     public void setupAnim(@NotNull T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ItemStack itemstack = entity.getMainHandItem();
-        if (entity.isAggressive() && itemstack.isEmpty()) {
+        if (entity.isAggressive()) {
             float f = Mth.sin(this.attackTime * (float)Math.PI);
             float f1 = Mth.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float)Math.PI);
             this.rightArm.zRot = 0.0F;

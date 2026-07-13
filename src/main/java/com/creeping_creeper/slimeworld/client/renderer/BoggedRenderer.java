@@ -4,7 +4,7 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.client.ModModelLayers;
 import com.creeping_creeper.slimeworld.client.layer.BoggedClothingLayer;
 import com.creeping_creeper.slimeworld.client.model.BoggedModel;
-import com.creeping_creeper.slimeworld.init.entity.BoggedEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
 import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

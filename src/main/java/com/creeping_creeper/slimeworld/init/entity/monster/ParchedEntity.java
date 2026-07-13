@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.entity;
+package com.creeping_creeper.slimeworld.init.entity.monster;
 
 import com.creeping_creeper.slimeworld.init.ModSounds;
 import net.minecraft.sounds.SoundEvent;

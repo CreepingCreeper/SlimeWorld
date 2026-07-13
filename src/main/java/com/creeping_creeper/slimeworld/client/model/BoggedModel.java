@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.client.model;
 
-import com.creeping_creeper.slimeworld.init.entity.BoggedEntity;
+import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.SkeletonModel;
 import net.minecraft.client.model.geom.ModelPart;

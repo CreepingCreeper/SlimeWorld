@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.entity;
+package com.creeping_creeper.slimeworld.init.entity.boss;
 
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
@@ -22,7 +22,7 @@ import slimeknights.tconstruct.world.entity.SkySlimeEntity;
 
 import java.util.List;
 
-public class SteelSlimeBossEntity extends BossSlimeEntity {
+public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
     private boolean isImmune;
 
     public SteelSlimeBossEntity(EntityType<? extends Slime> entityType, Level level) {
