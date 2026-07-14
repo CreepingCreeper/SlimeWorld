@@ -4,7 +4,7 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.entity.boss.BaseBossSlimeEntity;
-import com.creeping_creeper.slimeworld.init.entity.golem.EarthSlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.IchorSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.OceanSlimeEntity;
@@ -32,8 +32,10 @@ public class RegisterEvents {
         event.put(ModEntities.SulfurCubeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.BoggedEntity.get(), BoggedEntity.createAttributes().build());
         event.put(ModEntities.ParchedEntity.get(), ParchedEntity.createAttributes().build());
-        event.put(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemEntity.createAttributes().build());
-        event.put(ModEntities.SkySlimeGolemEntity.get(), EarthSlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.EarthSlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.SkySlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.OceanSlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
+
         event.put(ModEntities.SteelSlimeBossEntity.get(), BaseBossSlimeEntity.createAttributes().build());
         event.put(ModEntities.KnightSlimeBossEntity.get(), BaseBossSlimeEntity.createAttributes().build());
     }

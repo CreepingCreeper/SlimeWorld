@@ -1,14 +1,13 @@
 {
-  "modifier.slimeworld":
-  {
-    "sputtering": "#568bf5"
+  "modifier.slimeworld": {
+    "overwash": "#9FC2A7",
+    "sputtering": "#568BF5"
   },
-  "material.slimeworld":
-  {
-    "oceanslime": "#568bf5"
+  "material.slimeworld": {
+    "slime_bronze": "#9FC2A7",
+    "oceanslime": "#568BF5"
   },
-  "material.tconstruct":
-  {
-    "slimeball.ocean":  "#568bf5"
+  "material.tconstruct": {
+    "slimeball.ocean":  "#568BF5"
   }
 }

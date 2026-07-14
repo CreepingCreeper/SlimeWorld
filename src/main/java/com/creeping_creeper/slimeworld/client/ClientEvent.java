@@ -74,6 +74,8 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.ParchedEntity.get(), ParchedRenderer::new);
         event.registerEntityRenderer(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.SkySlimeGolemEntity.get(), SlimeGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.OceanSlimeGolemEntity.get(), SlimeGolemRenderer::new);
+
     }
 
     @SubscribeEvent

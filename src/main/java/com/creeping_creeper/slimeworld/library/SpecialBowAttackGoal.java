@@ -1,18 +1,18 @@
 package com.creeping_creeper.slimeworld.library;
 
 import com.creeping_creeper.slimeworld.init.entity.SpecialRangedMob;
+import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.EnumSet;
 
 @SuppressWarnings("unused")
-public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal {
+public class SpecialBowAttackGoal<T extends BaseSlimeGolemEntity & SpecialRangedMob> extends Goal {
     protected final T mob;
     private final double speedModifier;
     private int attackIntervalMin;
@@ -36,7 +36,7 @@ public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal
     }
     
     private ToolStack toolStack(){
-        return ToolStack.from(this.mob.getUseItem());
+        return ToolStack.from(this.mob.getMainHandItem());
     }
 
     public boolean canUse() {
@@ -61,8 +61,8 @@ public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal
         this.mob.setAggressive(false);
         this.seeTime = 0;
         this.attackTime = -1;
+        //GeneralInteractionModifierHook.finishUsing(toolStack());
         this.mob.stopUsingItem();
-        GeneralInteractionModifierHook.finishUsing(toolStack());
     }
     
 
@@ -71,10 +71,10 @@ public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal
     }
 
     public void tick() {
-        LivingEntity livingentity = this.mob.getTarget();
-        if (livingentity != null) {
-            double d0 = this.mob.distanceToSqr(livingentity.getX(), livingentity.getY(), livingentity.getZ());
-            boolean flag = this.mob.getSensing().hasLineOfSight(livingentity);
+        LivingEntity target = this.mob.getTarget();
+        if (target != null) {
+            double d0 = this.mob.distanceToSqr(target.getX(), target.getY(), target.getZ());
+            boolean flag = this.mob.getSensing().hasLineOfSight(target);
             boolean flag1 = this.seeTime > 0;
             if (flag != flag1) {
                 this.seeTime = 0;
@@ -90,7 +90,7 @@ public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal
                 this.mob.getNavigation().stop();
                 ++this.strafingTime;
             } else {
-                this.mob.getNavigation().moveTo(livingentity, this.speedModifier);
+                this.mob.getNavigation().moveTo(target, this.speedModifier);
                 this.strafingTime = -1;
             }
 
@@ -116,12 +116,12 @@ public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal
                 this.mob.getMoveControl().strafe(this.strafingBackwards ? -0.5F : 0.5F, this.strafingClockwise ? 0.5F : -0.5F);
                 Entity entity = this.mob.getControlledVehicle();
                 if (entity instanceof Mob mob1) {
-                    mob1.lookAt(livingentity, 30.0F, 30.0F);
+                    mob1.lookAt(target, 30.0F, 30.0F);
                 }
 
-                this.mob.lookAt(livingentity, 30.0F, 30.0F);
+                this.mob.lookAt(target, 30.0F, 30.0F);
             } else {
-                this.mob.getLookControl().setLookAt(livingentity, 30.0F, 30.0F);
+                this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
             }
 
             if (this.mob.isUsingItem()) {
@@ -131,15 +131,11 @@ public class SpecialBowAttackGoal<T extends Mob & SpecialRangedMob> extends Goal
                     int i = this.mob.getTicksUsingItem();
                     float charge = GeneralInteractionModifierHook.getToolCharge(toolStack(), i);
                     if (charge == 1){
-                        this.mob.stopUsingItem();
-                        this.mob.performRangedAttack(livingentity, 1);
-                        GeneralInteractionModifierHook.finishUsing(toolStack());
+                        this.mob.releaseUsingItem();
                         this.attackTime = this.attackIntervalMin;
                     }
                 }
             } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.mob.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this.mob, this.mob.canStartRangedAttack()));
-                GeneralInteractionModifierHook.startDrawing(toolStack(), this.mob, 1);
                 this.mob.startDrawing(toolStack());
             }
 

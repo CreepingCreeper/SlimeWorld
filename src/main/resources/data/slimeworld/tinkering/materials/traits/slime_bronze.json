@@ -1,9 +1,21 @@
 {
   "perStat": {
-    "tconstruct:ammo": [
+    "tconstruct:armor": [
       {
         "level": 1,
-        "name": "slimeworld:sputtering"
+        "name": "tconstruct:crystalstrike"
+      }
+    ],
+    "tconstruct:melee_harvest": [
+      {
+        "level": 1,
+        "name": "slimeworld:overwash"
+      }
+    ],
+    "tconstruct:ranged": [
+      {
+        "level": 1,
+        "name": "tconstruct:crystalbound"
       }
     ]
   }
