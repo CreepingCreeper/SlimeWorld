@@ -5,7 +5,6 @@ import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.entity.boss.BaseBossSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
-import com.creeping_creeper.slimeworld.init.entity.monster.IchorSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.ParchedEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.TomatoSlimeEntity;
 import net.minecraft.world.damagesource.DamageSource;

@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.entity.golem;
 import com.creeping_creeper.slimeworld.init.entity.SpecialRangedMob;
 import com.creeping_creeper.slimeworld.library.SpecialBowAttackGoal;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Difficulty;
