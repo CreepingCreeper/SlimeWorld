@@ -1,18 +1,16 @@
-package com.creeping_creeper.slimeworld.library;
+package com.creeping_creeper.slimeworld.init.entity;
 
-import com.creeping_creeper.slimeworld.init.entity.SpecialRangedMob;
-import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.RangeSlimeGolemEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.goal.Goal;
-import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.EnumSet;
 
 @SuppressWarnings("unused")
-public class SpecialBowAttackGoal<T extends BaseSlimeGolemEntity & SpecialRangedMob> extends Goal {
+public class SpecialBowAttackGoal<T extends RangeSlimeGolemEntity> extends Goal {
     protected final T mob;
     private final double speedModifier;
     private int attackIntervalMin;
@@ -23,16 +21,16 @@ public class SpecialBowAttackGoal<T extends BaseSlimeGolemEntity & SpecialRanged
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public SpecialBowAttackGoal(T p_25792_, double p_25793_, int p_25794_, float p_25795_) {
-        this.mob = p_25792_;
-        this.speedModifier = p_25793_;
-        this.attackIntervalMin = p_25794_;
-        this.attackRadiusSqr = p_25795_ * p_25795_;
+    public SpecialBowAttackGoal(T mob, double speedModifier, int attackIntervalMin, float attackRadiusSqr) {
+        this.mob = mob;
+        this.speedModifier = speedModifier;
+        this.attackIntervalMin = attackIntervalMin;
+        this.attackRadiusSqr = attackRadiusSqr;
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
-    public void setMinAttackInterval(int p_25798_) {
-        this.attackIntervalMin = p_25798_;
+    public void setMinAttackInterval(int attackIntervalMin) {
+        this.attackIntervalMin = attackIntervalMin;
     }
     
     private ToolStack toolStack(){
@@ -61,7 +59,6 @@ public class SpecialBowAttackGoal<T extends BaseSlimeGolemEntity & SpecialRanged
         this.mob.setAggressive(false);
         this.seeTime = 0;
         this.attackTime = -1;
-        //GeneralInteractionModifierHook.finishUsing(toolStack());
         this.mob.stopUsingItem();
     }
     
@@ -124,22 +121,19 @@ public class SpecialBowAttackGoal<T extends BaseSlimeGolemEntity & SpecialRanged
                 this.mob.getLookControl().setLookAt(target, 30.0F, 30.0F);
             }
 
-            if (this.mob.isUsingItem()) {
-                if (!flag && this.seeTime < -60) {
-                    this.mob.stopUsingItem();
-                } else if (flag) {
-                    int i = this.mob.getTicksUsingItem();
-                    float charge = GeneralInteractionModifierHook.getToolCharge(toolStack(), i);
-                    if (charge == 1){
-                        this.mob.releaseUsingItem();
-                        this.mob.performRangedAttack(target, 1F);
-                        this.attackTime = this.attackIntervalMin;
-                    }
-                }
-            } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.mob.startDrawing(toolStack());
-            }
-
+            this.mob.shoot(this, flag, toolStack(), target);
         }
+    }
+
+    public boolean canSee(){
+        return this.seeTime >= -60;
+    }
+
+    public boolean canDraw(){
+        return --this.attackTime <= 0 && this.canSee();
+    }
+
+    public void resetAttackTime(){
+        this.attackTime = this.attackIntervalMin;
     }
 }

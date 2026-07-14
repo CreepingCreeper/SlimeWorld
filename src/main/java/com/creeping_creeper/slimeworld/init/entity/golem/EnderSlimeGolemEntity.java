@@ -1,36 +1,33 @@
 package com.creeping_creeper.slimeworld.init.entity.golem;
 
-import com.creeping_creeper.slimeworld.init.entity.SpecialRangedMob;
-import com.creeping_creeper.slimeworld.library.SpecialBowAttackGoal;
-import net.minecraft.nbt.CompoundTag;
+import com.creeping_creeper.slimeworld.events.SlimeBossTeleportEvent;
+import com.creeping_creeper.slimeworld.init.entity.SpecialBowAttackGoal;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.Sounds;
-import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
-import slimeknights.tconstruct.library.modifiers.hook.ranged.BowAmmoModifierHook;
+import slimeknights.tconstruct.library.modifiers.hook.build.ConditionalStatModifierHook;
+import slimeknights.tconstruct.library.tools.item.ModifiableShurikenItem;
 import slimeknights.tconstruct.library.tools.item.ranged.ModifiableBowItem;
+import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
+import slimeknights.tconstruct.library.tools.stat.ToolStats;
+import slimeknights.tconstruct.library.utils.TeleportHelper;
+import slimeknights.tconstruct.tools.entity.ThrownShuriken;
 
 import java.util.function.Predicate;
 
-import static slimeknights.tconstruct.library.tools.item.ranged.ModifiableLauncherItem.KEY_DRAWBACK_AMMO;
+public class EnderSlimeGolemEntity extends RangeSlimeGolemEntity {
+    private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new SlimeBossTeleportEvent(entity, x, y, z, this);
 
-public class EnderSlimeGolemEntity extends BaseSlimeGolemEntity implements SpecialRangedMob {
-    private final SpecialBowAttackGoal<EnderSlimeGolemEntity> bowGoal = new SpecialBowAttackGoal<>(this, 1.0D, 20, 15.0F);
-
-    public EnderSlimeGolemEntity(EntityType<? extends BaseSlimeGolemEntity> entityType, Level level) {
+    public EnderSlimeGolemEntity(EntityType<? extends RangeSlimeGolemEntity> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -39,7 +36,7 @@ public class EnderSlimeGolemEntity extends BaseSlimeGolemEntity implements Speci
         if (!this.level().isClientSide) {
             this.goalSelector.removeGoal(this.meleeGoal);
             this.goalSelector.removeGoal(this.bowGoal);
-            if (this.getMainHandItem().getItem() instanceof ModifiableBowItem) {
+            if (this.canRangedAttack().test(this.getOffhandItem())) {
                 int i = 20;
                 if (this.level().getDifficulty() != Difficulty.HARD) {
                     i = 40;
@@ -56,33 +53,41 @@ public class EnderSlimeGolemEntity extends BaseSlimeGolemEntity implements Speci
 
     @Override
     public void performRangedAttack(@NotNull LivingEntity target, float distanceFactor) {
-
+        ItemStack stack = this.getItemInHand(InteractionHand.OFF_HAND);
+        level().playSound(null, this.getX(), this.getY(), this.getZ(), Sounds.SHURIKEN_THROW.getSound(), SoundSource.HOSTILE, 0.5F, 0.4F / (level().getRandom().nextFloat() * 0.4F + 0.8F));
+        ThrownShuriken shuriken = new ThrownShuriken(level(), this);
+        IToolStackView tool = shuriken.onCreate(stack, this);
+        float velocity = ConditionalStatModifierHook.getModifiedStat(tool, this, ToolStats.VELOCITY);
+        double d0 = target.getX() - this.getX();
+        double d1 = target.getY(0.3333333333333333D) - shuriken.getY();
+        double d2 = target.getZ() - this.getZ();
+        double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+        shuriken.shoot(d0, d1 + d3 * 0.2D, d2, velocity, 1F);
+        level().addFreshEntity(shuriken);
+        TeleportHelper.randomNearbyTeleport(this, teleportPredicate);
+        this.reassessWeaponGoal();
     }
 
     @Override
     public Predicate<ItemStack> canRangedAttack() {
-        return itemStack -> itemStack.getItem() instanceof ModifiableBowItem && !ToolStack.from(itemStack).isBroken();
-    }
-
-    @Override
-    public Predicate<Item> canStartRangedAttack() {
-        return item -> item instanceof ModifiableBowItem;
+        return itemStack -> itemStack.getItem() instanceof ModifiableShurikenItem;
     }
 
     @Override
     public void startDrawing(ToolStack tool){
-        this.startUsingItem(ProjectileUtil.getWeaponHoldingHand(this, this.canStartRangedAttack()));
-        GeneralInteractionModifierHook.startDrawing(tool, this, 1);
-        ItemStack ammo = BowAmmoModifierHook.getAmmo(tool, tool.createStack(), this, stack -> stack.is(ItemTags.ARROWS) || stack.is(TinkerTags.Items.BALLISTA_AMMO));
-        tool.getPersistentData().put(KEY_DRAWBACK_AMMO, ammo.save(new CompoundTag()));
-        if (!level().isClientSide) {
-            level().playSound(null, this.getX(), this.getY(), this.getZ(), Sounds.LONGBOW_CHARGE.getSound(), SoundSource.PLAYERS, 0.75F, 1.0F);
+    }
+
+    @Override
+    public void shoot(SpecialBowAttackGoal<? extends RangeSlimeGolemEntity> goal, boolean flag, ToolStack toolStack, LivingEntity target){
+        if (( flag || goal.canSee()) && goal.canDraw()) {
+            this.performRangedAttack(target, 1F);
+            goal.resetAttackTime();
         }
     }
 
     @Override
     public @NotNull ItemStack equipItemIfPossible(ItemStack itemStack) {
-        if (itemStack.getItem() instanceof ArrowItem && this.getOffhandItem().isEmpty()){
+        if (itemStack.getItem() instanceof ModifiableShurikenItem && this.getOffhandItem().isEmpty()){
             this.setItemSlot(EquipmentSlot.OFFHAND, itemStack);
             return itemStack;
         }
