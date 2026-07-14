@@ -75,7 +75,8 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.SkySlimeGolemEntity.get(), SlimeGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.OceanSlimeGolemEntity.get(), SlimeGolemRenderer::new);
-
+        event.registerEntityRenderer(ModEntities.IchorSlimeGolemEntity.get(), SlimeGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.EnderSlimeGolemEntity.get(), SlimeGolemRenderer::new);
     }
 
     @SubscribeEvent
@@ -103,7 +104,6 @@ public class ClientEvent extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(ModModelLayers.InvertedSlimeInner, InvertedSlimeRenderer::createInnerBodyLayer);
         event.registerLayerDefinition(ModModelLayers.Bogged, BoggedModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.BoggedInnerArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(INNER_ARMOR_DEFORMATION), 64, 32));
         event.registerLayerDefinition(ModModelLayers.BoggedOuterArmor, () -> LayerDefinition.create(HumanoidArmorModel.createBodyLayer(OUTER_ARMOR_DEFORMATION), 64, 32));

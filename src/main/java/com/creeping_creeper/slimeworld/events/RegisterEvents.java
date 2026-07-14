@@ -35,6 +35,8 @@ public class RegisterEvents {
         event.put(ModEntities.EarthSlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
         event.put(ModEntities.SkySlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
         event.put(ModEntities.OceanSlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.IchorSlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
+        event.put(ModEntities.EnderSlimeGolemEntity.get(), BaseSlimeGolemEntity.createAttributes().build());
 
         event.put(ModEntities.SteelSlimeBossEntity.get(), BaseBossSlimeEntity.createAttributes().build());
         event.put(ModEntities.KnightSlimeBossEntity.get(), BaseBossSlimeEntity.createAttributes().build());

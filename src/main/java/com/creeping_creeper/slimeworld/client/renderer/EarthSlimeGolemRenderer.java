@@ -2,7 +2,6 @@ package com.creeping_creeper.slimeworld.client.renderer;
 
 import com.creeping_creeper.slimeworld.client.model.SlimeGolemModel;
 import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
-import com.creeping_creeper.slimeworld.init.entity.golem.EarthSlimeGolemEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -10,6 +9,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +28,7 @@ public class EarthSlimeGolemRenderer extends SlimeGolemRenderer{
 
     private void setModelProperties(BaseSlimeGolemEntity entity) {
         SlimeGolemModel<BaseSlimeGolemEntity> model = this.getModel();
-        HumanoidModel.ArmPose humanoidmodel$armpose = getArmPose((EarthSlimeGolemEntity) entity, InteractionHand.OFF_HAND);
+        HumanoidModel.ArmPose humanoidmodel$armpose = getArmPose(entity, InteractionHand.OFF_HAND);
         if (entity.getMainArm() == HumanoidArm.RIGHT) {
             model.leftArmPose = humanoidmodel$armpose;
         } else {
@@ -36,12 +36,13 @@ public class EarthSlimeGolemRenderer extends SlimeGolemRenderer{
         }
     }
 
-    private static HumanoidModel.ArmPose getArmPose(EarthSlimeGolemEntity entity, InteractionHand hand) {
+    private static HumanoidModel.ArmPose getArmPose(BaseSlimeGolemEntity entity, InteractionHand hand) {
         ItemStack itemstack = entity.getItemInHand(hand);
         if (itemstack.isEmpty()) {
             return HumanoidModel.ArmPose.EMPTY;
         } else {
-            if (entity.isUsingShield()) {
+            UseAnim useanim = itemstack.getUseAnimation();
+            if (useanim == UseAnim.BLOCK) {
                 return HumanoidModel.ArmPose.BLOCK;
             }
 

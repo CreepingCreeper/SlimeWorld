@@ -7,7 +7,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ModModelLayers {
-    public static final ModelLayerLocation InvertedSlimeInner = new ModelLayerLocation(SlimeWorld.getResource("inverted_slime_inner"), "main");
     public static final ModelLayerLocation Bogged = new ModelLayerLocation(SlimeWorld.getResource("bogged"), "main");
     public static final ModelLayerLocation BoggedInnerArmor = new ModelLayerLocation(SlimeWorld.getResource("bogged"), "inner_armor");
     public static final ModelLayerLocation BoggedOuterArmor = new ModelLayerLocation(SlimeWorld.getResource("bogged"), "outer_armor");

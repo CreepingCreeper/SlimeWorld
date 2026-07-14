@@ -16,6 +16,8 @@ public class ModModifiers {
     public static final StaticModifier<MajesticModifier> majestic = MODIFIERS.register("majestic", MajesticModifier::new);
     public static final StaticModifier<OverTomatoModifier> overTomato = MODIFIERS.register("overtomato", OverTomatoModifier::new);
 
+    public static final StaticModifier<CritModifier> crit = MODIFIERS.register("crit", CritModifier::new);
+
     public static void registers(IEventBus bus) {
         MODIFIERS.register(bus);
     }

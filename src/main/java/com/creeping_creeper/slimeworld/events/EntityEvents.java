@@ -10,10 +10,7 @@ import com.creeping_creeper.slimeworld.init.entity.monster.ParchedEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.TomatoSlimeEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -36,8 +33,9 @@ import slimeknights.tconstruct.world.TinkerWorld;
 public class EntityEvents {
     @SubscribeEvent
     public static void onWorldJoin(EntityJoinLevelEvent event) {
-        if (!event.getLevel().isClientSide && event.getEntity() instanceof IchorSlimeEntity slime) {
-            if (slime.getSpawnType() != MobSpawnType.MOB_SUMMONED) {
+        if (!event.getLevel().isClientSide) {
+            Entity entity = event.getEntity();
+            if (entity instanceof Mob slime && slime.getType().is(ModTags.EntityTypes.ANTIGRAVITY) && slime.getSpawnType() != MobSpawnType.MOB_SUMMONED) {
                 slime.addEffect(new MobEffectInstance(TinkerEffects.antigravity.get(), -1, 0, false, false));
             }
         }

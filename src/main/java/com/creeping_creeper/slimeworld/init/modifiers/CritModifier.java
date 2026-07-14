@@ -22,6 +22,11 @@ public class CritModifier extends Modifier implements ProjectileLaunchModifierHo
     }
 
     @Override
+    public int getPriority() {
+        return 250;
+    }
+
+    @Override
     public void onProjectileLaunch(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull LivingEntity shooter, @NotNull Projectile projectile, @Nullable AbstractArrow arrow, @NotNull ModDataNBT persistentData, boolean primary) {
         if (arrow != null) {
             arrow.setCritArrow(true);

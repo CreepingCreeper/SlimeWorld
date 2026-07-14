@@ -132,6 +132,7 @@ public class SpecialBowAttackGoal<T extends BaseSlimeGolemEntity & SpecialRanged
                     float charge = GeneralInteractionModifierHook.getToolCharge(toolStack(), i);
                     if (charge == 1){
                         this.mob.releaseUsingItem();
+                        this.mob.performRangedAttack(target, 1F);
                         this.attackTime = this.attackIntervalMin;
                     }
                 }

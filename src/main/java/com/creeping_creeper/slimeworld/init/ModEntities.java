@@ -4,9 +4,7 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.entity.*;
 import com.creeping_creeper.slimeworld.init.entity.boss.KnightSlimeBossEntity;
 import com.creeping_creeper.slimeworld.init.entity.boss.SteelSlimeBossEntity;
-import com.creeping_creeper.slimeworld.init.entity.golem.EarthSlimeGolemEntity;
-import com.creeping_creeper.slimeworld.init.entity.golem.OceanSlimeGolemEntity;
-import com.creeping_creeper.slimeworld.init.entity.golem.SkySlimeGolemEntity;
+import com.creeping_creeper.slimeworld.init.entity.golem.*;
 import com.creeping_creeper.slimeworld.init.entity.monster.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -85,6 +83,16 @@ public class ModEntities {
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.OceanSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+    public static final EntityObject<IchorSlimeGolemEntity> IchorSlimeGolemEntity = ENTITIES.registerWithEgg("ichor_slime_golem", () ->
+            EntityType.Builder.of(IchorSlimeGolemEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(8)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.IchorSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+    public static final EntityObject<EnderSlimeGolemEntity> EnderSlimeGolemEntity = ENTITIES.registerWithEgg("ender_slime_golem", () ->
+            EntityType.Builder.of(EnderSlimeGolemEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.99F)
+                    .clientTrackingRange(8)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.EnderSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
 
     public static final RegistryObject<EntityType<SteelSlimeBossEntity>> SteelSlimeBossEntity = ENTITIES.register("steelslime_boss", () ->
             EntityType.Builder.of(SteelSlimeBossEntity::new, MobCategory.MONSTER)

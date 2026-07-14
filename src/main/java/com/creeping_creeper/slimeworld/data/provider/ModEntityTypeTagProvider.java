@@ -34,6 +34,8 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
         this.tag(ModTags.EntityTypes.SLIME).add(EntityType.MAGMA_CUBE, ModEntities.OceanSlimeEntity.get(), ModEntities.IchorSlimeEntity.get(), ModEntities.OriginSlimeEntity.get(), ModEntities.TomatoSlimeEntity.get(), ModEntities.SulfurCubeEntity.get(), ModEntities.SteelSlimeBossEntity.get(), ModEntities.KnightSlimeBossEntity.get());
         this.tag(Tags.EntityTypes.BOSSES).add(ModEntities.SteelSlimeBossEntity.get(), ModEntities.KnightSlimeBossEntity.get());
         //self
+        this.tag(ModTags.EntityTypes.ANTIGRAVITY).add(ModEntities.IchorSlimeEntity.get());
+
         this.tag(ModTags.EntityTypes.ORE_BERRY_BUSHES_IMMUNE).add(EntityType.FOX, EntityType.BEE).addTag(ModTags.EntityTypes.SLIME);
         this.tag(ModTags.EntityTypes.PLAY_SULFUR_CUBE).add(EntityType.PLAYER).addOptional(MAID);
         this.tag(ModTags.EntityTypes.SUMMON_TOMATO_SLIME).add(ModEntities.TomatoProjectileEntity.get()).addOptional(FD_ROTTEN_TOMATO).addOptional(FC_ROTTEN_TOMATO);

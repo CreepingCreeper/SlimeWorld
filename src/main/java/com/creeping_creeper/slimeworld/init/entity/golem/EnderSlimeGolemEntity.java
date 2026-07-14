@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.entity.golem;
 import com.creeping_creeper.slimeworld.init.entity.SpecialRangedMob;
 import com.creeping_creeper.slimeworld.library.SpecialBowAttackGoal;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Difficulty;
@@ -11,7 +10,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.ArrowItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.Sounds;
@@ -25,10 +27,10 @@ import java.util.function.Predicate;
 
 import static slimeknights.tconstruct.library.tools.item.ranged.ModifiableLauncherItem.KEY_DRAWBACK_AMMO;
 
-public class SkySlimeGolemEntity extends BaseSlimeGolemEntity implements SpecialRangedMob {
-    private final SpecialBowAttackGoal<SkySlimeGolemEntity> bowGoal = new SpecialBowAttackGoal<>(this, 1.0D, 20, 15.0F);
+public class EnderSlimeGolemEntity extends BaseSlimeGolemEntity implements SpecialRangedMob {
+    private final SpecialBowAttackGoal<EnderSlimeGolemEntity> bowGoal = new SpecialBowAttackGoal<>(this, 1.0D, 20, 15.0F);
 
-    public SkySlimeGolemEntity(EntityType<? extends BaseSlimeGolemEntity> entityType, Level level) {
+    public EnderSlimeGolemEntity(EntityType<? extends BaseSlimeGolemEntity> entityType, Level level) {
         super(entityType, level);
     }
 
@@ -74,7 +76,7 @@ public class SkySlimeGolemEntity extends BaseSlimeGolemEntity implements Special
         ItemStack ammo = BowAmmoModifierHook.getAmmo(tool, tool.createStack(), this, stack -> stack.is(ItemTags.ARROWS) || stack.is(TinkerTags.Items.BALLISTA_AMMO));
         tool.getPersistentData().put(KEY_DRAWBACK_AMMO, ammo.save(new CompoundTag()));
         if (!level().isClientSide) {
-            level().playSound(null, this.getX(), this.getY(), this.getZ(), Sounds.LONGBOW_CHARGE.getSound(), SoundSource.HOSTILE, 0.75F, 1.0F);
+            level().playSound(null, this.getX(), this.getY(), this.getZ(), Sounds.LONGBOW_CHARGE.getSound(), SoundSource.PLAYERS, 0.75F, 1.0F);
         }
     }
 
