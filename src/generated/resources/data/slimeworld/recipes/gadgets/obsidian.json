@@ -1,0 +1,9 @@
+{
+  "type": "slimeworld:drying_rack",
+  "ingredient": {
+    "item": "minecraft:crying_obsidian"
+  },
+  "output": {
+    "item": "obsidian"
+  }
+}

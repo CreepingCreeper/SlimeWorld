@@ -21,28 +21,32 @@
   ],
   "display": {
     "thirdperson_righthand": {
-      "translation": [0, -2.5, -3],
-      "scale": [0.4, 0.4, 0.4]
+      "translation": [0, -4, -1],
+      "scale": [0.75, 0.75, 0.75]
+    },
+    "thirdperson_leftthand": {
+      "translation": [0, -4, -1],
+      "scale": [0.75, 0.75, 0.75]
     },
     "firstperson_righthand": {
-      "rotation": [0, 45, 0],
-      "translation": [1, 0, 0],
-      "scale": [0.4, 0.4, 0.4]
+      "rotation": [0, 27.5, 0],
+      "translation": [0, -4, -3],
+      "scale": [0.75, 0.75, 0.75]
     },
     "ground": {
-      "translation": [0, -4.25, -3.25],
-      "scale": [0.6, 0.6, 0.6]
+      "translation": [0, -3, 0],
+      "scale": [0.75, 0.75, 0.75]
     },
     "gui": {
       "rotation": [30, 45, 0],
-      "translation": [-3, -2, 0],
+      "translation": [0, -3, 0],
       "scale": [0.75, 0.75, 0.75]
     },
     "head": {
-      "translation": [0, -6, -11]
+      "translation": [0, -3, 0]
     },
     "fixed": {
-      "translation": [0, 0, -7]
+      "translation": [0, -3, 0]
     }
   },
   "retextured": [ "texture", "particle" ]
