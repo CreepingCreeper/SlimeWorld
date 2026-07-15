@@ -196,5 +196,11 @@
   
   "subtitles.entity.parched.ambient": "焦骸：咯咯声",
   "subtitles.entity.parched.death": "焦骸：死亡",
-  "subtitles.entity.parched.hurt": "焦骸：受伤"
+  "subtitles.entity.parched.hurt": "焦骸：受伤",
+
+  "jei.slimeworld.drying_rack": "晾干架",
+  "jei.slimeworld.drying_time": "%d秒",
+
+  "config.jade.plugin_slimeworld.drying_rack": "晾干架",
+  "tooltip.slimeworld.drying_rack_progress": "剩余%d秒"
 }

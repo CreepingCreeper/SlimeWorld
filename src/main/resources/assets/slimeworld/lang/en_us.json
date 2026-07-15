@@ -196,5 +196,11 @@
 
   "subtitles.entity.parched.ambient": "Parched crackles",
   "subtitles.entity.parched.death": "Parched dies",
-  "subtitles.entity.parched.hurt": "Parched hurts"
+  "subtitles.entity.parched.hurt": "Parched hurts",
+
+  "jei.slimeworld.drying_rack": "Drying Rack",
+  "jei.slimeworld.drying_time": "%d s",
+
+  "config.jade.plugin_slimeworld.drying_rack": "Drying Rack",
+  "tooltip.slimeworld.drying_rack_progress": "Remaining %d s"
 }

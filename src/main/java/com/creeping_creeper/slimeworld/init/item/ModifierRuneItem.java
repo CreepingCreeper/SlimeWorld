@@ -29,8 +29,8 @@ public class ModifierRuneItem extends Item {
     private static final Component TOOLTIP_APPLY = SlimeWorld.makeTranslation("item", "rune.tooltip").withStyle(ChatFormatting.GRAY);
     private static final String MODIFIER_KEY = TConstruct.makeTranslationKey("item", "modifier_crystal.modifier_id");
     private static final String MAX_LEVEL_KEY = SlimeWorld.makeTranslationKey("item", "rune.max_level");
-    protected static final String TAG_MODIFIER = "modifier";
-    protected static final String MAX_LEVEL = "max_level";
+    public static final String TAG_MODIFIER = "modifier";
+    public static final String MAX_LEVEL = "max_level";
     private final TagKey<Item> tagKey;
 
     public ModifierRuneItem(TagKey<Item> tagKey, Properties props) {

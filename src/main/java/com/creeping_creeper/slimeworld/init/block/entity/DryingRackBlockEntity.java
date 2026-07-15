@@ -4,7 +4,7 @@ import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModOthers;
 import com.creeping_creeper.slimeworld.init.block.DryingWrapper;
-import com.creeping_creeper.slimeworld.library.DryingRecipe;
+import com.creeping_creeper.slimeworld.init.misc.DryingRackRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -39,11 +39,11 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     private static final String TAG_TIMER = "timer";
     private static final String TAG_RECIPE = "recipe";
     private static final Component NAME = SlimeWorld.makeTranslation("gui", "drying");
-    private int timer;
+    private int timer = 0;
     private int dryingTime = -1;
-    private DryingRecipe currentRecipe;
+    private DryingRackRecipe currentRecipe;
     private ResourceLocation recipeName;
-    private DryingRecipe lastDryingRecipe;
+    private DryingRackRecipe lastDryingRecipe;
     private final ISingleStackContainer dryingInventory;
 
     public static final BlockEntityTicker<DryingRackBlockEntity> SERVER_TICKER = (level, pos, state, self) -> self.serverTick(level, pos);
@@ -122,7 +122,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
         if (slot == INPUT && !ItemStack.isSameItem(oldStack, newStack)) {
             reset();
             findDryingRecipe();
-            DryingRecipe match = findDryingRecipe();
+            DryingRackRecipe match = findDryingRecipe();
             if(match != null){
                 currentRecipe = match;
                 dryingTime = currentRecipe.getDryingTime();
@@ -171,18 +171,18 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
             return;
         }
         timer++;
-        if (level.random.nextFloat() > 0.9F) {
+        if (level.random.nextFloat() > 0.95F) {
             level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER, pos.getX() + level.random.nextDouble(), pos.getY() + 0.3D, pos.getZ() + level.random.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
     }
 
     @Nullable
-    private DryingRecipe findDryingRecipe() {
+    private DryingRackRecipe findDryingRecipe() {
         if (level == null) return null;
         if (this.lastDryingRecipe != null && this.lastDryingRecipe.matches(dryingInventory, level)) {
             return this.lastDryingRecipe;
         }
-        DryingRecipe dryingRecipe = level.getRecipeManager().getRecipeFor(ModOthers.DryingRecipeType.get(), dryingInventory, level).orElse(null);
+        DryingRackRecipe dryingRecipe = level.getRecipeManager().getRecipeFor(ModOthers.DryingRecipeType.get(), dryingInventory, level).orElse(null);
         if (dryingRecipe != null) {
             this.lastDryingRecipe = dryingRecipe;
         }
@@ -199,7 +199,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     private void loadRecipe(Level level, ResourceLocation name) {
         // if the tank is empty, ignore old recipe
         // fetch recipe by name
-        RecipeHelper.getRecipe(level.getRecipeManager(), name, DryingRecipe.class).ifPresent(recipe -> {
+        RecipeHelper.getRecipe(level.getRecipeManager(), name, DryingRackRecipe.class).ifPresent(recipe -> {
             this.currentRecipe = recipe;
             dryingTime = recipe.getDryingTime();
         });
@@ -243,6 +243,14 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
                 recipeName = name;
             }
         }
+    }
+
+    public int getTimer(){
+        return this.timer;
+    }
+
+    public int getDryingTime(){
+        return this.dryingTime;
     }
 
     @Nullable

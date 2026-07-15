@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.init.item;
+package com.creeping_creeper.slimeworld.init.misc;
 
 import com.creeping_creeper.slimeworld.init.ModOthers;
 import com.google.gson.JsonDeserializationContext;

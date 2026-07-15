@@ -1,12 +1,12 @@
 package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.init.item.AddModifierFunction;
-import com.creeping_creeper.slimeworld.init.item.HasOverslimeCondition;
-import com.creeping_creeper.slimeworld.init.item.RandomModifierFunction;
-import com.creeping_creeper.slimeworld.init.item.RemoveOverslimeFunction;
+import com.creeping_creeper.slimeworld.init.misc.AddModifierFunction;
+import com.creeping_creeper.slimeworld.init.misc.HasOverslimeCondition;
+import com.creeping_creeper.slimeworld.init.misc.RandomModifierFunction;
+import com.creeping_creeper.slimeworld.init.misc.RemoveOverslimeFunction;
 import com.creeping_creeper.slimeworld.init.world.*;
-import com.creeping_creeper.slimeworld.library.DryingRecipe;
+import com.creeping_creeper.slimeworld.init.misc.DryingRackRecipe;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -51,13 +51,13 @@ public class ModOthers {
     public static final RegistryObject<LootItemFunctionType> RemoveOverslime = LOOT_FUNCTIONS.register("remove_overslime", () -> new LootItemFunctionType(RemoveOverslimeFunction.SERIALIZER));
 
 
-    public static final RegistryObject<RecipeType<DryingRecipe>> DryingRecipeType = RECIPE_TYPES.register("drying_rack", () -> new RecipeType<>() {
+    public static final RegistryObject<RecipeType<DryingRackRecipe>> DryingRecipeType = RECIPE_TYPES.register("drying_rack", () -> new RecipeType<>() {
         @Override
         public String toString() {
             return SlimeWorld.MODID + ":" + "drying_rack";
         }
     });
-    public static final RegistryObject<RecipeSerializer<DryingRecipe>> DryingRecipeSerializer = RECIPE_SERIALIZERS.register("drying_rack", () -> LoadableRecipeSerializer.of(DryingRecipe.LOADER));
+    public static final RegistryObject<RecipeSerializer<DryingRackRecipe>> DryingRecipeSerializer = RECIPE_SERIALIZERS.register("drying_rack", () -> LoadableRecipeSerializer.of(DryingRackRecipe.LOADER));
 
     public static void registers(IEventBus bus) {
         FEATURES.register(bus);

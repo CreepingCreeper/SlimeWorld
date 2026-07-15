@@ -98,10 +98,6 @@ jar {
     }
 }
 
-//java {
-//    withSourcesJar()
-//}
-
 jar.finalizedBy('reobfJar')
 
 publishing {
@@ -161,11 +157,20 @@ repositories {
     flatDir {
         dirs 'libs'
     }
-    maven { url 'https://jitpack.io' }
+    maven {
+        name 'blamejared'
+        url 'https://maven.blamejared.com'
+    }
 
     maven {
         name = 'DVS1 Maven FS'
         url = 'https://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        url 'https://www.cursemaven.com'
+        content {
+            includeGroup "curse.maven"
+        }
     }
     maven { url = "https://maven.aliyun.com/repository/public/" }
     mavenCentral()
@@ -173,6 +178,8 @@ repositories {
 }
 
 dependencies {
+    implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
+    implementation fg.deobf("curse.maven:jade-324717:4654448")
 
     implementation fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
     implementation fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tconstruct_version}")

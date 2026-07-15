@@ -140,7 +140,6 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         this.waitingCountdown = tag.getInt("countdown");
     }
 
-
     public void setLevel(@NotNull Level level) {
         super.setLevel(level);
         if (this.geyserEruptionTime == -1) {
