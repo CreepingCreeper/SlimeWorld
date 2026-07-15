@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity.golem;
 
-import com.creeping_creeper.slimeworld.events.SlimeBossTeleportEvent;
+import com.creeping_creeper.slimeworld.events.MobTeleportEvent;
 import com.creeping_creeper.slimeworld.init.entity.SpecialBowAttackGoal;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Difficulty;
@@ -25,7 +25,7 @@ import slimeknights.tconstruct.tools.entity.ThrownShuriken;
 import java.util.function.Predicate;
 
 public class EnderSlimeGolemEntity extends RangeSlimeGolemEntity {
-    private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new SlimeBossTeleportEvent(entity, x, y, z, this);
+    private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new MobTeleportEvent(entity, x, y, z, this);
 
     public EnderSlimeGolemEntity(EntityType<? extends RangeSlimeGolemEntity> entityType, Level level) {
         super(entityType, level);

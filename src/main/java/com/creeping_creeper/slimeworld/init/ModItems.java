@@ -79,6 +79,8 @@ public class ModItems {
         return builder(color).requiresCorrectToolForDrops().strength(1.5F,6);
     }
 
+    public static final ItemObject<Block> DryingRack = BLOCKS.register("drying_rack", () -> new DryingRackBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).strength(0.5F)), GENERAL_BLOCK_ITEM);
+
     public static final ItemObject<Item> NecroticBoneMeal = ITEMS.register("necrotic_bone_meal", () -> new NecroticBoneMealItem(GENERAL_PROPS));
     public static final ItemObject<Item> SulfurGoo = ITEMS.register("sulfur_goo", GENERAL_PROPS);
     public static final ItemObject<Item> OceanSlimeBall = ITEMS.register("ocean_slime_ball", GENERAL_PROPS);
@@ -171,8 +173,10 @@ public class ModItems {
     public static final ItemObject<Item> ArmorRune = ITEMS.register("armor_rune", () -> new ModifierRuneItem(TinkerTags.Items.ARMOR, (new Item.Properties()).stacksTo(16)));
 
     public static final RegistryObject<BlockEntityType<PotentSulfurBlockEntity>> PotentSulfurEntity = BLOCK_ENTITIES.register("potent_sulfur", PotentSulfurBlockEntity::new, set -> set.add(PotentSulfurNausea.get(), PotentSulfurBlindness.get(), PotentSulfurWeakness.get(), PotentSulfurRegeneration.get(), PotentSulfurStrength.get()));
+    public static final RegistryObject<BlockEntityType<DryingRackBlockEntity>> DryingRackEntity = BLOCK_ENTITIES.register("drying_rack", DryingRackBlockEntity::new, set -> set.add(DryingRack.get()));
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
+        output.accept(DryingRack);
         output.accept(NecroticBoneMeal);
         output.accept(SulfurGoo);
         output.accept(OceanSlimeBall);
@@ -272,6 +276,10 @@ public class ModItems {
         output.accept(ModEntities.BoggedEntity);
         output.accept(ModEntities.ParchedEntity);
         output.accept(ModEntities.EarthSlimeGolemEntity);
+        output.accept(ModEntities.SkySlimeGolemEntity);
+        output.accept(ModEntities.OceanSlimeGolemEntity);
+        output.accept(ModEntities.IchorSlimeGolemEntity);
+        output.accept(ModEntities.EnderSlimeGolemEntity);
     }
 
     protected static BlockBehaviour.Properties grass() {

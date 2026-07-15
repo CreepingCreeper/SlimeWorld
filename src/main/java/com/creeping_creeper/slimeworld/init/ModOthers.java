@@ -6,8 +6,11 @@ import com.creeping_creeper.slimeworld.init.item.HasOverslimeCondition;
 import com.creeping_creeper.slimeworld.init.item.RandomModifierFunction;
 import com.creeping_creeper.slimeworld.init.item.RemoveOverslimeFunction;
 import com.creeping_creeper.slimeworld.init.world.*;
+import com.creeping_creeper.slimeworld.library.DryingRecipe;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
@@ -17,6 +20,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import slimeknights.mantle.recipe.helper.LoadableRecipeSerializer;
+import slimeknights.mantle.recipe.helper.TypeAwareRecipeSerializer;
+import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
+import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.library.recipe.TinkerRecipeTypes;
+import slimeknights.tconstruct.library.recipe.casting.ICastingRecipe;
+import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipe;
 import slimeknights.tconstruct.world.worldgen.trees.config.SlimeFungusConfig;
 
 @SuppressWarnings("unused")
@@ -25,6 +35,8 @@ public class ModOthers {
     protected static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SlimeWorld.MODID);
     protected static final DeferredRegister<LootItemConditionType> LOOT_CONDITIONS = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, SlimeWorld.MODID);
     protected static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTIONS = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, SlimeWorld.MODID);
+    private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, SlimeWorld.MODID);
+    protected static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SlimeWorld.MODID);
 
     public static final RegistryObject<OceanLakeFeature> OceanLake = FEATURES.register("ocean_lake", () -> new OceanLakeFeature(OceanLakeFeature.Configuration.CODEC));
     public static final RegistryObject<InvertedLakeFeature> InvertedLake = FEATURES.register("inverted_lake", () -> new InvertedLakeFeature(InvertedLakeFeature.Configuration.CODEC));
@@ -44,10 +56,21 @@ public class ModOthers {
     public static final RegistryObject<LootItemFunctionType> RandomModifier = LOOT_FUNCTIONS.register("random_modifier", () -> new LootItemFunctionType(RandomModifierFunction.SERIALIZER));
     public static final RegistryObject<LootItemFunctionType> RemoveOverslime = LOOT_FUNCTIONS.register("remove_overslime", () -> new LootItemFunctionType(RemoveOverslimeFunction.SERIALIZER));
 
+
+    public static final RegistryObject<RecipeType<DryingRecipe>> DryingRecipeType = RECIPE_TYPES.register("drying_rack", () -> new RecipeType<>() {
+        @Override
+        public String toString() {
+            return SlimeWorld.MODID + ":" + "drying_rack";
+        }
+    });
+    public static final RegistryObject<RecipeSerializer<DryingRecipe>> DryingRecipeSerializer = RECIPE_SERIALIZERS.register("drying_rack", () -> LoadableRecipeSerializer.of(DryingRecipe.LOADER));
+
     public static void registers(IEventBus bus) {
         FEATURES.register(bus);
         BIOME_MODIFIER_SERIALIZERS.register(bus);
         LOOT_CONDITIONS.register(bus);
         LOOT_FUNCTIONS.register(bus);
+        RECIPE_TYPES.register(bus);
+        RECIPE_SERIALIZERS.register(bus);
     }
 }

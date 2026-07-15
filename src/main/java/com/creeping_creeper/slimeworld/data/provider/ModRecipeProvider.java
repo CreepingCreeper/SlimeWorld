@@ -1,6 +1,7 @@
 package com.creeping_creeper.slimeworld.data.provider;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
+import com.creeping_creeper.slimeworld.data.builder.DryingRecipeBuilder;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
@@ -10,11 +11,13 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.mantle.recipe.crafting.ShapedRetexturedRecipeBuilder;
 import slimeknights.mantle.recipe.data.ICommonRecipeHelper;
 import slimeknights.mantle.recipe.data.IRecipeHelper;
 import slimeknights.mantle.recipe.ingredient.EntityIngredient;
@@ -69,6 +72,16 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
                 .unlockedBy("has_item", RecipeProvider.has(ModItems.Sulfur))
                 .save(consumer, location(gadgets + id(ModItems.PotentSulfurNausea).getPath()));
 
+        ShapedRetexturedRecipeBuilder.fromShaped(
+                        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.DryingRack)
+                                .define('w', ItemTags.WOODEN_SLABS)
+                                .pattern("www")
+                                .unlockedBy("has_item", has(ItemTags.WOODEN_SLABS)))
+                .setSource('w')
+                .setMatchAll()
+                .build(consumer, prefix(ModItems.DryingRack, gadgets));
+        DryingRecipeBuilder.drying(Items.WET_SPONGE, Items.SPONGE).save(consumer, location(gadgets + id(Items.SPONGE).getPath()));
+
         String material = "material/";
         smeltingRecipes(consumer, RecipeCategory.MISC, Ingredient.of(ModItems.GlowstoneOre, ModItems.DeepSlateGlowstoneOre), has(ModTags.Items.GLOWSTONE_ORE), Items.GLOWSTONE_DUST, material, 0.7F, 200, true);
         packingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "block", ModItems.IsomericGlowstone, "dust", Items.GLOWSTONE_DUST, material);
@@ -78,6 +91,7 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
                 .pattern("##")
                 .unlockedBy("has_item", RecipeProvider.has(Items.REDSTONE))
                 .save(consumer, wrap(id(ModItems.IsomericRedstoneBlock), material, String.format("_from_%ss", id(Items.REDSTONE).getPath())));
+
 
         String metal = material + "metal/";
         metalCrafting(consumer, ModItems.Bronze, metal);

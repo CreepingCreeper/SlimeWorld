@@ -1,0 +1,18 @@
+{
+  "type": "mantle:crafting_shaped_retextured",
+  "category": "misc",
+  "key": {
+    "w": {
+      "tag": "minecraft:wooden_slabs"
+    }
+  },
+  "match_all": false,
+  "pattern": [
+    "www"
+  ],
+  "result": {
+    "item": "slimeworld:drying_rack"
+  },
+  "show_notification": true,
+  "texture": "w"
+}

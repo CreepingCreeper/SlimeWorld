@@ -10,6 +10,7 @@ import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
+import com.creeping_creeper.slimeworld.init.block.DryingRackBlockEntity;
 import com.creeping_creeper.slimeworld.init.item.ModifierRuneItem;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
@@ -19,6 +20,7 @@ import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -34,6 +36,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.client.ResourceColorManager;
+import slimeknights.mantle.client.render.InventoryBlockEntityRenderer;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.common.ClientEventBase;
@@ -42,6 +45,7 @@ import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.utils.Util;
 import slimeknights.tconstruct.shared.TinkerMaterials;
 import slimeknights.tconstruct.shared.block.SlimeType;
+import slimeknights.tconstruct.shared.block.entity.TableBlockEntity;
 import slimeknights.tconstruct.world.block.FoliageType;
 import slimeknights.tconstruct.world.client.SlimeColorizer;
 import slimeknights.tconstruct.world.client.TinkerSlimeRenderer;
@@ -77,6 +81,8 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.OceanSlimeGolemEntity.get(), SlimeGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.IchorSlimeGolemEntity.get(), SlimeGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.EnderSlimeGolemEntity.get(), SlimeGolemRenderer::new);
+        BlockEntityRendererProvider<DryingRackBlockEntity> tableRenderer = InventoryBlockEntityRenderer::new;
+        event.registerBlockEntityRenderer(ModItems.DryingRackEntity.get(), tableRenderer);
     }
 
     @SubscribeEvent

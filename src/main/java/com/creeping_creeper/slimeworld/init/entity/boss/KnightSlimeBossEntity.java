@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity.boss;
 
-import com.creeping_creeper.slimeworld.events.SlimeBossTeleportEvent;
+import com.creeping_creeper.slimeworld.events.MobTeleportEvent;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceKey;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class KnightSlimeBossEntity extends BaseBossSlimeEntity {
-    private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new SlimeBossTeleportEvent(entity, x, y, z, this);
+    private final TeleportHelper.ITeleportEventFactory teleportPredicate = (entity, x, y, z) -> new MobTeleportEvent(entity, x, y, z, this);
     private Vec3 bounce = Vec3.ZERO;
     private Vec3 chargeForwardDir;
     private boolean isChargingSprint;

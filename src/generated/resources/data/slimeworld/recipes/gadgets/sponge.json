@@ -1,0 +1,9 @@
+{
+  "type": "slimeworld:drying_rack",
+  "input": {
+    "item": "minecraft:wet_sponge"
+  },
+  "output": {
+    "item": "sponge"
+  }
+}
