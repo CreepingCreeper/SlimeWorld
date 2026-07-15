@@ -1,6 +1,6 @@
 [
   {
-    "center": [8.0, 10.0, 11.5],
+    "center": [8.0, 10.0, 10.5],
     "size": 16.0,
     "transform": "tconstruct:casting_table",
     "y": 180

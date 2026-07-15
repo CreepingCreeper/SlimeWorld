@@ -80,7 +80,10 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
                 .setSource('w')
                 .setMatchAll()
                 .build(consumer, prefix(ModItems.DryingRack, gadgets));
-        DryingRecipeBuilder.drying(Items.WET_SPONGE, Items.SPONGE).save(consumer, location(gadgets + id(Items.SPONGE).getPath()));
+        DryingRecipeBuilder.drying(Items.WET_SPONGE, Items.SPONGE).time(100).save(consumer, location(gadgets + id(Items.SPONGE).getPath()));
+        DryingRecipeBuilder.drying(Items.MUD, Items.CLAY).save(consumer, location(gadgets + id(Items.CLAY).getPath()));
+        DryingRecipeBuilder.drying(Ingredient.of(ItemTags.SAPLINGS), Items.DEAD_BUSH).save(consumer, location(gadgets + id(Items.DEAD_BUSH).getPath()));
+        DryingRecipeBuilder.drying(Items.CRYING_OBSIDIAN, Items.OBSIDIAN).save(consumer, location(gadgets + id(Items.OBSIDIAN).getPath()));
 
         String material = "material/";
         smeltingRecipes(consumer, RecipeCategory.MISC, Ingredient.of(ModItems.GlowstoneOre, ModItems.DeepSlateGlowstoneOre), has(ModTags.Items.GLOWSTONE_ORE), Items.GLOWSTONE_DUST, material, 0.7F, 200, true);

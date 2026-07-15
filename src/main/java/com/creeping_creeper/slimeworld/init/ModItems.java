@@ -10,6 +10,7 @@ import com.creeping_creeper.slimeworld.init.block.bubble.WaterBubbleBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.CommonBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.OreBerryBushBlock;
 import com.creeping_creeper.slimeworld.init.block.bush.SlimeBerryBushBlock;
+import com.creeping_creeper.slimeworld.init.block.entity.DryingRackBlockEntity;
 import com.creeping_creeper.slimeworld.init.block.entity.PotentSulfurBlockEntity;
 import com.creeping_creeper.slimeworld.init.block.flower.*;
 import com.creeping_creeper.slimeworld.init.block.grass.*;

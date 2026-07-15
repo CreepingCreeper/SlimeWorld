@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld.init.block;
 
+import com.creeping_creeper.slimeworld.init.block.entity.DryingRackBlockEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.recipe.container.ISingleStackContainer;

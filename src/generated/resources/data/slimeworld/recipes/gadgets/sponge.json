@@ -1,6 +1,7 @@
 {
   "type": "slimeworld:drying_rack",
-  "input": {
+  "drying_time": 100,
+  "ingredient": {
     "item": "minecraft:wet_sponge"
   },
   "output": {

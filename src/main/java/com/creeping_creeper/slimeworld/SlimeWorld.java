@@ -40,7 +40,6 @@ public class SlimeWorld {
 
     public SlimeWorld() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        //bus.addListener(this::commonSetup);
         ModItems.registers(bus);
         ModFluids.registers(bus);
         ModModifiers.registers(bus);

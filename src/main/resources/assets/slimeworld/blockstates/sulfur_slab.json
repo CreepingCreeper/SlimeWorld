@@ -4,7 +4,7 @@
       "model": "slimeworld:block/sulfur_slab"
     },
     "type=double": {
-      "model": "slimeworld:block/sulfur_planks"
+      "model": "slimeworld:block/sulfur"
     },
     "type=top": {
       "model": "slimeworld:block/sulfur_slab_top"

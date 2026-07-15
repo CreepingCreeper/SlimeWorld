@@ -59,14 +59,14 @@ public class DryingRecipeBuilder implements RecipeBuilder {
     }
 
     // ========== FinishedRecipe 实现 ==========
-        public record FinishedDryingRecipe(ResourceLocation id, String group, Ingredient input, ItemStack output, int time) implements FinishedRecipe {
+        public record FinishedDryingRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack output, int time) implements FinishedRecipe {
 
         @Override
             public void serializeRecipeData(@NotNull JsonObject json) {
                 if (!group.isBlank()) {
                     json.addProperty("group", group);
                 }
-                json.add("input", input.toJson());
+                json.add("ingredient", ingredient.toJson());
 
                 JsonObject resultObj = new JsonObject();
                 resultObj.addProperty("item", output.getItem().toString());

@@ -1,8 +1,9 @@
-package com.creeping_creeper.slimeworld.init.block;
+package com.creeping_creeper.slimeworld.init.block.entity;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.block.DryingWrapper;
 import com.creeping_creeper.slimeworld.library.DryingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,7 +11,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -28,7 +28,6 @@ import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.recipe.container.ISingleStackContainer;
 import slimeknights.mantle.recipe.helper.RecipeHelper;
 import slimeknights.mantle.util.BlockEntityHelper;
-import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.tables.block.entity.table.RetexturedTableBlockEntity;
 
 import javax.annotation.Nonnull;
@@ -160,9 +159,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
                 // actual recipe result
                 ItemStack output = currentRecipe.assemble(dryingInventory, level.registryAccess());
                 setItem(INPUT, ItemStack.EMPTY);
-                setItem(OUTPUT, output);
-                // if redstone swapped behavior, add a click sound
-                level.playSound(null, pos, Sounds.CASTING_COOLS.getSound(), SoundSource.BLOCKS, 0.5f, 4f);
+                super.setItem(OUTPUT, output);
                 reset();
             } 
         }
@@ -175,7 +172,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
         }
         timer++;
         if (level.random.nextFloat() > 0.9F) {
-            level.addParticle(ParticleTypes.DRIPPING_WATER, pos.getX() + level.random.nextDouble(), pos.getY() + 0.5D, pos.getZ() + level.random.nextDouble(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER, pos.getX() + level.random.nextDouble(), pos.getY() + 0.3D, pos.getZ() + level.random.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
     }
 

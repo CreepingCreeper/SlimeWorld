@@ -80,6 +80,10 @@ mixin {
 }
 
 jar {
+
+    exclude '**/.cache/**'
+    exclude '**/.cache'
+
     manifest {
         attributes([
                 "Specification-Title"     : "${modid}",
@@ -163,10 +167,9 @@ repositories {
         name = 'DVS1 Maven FS'
         url = 'https://dvs1.progwml6.com/files/maven'
     }
-    maven { url 'https://maven.aliyun.com/repository/public' }
-    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    maven { url = "https://maven.aliyun.com/repository/public/" }
     mavenCentral()
-    maven { url "https://files.minecraftforge.net/maven" }
+    maven { url = "https://files.minecraftforge.net/maven" }
 }
 
 dependencies {

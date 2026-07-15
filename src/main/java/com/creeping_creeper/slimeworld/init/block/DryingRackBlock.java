@@ -1,6 +1,7 @@
 package com.creeping_creeper.slimeworld.init.block;
 
 import com.creeping_creeper.slimeworld.init.ModItems;
+import com.creeping_creeper.slimeworld.init.block.entity.DryingRackBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -40,6 +41,7 @@ import slimeknights.mantle.util.RetexturedHelper;
 import javax.annotation.Nullable;
 import java.util.List;
 
+@SuppressWarnings("deprecated")
 public class DryingRackBlock extends InventoryBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -125,8 +127,8 @@ public class DryingRackBlock extends InventoryBlock implements SimpleWaterlogged
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level pLevel, @NotNull BlockState pState, @NotNull BlockEntityType<T> check) {
-        return DryingRackBlockEntity.getTicker(pLevel, check, ModItems.DryingRackEntity.get());
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> check) {
+        return state.getValue(WATERLOGGED) ? null : DryingRackBlockEntity.getTicker(level, check, ModItems.DryingRackEntity.get());
     }
 
     @Deprecated
