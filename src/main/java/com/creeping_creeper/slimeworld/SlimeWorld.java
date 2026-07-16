@@ -64,6 +64,7 @@ public class SlimeWorld {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         boolean server = event.includeServer();
+        boolean client = event.includeClient();
         RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder();
         DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
         generator.addProvider(server, datapackProvider);
@@ -75,7 +76,9 @@ public class SlimeWorld {
         generator.addProvider(server, new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
         generator.addProvider(server, new ModFluidTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModEntityTypeTagProvider(output, lookupProvider, existingFileHelper));
-
+        //models
+        generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
+        generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
     }
 
     public static String makeTranslationKey(String base, String name) {

@@ -20,7 +20,7 @@
   "block.slimeworld.ocean_congealed_slime": "凝固海洋黏液块",
   "block.slimeworld.ocean_congealed_slime.tooltip": "能让你跳得非常高",
   "item.slimeworld.sulfur_goo": "硫黄胶",
-  "block_slimeworld.drying_rack": "晾干架",
+  "block.slimeworld.drying_rack": "晾干架",
 
   "item.slimeworld.ocean_slime_crystal": "海洋黏液水晶",
   "block.slimeworld.ocean_slime_crystal_block": "海洋黏液水晶块",
