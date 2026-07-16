@@ -3,7 +3,5 @@
   "ingredient": {
     "tag": "minecraft:saplings"
   },
-  "output": {
-    "item": "dead_bush"
-  }
+  "output": "minecraft:dead_bush"
 }

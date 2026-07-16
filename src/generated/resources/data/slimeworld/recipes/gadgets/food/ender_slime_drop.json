@@ -1,0 +1,7 @@
+{
+  "type": "slimeworld:drying_rack",
+  "ingredient": {
+    "item": "tconstruct:ender_slime_ball"
+  },
+  "output": "slimeworld:ender_slime_drop"
+}

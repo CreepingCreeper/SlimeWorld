@@ -18,7 +18,10 @@ import slimeknights.tconstruct.common.data.tags.ItemTagProvider;
 
 import java.util.concurrent.CompletableFuture;
 
+import static slimeknights.mantle.Mantle.commonResource;
+
 public class ModItemTagProvider extends ItemTagProvider {
+    private static final TagKey<Item> COOKED_EGGS = ItemTags.create(commonResource("cooked_eggs"));
     @SuppressWarnings("removal")
     private static final TagKey<Item> MAID_TAMED = ItemTags.create(new ResourceLocation("touhou_little_maid", "maid_tamed_item"));
 
@@ -49,7 +52,7 @@ public class ModItemTagProvider extends ItemTagProvider {
         this.tag(ModTags.Items.RAW_NUGGET).addTags(ModTags.Items.RAW_BRONZE_NUGGET, ModTags.Items.RAW_COPPER_NUGGET, ModTags.Items.RAW_IRON_NUGGET, ModTags.Items.RAW_GOLD_NUGGET);
         this.tag(ModTags.Items.OCEAN_SLIME_BALL).add(ModItems.OceanSlimeBall.get());
         this.tag(Tags.Items.SLIMEBALLS).addTag(ModTags.Items.OCEAN_SLIME_BALL);
-
+        this.tag(COOKED_EGGS).add(ModItems.FriedEgg.get());
         this.copy(ModTags.Blocks.GLOWSTONE_ORE, ModTags.Items.GLOWSTONE_ORE);
         this.copy(Tags.Blocks.ORES, Tags.Items.ORES);
         this.copy(ModItems.Bronze.getBlockTag(), ModItems.Bronze.getBlockItemTag());
@@ -109,7 +112,6 @@ public class ModItemTagProvider extends ItemTagProvider {
         this.tag(ModTags.Items.ARCHETYPE_STICKY).add(Items.HONEYCOMB_BLOCK);
         this.tag(ModTags.Items.ARCHETYPE_EXPLOSIVE).add(Items.TNT);
         this.tag(ModTags.Items.ARCHETYPE_HOT).add(Items.MAGMA_BLOCK);
-
         //touhou little maid
         this.tag(MAID_TAMED).add(ModItems.TomatoPudding.get());
     }

@@ -3,7 +3,5 @@
   "ingredient": {
     "item": "minecraft:mud"
   },
-  "output": {
-    "item": "clay"
-  }
+  "output": "minecraft:clay"
 }

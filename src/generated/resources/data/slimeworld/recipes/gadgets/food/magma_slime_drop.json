@@ -1,0 +1,7 @@
+{
+  "type": "slimeworld:drying_rack",
+  "ingredient": {
+    "item": "minecraft:magma_cream"
+  },
+  "output": "slimeworld:magma_slime_drop"
+}

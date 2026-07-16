@@ -144,6 +144,23 @@ public class ModItems {
     public static final ItemObject<Item> BloodSlimeBerry = ITEMS.register("blood_slime_berries", () -> new BlockItem(SlimeBerryBush.get(),new Item.Properties().food(ModFood.BLOOD_SLIME_BERRY)));
     public static final ItemObject<Item> Berriper = ITEMS.register("berripers", () -> new BlockItem(BerriperBush.get(),new Item.Properties().food(ModFood.BERRIPER).rarity(Rarity.UNCOMMON)));
     public static final ItemObject<Item> TomatoPudding = ITEMS.register("tomato_pudding", new Item.Properties().food(ModFood.TOMATO_PUDDING));
+    public static final ItemObject<Item> BeefJerky = ITEMS.register("beef_jerky", () -> new Item(new Item.Properties().food(ModFood.BEEF_JERKY)));
+    public static final ItemObject<Item> PorkJerky = ITEMS.register("pork_jerky", () -> new Item(new Item.Properties().food(ModFood.BEEF_JERKY)));
+    public static final ItemObject<Item> MuttonJerky = ITEMS.register("mutton_jerky", () -> new Item(new Item.Properties().food(ModFood.MUTTON_JERKY)));
+    public static final ItemObject<Item> RabbitJerky = ITEMS.register("rabbit_jerky", () -> new Item(new Item.Properties().food(ModFood.RABBIT_JERKY)));
+    public static final ItemObject<Item> ChickenJerky = ITEMS.register("chicken_jerky", () -> new Item(new Item.Properties().food(ModFood.RABBIT_JERKY)));
+    public static final ItemObject<Item> CodJerky = ITEMS.register("cod_jerky", () -> new Item(new Item.Properties().food(ModFood.RABBIT_JERKY)));
+    public static final ItemObject<Item> SalmonJerky = ITEMS.register("salmon_jerky", () -> new Item(new Item.Properties().food(ModFood.MUTTON_JERKY)));
+    public static final ItemObject<Item> TropicalFishJerky = ITEMS.register("tropical_fish_jerky", () -> new Item(new Item.Properties().food(ModFood.FISH_JERKY)));
+    public static final ItemObject<Item> PufferfishJerky = ITEMS.register("pufferfish_jerky", () -> new Item(new Item.Properties().food(ModFood.FISH_JERKY)));
+    public static final ItemObject<Item> RottenFleshJerky = ITEMS.register("rotten_flesh_jerky", () -> new Item(new Item.Properties().food(ModFood.ROTTEN_FLESH_JERKY)));
+    public static final ItemObject<Item> FriedEgg = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(ModFood.FRIED_EGG)));
+    public static final ItemObject<Item> EarthSlimeDrop = ITEMS.register("earth_slime_drop", () -> new Item(new Item.Properties().food(ModFood.EARTH_SLIME_DROP)));
+    public static final ItemObject<Item> SkySlimeDrop = ITEMS.register("sky_slime_drop", () -> new Item(new Item.Properties().food(ModFood.SKY_SLIME_DROP)));
+    public static final ItemObject<Item> OceanSlimeDrop = ITEMS.register("ocean_slime_drop", () -> new Item(new Item.Properties().food(ModFood.OCEAN_SLIME_DROP)));
+    public static final ItemObject<Item> MagmaSlimeDrop = ITEMS.register("magma_slime_drop", () -> new Item(new Item.Properties().food(ModFood.MAGMA_SLIME_DROP)));
+    public static final ItemObject<Item> IchorSlimeDrop = ITEMS.register("ichor_slime_drop", () -> new Item(new Item.Properties().food(ModFood.ICHOR_SLIME_DROP)));
+    public static final ItemObject<Item> EnderSlimeDrop = ITEMS.register("ender_slime_drop", () -> new Item(new Item.Properties().food(ModFood.ENDER_SLIME_DROP)));
 
     public static final ItemObject<Item> CopperShard = ITEMS.register("copper_shard", GENERAL_PROPS);
     public static final ItemObject<Item> IronShard = ITEMS.register("iron_shard", GENERAL_PROPS);
@@ -193,6 +210,23 @@ public class ModItems {
         output.accept(BloodSlimeBerry);
         output.accept(Berriper);
         output.accept(TomatoPudding);
+        output.accept(FriedEgg);
+        output.accept(BeefJerky);
+        output.accept(ChickenJerky);
+        output.accept(PorkJerky);
+        output.accept(MuttonJerky);
+        output.accept(RabbitJerky);
+        output.accept(RottenFleshJerky);
+        output.accept(SalmonJerky);
+        output.accept(CodJerky);
+        output.accept(TropicalFishJerky);
+        output.accept(PufferfishJerky);
+        output.accept(EarthSlimeDrop);
+        output.accept(SkySlimeDrop);
+        output.accept(OceanSlimeDrop);
+        output.accept(IchorSlimeDrop);
+        output.accept(MagmaSlimeDrop);
+        output.accept(EnderSlimeDrop);
 
         output.accept(CopperShard);
         output.accept(IronShard);

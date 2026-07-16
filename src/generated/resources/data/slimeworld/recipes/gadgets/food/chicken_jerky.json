@@ -1,0 +1,8 @@
+{
+  "type": "slimeworld:drying_rack",
+  "drying_time": 1200,
+  "ingredient": {
+    "item": "minecraft:chicken"
+  },
+  "output": "slimeworld:chicken_jerky"
+}

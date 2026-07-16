@@ -1,0 +1,7 @@
+{
+  "type": "slimeworld:drying_rack",
+  "ingredient": {
+    "item": "minecraft:slime_ball"
+  },
+  "output": "slimeworld:earth_slime_drop"
+}

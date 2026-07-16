@@ -1,0 +1,8 @@
+{
+  "type": "slimeworld:drying_rack",
+  "drying_time": 1200,
+  "ingredient": {
+    "item": "minecraft:tropical_fish"
+  },
+  "output": "slimeworld:tropical_fish_jerky"
+}

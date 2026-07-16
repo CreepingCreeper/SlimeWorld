@@ -3,7 +3,5 @@
   "ingredient": {
     "item": "minecraft:crying_obsidian"
   },
-  "output": {
-    "item": "obsidian"
-  }
+  "output": "minecraft:obsidian"
 }

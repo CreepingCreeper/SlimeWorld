@@ -16,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.recipe.crafting.ShapedRetexturedRecipeBuilder;
 import slimeknights.mantle.recipe.data.ICommonRecipeHelper;
@@ -31,7 +32,9 @@ import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.entitymelting.EntityMeltingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.IMeltingContainer;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
+import slimeknights.tconstruct.shared.TinkerCommons;
 import slimeknights.tconstruct.shared.TinkerMaterials;
+import slimeknights.tconstruct.shared.block.SlimeType;
 
 import java.util.function.Consumer;
 
@@ -85,8 +88,39 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         DryingRecipeBuilder.drying(Ingredient.of(ItemTags.SAPLINGS), Items.DEAD_BUSH).save(consumer, location(gadgets + id(Items.DEAD_BUSH).getPath()));
         DryingRecipeBuilder.drying(Items.CRYING_OBSIDIAN, Items.OBSIDIAN).save(consumer, location(gadgets + id(Items.OBSIDIAN).getPath()));
 
+        String food = gadgets + "food/";
+
+        DryingRecipeBuilder.drying(Items.BEEF, ModItems.BeefJerky).time(1200).save(consumer, location(food + id(ModItems.BeefJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.CHICKEN, ModItems.ChickenJerky).time(1200).save(consumer, location(food + id(ModItems.ChickenJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.PORKCHOP, ModItems.PorkJerky).time(1200).save(consumer, location(food + id(ModItems.PorkJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.MUTTON, ModItems.MuttonJerky).time(1200).save(consumer, location(food + id(ModItems.MuttonJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.RABBIT, ModItems.RabbitJerky).time(1200).save(consumer, location(food + id(ModItems.RabbitJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.ROTTEN_FLESH, ModItems.RottenFleshJerky).time(1200).save(consumer, location(food + id(ModItems.RottenFleshJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.SALMON, ModItems.SalmonJerky).time(1200).save(consumer, location(food + id(ModItems.SalmonJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.COD, ModItems.CodJerky).time(1200).save(consumer, location(food + id(ModItems.CodJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.TROPICAL_FISH, ModItems.TropicalFishJerky).time(1200).save(consumer, location(food + id(ModItems.TropicalFishJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.PUFFERFISH, ModItems.PufferfishJerky).time(1200).save(consumer, location(food + id(ModItems.PufferfishJerky).getPath()));
+        DryingRecipeBuilder.drying(Items.SLIME_BALL, ModItems.EarthSlimeDrop).save(consumer, location(food + id(ModItems.EarthSlimeDrop).getPath()));
+        DryingRecipeBuilder.drying(TinkerCommons.slimeball.get(SlimeType.SKY), ModItems.SkySlimeDrop).save(consumer, location(food + id(ModItems.SkySlimeDrop).getPath()));
+        DryingRecipeBuilder.drying(ModItems.OceanSlimeBall, ModItems.OceanSlimeDrop).save(consumer, location(food + id(ModItems.OceanSlimeDrop).getPath()));
+        DryingRecipeBuilder.drying(Items.MAGMA_CREAM, ModItems.MagmaSlimeDrop).save(consumer, location(food + id(ModItems.MagmaSlimeDrop).getPath()));
+        DryingRecipeBuilder.drying(TinkerCommons.slimeball.get(SlimeType.ICHOR), ModItems.IchorSlimeDrop).save(consumer, location(food + id(ModItems.IchorSlimeDrop).getPath()));
+        DryingRecipeBuilder.drying(TinkerCommons.slimeball.get(SlimeType.ENDER), ModItems.EnderSlimeDrop).save(consumer, location(food + id(ModItems.EnderSlimeDrop).getPath()));
+        smeltingRecipes(consumer, RecipeCategory.FOOD, Ingredient.of(Tags.Items.EGGS), has(Tags.Items.EGGS), ModItems.FriedEgg, food, 0.7F, 200, 2);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.OceanCake)
+                .define('M', ModFluids.OceanSlime.asItem())
+                .define('S', Ingredient.of(Items.SUGAR))
+                .define('E', Items.EGG)
+                .define('W', Items.SEAGRASS)
+                .pattern("MMM").
+                pattern("SES").
+                pattern("WWW")
+                .unlockedBy("has_item", RecipeProvider.has(Items.SEAGRASS))
+                .save(consumer, location(gadgets + id(ModItems.OceanCake).getPath()));
+
         String material = "material/";
-        smeltingRecipes(consumer, RecipeCategory.MISC, Ingredient.of(ModItems.GlowstoneOre, ModItems.DeepSlateGlowstoneOre), has(ModTags.Items.GLOWSTONE_ORE), Items.GLOWSTONE_DUST, material, 0.7F, 200, true);
+        smeltingRecipes(consumer, RecipeCategory.MISC, Ingredient.of(ModItems.GlowstoneOre, ModItems.DeepSlateGlowstoneOre), has(ModTags.Items.GLOWSTONE_ORE), Items.GLOWSTONE_DUST, material, 0.7F, 200, 1);
         packingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "block", ModItems.IsomericGlowstone, "dust", Items.GLOWSTONE_DUST, material);
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModItems.IsomericRedstoneBlock)
                 .define('#', Items.REDSTONE)
@@ -100,10 +134,10 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         metalCrafting(consumer, ModItems.Bronze, metal);
         MeltingRecipeBuilder.melting(Ingredient.of(ModItems.BronzeCluster), TinkerFluids.moltenBronze, FluidValues.NUGGET * 4, 5/2f)
                 .save(consumer, location(metal + id(ModItems.BronzeCluster).getPath() + "_melting"));
-        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.BronzeShard, ModItems.Bronze.getNugget(), metal, 0.2F, 50, true);
-        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.CopperShard, TinkerMaterials.copperNugget, metal, 0.2F, 50, true);
-        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.IronShard, Items.IRON_NUGGET, metal, 0.2F, 50, true);
-        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.GoldShard, Items.GOLD_NUGGET, metal, 0.2F, 50, true);
+        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.BronzeShard, ModItems.Bronze.getNugget(), metal, 0.2F, 50, 1);
+        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.CopperShard, TinkerMaterials.copperNugget, metal, 0.2F, 50, 1);
+        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.IronShard, Items.IRON_NUGGET, metal, 0.2F, 50, 1);
+        smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.GoldShard, Items.GOLD_NUGGET, metal, 0.2F, 50, 1);
         MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_BRONZE_NUGGET), TinkerFluids.moltenBronze, FluidValues.NUGGET, 1/2f)
                 .save(consumer, location(metal + id(ModItems.BronzeShard).getPath() + "_melting"));
         MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_COPPER_NUGGET), TinkerFluids.moltenCopper, FluidValues.NUGGET, 1/2f)
@@ -114,16 +148,6 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
                 .save(consumer, location(metal + id(ModItems.GoldShard).getPath() + "_melting"));
 
         String slime = material + "ocean_slime/";
-        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ModItems.OceanCake)
-                .define('M', ModFluids.OceanSlime.asItem())
-                .define('S', Ingredient.of(Items.SUGAR))
-                .define('E', Items.EGG)
-                .define('W', Items.SEAGRASS)
-                .pattern("MMM").
-                pattern("SES").
-                pattern("WWW")
-                .unlockedBy("has_item", RecipeProvider.has(Items.SEAGRASS))
-                .save(consumer, location(gadgets + id(ModItems.OceanCake).getPath()));
         geodeRecipes(consumer, ModItems.OceanGeode, ModItems.OceanSlimeBall, ModItems.SlimeGravel, ModFluids.OceanSlime, slime);
         packingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "block", ModItems.OceanSlime, "ball", ModItems.OceanSlimeBall, slime);
         smallPackingRecipe(consumer, RecipeCategory.BUILDING_BLOCKS, "congealed", ModItems.OceanCongealedSlime, "ball", ModItems.OceanSlimeBall, slime);
@@ -190,19 +214,31 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         }
     }
 
-    private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike before, ItemLike after, String folder, float exp, int time, boolean addBlasting) {
-        smeltingRecipes(consumer, category, Ingredient.of(before), has(before), after, folder, exp, time, addBlasting);
+    private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike before, ItemLike after, String folder, float exp, int time, int type) {
+        smeltingRecipes(consumer, category, Ingredient.of(before), has(before), after, folder, exp, time, type);
     }
 
-    private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, Ingredient before, CriterionTriggerInstance instance, ItemLike after, String folder, float exp, int time, boolean addBlasting) {
-        SimpleCookingRecipeBuilder.smelting(before, category, after, exp, time)
-                .unlockedBy("has_item", instance)
-                .save(consumer, wrap(id(after), folder, "_smelting"));
-        if (addBlasting){
-            SimpleCookingRecipeBuilder.blasting(before, category, after, exp, time / 2)
-                    .unlockedBy("has_item", instance)
-                    .save(consumer, wrap(id(after), folder, "_blasting"));
-        }
+    private void smeltingRecipes(Consumer<FinishedRecipe> consumer, RecipeCategory category, Ingredient before, CriterionTriggerInstance instance, ItemLike after, String folder, float exp, int time, int type) {
+       switch (type){
+           case 1 : {
+               SimpleCookingRecipeBuilder.blasting(before, category, after, exp, time / 2)
+                       .unlockedBy("has_item", instance)
+                       .save(consumer, wrap(id(after), folder, "_blasting"));
+           }
+           case 2 : {
+               SimpleCookingRecipeBuilder.smoking(before, category, after, exp, time / 2)
+                   .unlockedBy("has_item", instance)
+                   .save(consumer, wrap(id(after), folder, "_smoking"));
+               SimpleCookingRecipeBuilder.campfireCooking(before, category, after, exp, time * 3)
+                       .unlockedBy("has_item", instance)
+                       .save(consumer, wrap(id(after), folder, "_campfire"));
+           }
+           default : {
+               SimpleCookingRecipeBuilder.smelting(before, category, after, exp, time)
+                       .unlockedBy("has_item", instance)
+                       .save(consumer, wrap(id(after), folder, "_smelting"));
+           }
+       }
     }
 
     private void geodeRecipes(Consumer<FinishedRecipe> consumer, GeodeItemObject geode, ItemLike slimeBall, ItemLike slimeDirt, FluidObject<?> fluid, String folder) {
