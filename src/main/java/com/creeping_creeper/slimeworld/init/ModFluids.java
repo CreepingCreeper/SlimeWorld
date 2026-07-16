@@ -8,7 +8,6 @@ import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
-import slimeknights.mantle.fluid.InvertedFluid;
 import slimeknights.mantle.registration.object.FlowingFluidObject;
 import slimeknights.tconstruct.common.registration.FluidDeferredRegisterExtension;
 import slimeknights.tconstruct.fluids.fluids.SlimeFluid;

@@ -80,8 +80,6 @@ public class ModItems {
         return builder(color).requiresCorrectToolForDrops().strength(1.5F,6);
     }
 
-    public static final ItemObject<Block> DryingRack = BLOCKS.register("drying_rack", () -> new DryingRackBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).strength(0.5F)), GENERAL_BLOCK_ITEM);
-
     public static final ItemObject<Item> NecroticBoneMeal = ITEMS.register("necrotic_bone_meal", () -> new NecroticBoneMealItem(GENERAL_PROPS));
     public static final ItemObject<Item> SulfurGoo = ITEMS.register("sulfur_goo", GENERAL_PROPS);
     public static final ItemObject<Item> OceanSlimeBall = ITEMS.register("ocean_slime_ball", GENERAL_PROPS);
@@ -92,6 +90,7 @@ public class ModItems {
     public static final GeodeItemObject OceanGeode = BLOCKS.registerGeode("ocean_slime_crystal", MapColor.COLOR_BLUE, Sounds.ENDER_CRYSTAL, Sounds.ENDER_CRYSTAL_CHIME.getSound(), Sounds.ENDER_CRYSTAL_CLUSTER, 5, GENERAL_PROPS);
     public static final ItemObject<Block> SlimeGravel = BLOCKS.register("slime_gravel", () -> new SlimeGravelBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.GRAVEL).instrument(NoteBlockInstrument.SNARE).strength(0.6F)), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> DryingRack = BLOCKS.register("drying_rack", () -> new DryingRackBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).strength(0.5F)), GENERAL_BLOCK_ITEM);
 
     public static final WallBuildingBlockObject Sulfur = BLOCKS.registerWallBuilding("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM)), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject PolishedSulfur = BLOCKS.registerWallBuilding("polished_sulfur", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
@@ -194,16 +193,16 @@ public class ModItems {
     public static final RegistryObject<BlockEntityType<DryingRackBlockEntity>> DryingRackEntity = BLOCK_ENTITIES.register("drying_rack", DryingRackBlockEntity::new, set -> set.add(DryingRack.get()));
 
     private static void addTabItems(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
-        output.accept(DryingRack);
         output.accept(NecroticBoneMeal);
         output.accept(SulfurGoo);
+        output.accept(DryingRack);
         output.accept(OceanSlimeBall);
         output.accept(OceanCongealedSlime);
         output.accept(OceanSlime);
-        output.accept(OceanSlimeBottle);
-        output.accept(OceanCake);
         acceptGeode(output, OceanGeode);
 
+        output.accept(OceanSlimeBottle);
+        output.accept(OceanCake);
         output.accept(EarthSlimeBerry);
         output.accept(SkySlimeBerry);
         output.accept(EnderSlimeBerry);

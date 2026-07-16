@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.block.entity;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModOthers;
-import com.creeping_creeper.slimeworld.init.block.DryingWrapper;
 import com.creeping_creeper.slimeworld.init.misc.DryingRackRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -171,7 +170,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
             return;
         }
         timer++;
-        if (level.random.nextFloat() > 0.95F) {
+        if (level.random.nextFloat() < 0.02F) {
             level.addParticle(ParticleTypes.DRIPPING_DRIPSTONE_WATER, pos.getX() + level.random.nextDouble(), pos.getY() + 0.3D, pos.getZ() + level.random.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
     }

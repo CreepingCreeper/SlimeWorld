@@ -21,10 +21,12 @@ public enum DryingRackProvider implements IBlockComponentProvider, IServerDataPr
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
         CompoundTag data = accessor.getServerData();
         IElementHelper helper = IElementHelper.get();
-        int progress = data.getInt("progress");
-        IElement icon = helper.item(Items.CLOCK.getDefaultInstance(), 0.5f).size(new Vec2(10, 10)).translate(new Vec2(0, -1));
-        tooltip.add(icon);
-        tooltip.append(Component.translatable("tooltip.slimeworld.drying_rack_progress", progress));
+        if (data.contains("progress")) {
+            int progress = data.getInt("progress");
+            IElement icon = helper.item(Items.CLOCK.getDefaultInstance(), 0.5f).size(new Vec2(10, 10)).translate(new Vec2(0, -1));
+            tooltip.add(icon);
+            tooltip.append(Component.translatable("tooltip.slimeworld.drying_rack_progress", progress));
+        }
 
     }
 
@@ -33,7 +35,7 @@ public enum DryingRackProvider implements IBlockComponentProvider, IServerDataPr
         DryingRackBlockEntity dryingRack = (DryingRackBlockEntity) accessor.getBlockEntity();
         int dryingTime = dryingRack.getDryingTime();
         if (dryingTime >= 0){
-            data.putInt("progress", (dryingRack.getTimer() -  dryingTime) / 20);
+            data.putInt("progress", (dryingTime - dryingRack.getTimer()) / 20);
         }
     }
 
