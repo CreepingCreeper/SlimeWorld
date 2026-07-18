@@ -91,8 +91,8 @@ public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
     @Override
     protected @NotNull AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor) {
         AbstractArrow abstractarrow = super.getArrow(arrowStack, distanceFactor);
-        if (abstractarrow instanceof Arrow) {
-            ((Arrow)abstractarrow).addEffect(new MobEffectInstance(MobEffects.POISON, 80));
+        if (abstractarrow instanceof Arrow arrow) {
+            arrow.addEffect(new MobEffectInstance(MobEffects.POISON, 80));
         }
 
         return abstractarrow;

@@ -43,7 +43,7 @@ public class DryingRecipeBuilder extends AbstractRecipeBuilder<DryingRecipeBuild
         return this;
     }
 
-    @SuppressWarnings("deprecated")
+    @SuppressWarnings("deprecation")
     @Override
     public void save(@NotNull Consumer<FinishedRecipe> consumerIn) {
         this.save(consumerIn, BuiltInRegistries.ITEM.getKey(this.result.get().getItem()));

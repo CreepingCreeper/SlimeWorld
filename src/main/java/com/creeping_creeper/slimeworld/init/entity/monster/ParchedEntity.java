@@ -72,8 +72,8 @@ public class ParchedEntity extends AbstractSkeleton {
     @Override
     protected @NotNull AbstractArrow getArrow(@NotNull ItemStack arrowStack, float distanceFactor) {
         AbstractArrow abstractarrow = super.getArrow(arrowStack, distanceFactor);
-        if (abstractarrow instanceof Arrow) {
-            ((Arrow)abstractarrow).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600));
+        if (abstractarrow instanceof Arrow arrow) {
+            arrow.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600));
         }
 
         return abstractarrow;

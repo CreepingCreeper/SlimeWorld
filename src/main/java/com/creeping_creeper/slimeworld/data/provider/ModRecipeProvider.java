@@ -59,8 +59,8 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
 
         String gadgets = "gadgets/";
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NecroticBoneMeal, 3)
-                .requires(TinkerMaterials.necroniumBone)
-                .unlockedBy("has_item", RecipeProvider.has(TinkerMaterials.necroniumBone))
+                .requires(TinkerMaterials.necroticBone)
+                .unlockedBy("has_item", RecipeProvider.has(TinkerMaterials.necroticBone))
                 .save(consumer, location(gadgets + id(ModItems.NecroticBoneMeal).getPath()));
         AlloyRecipeBuilder.alloy(ModFluids.ResonanceSlime, FluidValues.SLIMEBALL * 2)
                 .addInput(TinkerTags.Fluids.SLIME, FluidValues.SLIMEBALL)

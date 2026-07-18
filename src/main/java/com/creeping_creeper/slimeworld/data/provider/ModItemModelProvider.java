@@ -21,6 +21,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        basicItem(ModItems.NecroticBoneMeal.get());
+        basicItem(ModItems.SulfurGoo.get());
+        basicItem(ModItems.OceanSlimeBall.get());
+        
+        basicItem(ModItems.CopperShard.get());
         basicItem(ModItems.CopperShard.get());
         basicItem(ModItems.IronShard.get());
         basicItem(ModItems.GoldShard.get());

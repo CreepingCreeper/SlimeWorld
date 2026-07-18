@@ -31,13 +31,14 @@ import slimeknights.tconstruct.library.utils.Util;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("removal")
+@SuppressWarnings("unused")
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SlimeWorld {
     public static final String MODID = "slimeworld";
     public static final Logger LOG = LogUtils.getLogger();
 
+    @SuppressWarnings("removal")
     public SlimeWorld() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.registers(bus);
@@ -76,6 +77,8 @@ public class SlimeWorld {
         generator.addProvider(server, new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
         generator.addProvider(server, new ModFluidTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModEntityTypeTagProvider(output, lookupProvider, existingFileHelper));
+        //loots
+        generator.addProvider(server, new ModLootTableProvider(output));
         //models
         generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
         generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
@@ -101,6 +104,7 @@ public class SlimeWorld {
         return type + "." + MODID + "." + name;
     }
 
+    @SuppressWarnings("removal")
     public static ResourceLocation getResource(String name) {
         return new ResourceLocation(MODID, name);
     }

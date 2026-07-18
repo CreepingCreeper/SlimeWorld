@@ -220,5 +220,6 @@
   "jei.slimeworld.drying_time": "%d s",
 
   "config.jade.plugin_slimeworld.drying_rack": "Drying Rack",
+  "config.jade.plugin_slimeworld.growable": "Growing Time",
   "tooltip.slimeworld.drying_rack_progress": "Remaining %d s"
 }

@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld.init.entity.monster;
 import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.ModParticles;
+import com.creeping_creeper.slimeworld.init.entity.Growable;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -30,7 +31,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
+public class OriginSlimeEntity extends TravelersPlateSlimeEntity implements Growable {
     private static final List<Item> TRANSFORM_ITEMS = List.of(ModItems.SulfurMud.asItem(), TinkerWorld.earthGeode.asItem(), TinkerWorld.skyGeode.asItem(), TinkerWorld.ichorGeode.asItem(), TinkerWorld.enderGeode.asItem(), ModItems.OceanGeode.asItem(), Items.MUD, Items.MAGMA_BLOCK);
     protected int age;
 
@@ -56,6 +57,11 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity{
                 }
             }else age++;
         }
+    }
+
+    @Override
+    public int getGrowTime(){
+        return - this.age / 20;
     }
 
     private boolean isFood(ItemStack stack){
