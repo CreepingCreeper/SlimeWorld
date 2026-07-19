@@ -20,7 +20,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "slimeworld:berripers"
+          "name": "slimeworld:gold_shard"
         }
       ],
       "functions": [
@@ -58,7 +58,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "slimeworld:berripers"
+          "name": "slimeworld:gold_shard"
         }
       ],
       "functions": [

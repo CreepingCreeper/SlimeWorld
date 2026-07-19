@@ -1,8 +1,0 @@
-{
-  "parent": "block/stairs",
-  "textures": {
-    "bottom": "slimeworld:block/sulfur",
-    "side": "slimeworld:block/sulfur",
-    "top": "slimeworld:block/sulfur"
-  }
-}

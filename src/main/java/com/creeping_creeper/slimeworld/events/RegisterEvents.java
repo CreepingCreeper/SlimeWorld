@@ -12,6 +12,7 @@ import com.creeping_creeper.slimeworld.init.entity.monster.ParchedEntity;
 import com.creeping_creeper.slimeworld.library.BiomeSlimePlacementPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.animal.horse.Llama;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -25,6 +26,8 @@ import slimeknights.tconstruct.world.entity.SlimePlacementPredicate;
 public class RegisterEvents {
     @SubscribeEvent
     static void entityAttributes(EntityAttributeCreationEvent event) {
+        event.put(ModEntities.Llama.get(), Llama.createAttributes().build());
+
         event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.IchorSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.OriginSlimeEntity.get(), Monster.createMonsterAttributes().build());

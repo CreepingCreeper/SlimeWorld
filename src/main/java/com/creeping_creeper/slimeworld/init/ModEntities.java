@@ -18,7 +18,6 @@ public class ModEntities {
 
     public static final RegistryObject<EntityType<TomatoProjectile>> TomatoProjectileEntity = ENTITIES.register("tomato_projectile", () ->
             EntityType.Builder.<TomatoProjectile>of(TomatoProjectile::new, MobCategory.MISC).sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10).setShouldReceiveVelocityUpdates(false));
-
     public static final RegistryObject<EntityType<MagicbubbleEntity>> Magicbubble = ENTITIES.register("magicbubble", () ->
             EntityType.Builder.of(MagicbubbleEntity::new, MobCategory.MISC)
                     .sized(0.15f, 0.15f)
@@ -26,6 +25,12 @@ public class ModEntities {
                     .clientTrackingRange(16)
                     .updateInterval(1)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.Magicbubble.get().create(world)));
+
+    public static final EntityObject<BetterLlama> Llama = ENTITIES.registerWithEgg("llama", () ->
+            EntityType.Builder.of(BetterLlama::new, MobCategory.CREATURE)
+                    .sized(0.9F, 1.87F).
+                    clientTrackingRange(10)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.Llama.get().create(world)), 0x4278e6, 0x2a60d7);
 
     public static final EntityObject<OceanSlimeEntity> OceanSlimeEntity = ENTITIES.registerWithEgg("ocean_slime", () ->
             EntityType.Builder.of(OceanSlimeEntity::new, MobCategory.MONSTER)

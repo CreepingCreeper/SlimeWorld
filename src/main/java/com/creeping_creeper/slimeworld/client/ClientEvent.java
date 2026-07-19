@@ -16,6 +16,7 @@ import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -23,6 +24,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.LlamaRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -64,7 +66,10 @@ public class ClientEvent extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntities.Llama.get(), context -> new LlamaRenderer(context, ModelLayers.TRADER_LLAMA));
+
         event.registerEntityRenderer(ModEntities.TomatoProjectileEntity.get(), context -> new ThrownItemRenderer<>(context, 0.75f, true));
+
         event.registerEntityRenderer(ModEntities.Magicbubble.get(), FloatingWindRenderer::new);
         event.registerEntityRenderer(ModEntities.OceanSlimeEntity.get(), OCEAN_SLIME_FACTORY);
         event.registerEntityRenderer(ModEntities.IchorSlimeEntity.get(), ICHOR_SLIME_FACTORY);

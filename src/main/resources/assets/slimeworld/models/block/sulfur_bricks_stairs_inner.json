@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "slimeworld:block/sulfur_bricks",
-    "side": "slimeworld:block/sulfur_bricks",
-    "top": "slimeworld:block/sulfur_bricks"
-  }
-}

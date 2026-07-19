@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld.data.provider;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import com.creeping_creeper.slimeworld.init.block.bush.OreBerryBushBlock;
+import com.creeping_creeper.slimeworld.init.block.bush.SlimeBerryBushBlock;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
@@ -107,8 +109,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModItems.SpringyFlower.get());
         this.dropSelf(ModItems.ConsecratedFlower.get());
         this.dropSelf(ModItems.GraveyardFlower.get());
-        //TODO: 修正黏液莓丛
-        this.add(ModItems.SlimeBerryBush.get(), block -> createBerry(block, SweetBerryBushBlock.AGE, ModItems.Berriper));
+        this.add(ModItems.SlimeBerryBush.get(), this::slimeBerryBushLoot);
+        this.add(ModItems.BerriperBush.get(), noDrop());
         this.add(ModItems.BerriperBush.get(), block -> createBerry(block, SweetBerryBushBlock.AGE, ModItems.Berriper));
         this.dropCluster(ModItems.BronzeCluster.get(), ModItems.BronzeShard.get());
         this.dropSelf(ModItems.Bronze.get());
@@ -141,6 +143,85 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     private LootTable.Builder createBerry(Block block, Property<Integer> property, ItemLike item) {
         return applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, 3))).add(LootItem.lootTableItem(item)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))).withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(property, 2))).add(LootItem.lootTableItem(item)).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))));
     }
+
+    private LootTable.Builder slimeBerryBushLoot(Block bushBlock) {
+        LootPool.Builder poolAge3 = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .when(LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(bushBlock)
+                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(SlimeBerryBushBlock.AGE, 3))
+                )
+                .add(AlternativesEntry.alternatives(
+                        LootItem.lootTableItem(ModItems.EarthSlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 1))
+                                ),
+                        LootItem.lootTableItem(ModItems.SkySlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 2))
+                                ),
+                        LootItem.lootTableItem(ModItems.EnderSlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 4))
+                                ),
+                        LootItem.lootTableItem(ModItems.BloodSlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 5))
+                                ),
+                        LootItem.lootTableItem(Items.SUGAR)
+                ))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
+
+        LootPool.Builder poolAge2 = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .when(LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(bushBlock)
+                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(SweetBerryBushBlock.AGE, 2))
+                )
+                .add(AlternativesEntry.alternatives(
+                        LootItem.lootTableItem(ModItems.EarthSlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 1))
+                                ),
+                        LootItem.lootTableItem(ModItems.SkySlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 2))
+                                ),
+                        LootItem.lootTableItem(ModItems.EnderSlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 4))
+                                ),
+                        LootItem.lootTableItem(ModItems.BloodSlimeBerry.get())
+                                .when(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(bushBlock)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                                .hasProperty(SlimeBerryBushBlock.BERRY, 5))
+                                ),
+                        LootItem.lootTableItem(Items.SUGAR)
+                ))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
+
+        return applyExplosionDecay(bushBlock, LootTable.lootTable().withPool(poolAge3).withPool(poolAge2));
+    }
+
 
     private void dropGeode(GeodeItemObject geode) {
         this.dropSelf(geode.getBlock());

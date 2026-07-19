@@ -19,8 +19,65 @@
       ],
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "slimeworld:berripers"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "1"
+                  }
+                }
+              ],
+              "name": "slimeworld:earth_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "2"
+                  }
+                }
+              ],
+              "name": "slimeworld:sky_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "4"
+                  }
+                }
+              ],
+              "name": "slimeworld:ender_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "5"
+                  }
+                }
+              ],
+              "name": "slimeworld:blood_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:sugar"
+            }
+          ]
         }
       ],
       "functions": [
@@ -57,8 +114,65 @@
       ],
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "slimeworld:berripers"
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "1"
+                  }
+                }
+              ],
+              "name": "slimeworld:earth_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "2"
+                  }
+                }
+              ],
+              "name": "slimeworld:sky_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "4"
+                  }
+                }
+              ],
+              "name": "slimeworld:ender_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "slimeworld:slime_berry_bush",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "berry": "5"
+                  }
+                }
+              ],
+              "name": "slimeworld:blood_slime_berries"
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:sugar"
+            }
+          ]
         }
       ],
       "functions": [
