@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "slimeworld:block/polished_sulfur_slab"
+    },
+    "type=double": {
+      "model": "slimeworld:block/polished_sulfur"
+    },
+    "type=top": {
+      "model": "slimeworld:block/polished_sulfur_slab_top"
+    }
+  }
+}

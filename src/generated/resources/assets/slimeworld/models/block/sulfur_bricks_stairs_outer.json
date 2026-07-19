@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "slimeworld:block/sulfur_bricks",
+    "side": "slimeworld:block/sulfur_bricks",
+    "top": "slimeworld:block/sulfur_bricks"
+  }
+}
