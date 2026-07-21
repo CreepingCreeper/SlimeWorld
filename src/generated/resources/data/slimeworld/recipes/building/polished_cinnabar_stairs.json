@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "slimeworld:polished_cinnabar_stairs",
+  "key": {
+    "B": {
+      "item": "slimeworld:polished_cinnabar"
+    }
+  },
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "result": {
+    "count": 4,
+    "item": "slimeworld:polished_cinnabar_stairs"
+  },
+  "show_notification": true
+}

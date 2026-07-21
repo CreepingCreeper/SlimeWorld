@@ -12,6 +12,12 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, SlimeWorld.MODID);
 
+    public static final RegistryObject<SoundEvent> CINNABAR_BREAK = registerSoundEvent("block.cinnabar.break");
+    public static final RegistryObject<SoundEvent> CINNABAR_STEP = registerSoundEvent("block.cinnabar.step");
+    public static final RegistryObject<SoundEvent> CINNABAR_PLACE = registerSoundEvent("block.cinnabar.place");
+    public static final RegistryObject<SoundEvent> CINNABAR_HIT = registerSoundEvent("block.cinnabar.hit");
+    public static final RegistryObject<SoundEvent> CINNABAR_FALL = registerSoundEvent("block.cinnabar.fall");
+
     public static final RegistryObject<SoundEvent> SULFUR_BREAK = registerSoundEvent("block.sulfur.break");
     public static final RegistryObject<SoundEvent> SULFUR_STEP = registerSoundEvent("block.sulfur.step");
     public static final RegistryObject<SoundEvent> SULFUR_PLACE = registerSoundEvent("block.sulfur.place");
@@ -56,6 +62,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> PARCHED_DEATH = registerSoundEvent("entity.parched.death");
     public static final RegistryObject<SoundEvent> PARCHED_STEP = registerSoundEvent("entity.parched.step");
 
+    public static final SoundType CINNABAR = new ForgeSoundType(1.0F, 1.0F, CINNABAR_BREAK, CINNABAR_STEP, CINNABAR_PLACE, CINNABAR_HIT, CINNABAR_FALL);
     public static final SoundType SULFUR = new ForgeSoundType(1.0F, 1.0F, SULFUR_BREAK, SULFUR_STEP, SULFUR_PLACE, SULFUR_HIT, SULFUR_FALL);
     public static final SoundType POTENT_SULFUR = new ForgeSoundType(1.0F, 1.0F, POTENT_SULFUR_BREAK, POTENT_SULFUR_STEP, POTENT_SULFUR_PLACE, POTENT_SULFUR_HIT, POTENT_SULFUR_FALL);
 

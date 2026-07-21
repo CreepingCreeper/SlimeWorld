@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "slimeworld:block/cinnabar",
+    "side": "slimeworld:block/cinnabar",
+    "top": "slimeworld:block/cinnabar"
+  }
+}

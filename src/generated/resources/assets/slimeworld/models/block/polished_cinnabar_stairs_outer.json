@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "slimeworld:block/polished_cinnabar",
+    "side": "slimeworld:block/polished_cinnabar",
+    "top": "slimeworld:block/polished_cinnabar"
+  }
+}

@@ -1,5 +1,8 @@
 {
   "values": [
+    "slimeworld:cinnabar_wall",
+    "slimeworld:polished_cinnabar_wall",
+    "slimeworld:cinnabar_bricks_wall",
     "slimeworld:sulfur_wall",
     "slimeworld:polished_sulfur_wall",
     "slimeworld:sulfur_bricks_wall"

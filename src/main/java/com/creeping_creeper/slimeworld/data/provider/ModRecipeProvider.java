@@ -51,6 +51,11 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
     @Override
     protected void buildRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         String building = "building/";
+        stairSlabWallCrafting(consumer, ModItems.Cinnabar, building, true);
+        polishingRecipes(consumer, ModItems.Cinnabar, ModItems.PolishedCinnabar, building, true);
+        stairSlabWallCrafting(consumer, ModItems.PolishedCinnabar, building, true);
+        polishingRecipes(consumer, ModItems.PolishedCinnabar, ModItems.CinnabarBricks, building, true);
+        stairSlabWallCrafting(consumer, ModItems.CinnabarBricks, building, true);
         stairSlabWallCrafting(consumer, ModItems.Sulfur, building, true);
         polishingRecipes(consumer, ModItems.Sulfur, ModItems.PolishedSulfur, building, true);
         stairSlabWallCrafting(consumer, ModItems.PolishedSulfur, building, true);

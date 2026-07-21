@@ -1,4 +1,65 @@
 {
+  "block.cinnabar.break": {
+    "sounds": [
+      "slimeworld:block/cinnabar/break1",
+      "slimeworld:block/cinnabar/break2",
+      "slimeworld:block/cinnabar/break3",
+      "slimeworld:block/cinnabar/break4",
+      "slimeworld:block/cinnabar/break5",
+      "slimeworld:block/cinnabar/break6",
+      "slimeworld:block/cinnabar/break7"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.cinnabar.fall": {
+    "sounds": [
+      "slimeworld:block/cinnabar/hit1",
+      "slimeworld:block/cinnabar/hit2",
+      "slimeworld:block/cinnabar/hit3",
+      "slimeworld:block/cinnabar/hit4",
+      "slimeworld:block/cinnabar/hit5",
+      "slimeworld:block/cinnabar/hit6",
+      "slimeworld:block/cinnabar/hit7"
+    ],
+    "subtitle": "subtitles.block.generic.fall"
+  },
+  "block.cinnabar.hit": {
+    "sounds": [
+      "slimeworld:block/cinnabar/hit1",
+      "slimeworld:block/cinnabar/hit2",
+      "slimeworld:block/cinnabar/hit3",
+      "slimeworld:block/cinnabar/hit4",
+      "slimeworld:block/cinnabar/hit5",
+      "slimeworld:block/cinnabar/hit6",
+      "slimeworld:block/cinnabar/hit7"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.cinnabar.place": {
+    "sounds": [
+      "slimeworld:block/cinnabar/place1",
+      "slimeworld:block/cinnabar/place2",
+      "slimeworld:block/cinnabar/place3",
+      "slimeworld:block/cinnabar/place4",
+      "slimeworld:block/cinnabar/place5",
+      "slimeworld:block/cinnabar/place6",
+      "slimeworld:block/cinnabar/place7",
+      "slimeworld:block/cinnabar/place8"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.cinnabar.step": {
+    "sounds": [
+      "slimeworld:block/cinnabar/step1",
+      "slimeworld:block/cinnabar/step2",
+      "slimeworld:block/cinnabar/step3",
+      "slimeworld:block/cinnabar/step4",
+      "slimeworld:block/cinnabar/step5",
+      "slimeworld:block/cinnabar/step6",
+      "slimeworld:block/cinnabar/step7"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
   "block.sulfur.break": {
     "sounds": [
       "slimeworld:block/sulfur/break1",

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "slimeworld:cinnabar_bricks"
+  },
+  "result": "slimeworld:cinnabar_bricks_slab"
+}

@@ -26,7 +26,7 @@ import slimeknights.tconstruct.world.entity.SlimePlacementPredicate;
 public class RegisterEvents {
     @SubscribeEvent
     static void entityAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.Llama.get(), Llama.createAttributes().build());
+        event.put(ModEntities.SLlama.get(), Llama.createAttributes().build());
 
         event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.IchorSlimeEntity.get(), Monster.createMonsterAttributes().build());

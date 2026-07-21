@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "slimeworld:cinnabar_bricks",
+  "key": {
+    "B": {
+      "item": "slimeworld:polished_cinnabar"
+    }
+  },
+  "pattern": [
+    "BB",
+    "BB"
+  ],
+  "result": {
+    "count": 4,
+    "item": "slimeworld:cinnabar_bricks"
+  },
+  "show_notification": true
+}

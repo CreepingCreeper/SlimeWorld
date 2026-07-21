@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "slimeworld:block/cinnabar_bricks",
+    "side": "slimeworld:block/cinnabar_bricks",
+    "top": "slimeworld:block/cinnabar_bricks"
+  }
+}

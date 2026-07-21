@@ -67,6 +67,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModItems.IchorVent.get());
         this.add(ModItems.DryingRack.get(), block -> droppingWithFunctions(block, (builder) -> builder.apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(RetexturedLootFunction::new)));
 
+        this.dropBuildingLootTables(ModItems.Cinnabar);
+        this.dropBuildingLootTables(ModItems.PolishedCinnabar);
+        this.dropBuildingLootTables(ModItems.CinnabarBricks);
         this.dropBuildingLootTables(ModItems.Sulfur);
         this.dropBuildingLootTables(ModItems.PolishedSulfur);
         this.dropBuildingLootTables(ModItems.SulfurBricks);

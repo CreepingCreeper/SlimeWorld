@@ -72,14 +72,6 @@ public class ModItems {
     protected static final Function<Block,? extends BlockItem> TOOLTIP_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, GENERAL_PROPS);
     protected static final Function<Block,? extends BlockItem> UNCOMMON_BLOCK_ITEM = (b) -> new BlockItem(b, new Item.Properties().rarity(Rarity.UNCOMMON));
 
-    protected static BlockBehaviour.Properties metalBuilder(MapColor color) {
-        return builder(color).sound(METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F);
-    }
-
-    protected static BlockBehaviour.Properties buildingBuilder(MapColor color) {
-        return builder(color).requiresCorrectToolForDrops().strength(1.5F,6);
-    }
-
     public static final ItemObject<Item> NecroticBoneMeal = ITEMS.register("necrotic_bone_meal", () -> new NecroticBoneMealItem(GENERAL_PROPS));
     public static final ItemObject<Item> SulfurGoo = ITEMS.register("sulfur_goo", GENERAL_PROPS);
     public static final ItemObject<Item> OceanSlimeBall = ITEMS.register("ocean_slime_ball", GENERAL_PROPS);
@@ -92,10 +84,13 @@ public class ModItems {
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> DryingRack = BLOCKS.register("drying_rack", () -> new DryingRackBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).strength(0.5F)), GENERAL_BLOCK_ITEM);
 
-    public static final WallBuildingBlockObject Sulfur = BLOCKS.registerWallBuilding("sulfur", () -> new Block(builder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM)), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject Cinnabar = BLOCKS.registerWallBuilding("cinnabar", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject PolishedCinnabar = BLOCKS.registerWallBuilding("polished_cinnabar", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject CinnabarBricks = BLOCKS.registerWallBuilding("cinnabar_bricks", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+    public static final WallBuildingBlockObject Sulfur = BLOCKS.registerWallBuilding("sulfur", buildingBuilder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject PolishedSulfur = BLOCKS.registerWallBuilding("polished_sulfur", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject SulfurBricks = BLOCKS.registerWallBuilding("sulfur_bricks", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> SulfurMud = BLOCKS.register("sulfur_mud", () -> new Block(BlockBehaviour.Properties.copy(Sulfur.get()).sound(SoundType.MUD)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> SulfurMud = BLOCKS.register("sulfur_mud", buildingBuilder(MapColor.COLOR_BROWN).sound(SoundType.MUD), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> SulfurSpike = BLOCKS.register("sulfur_spike", () -> new SulfurSpikeBlock(builder(MapColor.TERRACOTTA_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(ModSounds.SULFUR).randomTicks().strength(1.5F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurNausea = BLOCKS.register("potent_sulfur_nausea", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurBlindness = BLOCKS.register("potent_sulfur_blindness", () -> new PotentSulfurBlock(() -> MobEffects.BLINDNESS, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
@@ -103,9 +98,9 @@ public class ModItems {
     public static final ItemObject<Block> PotentSulfurRegeneration = BLOCKS.register("potent_sulfur_regeneration", () -> new PotentSulfurBlock(() -> MobEffects.REGENERATION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurStrength = BLOCKS.register("potent_sulfur_strength", () -> new PotentSulfurBlock(() -> MobEffects.DAMAGE_BOOST, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
 
-    public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", () -> new Block(builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", () -> new Block(builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7)), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> IsomericGlowstone = BLOCKS.register("isomeric_glowstone", () -> new Block(builder(MapColor.SAND).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.PLING).strength(5.0F, 6.0F).sound(METAL).lightLevel((p_50874_) -> 15).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> GlowstoneOre = BLOCKS.register("glowstone_ore", builder(MapColor.STONE).sound(SoundType.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(3.0F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> DeepSlateGlowstoneOre = BLOCKS.register("deepslate_glowstone_ore", builder(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE).strength(4.5F, 3.0F).requiresCorrectToolForDrops().lightLevel(state -> 7), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> IsomericGlowstone = BLOCKS.register("isomeric_glowstone", builder(MapColor.SAND).requiresCorrectToolForDrops().instrument(NoteBlockInstrument.PLING).strength(5.0F, 6.0F).sound(METAL).lightLevel((p_50874_) -> 15).isRedstoneConductor(Blocks::never), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> IsomericRedstoneBlock = BLOCKS.register("isomeric_redstone_block", () -> new PoweredBlock(builder(MapColor.FIRE).strength(0.3F).sound(SoundType.GLASS).isRedstoneConductor(Blocks::never)), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Block> IchorFern = BLOCKS.register("ichor_slime_fern", () -> new IchorTallGrassBlock(builder(MapColor.COLOR_ORANGE).sound(SoundType.ROOTS).offsetType(BlockBehaviour.OffsetType.XZ).replaceable().instabreak().noCollission().pushReaction(PushReaction.DESTROY), FoliageType.ICHOR), TOOLTIP_BLOCK_ITEM);
@@ -142,23 +137,23 @@ public class ModItems {
     public static final ItemObject<Item> BloodSlimeBerry = ITEMS.register("blood_slime_berries", () -> new BlockItem(SlimeBerryBush.get(),new Item.Properties().food(ModFood.BLOOD_SLIME_BERRY)));
     public static final ItemObject<Item> Berriper = ITEMS.register("berripers", () -> new BlockItem(BerriperBush.get(),new Item.Properties().food(ModFood.BERRIPER).rarity(Rarity.UNCOMMON)));
     public static final ItemObject<Item> TomatoPudding = ITEMS.register("tomato_pudding", new Item.Properties().food(ModFood.TOMATO_PUDDING));
-    public static final ItemObject<Item> BeefJerky = ITEMS.register("beef_jerky", () -> new Item(new Item.Properties().food(ModFood.BEEF_JERKY)));
-    public static final ItemObject<Item> PorkJerky = ITEMS.register("pork_jerky", () -> new Item(new Item.Properties().food(ModFood.BEEF_JERKY)));
-    public static final ItemObject<Item> MuttonJerky = ITEMS.register("mutton_jerky", () -> new Item(new Item.Properties().food(ModFood.MUTTON_JERKY)));
-    public static final ItemObject<Item> RabbitJerky = ITEMS.register("rabbit_jerky", () -> new Item(new Item.Properties().food(ModFood.RABBIT_JERKY)));
-    public static final ItemObject<Item> ChickenJerky = ITEMS.register("chicken_jerky", () -> new Item(new Item.Properties().food(ModFood.RABBIT_JERKY)));
-    public static final ItemObject<Item> CodJerky = ITEMS.register("cod_jerky", () -> new Item(new Item.Properties().food(ModFood.RABBIT_JERKY)));
-    public static final ItemObject<Item> SalmonJerky = ITEMS.register("salmon_jerky", () -> new Item(new Item.Properties().food(ModFood.MUTTON_JERKY)));
-    public static final ItemObject<Item> TropicalFishJerky = ITEMS.register("tropical_fish_jerky", () -> new Item(new Item.Properties().food(ModFood.FISH_JERKY)));
-    public static final ItemObject<Item> PufferfishJerky = ITEMS.register("pufferfish_jerky", () -> new Item(new Item.Properties().food(ModFood.FISH_JERKY)));
-    public static final ItemObject<Item> RottenFleshJerky = ITEMS.register("rotten_flesh_jerky", () -> new Item(new Item.Properties().food(ModFood.ROTTEN_FLESH_JERKY)));
-    public static final ItemObject<Item> FriedEgg = ITEMS.register("fried_egg", () -> new Item(new Item.Properties().food(ModFood.FRIED_EGG)));
-    public static final ItemObject<Item> EarthSlimeDrop = ITEMS.register("earth_slime_drop", () -> new Item(new Item.Properties().food(ModFood.EARTH_SLIME_DROP)));
-    public static final ItemObject<Item> SkySlimeDrop = ITEMS.register("sky_slime_drop", () -> new Item(new Item.Properties().food(ModFood.SKY_SLIME_DROP)));
-    public static final ItemObject<Item> OceanSlimeDrop = ITEMS.register("ocean_slime_drop", () -> new Item(new Item.Properties().food(ModFood.OCEAN_SLIME_DROP)));
-    public static final ItemObject<Item> MagmaSlimeDrop = ITEMS.register("magma_slime_drop", () -> new Item(new Item.Properties().food(ModFood.MAGMA_SLIME_DROP)));
-    public static final ItemObject<Item> IchorSlimeDrop = ITEMS.register("ichor_slime_drop", () -> new Item(new Item.Properties().food(ModFood.ICHOR_SLIME_DROP)));
-    public static final ItemObject<Item> EnderSlimeDrop = ITEMS.register("ender_slime_drop", () -> new Item(new Item.Properties().food(ModFood.ENDER_SLIME_DROP)));
+    public static final ItemObject<Item> BeefJerky = ITEMS.register("beef_jerky", new Item.Properties().food(ModFood.BEEF_JERKY));
+    public static final ItemObject<Item> PorkJerky = ITEMS.register("pork_jerky", new Item.Properties().food(ModFood.BEEF_JERKY));
+    public static final ItemObject<Item> MuttonJerky = ITEMS.register("mutton_jerky", new Item.Properties().food(ModFood.MUTTON_JERKY));
+    public static final ItemObject<Item> RabbitJerky = ITEMS.register("rabbit_jerky", new Item.Properties().food(ModFood.RABBIT_JERKY));
+    public static final ItemObject<Item> ChickenJerky = ITEMS.register("chicken_jerky", new Item.Properties().food(ModFood.RABBIT_JERKY));
+    public static final ItemObject<Item> CodJerky = ITEMS.register("cod_jerky", new Item.Properties().food(ModFood.RABBIT_JERKY));
+    public static final ItemObject<Item> SalmonJerky = ITEMS.register("salmon_jerky", new Item.Properties().food(ModFood.MUTTON_JERKY));
+    public static final ItemObject<Item> TropicalFishJerky = ITEMS.register("tropical_fish_jerky", new Item.Properties().food(ModFood.FISH_JERKY));
+    public static final ItemObject<Item> PufferfishJerky = ITEMS.register("pufferfish_jerky", new Item.Properties().food(ModFood.FISH_JERKY));
+    public static final ItemObject<Item> RottenFleshJerky = ITEMS.register("rotten_flesh_jerky", new Item.Properties().food(ModFood.ROTTEN_FLESH_JERKY));
+    public static final ItemObject<Item> FriedEgg = ITEMS.register("fried_egg", new Item.Properties().food(ModFood.FRIED_EGG));
+    public static final ItemObject<Item> EarthSlimeDrop = ITEMS.register("earth_slime_drop", new Item.Properties().food(ModFood.EARTH_SLIME_DROP));
+    public static final ItemObject<Item> SkySlimeDrop = ITEMS.register("sky_slime_drop", new Item.Properties().food(ModFood.SKY_SLIME_DROP));
+    public static final ItemObject<Item> OceanSlimeDrop = ITEMS.register("ocean_slime_drop", new Item.Properties().food(ModFood.OCEAN_SLIME_DROP));
+    public static final ItemObject<Item> MagmaSlimeDrop = ITEMS.register("magma_slime_drop", new Item.Properties().food(ModFood.MAGMA_SLIME_DROP));
+    public static final ItemObject<Item> IchorSlimeDrop = ITEMS.register("ichor_slime_drop", new Item.Properties().food(ModFood.ICHOR_SLIME_DROP));
+    public static final ItemObject<Item> EnderSlimeDrop = ITEMS.register("ender_slime_drop", new Item.Properties().food(ModFood.ENDER_SLIME_DROP));
 
     public static final ItemObject<Item> CopperShard = ITEMS.register("copper_shard", GENERAL_PROPS);
     public static final ItemObject<Item> IronShard = ITEMS.register("iron_shard", GENERAL_PROPS);
@@ -236,7 +231,9 @@ public class ModItems {
         output.accept(SlimeGravel);
         output.accept(IchorVent);
 
-        output.accept(Sulfur);
+        acceptWallBuilding(output, Cinnabar);
+        acceptWallBuilding(output, PolishedCinnabar);
+        acceptWallBuilding(output, CinnabarBricks);
         acceptWallBuilding(output, Sulfur);
         acceptWallBuilding(output, PolishedSulfur);
         acceptWallBuilding(output, SulfurBricks);
@@ -313,6 +310,14 @@ public class ModItems {
         output.accept(ModEntities.OceanSlimeGolemEntity);
         output.accept(ModEntities.IchorSlimeGolemEntity);
         output.accept(ModEntities.EnderSlimeGolemEntity);
+    }
+
+    protected static BlockBehaviour.Properties metalBuilder(MapColor color) {
+        return builder(color).sound(METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F);
+    }
+
+    protected static BlockBehaviour.Properties buildingBuilder(MapColor color) {
+        return builder(color).requiresCorrectToolForDrops().strength(1.5F,6);
     }
 
     protected static BlockBehaviour.Properties grass() {

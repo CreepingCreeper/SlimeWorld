@@ -37,6 +37,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         //vanilla
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModItems.Bronze.get()).add(ModItems.OceanGeode.getBlock()).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.SMALL)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.MEDIUM)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.LARGE))
                 .add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.CLUSTER)).add(ModItems.OceanGeode.getBudding()).add(ModItems.BronzeCluster.get()).add(ModItems.GlowstoneOre.get()).add(ModItems.DeepSlateGlowstoneOre.get()).add(ModItems.IsomericGlowstone.get())
+                .add(ModItems.Cinnabar.get()).add(ModItems.Cinnabar.getStairs()).add(ModItems.Cinnabar.getSlab()).add(ModItems.Cinnabar.getWall()).add(ModItems.PolishedCinnabar.get()).add(ModItems.PolishedCinnabar.getStairs())
+                .add(ModItems.PolishedCinnabar.getSlab()).add(ModItems.PolishedCinnabar.getWall()).add(ModItems.CinnabarBricks.get()).add(ModItems.CinnabarBricks.getStairs()).add(ModItems.CinnabarBricks.getSlab()).add(ModItems.CinnabarBricks.getWall())
                 .add(ModItems.Sulfur.get()).add(ModItems.Sulfur.getStairs()).add(ModItems.Sulfur.getSlab()).add(ModItems.Sulfur.getWall()).add(ModItems.PolishedSulfur.get()).add(ModItems.PolishedSulfur.getStairs())
                 .add(ModItems.PolishedSulfur.getSlab()).add(ModItems.PolishedSulfur.getWall()).add(ModItems.SulfurBricks.get()).add(ModItems.SulfurBricks.getStairs()).add(ModItems.SulfurBricks.getSlab()).add(ModItems.SulfurBricks.getWall())
                 .add(ModItems.PotentSulfurNausea.get()).add(ModItems.PotentSulfurBlindness.get()).add(ModItems.PotentSulfurWeakness.get()).add(ModItems.PotentSulfurRegeneration.get()).add(ModItems.PotentSulfurStrength.get()).add(ModItems.SulfurSpike.get());
@@ -52,9 +54,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(BlockTags.MUSHROOM_GROW_BLOCK).addTag(TinkerTags.Blocks.SLIMY_NYLIUM);
         this.tag(BlockTags.SAPLINGS).add(ModItems.SnowaveSapling.get(), ModItems.MagicbubbleSapling.get());
         this.tag(BlockTags.SMALL_FLOWERS).add(ModItems.FieryFlower.get(), ModItems.PoisonFlower.get(), ModItems.SpringyFlower.get(), ModItems.ConsecratedFlower.get(), ModItems.GraveyardFlower.get());
-        this.tag(BlockTags.STAIRS).add(ModItems.Sulfur.getStairs(), ModItems.PolishedSulfur.getStairs(), ModItems.SulfurBricks.getStairs());
-        this.tag(BlockTags.SLABS).add(ModItems.Sulfur.getSlab(), ModItems.PolishedSulfur.getSlab(), ModItems.SulfurBricks.getSlab());
-        this.tag(BlockTags.WALLS).add(ModItems.Sulfur.getWall(), ModItems.PolishedSulfur.getWall(), ModItems.SulfurBricks.getWall());
+        this.tag(BlockTags.STAIRS).add(ModItems.Cinnabar.getStairs(), ModItems.PolishedCinnabar.getStairs(), ModItems.CinnabarBricks.getStairs(), ModItems.Sulfur.getStairs(), ModItems.PolishedSulfur.getStairs(), ModItems.SulfurBricks.getStairs());
+        this.tag(BlockTags.SLABS).add(ModItems.Cinnabar.getSlab(), ModItems.PolishedCinnabar.getSlab(), ModItems.CinnabarBricks.getSlab(), ModItems.Sulfur.getSlab(), ModItems.PolishedSulfur.getSlab(), ModItems.SulfurBricks.getSlab());
+        this.tag(BlockTags.WALLS).add(ModItems.Cinnabar.getWall(), ModItems.PolishedCinnabar.getWall(), ModItems.CinnabarBricks.getWall(), ModItems.Sulfur.getWall(), ModItems.PolishedSulfur.getWall(), ModItems.SulfurBricks.getWall());
         //common
         this.tag(ModTags.Blocks.GLOWSTONE_ORE).add(ModItems.GlowstoneOre.get(), ModItems.DeepSlateGlowstoneOre.get());
         this.tag(Tags.Blocks.ORES).addTag(ModTags.Blocks.GLOWSTONE_ORE);
@@ -66,6 +68,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         this.tag(FoliageType.ICHOR.getGrassBlockTag()).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
         this.tag(DirtType.ICHOR.getBlockTag()).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
         this.tag(TinkerTags.Blocks.SLIMY_SOIL).add(ModItems.SulfurMud.get());
+        this.tag(TinkerTags.Blocks.SLIME_BLOCK).add(ModItems.OceanSlime.get());
+        this.tag(TinkerTags.Blocks.CONGEALED_SLIME).add(ModItems.OceanCongealedSlime.get());
         //self
         this.tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
         this.tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());

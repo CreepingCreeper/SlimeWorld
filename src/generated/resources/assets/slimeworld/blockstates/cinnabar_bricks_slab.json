@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "slimeworld:block/cinnabar_bricks_slab"
+    },
+    "type=double": {
+      "model": "slimeworld:block/cinnabar_bricks"
+    },
+    "type=top": {
+      "model": "slimeworld:block/cinnabar_bricks_slab_top"
+    }
+  }
+}
