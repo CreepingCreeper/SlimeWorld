@@ -3,26 +3,11 @@ package com.creeping_creeper.slimeworld.data.provider;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModResourceKeys;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
-import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
-import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.common.registration.GeodeItemObject;
-import slimeknights.tconstruct.fluids.TinkerFluids;
-import slimeknights.tconstruct.shared.block.SlimeType;
-import slimeknights.tconstruct.world.TinkerWorld;
-import slimeknights.tconstruct.world.block.DirtType;
-import slimeknights.tconstruct.world.block.FoliageType;
 
 import java.util.concurrent.CompletableFuture;
 
