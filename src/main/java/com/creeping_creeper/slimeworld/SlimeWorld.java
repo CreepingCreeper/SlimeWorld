@@ -77,6 +77,7 @@ public class SlimeWorld {
         generator.addProvider(server, new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
         generator.addProvider(server, new ModFluidTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModEntityTypeTagProvider(output, lookupProvider, existingFileHelper));
+        generator.addProvider(server, new ModBiomeTagProvider(output, lookupProvider, existingFileHelper));
         //loots
         generator.addProvider(server, new ModLootTableProvider(output));
         //models

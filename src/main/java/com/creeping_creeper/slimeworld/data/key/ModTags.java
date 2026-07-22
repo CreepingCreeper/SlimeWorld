@@ -85,9 +85,14 @@ public class ModTags {
         /**
          *
          */
-        public static final TagKey<Biome> IchorSlimeSpawn = local("ichor_slime_spawn");
-        public static final TagKey<Biome> TerracubeSpawn = local("terracube_spawn");
-        public static final TagKey<Biome> SulfurCubeSpawn = local("sulfur_cube_spawn");
+        public static final TagKey<Biome> IS_SLIMEWORLD = local("is_slimeworld");
+        public static final TagKey<Biome> ICHOR_SLIME_SPAWN = local("ichor_slime_spawn");
+        public static final TagKey<Biome> TERRACUBE_SPAWN = local("terracube_spawn");
+        public static final TagKey<Biome> SULFUR_CUBE_SPAWN = local("sulfur_cube_spawn");
+        public static final TagKey<Biome> SKY_VARIANT_GRASS = local("sky_variant_grass");
+        public static final TagKey<Biome> BLOOD_VARIANT_GRASS = local("blood_variant_grass");
+        public static final TagKey<Biome> ENDER_VARIANT_GRASS = local("ender_variant_grass");
+
         private static TagKey<Biome> local(String name) {
             return TagKey.create(Registries.BIOME, SlimeWorld.getResource(name));
         }

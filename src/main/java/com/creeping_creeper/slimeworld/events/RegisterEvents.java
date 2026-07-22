@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld.events;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
+import com.creeping_creeper.slimeworld.init.entity.StaticWallMob;
 import com.creeping_creeper.slimeworld.init.entity.boss.BaseBossSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
@@ -27,6 +28,7 @@ public class RegisterEvents {
     @SubscribeEvent
     static void entityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.SLlama.get(), Llama.createAttributes().build());
+        event.put(ModEntities.Grass.get(), StaticWallMob.createAttributes().build());
 
         event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.IchorSlimeEntity.get(), Monster.createMonsterAttributes().build());
@@ -51,8 +53,8 @@ public class RegisterEvents {
         event.register(ModEntities.IchorSlimeEntity.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IchorSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.OriginSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.SAND), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.TomatoSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.DIRT), SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.TerracubeSpawn, ModTags.Blocks.TERRACUBE_SPAWN, 8), SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(ModEntities.SulfurCubeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.SulfurCubeSpawn, ModTags.Blocks.SULFUR_FEATURE_BASE, 8), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.TERRACUBE_SPAWN, ModTags.Blocks.TERRACUBE_SPAWN, 8), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.SulfurCubeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.SULFUR_CUBE_SPAWN, ModTags.Blocks.SULFUR_FEATURE_BASE, 1), SpawnPlacementRegisterEvent.Operation.OR);
 
         event.register(ModEntities.BoggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ParchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
