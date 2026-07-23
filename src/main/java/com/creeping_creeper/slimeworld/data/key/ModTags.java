@@ -87,6 +87,7 @@ public class ModTags {
          */
         public static final TagKey<Biome> IchorSlimeSpawn = local("ichor_slime_spawn");
         public static final TagKey<Biome> TerracubeSpawn = local("terracube_spawn");
+        public static final TagKey<Biome> SulfurCubeSpawn = local("sulfur_cube_spawn");
         private static TagKey<Biome> local(String name) {
             return TagKey.create(Registries.BIOME, SlimeWorld.getResource(name));
         }

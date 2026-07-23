@@ -52,6 +52,8 @@ public class RegisterEvents {
         event.register(ModEntities.OriginSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.SAND), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.TomatoSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.DIRT), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.TerracubeSpawn, ModTags.Blocks.TERRACUBE_SPAWN, 8), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.SulfurCubeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.SulfurCubeSpawn, ModTags.Blocks.SULFUR_FEATURE_BASE, 8), SpawnPlacementRegisterEvent.Operation.OR);
+
         event.register(ModEntities.BoggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ParchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
     }

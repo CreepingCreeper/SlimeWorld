@@ -40,10 +40,10 @@ import slimeknights.tconstruct.tools.entity.FluidEffectProjectile;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class SLlama extends Llama {
+public class Sllama extends Llama {
     private final FluidTank fluidTank;
 
-    public SLlama(EntityType<? extends Llama> p_30750_, Level p_30751_) {
+    public Sllama(EntityType<? extends Llama> p_30750_, Level p_30751_) {
         super(p_30750_, p_30751_);
         fluidTank = new FluidTank(8000);
     }
@@ -154,12 +154,12 @@ public class SLlama extends Llama {
 
     @Override
     public boolean canMate(@NotNull Animal p_30765_) {
-        return p_30765_ != this && p_30765_ instanceof SLlama sLlama && this.canParent() && sLlama.canParent();
+        return p_30765_ != this && p_30765_ instanceof Sllama sLlama && this.canParent() && sLlama.canParent();
     }
 
     @Override
     @Nullable
-    protected SLlama makeNewLlama() {
+    protected Sllama makeNewLlama() {
         return ModEntities.SLlama.get().create(this.level());
     }
 

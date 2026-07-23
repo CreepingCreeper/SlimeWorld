@@ -19,14 +19,16 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "minecraft:music.overworld.desert"
+      "sound": "minecraft:music.overworld.lush_caves"
     },
-    "sky_color": 7254527,
+    "sky_color": 8103167,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
   "features": [
-    [],
+    [
+      "slimeworld:bedrock_floor"
+    ],
     [
       "slimeworld:lake_ichor",
       "minecraft:lake_lava_underground",

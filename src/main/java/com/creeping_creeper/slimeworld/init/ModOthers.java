@@ -12,6 +12,8 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FillLayerFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.LayerConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -32,6 +34,7 @@ public class ModOthers {
     private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, SlimeWorld.MODID);
     protected static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SlimeWorld.MODID);
 
+    public static final RegistryObject<BetterFillLayerFeature> BetterFillLayer = FEATURES.register("better_fill_layer", () -> new BetterFillLayerFeature(LayerConfiguration.CODEC));
     public static final RegistryObject<OceanLakeFeature> OceanLake = FEATURES.register("ocean_lake", () -> new OceanLakeFeature(OceanLakeFeature.Configuration.CODEC));
     public static final RegistryObject<InvertedLakeFeature> InvertedLake = FEATURES.register("inverted_lake", () -> new InvertedLakeFeature(InvertedLakeFeature.Configuration.CODEC));
     public static final RegistryObject<SulfurPoolFeature> SulfurPool = FEATURES.register("sulfur_pool", () -> new SulfurPoolFeature(SulfurPoolFeature.Configuration.CODEC));
