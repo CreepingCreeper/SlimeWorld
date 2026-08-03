@@ -48,12 +48,14 @@ import java.util.List;
 public abstract class BaseBossSlimeEntity extends Slime {
     private static final EntityDataAccessor<Integer> COOLING = SynchedEntityData.defineId(BaseBossSlimeEntity.class, EntityDataSerializers.INT);
     private int stunnedTick;
+    private int summonCount;
     protected int skillTick;
     private final ServerBossEvent bossEvent;
 
     public BaseBossSlimeEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
         this.bossEvent = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
+        this.summonCount = 32;
         if (!level.isClientSide) {
             tryAddAttribute(Attributes.ARMOR, new AttributeModifier("tconstruct.small_armor_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
             tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("tconstruct.small_toughness_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
@@ -94,24 +96,11 @@ public abstract class BaseBossSlimeEntity extends Slime {
         super.tick();
         if (!this.level().isClientSide){
             if (isCooling()) setCooling(this.getCooling() - 1);
-            if (this.stunnedTick > 0) if (--this.stunnedTick == 0) {
+            if (this.stunnedTick > 0 && --this.stunnedTick == 0) {
                 this.goalSelector.enableControlFlag(Goal.Flag.MOVE);
             }
         }
     }
-//
-//    @Override
-//    public void travel(@NotNull Vec3 travelVector) {
-//        if (isImmobile()) {
-//            // 蓄力眩晕完全禁移；冲刺阶段只走锁定方向，禁止玩家/AI操控转向移动
-//            if (stunnedTick > 1) {
-//                this.goalSelector.disableControlFlag(Goal.Flag.LOOK);
-//                setDeltaMovement(getDeltaMovement().multiply(0, 1, 0));
-//                return;
-//            }
-//        }
-//        super.travel(travelVector);
-//    }
 
     protected void setStunnedTick(int tick){
         this.stunnedTick = tick;
@@ -199,6 +188,12 @@ public abstract class BaseBossSlimeEntity extends Slime {
     protected void actuallyHurt(@NotNull DamageSource damageSource, float damageAmount) {
         super.actuallyHurt(damageSource, damageAmount);
         Level level = level();
+        if (summonCount == 0){
+            return;
+        }else {
+            List<ArmoredSlimeEntity> list = level().getEntitiesOfClass(ArmoredSlimeEntity.class, this.getBoundingBox().inflate(64, 32, 64));
+            summonCount = 32 - list.size();
+        }
         int count = this.random.nextInt(4 - this.getSize() / 4);
         float offset = this.getSize() / 4.0F;
         for(int i = 0; i < count; ++i) {
@@ -212,6 +207,7 @@ public abstract class BaseBossSlimeEntity extends Slime {
             slime.setSize(this.random.nextInt(2) * 2 +2, true);
             slime.setItemSlot(EquipmentSlot.HEAD, tool(getSummonedPlating()).createStack());
             slime.moveTo(this.getX() + x, this.getY() + 0.5D, this.getZ() + z, this.random.nextFloat() * 360.0F, 0.0F);
+            this.summonCount --;
             level.addFreshEntity(slime);
         }
     }
@@ -255,6 +251,7 @@ public abstract class BaseBossSlimeEntity extends Slime {
         super.addAdditionalSaveData(compound);
         compound.putInt("cooling", this.getCooling());
         compound.putInt("stunTick", this.stunnedTick);
+        compound.putInt("summonCount", this.summonCount);
         compound.putInt("skillTick", this.skillTick);
     }
 
@@ -264,6 +261,7 @@ public abstract class BaseBossSlimeEntity extends Slime {
         super.readAdditionalSaveData(compound);
         this.setCooling(compound.getInt("cooling"));
         this.setStunnedTick(compound.getInt("stunnedTick"));
+        this.summonCount = compound.getInt("summonCount");
         this.skillTick = (compound.getInt("skillTick"));
         if (this.hasCustomName()) {
             this.bossEvent.setName(this.getDisplayName());

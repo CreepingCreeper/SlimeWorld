@@ -9,6 +9,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.*;
@@ -20,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
@@ -27,6 +29,7 @@ import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.entity.TravelersPlateSlimeEntity;
 
+import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.function.Predicate;
@@ -37,7 +40,6 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity implements Grow
 
     public OriginSlimeEntity(EntityType<? extends OriginSlimeEntity> type, Level worldIn) {
         super(type, worldIn);
-        this.age = this.isHuge() ? 0 : -24000;
     }
 
     @Override
@@ -155,6 +157,13 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity implements Grow
     @Override
     protected @NotNull ParticleOptions getParticleType() {
         return ModParticles.OriginSlimeParticle.get();
+    }
+
+    @Nullable
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
+        SpawnGroupData spawnGroupData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
+        this.age = this.isTiny() ? -24000 : 0;
+        return spawnGroupData;
     }
 
     @Override

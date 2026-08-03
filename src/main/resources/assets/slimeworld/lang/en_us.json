@@ -233,5 +233,22 @@
 
   "config.jade.plugin_slimeworld.drying_rack": "Drying Rack",
   "config.jade.plugin_slimeworld.growable": "Growing Time",
-  "tooltip.slimeworld.drying_rack_progress": "Remaining %d s"
+  "tooltip.slimeworld.drying_rack_progress": "Remaining %d s",
+
+  "task.maidsconstruct.ranged_attack": "Tinker Bow",
+  "task.maidsconstruct.ranged_attack.desc": "Maid will use tinker bows to attack surrounding hostile mobs",
+  "task.maidsconstruct.ranged_attack.condition.has_bow": "Mainhand holds a tinker bow",
+  "task.maidsconstruct.ranged_attack.condition.has_arrow": "Have an arrow in inventory",
+  "task.maidsconstruct.crossbow_attack": "Tinker Crossbow",
+  "task.maidsconstruct.crossbow_attack.desc": "Maid will use tinker crossbows to attack surrounding hostile mobs",
+  "task.maidsconstruct.crossbow_attack.condition.has_crossbow": "Mainhand holds a tinker crossbow",
+  "task.maidsconstruct.crossbow_attack.condition.has_arrow": "Have an arrow in inventory or a firework rocket in offhand",
+  "task.maidsconstruct.throwing_attack": "Tinker Throwing",
+  "task.maidsconstruct.throwing_attack.desc": "Maid will use tinker tools with throwing modifier like javelin to attack surrounding hostile mobs",
+  "task.maidsconstruct.throwing_attack.condition.throwing": "Mainhand holds a tool with throwing modifier",
+  "task.maidsconstruct.spitting_attack": "Tinker Spitting",
+  "task.maidsconstruct.spitting_attack.desc": "MMaid will use tinker tools with spitting modifier like javelin to attack surrounding hostile mobs",
+  "task.maidsconstruct.spitting_attack.condition.spitting": "Mainhand holds a tool with spitting modifier",
+  "task.maidsconstruct.spitting_attack.condition.has_fluid": "Tool has enough fluid",
+  "key.categories.item_texture_exporter": "1"
 }

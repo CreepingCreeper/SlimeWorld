@@ -1,9 +1,11 @@
 package com.creeping_creeper.slimeworld.data.provider;
 
+import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -15,19 +17,19 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
-import slimeknights.tconstruct.common.data.tags.ItemTagProvider;
+
 
 import java.util.concurrent.CompletableFuture;
 
 import static slimeknights.mantle.Mantle.commonResource;
 
-public class ModItemTagProvider extends ItemTagProvider {
+public class ModItemTagsProvider extends ItemTagsProvider {
     private static final TagKey<Item> COOKED_EGGS = ItemTags.create(commonResource("cooked_eggs"));
     @SuppressWarnings("removal")
     private static final TagKey<Item> MAID_TAMED = ItemTags.create(new ResourceLocation("touhou_little_maid", "maid_tamed_item"));
 
-    public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, blockTagProvider, existingFileHelper);
+    public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, blockTagProvider, SlimeWorld.MODID, existingFileHelper);
     }
 
     @SuppressWarnings("unchecked")

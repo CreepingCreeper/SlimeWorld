@@ -1,6 +1,7 @@
 package com.creeping_creeper.slimeworld.init.entity.golem;
 
 import com.creeping_creeper.slimeworld.init.entity.SpecialBowAttackGoal;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.RangedAttackMob;
@@ -47,6 +48,13 @@ public abstract class RangeSlimeGolemEntity extends BaseSlimeGolemEntity impleme
                 int i = this.getTicksUsingItem();
                 float charge = GeneralInteractionModifierHook.getToolCharge(toolStack, i);
                 if (charge == 1){
+                    double d0 = target.getX() - this.getX();
+                    double d1 = target.getY(0.3333333333333333D) - this.getEyeY() + 0.1;
+                    double d2 = target.getZ() - this.getZ();
+                    double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+                    float f1 = (float)(-(Mth.atan2(d1, d3) * (double)(180F / (float)Math.PI)));
+                    float x = this.getXRot();
+                    this.setXRot(Mth.wrapDegrees(f1 - x) + x);
                     this.releaseUsingItem();
                     this.performRangedAttack(target, 1F);
                     goal.resetAttackTime();

@@ -85,7 +85,6 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     public SulfurCubeEntity(EntityType<? extends SulfurCubeEntity> type, Level worldIn) {
         super(type, worldIn);
         this.setCanPickUpLoot(true);
-        this.age = this.isTiny() ? -24000 : 0;
         this.moveControl = new SulfurCubeMoveControl<>(this);
         this.lookControl = new SulfurCubeLookControl(this);
     }
@@ -767,8 +766,10 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
 
     @Nullable
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
+       SpawnGroupData spawnGroupData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
        this.armorDropChances[EquipmentSlot.HEAD.getIndex()] = 1.0F;
-       return super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
+       this.age = this.isTiny() ? -24000 : 0;
+       return spawnGroupData;
     }
 
     @Override

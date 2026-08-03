@@ -28,9 +28,7 @@
     "water_fog_color": 5077600
   },
   "features": [
-    [
-      "slimeworld:bedrock_floor"
-    ],
+    [],
     [
       "slimeworld:lake_ender_slime",
       "minecraft:lake_lava_underground",

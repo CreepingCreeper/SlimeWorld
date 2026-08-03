@@ -25,10 +25,10 @@ import slimeknights.tconstruct.world.block.FoliageType;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("removal")
-public class ModBlockTagProvider extends BlockTagsProvider {
+public class ModBlockTagsProvider extends BlockTagsProvider {
     private static final TagKey<Block> MAID_AVOID = BlockTags.create(new ResourceLocation("touhou_little_maid", "maid_avoid_block"));
 
-    public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+    public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, SlimeWorld.MODID, existingFileHelper);
     }
 

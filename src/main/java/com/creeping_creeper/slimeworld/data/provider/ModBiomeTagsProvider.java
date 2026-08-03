@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBiomeTagProvider extends BiomeTagsProvider {
-    public ModBiomeTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+public class ModBiomeTagsProvider extends BiomeTagsProvider {
+    public ModBiomeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, SlimeWorld.MODID, existingFileHelper);
     }
 

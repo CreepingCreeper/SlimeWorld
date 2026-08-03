@@ -16,12 +16,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("removal")
-public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
+public class ModEntityTypeTagsProvider extends EntityTypeTagsProvider {
     private final ResourceLocation MAID = new ResourceLocation("touhou_little_maid", "maid");
     private final ResourceLocation FD_ROTTEN_TOMATO = new ResourceLocation("farmersdelight", "rotten_tomato");
     private final ResourceLocation FC_ROTTEN_TOMATO = new ResourceLocation("farm_and_charm", "rotten_tomato");
 
-    public ModEntityTypeTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
+    public ModEntityTypeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, SlimeWorld.MODID, existingFileHelper);
     }
 

@@ -47,7 +47,6 @@ public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
         }
 
 
-        // 冲刺计时衰减
         if (isImmune && skillTick > 0) {
             skillTick--;
             if (skillTick <= 0) tryEndImmune();
@@ -62,14 +61,14 @@ public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
     private void startImmune() {
         this.isImmune = true;
         this.skillTick = 40;
-        List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(32, 3, 32));
+        List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(64, 32, 64));
         for (SkySlimeEntity slime : list){
             slime.addEffect(new MobEffectInstance(MobEffects.GLOWING, -1));
         }
     }
 
     private void tryEndImmune(){
-        List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(32, 3, 32));
+        List<SkySlimeEntity> list = level().getEntitiesOfClass(SkySlimeEntity.class, this.getBoundingBox().inflate(64, 32, 64));
         if (list.isEmpty()){
             isImmune = false;
             this.skillTick = 0;

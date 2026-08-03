@@ -58,6 +58,11 @@ import static net.minecraft.client.model.geom.LayerDefinitions.OUTER_ARMOR_DEFOR
 
 @Mod.EventBusSubscriber(modid = SlimeWorld.MODID, value= Dist.CLIENT, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvent extends ClientEventBase {
+    public static final SlimeGolemRenderer.SlimeGolemFactory SKY_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/sky_slime.png"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory OCEAN_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/ocean_slime.png"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory ICHOR_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/ichor_slime.png"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory ENDER_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/ender_slime.png"));
+
     public static final SlimeFactory OCEAN_SLIME_FACTORY = new SlimeFactory(SlimeWorld.getResource("textures/entity/ocean_slime.png"), SlimeWorld.getResource("textures/entity/bronze_slime.png"));
     public static final InvertedSlimeFactory ICHOR_SLIME_FACTORY = new InvertedSlimeFactory(SlimeWorld.getResource("textures/entity/ichor_slime.png"), SlimeWorld.getResource("textures/entity/cobalt_slime.png"));
     public static final SlimeFactory ORIGIN_SLIME_FACTORY = new SlimeFactory(TConstruct.getResource("textures/entity/slime.png"), TConstruct.getResource("textures/entity/slime.png"));
@@ -82,10 +87,10 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.BoggedEntity.get(), BoggedRenderer::new);
         event.registerEntityRenderer(ModEntities.ParchedEntity.get(), ParchedRenderer::new);
         event.registerEntityRenderer(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemRenderer::new);
-        event.registerEntityRenderer(ModEntities.SkySlimeGolemEntity.get(), SlimeGolemRenderer::new);
-        event.registerEntityRenderer(ModEntities.OceanSlimeGolemEntity.get(), SlimeGolemRenderer::new);
-        event.registerEntityRenderer(ModEntities.IchorSlimeGolemEntity.get(), SlimeGolemRenderer::new);
-        event.registerEntityRenderer(ModEntities.EnderSlimeGolemEntity.get(), SlimeGolemRenderer::new);
+        event.registerEntityRenderer(ModEntities.SkySlimeGolemEntity.get(), SKY_SLIME_GOLEM_FACTORY);
+        event.registerEntityRenderer(ModEntities.OceanSlimeGolemEntity.get(), OCEAN_SLIME_GOLEM_FACTORY);
+        event.registerEntityRenderer(ModEntities.IchorSlimeGolemEntity.get(), ICHOR_SLIME_GOLEM_FACTORY);
+        event.registerEntityRenderer(ModEntities.EnderSlimeGolemEntity.get(), ENDER_SLIME_GOLEM_FACTORY);
         BlockEntityRendererProvider<DryingRackBlockEntity> tableRenderer = InventoryBlockEntityRenderer::new;
         event.registerBlockEntityRenderer(ModItems.DryingRackEntity.get(), tableRenderer);
     }

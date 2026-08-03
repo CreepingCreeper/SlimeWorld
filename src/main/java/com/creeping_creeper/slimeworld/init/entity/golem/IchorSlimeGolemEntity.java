@@ -49,9 +49,8 @@ public class IchorSlimeGolemEntity extends RangeSlimeGolemEntity {
         GeneralInteractionModifierHook.startDrawing(tool, this, 1);
         ItemStack ammo = BowAmmoModifierHook.getAmmo(tool, tool.createStack(), this, ModifiableCrossbowItem.ARROW_OR_FIREWORK);
         tool.getPersistentData().put(KEY_DRAWBACK_AMMO, ammo.save(new CompoundTag()));
-        if (!level().isClientSide) {
-            level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.CROSSBOW_QUICK_CHARGE_1, SoundSource.PLAYERS, 0.75F, 1.0F);
-        }
+        level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.CROSSBOW_QUICK_CHARGE_1, SoundSource.PLAYERS, 0.75F, 1.0F);
+
     }
 
     @Override

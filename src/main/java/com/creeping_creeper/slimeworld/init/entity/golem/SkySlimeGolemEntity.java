@@ -42,9 +42,8 @@ public class SkySlimeGolemEntity extends RangeSlimeGolemEntity {
         GeneralInteractionModifierHook.startDrawing(tool, this, 1);
         ItemStack ammo = BowAmmoModifierHook.getAmmo(tool, tool.createStack(), this, stack -> stack.is(ItemTags.ARROWS) || stack.is(TinkerTags.Items.BALLISTA_AMMO));
         tool.getPersistentData().put(KEY_DRAWBACK_AMMO, ammo.save(new CompoundTag()));
-        if (!level().isClientSide) {
-            level().playSound(null, this.getX(), this.getY(), this.getZ(), Sounds.LONGBOW_CHARGE.getSound(), SoundSource.HOSTILE, 0.75F, 1.0F);
-        }
+        level().playSound(null, this.getX(), this.getY(), this.getZ(), Sounds.LONGBOW_CHARGE.getSound(), SoundSource.HOSTILE, 0.75F, 1.0F);
+
     }
 
     @Override

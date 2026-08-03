@@ -178,6 +178,8 @@ repositories {
 }
 
 dependencies {
+    compileOnly fileTree(dir: 'lib', includes: ['*.jar'])
+
     implementation fg.deobf("mezz.jei:jei-${jei_minecraft_version}:${jei_version}")
     implementation fg.deobf("curse.maven:jade-324717:4654448")
 

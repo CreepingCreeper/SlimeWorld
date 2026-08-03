@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public class GraveyardFlowerBlock extends BaseFlowerBlock {
     public GraveyardFlowerBlock(Properties properties) {
@@ -16,7 +17,7 @@ public class GraveyardFlowerBlock extends BaseFlowerBlock {
     }
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (!level.isClientSide && entity instanceof LivingEntity living) {
             ModEffects.Curse.get().apply(living, 20, 0, true);
             if(living.getMobType() == MobType.UNDEAD && living.tickCount % 10 == 0){

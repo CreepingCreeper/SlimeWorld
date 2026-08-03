@@ -5,8 +5,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.library.modifiers.fluid.FluidEffectManager;
 import slimeknights.tconstruct.library.modifiers.hook.interaction.GeneralInteractionModifierHook;
+import slimeknights.tconstruct.library.tools.capability.fluid.ToolTankHelper;
 import slimeknights.tconstruct.library.tools.item.ModifiableItem;
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 import slimeknights.tconstruct.tools.data.ModifierIds;
@@ -20,6 +23,13 @@ public class OceanSlimeGolemEntity extends RangeSlimeGolemEntity {
 
     @Override
     public void performRangedAttack(@NotNull LivingEntity target, float distanceFactor) {
+        ItemStack item = this.getMainHandItem();
+        ToolStack tool = ToolStack.from(item);
+        FluidStack fluid = ToolTankHelper.TANK_HELPER.getFluid(tool);
+        if (fluid.getAmount() < tool.getModifierLevel(ModifierIds.spitting) || !FluidEffectManager.INSTANCE.find(fluid.getFluid()).hasEffects()) {
+            this.goalSelector.removeGoal(this.bowGoal);
+            this.goalSelector.addGoal(4, this.meleeGoal);
+        }
 
     }
 

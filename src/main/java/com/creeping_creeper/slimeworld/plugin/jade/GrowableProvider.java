@@ -20,9 +20,7 @@ public enum GrowableProvider implements IEntityComponentProvider, IServerDataPro
     public void appendTooltip(ITooltip tooltip, EntityAccessor accessor, IPluginConfig config) {
         if (accessor.getServerData().contains("GrowingTime", 3)) {
             int time = accessor.getServerData().getInt("GrowingTime");
-            if (time > 0) {
-                tooltip.add(Component.translatable("jade.mobgrowth.time", time));
-            }
+            tooltip.add(Component.translatable("jade.mobgrowth.time", time));
 
         }
     }

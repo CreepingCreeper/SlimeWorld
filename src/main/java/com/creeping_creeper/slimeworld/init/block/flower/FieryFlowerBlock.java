@@ -10,6 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.shared.TinkerEffects;
 
 public class FieryFlowerBlock extends BaseFlowerBlock {
@@ -18,7 +19,7 @@ public class FieryFlowerBlock extends BaseFlowerBlock {
     }
 
     @Override
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (!level.isClientSide && entity instanceof LivingEntity living) {
             int time = Math.max(living.getRemainingFireTicks(), 0);
             if (!living.fireImmune() && time < 400) {
