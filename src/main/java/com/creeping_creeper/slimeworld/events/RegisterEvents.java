@@ -3,7 +3,7 @@ package com.creeping_creeper.slimeworld.events;
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModEntities;
-import com.creeping_creeper.slimeworld.init.entity.StaticWallMob;
+import com.creeping_creeper.slimeworld.init.entity.PlantLikeMob;
 import com.creeping_creeper.slimeworld.init.entity.boss.BaseBossSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.golem.BaseSlimeGolemEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
@@ -28,7 +28,7 @@ public class RegisterEvents {
     @SubscribeEvent
     static void entityAttributes(EntityAttributeCreationEvent event) {
         event.put(ModEntities.SLlama.get(), Llama.createAttributes().build());
-        event.put(ModEntities.Grass.get(), StaticWallMob.createAttributes().build());
+        event.put(ModEntities.Grass.get(), PlantLikeMob.createAttributes().build());
 
         event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
         event.put(ModEntities.IchorSlimeEntity.get(), Monster.createMonsterAttributes().build());

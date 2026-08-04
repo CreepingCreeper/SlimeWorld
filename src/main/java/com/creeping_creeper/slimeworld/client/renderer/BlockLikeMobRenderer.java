@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
-import com.creeping_creeper.slimeworld.init.entity.StaticWallMob;
+import com.creeping_creeper.slimeworld.init.entity.PlantLikeMob;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -17,7 +17,7 @@ import net.minecraftforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-public class BlockLikeMobRenderer<T extends StaticWallMob> extends EntityRenderer<T> {
+public class BlockLikeMobRenderer<T extends PlantLikeMob> extends EntityRenderer<T> {
     private final BlockRenderDispatcher blockRenderer;
 
     public BlockLikeMobRenderer(EntityRendererProvider.Context context) {
@@ -30,7 +30,10 @@ public class BlockLikeMobRenderer<T extends StaticWallMob> extends EntityRendere
     public void render(@NotNull T entity, float entityYaw, float partialTicks, PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight) {
         poseStack.pushPose();
         poseStack.translate(-0.5F, 0, -0.5F);
-        BlockState blockState = entity.getViewBlock();
+        if (entity.isBaby()){
+            poseStack.scale(1.0F, 0.5F, 1.0F);
+        }
+        BlockState blockState = entity.getViewBlock().defaultBlockState();
         blockRenderer.renderSingleBlock(blockState, poseStack, buffer, packedLight, OverlayTexture.NO_OVERLAY, ModelData.EMPTY, RenderType.cutoutMipped());
 
         poseStack.popPose();

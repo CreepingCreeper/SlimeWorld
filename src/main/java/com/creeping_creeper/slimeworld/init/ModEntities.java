@@ -31,8 +31,8 @@ public class ModEntities {
                     .sized(0.9F, 1.87F).
                     clientTrackingRange(10)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.SLlama.get().create(world)), 0x4278e6, 0x2a60d7);
-    public static final EntityObject<StaticWallMob> Grass = ENTITIES.registerWithEgg("grass", () ->
-            EntityType.Builder.of(StaticWallMob::new, MobCategory.CREATURE)
+    public static final EntityObject<PlantLikeMob> Grass = ENTITIES.registerWithEgg("grass", () ->
+            EntityType.Builder.of(PlantLikeMob::new, MobCategory.CREATURE)
                     .sized(0.9F, 1.87F).
                     clientTrackingRange(10)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.Grass.get().create(world)), 0x4278e6, 0x2a60d7);

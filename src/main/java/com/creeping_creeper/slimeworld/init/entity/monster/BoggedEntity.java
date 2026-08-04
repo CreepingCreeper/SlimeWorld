@@ -131,15 +131,15 @@ public class BoggedEntity extends AbstractSkeleton implements IForgeShearable {
     }
 
     @Override
-    public boolean isShearable(@NotNull ItemStack item, Level world, BlockPos pos) {
+    public boolean isShearable(@NotNull ItemStack item, Level level, BlockPos pos) {
         return !this.isSheared() && this.isAlive();
     }
 
     @Override
-    public @NotNull List<ItemStack> onSheared(@Nullable Player player, @NotNull ItemStack item, Level world, BlockPos pos, int fortune) {
-        world.playSound(null, this, ModSounds.BOGGED_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
+    public @NotNull List<ItemStack> onSheared(@Nullable Player player, @NotNull ItemStack item, Level level, BlockPos pos, int fortune) {
+        level.playSound(null, this, ModSounds.BOGGED_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
         this.gameEvent(GameEvent.SHEAR, player);
-        if (!world.isClientSide()) {
+        if (!level.isClientSide()) {
             this.setSheared(true);
             List<ItemStack> items = new ArrayList<>();
             for (int i = 0; i < 2; i++) {

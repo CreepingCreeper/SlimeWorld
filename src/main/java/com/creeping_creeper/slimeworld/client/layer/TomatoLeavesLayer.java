@@ -29,17 +29,15 @@ public class TomatoLeavesLayer<T extends Slime, M extends HierarchicalModel<T>> 
     }
 
     @Override
-    public void render(PoseStack matrices, @NotNull MultiBufferSource buffer, int packedLight, @NotNull T entity, float limbSwing, float swing, float partialTicks, float age, float headYaw, float headPitch) {
-        matrices.pushPose();
-        matrices.translate(0, HEAD_UP_OFFSET , 0);
-        // 整体适配缩放
-        matrices.scale(0.5F, 0.25F, 0.5F);
+    public void render(PoseStack poseStack, @NotNull MultiBufferSource buffer, int packedLight, @NotNull T entity, float limbSwing, float swing, float partialTicks, float age, float headYaw, float headPitch) {
+        poseStack.pushPose();
+        poseStack.translate(0, HEAD_UP_OFFSET , 0);
+        poseStack.scale(0.5F, 0.25F, 0.5F);
 
-        // ========== 核心：渲染 4 个 45° 垂直纹理 ==========
-        renderOneQuad(matrices, buffer, packedLight, 0);
-        renderOneQuad(matrices, buffer, packedLight, 90);
+        renderOneQuad(poseStack, buffer, packedLight, 0);
+        renderOneQuad(poseStack, buffer, packedLight, 90);
 
-        matrices.popPose();
+        poseStack.popPose();
     }
 
     private void renderOneQuad(PoseStack matrices, MultiBufferSource buffer, int light, int yRot) {

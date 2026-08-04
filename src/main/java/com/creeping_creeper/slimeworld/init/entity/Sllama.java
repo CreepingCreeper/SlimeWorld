@@ -262,14 +262,14 @@ public class Sllama extends Llama {
         super.addAdditionalSaveData(compoundTag);
         CompoundTag tankTag = new CompoundTag();
         fluidTank.writeToNBT(tankTag);
-        compoundTag.put("LlamaTank", tankTag);
+        compoundTag.put("sllamaTank", tankTag);
     }
 
     @Override
     public void readAdditionalSaveData(@Nonnull CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
-        if (compoundTag.contains("LlamaTank")) {
-            fluidTank.readFromNBT(compoundTag.getCompound("LlamaTank"));
+        if (compoundTag.contains("sllamaTank")) {
+            fluidTank.readFromNBT(compoundTag.getCompound("sllamaTank"));
         }
     }
 
