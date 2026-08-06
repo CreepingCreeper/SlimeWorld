@@ -10,7 +10,7 @@ import com.creeping_creeper.slimeworld.init.entity.monster.BoggedEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.IchorSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.OceanSlimeEntity;
 import com.creeping_creeper.slimeworld.init.entity.monster.ParchedEntity;
-import com.creeping_creeper.slimeworld.library.BiomeSlimePlacementPredicate;
+import com.creeping_creeper.slimeworld.library.BiomePlacementPredicate;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.horse.Llama;
@@ -27,7 +27,7 @@ import slimeknights.tconstruct.world.entity.SlimePlacementPredicate;
 public class RegisterEvents {
     @SubscribeEvent
     static void entityAttributes(EntityAttributeCreationEvent event) {
-        event.put(ModEntities.SLlama.get(), Llama.createAttributes().build());
+        event.put(ModEntities.Sllama.get(), Llama.createAttributes().build());
         event.put(ModEntities.Grass.get(), PlantLikeMob.createAttributes().build());
 
         event.put(ModEntities.OceanSlimeEntity.get(), Monster.createMonsterAttributes().build());
@@ -49,12 +49,15 @@ public class RegisterEvents {
 
     @SubscribeEvent
     static void registerSpawnPlacement(SpawnPlacementRegisterEvent event) {
+        event.register(ModEntities.Sllama.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomePlacementPredicate<>(null, ModTags.Blocks.ANIMALS_SPAWNABLE, 1), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.Grass.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomePlacementPredicate<>(null, ModTags.Blocks.ANIMALS_SPAWNABLE, 1), SpawnPlacementRegisterEvent.Operation.OR);
+
         event.register(ModEntities.OceanSlimeEntity.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, OceanSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.IchorSlimeEntity.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, IchorSlimeEntity::canSpawnHere, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.OriginSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.SAND), SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.TomatoSlimeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new SlimePlacementPredicate<>(BlockTags.DIRT), SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.TERRACUBE_SPAWN, ModTags.Blocks.TERRACUBE_SPAWN, 8), SpawnPlacementRegisterEvent.Operation.OR);
-        event.register(ModEntities.SulfurCubeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomeSlimePlacementPredicate<>(ModTags.Biomes.SULFUR_CUBE_SPAWN, ModTags.Blocks.SULFUR_FEATURE_BASE, 1), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(TinkerWorld.terracubeEntity.get(), null, null, new BiomePlacementPredicate<>(ModTags.Biomes.TERRACUBE_SPAWN, ModTags.Blocks.TERRACUBE_SPAWN, 8), SpawnPlacementRegisterEvent.Operation.OR);
+        event.register(ModEntities.SulfurCubeEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BiomePlacementPredicate<>(ModTags.Biomes.SULFUR_CUBE_SPAWN, ModTags.Blocks.SULFUR_FEATURE_BASE, 1), SpawnPlacementRegisterEvent.Operation.OR);
 
         event.register(ModEntities.BoggedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);
         event.register(ModEntities.ParchedEntity.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, SpawnPlacementRegisterEvent.Operation.OR);

@@ -160,7 +160,7 @@ public class Sllama extends Llama {
     @Override
     @Nullable
     protected Sllama makeNewLlama() {
-        return ModEntities.SLlama.get().create(this.level());
+        return ModEntities.Sllama.get().create(this.level());
     }
 
     @Override

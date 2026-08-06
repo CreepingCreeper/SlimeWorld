@@ -1,6 +1,10 @@
 package com.creeping_creeper.slimeworld;
 
 import com.creeping_creeper.slimeworld.data.provider.*;
+import com.creeping_creeper.slimeworld.data.provider.assets.ModBlockStateProvider;
+import com.creeping_creeper.slimeworld.data.provider.assets.ModItemModelProvider;
+import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
+import com.creeping_creeper.slimeworld.data.provider.tag.*;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
 import com.creeping_creeper.slimeworld.events.WorldEvents;
 import com.creeping_creeper.slimeworld.init.*;
@@ -27,6 +31,7 @@ import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
+import slimeknights.tconstruct.world.data.WorldgenProvider;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -67,6 +72,9 @@ public class SlimeWorld {
         boolean server = event.includeServer();
         boolean client = event.includeClient();
         RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder();
+        //registers
+        ModWorldgenProvider.register(registrySetBuilder);
+        //dataPack
         DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
         generator.addProvider(server, datapackProvider);
         //recipes

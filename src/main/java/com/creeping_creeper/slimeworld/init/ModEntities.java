@@ -26,11 +26,11 @@ public class ModEntities {
                     .updateInterval(1)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.Magicbubble.get().create(world)));
 
-    public static final EntityObject<Sllama> SLlama = ENTITIES.registerWithEgg("sllama", () ->
+    public static final EntityObject<Sllama> Sllama = ENTITIES.registerWithEgg("sllama", () ->
             EntityType.Builder.of(Sllama::new, MobCategory.CREATURE)
                     .sized(0.9F, 1.87F).
                     clientTrackingRange(10)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SLlama.get().create(world)), 0x4278e6, 0x2a60d7);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.Sllama.get().create(world)), 0x4278e6, 0x2a60d7);
     public static final EntityObject<PlantLikeMob> Grass = ENTITIES.registerWithEgg("grass", () ->
             EntityType.Builder.of(PlantLikeMob::new, MobCategory.CREATURE)
                     .sized(0.9F, 1.87F).

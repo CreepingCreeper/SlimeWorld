@@ -8,14 +8,21 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.common.world.BiomeModifier;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModResourceKeys {
     public static final ResourceLocation SLIMEWORLD_LOCATION = SlimeWorld.getResource("slimeworld");
+    //level
     public static final ResourceKey<Level> SLIMEWORLD = ResourceKey.create(Registries.DIMENSION, SLIMEWORLD_LOCATION);
-
+    //configured_feature
     public static final ResourceKey<ConfiguredFeature<?,?>> ichorSlimeFungus = key(Registries.CONFIGURED_FEATURE, "ichor_slime_fungus");
     public static final ResourceKey<ConfiguredFeature<?,?>> magicvubbleTree = key(Registries.CONFIGURED_FEATURE, "magicbubble_tree");
-
+    public static final ResourceKey<ConfiguredFeature<?,?>> oceanGeode = key(Registries.CONFIGURED_FEATURE, "ocean_geode");
+    //placed_feature
+    public static final ResourceKey<PlacedFeature> placedOceanGeode = key(Registries.PLACED_FEATURE, "ocean_geode");
+    //biome
     public static final ResourceKey<Biome> HoneyFields = key(Registries.BIOME, "honey_fields");
     public static final ResourceKey<Biome> DeepForgottenOcean = key(Registries.BIOME, "deep_forgotten_ocean");
     public static final ResourceKey<Biome> ForgottenOcean = key(Registries.BIOME, "forgotten_ocean");
@@ -32,6 +39,13 @@ public class ModResourceKeys {
     public static final ResourceKey<Biome> SulfurSprings = key(Registries.BIOME, "sulfur_springs");
     public static final ResourceKey<Biome> CinnabarCaves = key(Registries.BIOME, "cinnabar_caves");
     public static final ResourceKey<Biome> IchorCaves = key(Registries.BIOME, "ichor_caves");
+    //biome_modifier
+    public static final ResourceKey<BiomeModifier> lessSkeletonDesert = key(ForgeRegistries.Keys.BIOME_MODIFIERS, "less_skeleton_desert");
+    public static final ResourceKey<BiomeModifier> lessSkeletonSwamp = key(ForgeRegistries.Keys.BIOME_MODIFIERS, "less_skeleton_swamp");
+    public static final ResourceKey<BiomeModifier> addOceanGeode = key(ForgeRegistries.Keys.BIOME_MODIFIERS, "ocean_geode");
+    public static final ResourceKey<BiomeModifier> spawnBogged = key(ForgeRegistries.Keys.BIOME_MODIFIERS, "spawn_bogged");
+    public static final ResourceKey<BiomeModifier> spawnParched = key(ForgeRegistries.Keys.BIOME_MODIFIERS, "spawn_parched");
+    public static final ResourceKey<BiomeModifier> spawnNetherSlime = key(ForgeRegistries.Keys.BIOME_MODIFIERS, "spawn_nether_slime");
 
     protected static <T> ResourceKey<T> key(ResourceKey<? extends Registry<T>> registry, String name) {
         return ResourceKey.create(registry, SlimeWorld.getResource(name));

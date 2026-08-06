@@ -1,0 +1,10 @@
+{
+  "type": "slimeworld:modify_spawns",
+  "biomes": "#forge:is_swamp",
+  "spawners": {
+    "type": "minecraft:skeleton",
+    "maxCount": 70,
+    "minCount": 4,
+    "weight": 4
+  }
+}

@@ -47,6 +47,7 @@ public class ModTags {
         public static final TagKey<Block> GLOWSTONE_ORE = common("ores/glowstone");
         public static final TagKey<Block> STRIPPED_LOGS = common("stripped_logs");
 
+        public static final TagKey<Block> ANIMALS_SPAWNABLE = local("animals_spawnable");
         /** any entity types that immunize to the damage from ore berry bushes */
         public static final TagKey<Block> NECROTIC_CLONABLE = local("necrotic_clonable");
         public static final TagKey<Block> ICHOR_CAVES_REPLACEABLE = local("ichor_caves_replaceable");

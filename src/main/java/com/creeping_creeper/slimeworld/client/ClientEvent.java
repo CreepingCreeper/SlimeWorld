@@ -71,7 +71,7 @@ public class ClientEvent extends ClientEventBase {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ModEntities.SLlama.get(), context -> new LlamaRenderer(context, ModelLayers.TRADER_LLAMA));
+        event.registerEntityRenderer(ModEntities.Sllama.get(), context -> new LlamaRenderer(context, ModelLayers.TRADER_LLAMA));
         event.registerEntityRenderer(ModEntities.Grass.get(), BlockLikeMobRenderer::new);
 
         event.registerEntityRenderer(ModEntities.TomatoProjectileEntity.get(), context -> new ThrownItemRenderer<>(context, 0.75f, true));
