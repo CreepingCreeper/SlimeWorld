@@ -3,14 +3,11 @@
   "conditions": [
     {
       "condition": "mantle:block_tag",
-      "tag": "forge:ores/glowstone"
+      "tag": "forge:ores/redstone"
     },
     {
       "condition": "tconstruct:has_modifier",
       "modifier": "slimeworld:overwash"
-    },
-    {
-      "condition": "slimeworld:has_overslime"
     }
   ],
   "entry": {

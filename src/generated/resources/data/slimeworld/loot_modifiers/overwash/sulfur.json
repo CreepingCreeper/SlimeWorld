@@ -3,19 +3,20 @@
   "conditions": [
     {
       "condition": "mantle:block_tag",
-      "tag": "forge:ores/redstone"
+      "tag": "forge:ores/sulfur"
+    },
+    {
+      "condition": "mantle:tag_filled",
+      "tag": "forge:dusts/sulfur"
     },
     {
       "condition": "tconstruct:has_modifier",
       "modifier": "slimeworld:overwash"
-    },
-    {
-      "condition": "slimeworld:has_overslime"
     }
   ],
   "entry": {
     "type": "mantle:tag_preference",
-    "tag": "forge:dusts/redstone"
+    "tag": "forge:dusts/sulfur"
   },
   "functions": [
     {
@@ -46,7 +47,7 @@
       "condition": {
         "type": "mantle:contains_item",
         "ingredient": {
-          "tag": "forge:ores/redstone"
+          "tag": "forge:ores/sulfur"
         }
       }
     }

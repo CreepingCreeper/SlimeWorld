@@ -42,14 +42,13 @@ public class RemoveOverslimeFunction extends LootItemConditionalFunction {
         return ModOthers.RemoveOverslime.get();
     }
 
-    public static Builder removeOverslime() {
-        return new RemoveOverslimeFunction.Builder();
+    public static LootItemConditionalFunction.Builder<?> removeOverslime() {
+        return simpleBuilder(RemoveOverslimeFunction::new);
     }
 
-    public static class Builder extends LootItemConditionalFunction.Builder<RemoveOverslimeFunction.Builder> {
 
-        public Builder() {
-        }
+
+    public static class Builder extends LootItemConditionalFunction.Builder<RemoveOverslimeFunction.Builder> {
 
         protected RemoveOverslimeFunction.@NotNull Builder getThis() {
             return this;

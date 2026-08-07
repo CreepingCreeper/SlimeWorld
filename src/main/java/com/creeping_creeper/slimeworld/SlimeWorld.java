@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld;
 import com.creeping_creeper.slimeworld.data.provider.*;
 import com.creeping_creeper.slimeworld.data.provider.assets.ModBlockStateProvider;
 import com.creeping_creeper.slimeworld.data.provider.assets.ModItemModelProvider;
+import com.creeping_creeper.slimeworld.data.provider.loot.ModGlobalLootModifiersProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
 import com.creeping_creeper.slimeworld.data.provider.tag.*;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
@@ -87,6 +88,7 @@ public class SlimeWorld {
         generator.addProvider(server, new ModBiomeTagsProvider(output, lookupProvider, existingFileHelper));
         //loots
         generator.addProvider(server, new ModLootTableProvider(output));
+        generator.addProvider(server, new ModGlobalLootModifiersProvider(output));
         //models
         generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
         generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));

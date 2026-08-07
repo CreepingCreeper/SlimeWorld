@@ -1,0 +1,19 @@
+{
+  "entries": [
+    "slimeworld:overwash/fluorite",
+    "slimeworld:overwash/salt",
+    "slimeworld:overwash/diamond",
+    "slimeworld:overwash/glowstone",
+    "slimeworld:overwash/quartz",
+    "slimeworld:overwash/redstone",
+    "slimeworld:overwash/cinnabar",
+    "slimeworld:overwash/lapis",
+    "slimeworld:overwash/ender",
+    "slimeworld:overwash/emerald",
+    "slimeworld:overwash/niter",
+    "slimeworld:overwash/apatite",
+    "slimeworld:overwash/sulfur",
+    "slimeworld:overwash/coal"
+  ],
+  "replace": false
+}
