@@ -1,12 +1,10 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
-import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModOthers;
 import com.creeping_creeper.slimeworld.init.item.ModifierRuneItem;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -18,8 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 
 public class AddModifierFunction extends LootItemConditionalFunction {
-    public static final ResourceLocation ID = SlimeWorld.getResource("add_modifier");
-    public static final AddModifierFunction.Serializer SERIALIZER = new Serializer();
+     public static final AddModifierFunction.Serializer SERIALIZER = new Serializer();
     private final ModifierId modifier;
     private final int maxLevel;
 

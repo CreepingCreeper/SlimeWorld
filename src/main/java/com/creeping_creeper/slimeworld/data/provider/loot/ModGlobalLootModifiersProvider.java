@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.data.provider.loot;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
+import com.creeping_creeper.slimeworld.init.misc.HasOverslimeCondition;
 import com.creeping_creeper.slimeworld.init.misc.RemoveOverslimeFunction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -30,7 +31,7 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
 
   @Override
   protected void start() {
-      // overwash implementation
+      //overwash implementation
       //vanilla
       addOverwash("glowstone", false);
       addOverwash("redstone", false);
@@ -63,6 +64,7 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
           builder.addCondition(new TagFilledCondition<>(dusts));
       }
       add("overwash/" + name, builder.addCondition(new HasModifierLootCondition(ModModifierIds.overwash))
+              .addCondition(new HasOverslimeCondition())
               .addFunction(SetItemCountFunction.setCount(UniformGenerator.between(3, 5)).build())
               .addFunction(ModifierBonusLootFunction.oreDrops(ModModifierIds.overwash, false).build())
               .addFunction(RemoveOverslimeFunction.removeOverslime().build())

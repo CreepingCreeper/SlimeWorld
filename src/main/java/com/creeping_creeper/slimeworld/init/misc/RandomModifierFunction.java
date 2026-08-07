@@ -1,12 +1,10 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
-import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModOthers;
 import com.creeping_creeper.slimeworld.init.item.ModifierRuneItem;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.RandomSource;
@@ -25,7 +23,6 @@ import slimeknights.tconstruct.library.modifiers.ModifierManager;
 import java.util.List;
 
 public class RandomModifierFunction extends LootItemConditionalFunction {
-    public static final ResourceLocation ID = SlimeWorld.getResource("random_modifier");
     public static final RandomModifierFunction.Serializer SERIALIZER = new Serializer();
     private final TagKey<Modifier> tag;
     private final int maxLevel;

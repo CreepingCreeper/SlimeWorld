@@ -1,12 +1,10 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
-import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
 import com.creeping_creeper.slimeworld.init.ModOthers;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
@@ -20,7 +18,6 @@ import slimeknights.tconstruct.library.modifiers.modules.capacity.OverslimeModul
 import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 public class RemoveOverslimeFunction extends LootItemConditionalFunction {
-    public static final ResourceLocation ID = SlimeWorld.getResource("remove_overslime");
     public static final RemoveOverslimeFunction.Serializer SERIALIZER = new Serializer();
 
     protected RemoveOverslimeFunction(LootItemCondition[] predicates) {

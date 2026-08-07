@@ -12,6 +12,9 @@
     {
       "condition": "tconstruct:has_modifier",
       "modifier": "slimeworld:overwash"
+    },
+    {
+      "condition": "slimeworld:has_overslime"
     }
   ],
   "entry": {
