@@ -22,11 +22,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        basicBlock(ModItems.OceanSlime.get());
         customBlock(ModItems.Bronze.get(), "block/bronze_block", TConstruct.getResource("block/storage/fallback_tconstruct_bronze"));
         String geode = "geode/";
         pathBlock(ModItems.OceanGeode.getBlock(), geode);
         pathBlock(ModItems.OceanGeode.getBudding(), geode);
+        basicBlock(ModItems.OceanSlime.get());
+        basicBlock(ModItems.OceanCongealedSlime.get());
+        basicBlock(ModItems.SlimeGravel.get());
 
         addWallBuildingBlock(ModItems.Cinnabar, name(ModItems.Cinnabar.get()), "", blockTexture(ModItems.Cinnabar.get()));
         addWallBuildingBlock(ModItems.PolishedCinnabar, name(ModItems.PolishedCinnabar.get()), "", blockTexture(ModItems.PolishedCinnabar.get()));
@@ -35,6 +37,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         addWallBuildingBlock(ModItems.PolishedSulfur, name(ModItems.PolishedSulfur.get()), "", blockTexture(ModItems.PolishedSulfur.get()));
         addWallBuildingBlock(ModItems.SulfurBricks, name(ModItems.SulfurBricks.get()), "", blockTexture(ModItems.SulfurBricks.get()));
         basicBlock(ModItems.SulfurMud.get());
+
+        customBlock(ModItems.PotentSulfurNausea.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
+        customBlock(ModItems.PotentSulfurBlindness.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
+        customBlock(ModItems.PotentSulfurWeakness.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
+        customBlock(ModItems.PotentSulfurRegeneration.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
+        customBlock(ModItems.PotentSulfurStrength.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
+
     }
 
     @SuppressWarnings("deprecation")

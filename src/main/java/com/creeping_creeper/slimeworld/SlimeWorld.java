@@ -31,7 +31,6 @@ import org.slf4j.Logger;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
-import slimeknights.tconstruct.world.data.WorldgenProvider;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
