@@ -47,6 +47,8 @@ public class ModGlobalLootModifiersProvider extends GlobalLootModifierProvider {
       addOverwash("sulfur", true);
       //mek
       addOverwash("fluorite", true);
+      //ae2cs
+      addOverwash("certus_quartz", true);
       //miniutilities
       addOverwash("ender", true);
       //croptopia
