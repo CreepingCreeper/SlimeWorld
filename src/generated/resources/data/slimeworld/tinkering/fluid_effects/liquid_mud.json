@@ -4,9 +4,9 @@
       "type": "tconstruct:mob_effect_cloud",
       "effects": [
         {
-          "effect": "slimeworld:slime_resonance",
-          "level": 1,
-          "time": 80
+          "effect": "minecraft:slowness",
+          "level": 4,
+          "time": 20
         }
       ]
     }
@@ -15,13 +15,13 @@
     {
       "type": "tconstruct:mob_effect",
       "action": "set",
-      "effect": "slimeworld:slime_resonance",
-      "level": 1,
-      "time": 80
+      "effect": "minecraft:slowness",
+      "level": 4,
+      "time": 20
     }
   ],
   "fluid": {
     "amount": 50,
-    "fluid": "slimeworld:resonance_slime"
+    "tag": "slimeworld:liquid_mud"
   }
 }
