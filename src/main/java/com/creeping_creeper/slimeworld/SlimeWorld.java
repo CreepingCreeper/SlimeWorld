@@ -77,8 +77,6 @@ public class SlimeWorld {
         //dataPack
         DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
         generator.addProvider(server, datapackProvider);
-        //recipes
-        generator.addProvider(server, new ModRecipeProvider(output));
         //tags
         ModBlockTagsProvider blockTags = new ModBlockTagsProvider(output, lookupProvider, existingFileHelper);
         generator.addProvider(server, blockTags);
@@ -86,12 +84,16 @@ public class SlimeWorld {
         generator.addProvider(server, new ModFluidTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModEntityTypeTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModBiomeTagsProvider(output, lookupProvider, existingFileHelper));
+        generator.addProvider(server, new ModModifierTagsProvider(output, existingFileHelper));
         //loots
         generator.addProvider(server, new ModLootTableProvider(output));
         generator.addProvider(server, new ModGlobalLootModifiersProvider(output));
         //models
         generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
         generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
+        //others
+        generator.addProvider(server, new ModRecipeProvider(output));
+        generator.addProvider(server, new ModModifierProvider(output));
     }
 
     public static String makeTranslationKey(String base, String name) {

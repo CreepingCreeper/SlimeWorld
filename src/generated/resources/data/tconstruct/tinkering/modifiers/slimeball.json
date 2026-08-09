@@ -49,21 +49,6 @@
           "ammo_modifiers": [
             {
               "level": 1,
-              "name": "tconstruct:fins"
-            }
-          ],
-          "damage_type": {
-            "melee": "tconstruct:water_melee",
-            "ranged": "tconstruct:water_ranged"
-          },
-          "match": {
-            "tag": "forge:slimeball/ocean"
-          }
-        },
-        {
-          "ammo_modifiers": [
-            {
-              "level": 1,
               "name": "tconstruct:fiery"
             }
           ],
@@ -103,6 +88,21 @@
           },
           "match": {
             "item": "minecraft:magma_cream"
+          }
+        },
+        {
+          "ammo_modifiers": [
+            {
+              "level": 1,
+              "name": "slimeworld:sputtering"
+            }
+          ],
+          "damage_type": {
+            "melee": "tconstruct:water_melee",
+            "ranged": "tconstruct:water_ranged"
+          },
+          "match": {
+            "item": "slimeworld:ocean_slime_ball"
           }
         }
       ],

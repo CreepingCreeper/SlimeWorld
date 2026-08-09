@@ -1,0 +1,30 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "tconstruct:conditional_mining_speed",
+      "formula": [
+        "$multiplier",
+        "$bonus",
+        "*",
+        "$level",
+        "*",
+        "$speed",
+        "+"
+      ],
+      "percent": false,
+      "require_effective": true,
+      "variables": {
+        "bonus": {
+          "type": "tconstruct:entity",
+          "condition_type": "mantle:eyes_in_water",
+          "entity_type": "tconstruct:conditional",
+          "fallback": 0.3,
+          "if_false": 0.0,
+          "if_true": 0.3
+        }
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}

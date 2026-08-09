@@ -7,11 +7,14 @@
       "each_level": 0.12,
       "operation": "multiply_base",
       "slots": [
+        "mainhand",
+        "offhand",
         "feet",
         "legs",
         "chest",
         "head"
-      ]
+      ],
+      "tooltip_style": "percent"
     }
   ],
   "tooltip_display": "always"
