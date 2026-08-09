@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.data.provider;
+package com.creeping_creeper.slimeworld.data.provider.tinkering;
 
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
 import com.creeping_creeper.slimeworld.init.ModItems;

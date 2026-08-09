@@ -1,4 +1,4 @@
-package com.creeping_creeper.slimeworld.data.provider.tag;
+package com.creeping_creeper.slimeworld.data.provider.tags;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModTags;

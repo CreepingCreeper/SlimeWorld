@@ -5,7 +5,11 @@ import com.creeping_creeper.slimeworld.data.provider.assets.ModBlockStateProvide
 import com.creeping_creeper.slimeworld.data.provider.assets.ModItemModelProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModGlobalLootModifiersProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
-import com.creeping_creeper.slimeworld.data.provider.tag.*;
+import com.creeping_creeper.slimeworld.data.provider.tags.*;
+import com.creeping_creeper.slimeworld.data.provider.tinkering.ModMaterialProvider;
+import com.creeping_creeper.slimeworld.data.provider.tinkering.ModModifierProvider;
+import com.creeping_creeper.slimeworld.data.provider.tinkering.ModStatsProvider;
+import com.creeping_creeper.slimeworld.data.provider.tinkering.ModTraitsProvider;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
 import com.creeping_creeper.slimeworld.events.WorldEvents;
 import com.creeping_creeper.slimeworld.init.*;
@@ -94,6 +98,10 @@ public class SlimeWorld {
         //others
         generator.addProvider(server, new ModRecipeProvider(output));
         generator.addProvider(server, new ModModifierProvider(output));
+        ModMaterialProvider materials = new ModMaterialProvider(output);
+        generator.addProvider(server, materials);
+        generator.addProvider(server, new ModStatsProvider(output, materials));
+        generator.addProvider(server, new ModTraitsProvider(output, materials));
     }
 
     public static String makeTranslationKey(String base, String name) {
