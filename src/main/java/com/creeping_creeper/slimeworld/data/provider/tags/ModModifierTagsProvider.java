@@ -2,7 +2,6 @@ package com.creeping_creeper.slimeworld.data.provider.tags;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
-import com.creeping_creeper.slimeworld.init.ModModifiers;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;

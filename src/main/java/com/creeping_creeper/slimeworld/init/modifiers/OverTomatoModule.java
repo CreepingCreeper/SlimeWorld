@@ -13,6 +13,7 @@ import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeHitModifierHook;
+import slimeknights.tconstruct.library.modifiers.hook.combat.MonsterMeleeHitModifierHook;
 import slimeknights.tconstruct.library.modifiers.modules.ModifierModule;
 import slimeknights.tconstruct.library.modifiers.modules.capacity.OverslimeModule;
 import slimeknights.tconstruct.library.module.HookProvider;
@@ -23,12 +24,12 @@ import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
 import java.util.List;
 
-public record OverTomatoModule(LevelingValue chance)implements ModifierModule, MeleeHitModifierHook {
-    private static final List<ModuleHook<?>> DEFAULT_HOOKS = HookProvider.<OverloadModule>defaultHooks(ModifierHooks.INVENTORY_TICK);
+public record OverTomatoModule(LevelingValue chance)implements ModifierModule, MeleeHitModifierHook, MonsterMeleeHitModifierHook.RedirectAfter {
+    private static final List<ModuleHook<?>> DEFAULT_HOOKS = HookProvider.<OverTomatoModule>defaultHooks(ModifierHooks.MELEE_HIT, ModifierHooks.MONSTER_MELEE_HIT);
 
     public static final RecordLoadable<OverTomatoModule> LOADER = RecordLoadable.create(
             LevelingValue.LOADABLE.requiredField("chance", OverTomatoModule::chance),
-           OverTomatoModule::new);
+            OverTomatoModule::new);
 
     @Override
     public @NotNull RecordLoadable<? extends ModifierModule> getLoader() {
