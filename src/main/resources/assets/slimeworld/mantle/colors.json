@@ -1,7 +1,8 @@
 {
   "modifier.slimeworld": {
+    "sputtering": "#568BF5",
     "overwash": "#9FC2A7",
-    "sputtering": "#568BF5"
+    "overload": "#9FC2A7"
   },
   "material.slimeworld": {
     "slime_bronze": "#9FC2A7",

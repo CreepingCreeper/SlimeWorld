@@ -50,11 +50,13 @@ public class SlimeWorld {
         ModItems.registers(bus);
         ModFluids.registers(bus);
         ModModifiers.registers(bus);
+        bus.register(ModModifiers.class);
         ModEffects.registers(bus);
         ModEntities.registers(bus);
         ModOthers.registers(bus);
         ModParticles.registers(bus);
         ModSounds.registers(bus);
+
     }
 
     @SubscribeEvent
@@ -85,6 +87,7 @@ public class SlimeWorld {
         generator.addProvider(server, new ModFluidTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModEntityTypeTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModBiomeTagsProvider(output, lookupProvider, existingFileHelper));
+        generator.addProvider(server, new ModDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModModifierTagsProvider(output, existingFileHelper));
         //loots
         generator.addProvider(server, new ModLootTableProvider(output));
@@ -94,12 +97,12 @@ public class SlimeWorld {
         generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
         //others
         generator.addProvider(server, new ModRecipeProvider(output));
-        generator.addProvider(server, new ModModifierProvider(output));
         ModMaterialProvider materials = new ModMaterialProvider(output);
         generator.addProvider(server, materials);
         generator.addProvider(server, new ModStatsProvider(output, materials));
         generator.addProvider(server, new ModTraitsProvider(output, materials));
         generator.addProvider(server, new ModFluidEffectProvider(output));
+        generator.addProvider(server, new ModModifierProvider(output));
     }
 
     public static String makeTranslationKey(String base, String name) {

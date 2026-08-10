@@ -1,0 +1,12 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "slimeworld:overload",
+      "chance": {
+        "each_level": 0.15
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}

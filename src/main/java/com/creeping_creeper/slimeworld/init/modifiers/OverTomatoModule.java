@@ -7,32 +7,49 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
+import slimeknights.mantle.data.loadable.record.RecordLoadable;
+import slimeknights.tconstruct.library.json.LevelingValue;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierHooks;
 import slimeknights.tconstruct.library.modifiers.hook.combat.MeleeHitModifierHook;
+import slimeknights.tconstruct.library.modifiers.modules.ModifierModule;
 import slimeknights.tconstruct.library.modifiers.modules.capacity.OverslimeModule;
-import slimeknights.tconstruct.library.module.ModuleHookMap;
+import slimeknights.tconstruct.library.module.HookProvider;
+import slimeknights.tconstruct.library.module.ModuleHook;
 import slimeknights.tconstruct.library.tools.context.ToolAttackContext;
 import slimeknights.tconstruct.library.tools.item.ranged.ModifiableLauncherItem;
 import slimeknights.tconstruct.library.tools.nbt.IToolStackView;
 
-public class OverTomatoModifier extends Modifier implements MeleeHitModifierHook {
+import java.util.List;
+
+public record OverTomatoModule(LevelingValue chance)implements ModifierModule, MeleeHitModifierHook {
+    private static final List<ModuleHook<?>> DEFAULT_HOOKS = HookProvider.<OverloadModule>defaultHooks(ModifierHooks.INVENTORY_TICK);
+
+    public static final RecordLoadable<OverTomatoModule> LOADER = RecordLoadable.create(
+            LevelingValue.LOADABLE.requiredField("chance", OverTomatoModule::chance),
+           OverTomatoModule::new);
+
     @Override
-    protected void registerHooks(ModuleHookMap.@NotNull Builder hookBuilder) {
-        super.registerHooks(hookBuilder);
-        hookBuilder.addHook(this, ModifierHooks.MELEE_HIT);
+    public @NotNull RecordLoadable<? extends ModifierModule> getLoader() {
+        return LOADER;
+    }
+
+    @Override
+    public @NotNull List<ModuleHook<?>> getDefaultHooks() {
+        return DEFAULT_HOOKS;
     }
 
     @Override
     public void afterMeleeHit(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull ToolAttackContext context, float damageDealt) {
-     if (OverslimeModule.getCapacity(tool) > 0 && RANDOM.nextFloat() < modifier.getLevel() * 0.15F){
+     if (OverslimeModule.getCapacity(tool) > 0 && Modifier.RANDOM.nextFloat() < this.chance.compute(modifier)){
          LivingEntity living = context.getAttacker();
          Level level = context.getLevel();
-         int shots = 1 + 2 * modifier.getLevel();
+         int modifierLevel = modifier.getLevel();
+         int shots = 1 + 2 * modifierLevel;
          float startAngle = ModifiableLauncherItem.getAngleStart(shots);
-         for (int shotIndex = 0; shotIndex < modifier.getLevel()*2+1; shotIndex++) {
-             TomatoProjectile spit = new TomatoProjectile(level, living, modifier.getLevel());
+         for (int shotIndex = 0; shotIndex < shots; shotIndex++) {
+             TomatoProjectile spit = new TomatoProjectile(level, living, modifierLevel);
              Vec3 upVector = living.getUpVector(1.0f);
              float angle = startAngle + (10 * shotIndex);
              Vector3f targetVector = living.getViewVector(1.0f).toVector3f().rotate((new Quaternionf()).setAngleAxis(angle * Math.PI / 180F, upVector.x, upVector.y, upVector.z));

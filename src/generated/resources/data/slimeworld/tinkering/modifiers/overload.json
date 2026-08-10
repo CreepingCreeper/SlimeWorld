@@ -1,0 +1,63 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "slimeworld:overload",
+      "chance": {
+        "each_level": 0.08
+      }
+    },
+    {
+      "type": "tconstruct:conditional_stat",
+      "formula": [
+        "$overslime",
+        "$level",
+        "min",
+        0.08,
+        "*"
+      ],
+      "percent": false,
+      "stat": "tconstruct:projectile_damage",
+      "variables": {
+        "overslime": {
+          "type": "tconstruct:mod_data",
+          "key": "tconstruct:overslime",
+          "source": "persistent"
+        }
+      }
+    },
+    {
+      "type": "tconstruct:attribute",
+      "attribute": "minecraft:generic.attack_damage",
+      "formula": [
+        "$overslime",
+        "$level",
+        "min",
+        0.08,
+        "*"
+      ],
+      "operation": "multiply_total",
+      "slots": [
+        "mainhand",
+        "offhand",
+        "feet",
+        "legs",
+        "chest",
+        "head"
+      ],
+      "tool": {
+        "type": "mantle:tag",
+        "tag": "tconstruct:modifiable/armor"
+      },
+      "tooltip_style": "percent",
+      "variables": {
+        "overslime": {
+          "type": "tconstruct:mod_data",
+          "key": "tconstruct:overslime",
+          "source": "persistent"
+        }
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}

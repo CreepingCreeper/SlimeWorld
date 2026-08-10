@@ -1,9 +1,33 @@
 {
   "perStat": {
+    "tconstruct:armor": [
+      {
+        "level": 1,
+        "name": "slimeworld:overload"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:overslime"
+      }
+    ],
     "tconstruct:melee_harvest": [
       {
         "level": 1,
         "name": "slimeworld:overwash"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:overslime"
+      }
+    ],
+    "tconstruct:ranged": [
+      {
+        "level": 1,
+        "name": "slimeworld:overload"
+      },
+      {
+        "level": 1,
+        "name": "tconstruct:overslime"
       }
     ]
   }

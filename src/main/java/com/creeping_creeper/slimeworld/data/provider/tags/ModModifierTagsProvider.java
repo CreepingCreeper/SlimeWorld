@@ -16,7 +16,7 @@ public class ModModifierTagsProvider extends AbstractModifierTagProvider {
 
     @Override
     protected void addTags() {
-        tag(TinkerTags.Modifiers.OVERSLIME_FRIEND).add(ModModifierIds.overwash, ModModifiers.overTomato.getId());
+        tag(TinkerTags.Modifiers.OVERSLIME_FRIEND).add(ModModifierIds.overwash, ModModifierIds.overload, ModModifierIds.overtomato);
     }
 
     @Override

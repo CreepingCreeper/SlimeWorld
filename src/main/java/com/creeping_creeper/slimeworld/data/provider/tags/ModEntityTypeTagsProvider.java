@@ -31,7 +31,8 @@ public class ModEntityTypeTagsProvider extends EntityTypeTagsProvider {
         tag(EntityTypeTags.FROG_FOOD).add(ModEntities.OceanSlimeEntity.get(), ModEntities.IchorSlimeEntity.get(), ModEntities.OriginSlimeEntity.get(), ModEntities.TomatoSlimeEntity.get(), ModEntities.SulfurCubeEntity.get());
         tag(EntityTypeTags.SKELETONS).add(ModEntities.BoggedEntity.get(), ModEntities.ParchedEntity.get());
         //common
-        tag(ModTags.EntityTypes.SLIME).add(EntityType.MAGMA_CUBE, ModEntities.OceanSlimeEntity.get(), ModEntities.IchorSlimeEntity.get(), ModEntities.OriginSlimeEntity.get(), ModEntities.TomatoSlimeEntity.get(), ModEntities.SulfurCubeEntity.get(), ModEntities.SteelSlimeBossEntity.get(), ModEntities.KnightSlimeBossEntity.get());
+        tag(ModTags.EntityTypes.SLIME).add(ModEntities.OceanSlimeEntity.get(), ModEntities.IchorSlimeEntity.get(), ModEntities.OriginSlimeEntity.get(), ModEntities.TomatoSlimeEntity.get(), ModEntities.SulfurCubeEntity.get(),
+                ModEntities.SteelSlimeBossEntity.get(), ModEntities.KnightSlimeBossEntity.get());
         tag(Tags.EntityTypes.BOSSES).add(ModEntities.SteelSlimeBossEntity.get(), ModEntities.KnightSlimeBossEntity.get());
         //self
         tag(ModTags.EntityTypes.ANTIGRAVITY).add(ModEntities.IchorSlimeEntity.get());

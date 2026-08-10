@@ -1,0 +1,12 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "slimeworld:sputtering",
+      "radius": {
+        "each_level": 1.0
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}
