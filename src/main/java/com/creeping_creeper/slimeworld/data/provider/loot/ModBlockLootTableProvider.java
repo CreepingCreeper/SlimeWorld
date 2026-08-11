@@ -70,9 +70,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropBuildingLootTables(ModItems.Cinnabar);
         dropBuildingLootTables(ModItems.PolishedCinnabar);
         dropBuildingLootTables(ModItems.CinnabarBricks);
+        dropSelf(ModItems.ChiseledCinnabar.get());
         dropBuildingLootTables(ModItems.Sulfur);
         dropBuildingLootTables(ModItems.PolishedSulfur);
         dropBuildingLootTables(ModItems.SulfurBricks);
+        dropSelf(ModItems.ChiseledSulfur.get());
         dropSelf(ModItems.SulfurMud.get());
         dropSelf(ModItems.SulfurSpike.get());
         dropSelf(ModItems.PotentSulfurNausea.get());

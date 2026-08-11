@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "slimeworld:chiseled_cinnabar"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "slimeworld:blocks/chiseled_cinnabar"
+}

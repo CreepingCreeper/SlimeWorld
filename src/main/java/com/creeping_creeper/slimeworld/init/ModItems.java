@@ -87,9 +87,12 @@ public class ModItems {
     public static final WallBuildingBlockObject Cinnabar = BLOCKS.registerWallBuilding("cinnabar", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject PolishedCinnabar = BLOCKS.registerWallBuilding("polished_cinnabar", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject CinnabarBricks = BLOCKS.registerWallBuilding("cinnabar_bricks", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> ChiseledCinnabar = BLOCKS.register("chiseled_cinnabar", buildingBuilder(MapColor.COLOR_RED).sound(ModSounds.CINNABAR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject Sulfur = BLOCKS.registerWallBuilding("sulfur", buildingBuilder(MapColor.COLOR_YELLOW).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject PolishedSulfur = BLOCKS.registerWallBuilding("polished_sulfur", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
     public static final WallBuildingBlockObject SulfurBricks = BLOCKS.registerWallBuilding("sulfur_bricks", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> ChiseledSulfur = BLOCKS.register("chiseled_sulfur", buildingBuilder(MapColor.COLOR_BROWN).sound(ModSounds.SULFUR).instrument(NoteBlockInstrument.BASEDRUM), GENERAL_BLOCK_ITEM);
+
     public static final ItemObject<Block> SulfurMud = BLOCKS.register("sulfur_mud", buildingBuilder(MapColor.COLOR_BROWN).sound(SoundType.MUD), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> SulfurSpike = BLOCKS.register("sulfur_spike", () -> new SulfurSpikeBlock(builder(MapColor.TERRACOTTA_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASEDRUM).noOcclusion().sound(ModSounds.SULFUR).randomTicks().strength(1.5F, 3.0F).dynamicShape().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY).isRedstoneConductor(Blocks::never).noOcclusion()), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> PotentSulfurNausea = BLOCKS.register("potent_sulfur_nausea", () -> new PotentSulfurBlock(() -> MobEffects.CONFUSION, BlockBehaviour.Properties.copy(Sulfur.get()).sound(ModSounds.POTENT_SULFUR)), GENERAL_BLOCK_ITEM);
@@ -234,9 +237,11 @@ public class ModItems {
         acceptWallBuilding(output, Cinnabar);
         acceptWallBuilding(output, PolishedCinnabar);
         acceptWallBuilding(output, CinnabarBricks);
+        output.accept(ChiseledCinnabar);
         acceptWallBuilding(output, Sulfur);
         acceptWallBuilding(output, PolishedSulfur);
         acceptWallBuilding(output, SulfurBricks);
+        output.accept(ChiseledSulfur);
         output.accept(SulfurMud);
         output.accept(PotentSulfurNausea);
         output.accept(PotentSulfurBlindness);

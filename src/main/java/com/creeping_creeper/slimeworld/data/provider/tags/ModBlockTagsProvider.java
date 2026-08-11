@@ -35,17 +35,17 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(@NotNull HolderLookup.Provider lookupProvider) {
         //vanilla
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModItems.Bronze.get()).add(ModItems.OceanGeode.getBlock()).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.SMALL)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.MEDIUM)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.LARGE))
-                .add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.CLUSTER)).add(ModItems.OceanGeode.getBudding()).add(ModItems.BronzeCluster.get()).add(ModItems.GlowstoneOre.get()).add(ModItems.DeepSlateGlowstoneOre.get()).add(ModItems.IsomericGlowstone.get())
-                .add(ModItems.Cinnabar.get()).add(ModItems.Cinnabar.getStairs()).add(ModItems.Cinnabar.getSlab()).add(ModItems.Cinnabar.getWall()).add(ModItems.PolishedCinnabar.get()).add(ModItems.PolishedCinnabar.getStairs())
-                .add(ModItems.PolishedCinnabar.getSlab()).add(ModItems.PolishedCinnabar.getWall()).add(ModItems.CinnabarBricks.get()).add(ModItems.CinnabarBricks.getStairs()).add(ModItems.CinnabarBricks.getSlab()).add(ModItems.CinnabarBricks.getWall())
-                .add(ModItems.Sulfur.get()).add(ModItems.Sulfur.getStairs()).add(ModItems.Sulfur.getSlab()).add(ModItems.Sulfur.getWall()).add(ModItems.PolishedSulfur.get()).add(ModItems.PolishedSulfur.getStairs())
-                .add(ModItems.PolishedSulfur.getSlab()).add(ModItems.PolishedSulfur.getWall()).add(ModItems.SulfurBricks.get()).add(ModItems.SulfurBricks.getStairs()).add(ModItems.SulfurBricks.getSlab()).add(ModItems.SulfurBricks.getWall())
-                .add(ModItems.PotentSulfurNausea.get()).add(ModItems.PotentSulfurBlindness.get()).add(ModItems.PotentSulfurWeakness.get()).add(ModItems.PotentSulfurRegeneration.get()).add(ModItems.PotentSulfurStrength.get()).add(ModItems.SulfurSpike.get());
-        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModItems.OceanCongealedSlime.get()).add(ModItems.SlimeGravel.get()).add(ModItems.IchorEarthSlimeNylium.get()).add(ModItems.IchorSkySlimeNylium.get()).add(ModItems.IchorIchorSlimeNylium.get())
-                .add(ModItems.IchorEnderSlimeNylium.get()).add(ModItems.IchorVanillaSlimeNylium.get()).add(ModItems.SulfurMud.get());
-        tag(BlockTags.NEEDS_IRON_TOOL).add(ModItems.Bronze.get()).add(ModItems.IchorEarthSlimeNylium.get()).add(ModItems.IchorSkySlimeNylium.get()).add(ModItems.IchorIchorSlimeNylium.get()).add(ModItems.IchorEnderSlimeNylium.get())
-                .add(ModItems.IchorVanillaSlimeNylium.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ModItems.Bronze.get()).add(ModItems.OceanGeode.getBlock()).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.SMALL)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.MEDIUM)).add(ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.LARGE),
+                ModItems.OceanGeode.getBud(GeodeItemObject.BudSize.CLUSTER)).add(ModItems.OceanGeode.getBudding()).add(ModItems.BronzeCluster.get()).add(ModItems.GlowstoneOre.get()).add(ModItems.DeepSlateGlowstoneOre.get()).add(ModItems.IsomericGlowstone.get(),
+                ModItems.Cinnabar.get()).add(ModItems.Cinnabar.getStairs()).add(ModItems.Cinnabar.getSlab()).add(ModItems.Cinnabar.getWall()).add(ModItems.PolishedCinnabar.get()).add(ModItems.PolishedCinnabar.getStairs()).add(ModItems.ChiseledCinnabar.get(),
+                ModItems.PolishedCinnabar.getSlab()).add(ModItems.PolishedCinnabar.getWall()).add(ModItems.CinnabarBricks.get()).add(ModItems.CinnabarBricks.getStairs()).add(ModItems.CinnabarBricks.getSlab()).add(ModItems.CinnabarBricks.getWall(),
+                ModItems.Sulfur.get()).add(ModItems.Sulfur.getStairs()).add(ModItems.Sulfur.getSlab()).add(ModItems.Sulfur.getWall()).add(ModItems.PolishedSulfur.get()).add(ModItems.PolishedSulfur.getStairs()).add(ModItems.ChiseledSulfur.get(),
+                ModItems.PolishedSulfur.getSlab()).add(ModItems.PolishedSulfur.getWall()).add(ModItems.SulfurBricks.get()).add(ModItems.SulfurBricks.getStairs()).add(ModItems.SulfurBricks.getSlab()).add(ModItems.SulfurBricks.getWall(),
+                ModItems.PotentSulfurNausea.get()).add(ModItems.PotentSulfurBlindness.get()).add(ModItems.PotentSulfurWeakness.get()).add(ModItems.PotentSulfurRegeneration.get()).add(ModItems.PotentSulfurStrength.get()).add(ModItems.SulfurSpike.get());
+        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModItems.OceanCongealedSlime.get()).add(ModItems.SlimeGravel.get()).add(ModItems.IchorEarthSlimeNylium.get()).add(ModItems.IchorSkySlimeNylium.get()).add(ModItems.IchorIchorSlimeNylium.get(),
+                ModItems.IchorEnderSlimeNylium.get()).add(ModItems.IchorVanillaSlimeNylium.get()).add(ModItems.SulfurMud.get());
+        tag(BlockTags.NEEDS_IRON_TOOL).add(ModItems.Bronze.get()).add(ModItems.IchorEarthSlimeNylium.get()).add(ModItems.IchorSkySlimeNylium.get()).add(ModItems.IchorIchorSlimeNylium.get()).add(ModItems.IchorEnderSlimeNylium.get(),
+                ModItems.IchorVanillaSlimeNylium.get());
         tag(BlockTags.NEEDS_STONE_TOOL).add(ModItems.GlowstoneOre.get()).add(ModItems.DeepSlateGlowstoneOre.get());
         
         tag(BlockTags.FALL_DAMAGE_RESETTING).add(ModItems.SlimeBerryBush.get(), ModItems.BerriperBush.get(), ModItems.CopperBerryBush.get(), ModItems.IronBerryBush.get(), ModItems.GoldBerryBush.get());

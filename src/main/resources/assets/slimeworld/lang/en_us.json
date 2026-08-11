@@ -49,6 +49,7 @@
   "block.slimeworld.cinnabar_bricks_stairs": "Cinnabar Bricks Stairs",
   "block.slimeworld.cinnabar_bricks_slab": "Cinnabar Bricks Slab",
   "block.slimeworld.cinnabar_bricks_wall": "Cinnabar Bricks Wall",
+  "block.slimeworld.chiseled_cinnabar": "Chiseled Cinnabar",
   "block.slimeworld.sulfur": "Sulfur",
   "block.slimeworld.sulfur_stairs": "Sulfur Stairs",
   "block.slimeworld.sulfur_slab": "Sulfur Slab",
@@ -61,6 +62,7 @@
   "block.slimeworld.sulfur_bricks_stairs": "Sulfur Bricks Stairs",
   "block.slimeworld.sulfur_bricks_slab": "Sulfur Bricks Slab",
   "block.slimeworld.sulfur_bricks_wall": "Sulfur Bricks Wall",
+  "block.slimeworld.chiseled_sulfur": "Chiseled Sulfur",
   "block.slimeworld.sulfur_mud": "Sulfur Mud",
   "block.slimeworld.potent_sulfur_nausea": "Potent Sulfur",
   "block.slimeworld.potent_sulfur_blindness": "Potent Sulfur",
@@ -233,22 +235,5 @@
 
   "config.jade.plugin_slimeworld.drying_rack": "Drying Rack",
   "config.jade.plugin_slimeworld.growable": "Growing Time",
-  "tooltip.slimeworld.drying_rack_progress": "Remaining %d s",
-
-  "task.maidsconstruct.ranged_attack": "Tinker Bow",
-  "task.maidsconstruct.ranged_attack.desc": "Maid will use tinker bows to attack surrounding hostile mobs",
-  "task.maidsconstruct.ranged_attack.condition.has_bow": "Mainhand holds a tinker bow",
-  "task.maidsconstruct.ranged_attack.condition.has_arrow": "Have an arrow in inventory",
-  "task.maidsconstruct.crossbow_attack": "Tinker Crossbow",
-  "task.maidsconstruct.crossbow_attack.desc": "Maid will use tinker crossbows to attack surrounding hostile mobs",
-  "task.maidsconstruct.crossbow_attack.condition.has_crossbow": "Mainhand holds a tinker crossbow",
-  "task.maidsconstruct.crossbow_attack.condition.has_arrow": "Have an arrow in inventory or a firework rocket in offhand",
-  "task.maidsconstruct.throwing_attack": "Tinker Throwing",
-  "task.maidsconstruct.throwing_attack.desc": "Maid will use tinker tools with throwing modifier like javelin to attack surrounding hostile mobs",
-  "task.maidsconstruct.throwing_attack.condition.throwing": "Mainhand holds a tool with throwing modifier",
-  "task.maidsconstruct.spitting_attack": "Tinker Spitting",
-  "task.maidsconstruct.spitting_attack.desc": "MMaid will use tinker tools with spitting modifier like javelin to attack surrounding hostile mobs",
-  "task.maidsconstruct.spitting_attack.condition.spitting": "Mainhand holds a tool with spitting modifier",
-  "task.maidsconstruct.spitting_attack.condition.has_fluid": "Tool has enough fluid",
-  "key.categories.item_texture_exporter": "1"
+  "tooltip.slimeworld.drying_rack_progress": "Remaining %d s"
 }

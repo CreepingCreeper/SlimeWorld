@@ -33,9 +33,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         addWallBuildingBlock(ModItems.Cinnabar, name(ModItems.Cinnabar.get()), "", blockTexture(ModItems.Cinnabar.get()));
         addWallBuildingBlock(ModItems.PolishedCinnabar, name(ModItems.PolishedCinnabar.get()), "", blockTexture(ModItems.PolishedCinnabar.get()));
         addWallBuildingBlock(ModItems.CinnabarBricks, name(ModItems.CinnabarBricks.get()), "", blockTexture(ModItems.CinnabarBricks.get()));
+        basicBlock(ModItems.ChiseledCinnabar.get());
         addWallBuildingBlock(ModItems.Sulfur, name(ModItems.Sulfur.get()), "", blockTexture(ModItems.Sulfur.get()));
         addWallBuildingBlock(ModItems.PolishedSulfur, name(ModItems.PolishedSulfur.get()), "", blockTexture(ModItems.PolishedSulfur.get()));
         addWallBuildingBlock(ModItems.SulfurBricks, name(ModItems.SulfurBricks.get()), "", blockTexture(ModItems.SulfurBricks.get()));
+        basicBlock(ModItems.ChiseledSulfur.get());
         basicBlock(ModItems.SulfurMud.get());
 
         customBlock(ModItems.PotentSulfurNausea.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));

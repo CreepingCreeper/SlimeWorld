@@ -20,7 +20,6 @@ import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.recipe.crafting.ShapedRetexturedRecipeBuilder;
 import slimeknights.mantle.recipe.data.ICommonRecipeHelper;
-import slimeknights.mantle.recipe.data.IRecipeHelper;
 import slimeknights.mantle.recipe.ingredient.EntityIngredient;
 import slimeknights.mantle.registration.object.FluidObject;
 import slimeknights.tconstruct.common.TinkerTags;
@@ -38,7 +37,7 @@ import slimeknights.tconstruct.shared.block.SlimeType;
 
 import java.util.function.Consumer;
 
-public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, ICommonRecipeHelper {
+public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHelper {
     public ModRecipeProvider(PackOutput output) {
         super(output);
     }
@@ -56,11 +55,23 @@ public class ModRecipeProvider extends RecipeProvider implements IRecipeHelper, 
         stairSlabWallCrafting(consumer, ModItems.PolishedCinnabar, building, true);
         polishingRecipes(consumer, ModItems.PolishedCinnabar, ModItems.CinnabarBricks, building, true);
         stairSlabWallCrafting(consumer, ModItems.CinnabarBricks, building, true);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,  ModItems.ChiseledCinnabar)
+                .define('s',  ModItems.Cinnabar.getSlab())
+                .pattern("s")
+                .pattern("s")
+                .unlockedBy("has_item", has( ModItems.Cinnabar.getSlab()))
+                .save(consumer, location(building + id(ModItems.ChiseledCinnabar).getPath()));
         stairSlabWallCrafting(consumer, ModItems.Sulfur, building, true);
         polishingRecipes(consumer, ModItems.Sulfur, ModItems.PolishedSulfur, building, true);
         stairSlabWallCrafting(consumer, ModItems.PolishedSulfur, building, true);
         polishingRecipes(consumer, ModItems.PolishedSulfur, ModItems.SulfurBricks, building, true);
         stairSlabWallCrafting(consumer, ModItems.SulfurBricks, building, true);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,  ModItems.ChiseledSulfur)
+                .define('s',  ModItems.Sulfur.getSlab())
+                .pattern("s")
+                .pattern("s")
+                .unlockedBy("has_item", has( ModItems.Cinnabar.getSlab()))
+                .save(consumer, location(building + id(ModItems.ChiseledSulfur).getPath()));
 
         String gadgets = "gadgets/";
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NecroticBoneMeal, 3)
