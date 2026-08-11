@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld.init.modifiers;
 
+import com.creeping_creeper.slimeworld.library.ModUtil;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -17,7 +18,8 @@ public class MajesticModifier extends Modifier implements MeleeHitModifierHook {
     }
 
     @Override
-    public void afterMeleeHit(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull ToolAttackContext context, float damageDealt) {
-        context.getAttacker().setAbsorptionAmount(Math.max(context.getAttacker().getAbsorptionAmount(), damageDealt * modifier.getLevel() * 0.1F));
+    public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
+        float max = damageDealt * modifier.getLevel() * 0.1F;
+        ModUtil.addAbsorption(context.getAttacker(), max, max);
     }
 }

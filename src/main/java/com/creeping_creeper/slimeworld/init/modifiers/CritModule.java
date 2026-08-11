@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.modifiers;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Projectile;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.mantle.data.loadable.record.SingletonLoader;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -26,12 +25,12 @@ public enum CritModule implements ModifierModule, ProjectileLaunchModifierHook {
     private final SingletonLoader<CritModule> loader = new SingletonLoader<>(this);
 
     @Override
-    public @NotNull RecordLoadable<? extends ModifierModule> getLoader() {
+    public RecordLoadable<? extends ModifierModule> getLoader() {
         return loader;
     }
 
     @Override
-    public @NotNull List<ModuleHook<?>> getDefaultHooks() {
+    public List<ModuleHook<?>> getDefaultHooks() {
         return DEFAULT_HOOKS;
     }
 
@@ -41,7 +40,7 @@ public enum CritModule implements ModifierModule, ProjectileLaunchModifierHook {
     }
 
     @Override
-    public void onProjectileLaunch(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull LivingEntity shooter, @NotNull Projectile projectile, @Nullable AbstractArrow arrow, @NotNull ModDataNBT persistentData, boolean primary) {
+    public void onProjectileLaunch(IToolStackView tool, ModifierEntry modifier, LivingEntity shooter, Projectile projectile, @Nullable AbstractArrow arrow, ModDataNBT persistentData, boolean primary) {
         if (arrow != null) {
             arrow.setCritArrow(true);
         }

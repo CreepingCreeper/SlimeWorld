@@ -16,7 +16,7 @@ import static com.creeping_creeper.slimeworld.SlimeWorld.getResource;
 public class ModModifiers {
     private static final ModifierDeferredRegister MODIFIERS = ModifierDeferredRegister.create(SlimeWorld.MODID);
     public static final StaticModifier<FrugalModifier> frugal = MODIFIERS.register("frugal", FrugalModifier::new);
-    public static final StaticModifier<SteadfastModifier> steadfast = MODIFIERS.register("steadfast", SteadfastModifier::new);
+    public static final StaticModifier<TestModifier> steadfast = MODIFIERS.register("test", TestModifier::new);
     public static final StaticModifier<FiendishModifier> fiendish = MODIFIERS.register("fiendish", FiendishModifier::new);
     public static final StaticModifier<MajesticModifier> majestic = MODIFIERS.register("majestic", MajesticModifier::new);
 
@@ -26,6 +26,7 @@ public class ModModifiers {
             ModifierModule.LOADER.register(getResource("sputtering"), SputteringModule.LOADER);
             ModifierModule.LOADER.register(getResource("overload"), OverloadModule.LOADER);
             ModifierModule.LOADER.register(getResource("overtomato"), OverTomatoModule.LOADER);
+            ModifierModule.LOADER.register(getResource("steadfast"), SteadfastModule.LOADER);
             ModifierModule.LOADER.register(getResource("crit"), CritModule.INSTANCE.getLoader());
         }
     }

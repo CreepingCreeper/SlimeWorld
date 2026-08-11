@@ -4,7 +4,6 @@ import com.creeping_creeper.slimeworld.init.entity.TomatoProjectile;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
@@ -32,17 +31,17 @@ public record OverTomatoModule(LevelingValue chance)implements ModifierModule, M
             OverTomatoModule::new);
 
     @Override
-    public @NotNull RecordLoadable<? extends ModifierModule> getLoader() {
+    public RecordLoadable<? extends ModifierModule> getLoader() {
         return LOADER;
     }
 
     @Override
-    public @NotNull List<ModuleHook<?>> getDefaultHooks() {
+    public List<ModuleHook<?>> getDefaultHooks() {
         return DEFAULT_HOOKS;
     }
 
     @Override
-    public void afterMeleeHit(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, @NotNull ToolAttackContext context, float damageDealt) {
+    public void afterMeleeHit(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float damageDealt) {
      if (OverslimeModule.getCapacity(tool) > 0 && Modifier.RANDOM.nextFloat() < this.chance.compute(modifier)){
          LivingEntity living = context.getAttacker();
          Level level = context.getLevel();

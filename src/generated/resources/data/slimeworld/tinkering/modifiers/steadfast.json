@@ -1,0 +1,12 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "slimeworld:steadfast",
+      "amount": {
+        "each_level": 5.0
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}

@@ -3,7 +3,6 @@ package com.creeping_creeper.slimeworld.init.modifiers;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.tconstruct.library.json.LevelingValue;
 import slimeknights.tconstruct.library.modifiers.Modifier;
@@ -27,12 +26,12 @@ public record OverloadModule(LevelingValue chance) implements ModifierModule, In
             OverloadModule::new);
     
     @Override
-    public @NotNull RecordLoadable<? extends ModifierModule> getLoader() {
+    public  RecordLoadable<? extends ModifierModule> getLoader() {
         return LOADER;
     }
 
     @Override
-    public @NotNull List<ModuleHook<?>> getDefaultHooks() {
+    public List<ModuleHook<?>> getDefaultHooks() {
         return DEFAULT_HOOKS;
     }
 
@@ -41,7 +40,7 @@ public record OverloadModule(LevelingValue chance) implements ModifierModule, In
     }
 
     @Override
-    public void onInventoryTick(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, Level world, @NotNull LivingEntity holder, int itemSlot, boolean isSelected, boolean isCorrectSlot, @NotNull ItemStack stack) {
+    public void onInventoryTick(IToolStackView tool, ModifierEntry modifier, Level world, LivingEntity holder, int itemSlot, boolean isSelected, boolean isCorrectSlot, ItemStack stack) {
         // update 1 times a second, but skip when active (messes with pulling bow back)
         if (!world.isClientSide && holder.tickCount % 20 == 0 && holder.getUseItem() != stack) {
             // has a chance of restoring each second per level

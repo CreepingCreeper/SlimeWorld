@@ -10,6 +10,7 @@ public class ModModifierIds {
     public static final ModifierId overwash = id("overwash");
     public static final ModifierId overload = id("overload");
     public static final ModifierId overtomato = id("overtomato");
+    public static final ModifierId steadfast = id("steadfast");
 
     public static final ModifierId crit = id("crit");
     public static final ModifierId vanishingCurse = id("vanishing_curse");

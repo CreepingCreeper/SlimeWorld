@@ -18,7 +18,7 @@ public class FiendishModifier extends Modifier implements MeleeDamageModifierHoo
     }
 
     @Override
-    public float getMeleeDamage(@NotNull IToolStackView tool, @NotNull ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
+    public float getMeleeDamage(IToolStackView tool, ModifierEntry modifier, ToolAttackContext context, float baseDamage, float damage) {
         LivingEntity living = context.getLivingTarget();
         if (living != null && living.getMaxHealth() > living.getHealth() * 2){
             damage *= 1 + modifier.getLevel() * 0.1F;

@@ -57,5 +57,12 @@ public class ModBiomeTagsProvider extends BiomeTagsProvider {
         tag(ModTags.Biomes.SKY_VARIANT_GRASS).add(ModResourceKeys.SkyHills);
         tag(ModTags.Biomes.BLOOD_VARIANT_GRASS).add(ModResourceKeys.BloodForest);
         tag(ModTags.Biomes.ENDER_VARIANT_GRASS).add(ModResourceKeys.EnderSwamp);
-       }
+
+        tag(ModTags.Biomes.BAKERY).add(ModResourceKeys.HoneyFields, ModResourceKeys.EarthPlains, ModResourceKeys.SkyHills);
+        tag(ModTags.Biomes.GREAT_WALL).add(ModResourceKeys.EarthPlains, ModResourceKeys.SkyHills, ModResourceKeys.BloodForest, ModResourceKeys.CrystalDesert, ModResourceKeys.SulfurSprings);
+        tag(ModTags.Biomes.GROUT).add(ModResourceKeys.RedBeach, ModResourceKeys.ClayWaste, ModResourceKeys.EarthPlains, ModResourceKeys.SkyHills, ModResourceKeys.BloodForest, ModResourceKeys.MudMeadow);
+        tag(ModTags.Biomes.MAGIC_TOWER).add(ModResourceKeys.EarthPlains, ModResourceKeys.SkyHills, ModResourceKeys.BloodForest, ModResourceKeys.EnderSwamp);
+        tag(ModTags.Biomes.SMELTING_WORKSHOP).add(ModResourceKeys.SkyHills, ModResourceKeys.CrystalDesert, ModResourceKeys.SulfurSprings);
+
+    }
 }

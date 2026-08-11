@@ -94,6 +94,16 @@ public class ModTags {
         public static final TagKey<Biome> BLOOD_VARIANT_GRASS = local("blood_variant_grass");
         public static final TagKey<Biome> ENDER_VARIANT_GRASS = local("ender_variant_grass");
 
+        public static final TagKey<Biome> BAKERY = structure("bakery");
+        public static final TagKey<Biome> GREAT_WALL = structure("great_wall");
+        public static final TagKey<Biome> GROUT = structure("grout");
+        public static final TagKey<Biome> MAGIC_TOWER = structure("magic_tower");
+        public static final TagKey<Biome> SMELTING_WORKSHOP = structure("smelting_workshop");
+        public static final TagKey<Biome> CAT_CAFE = structure("cat_cafe");
+
+        private static TagKey<Biome> structure(String name) {
+            return TagKey.create(Registries.BIOME, SlimeWorld.getResource("has_structure/" + name));
+        }
         private static TagKey<Biome> local(String name) {
             return TagKey.create(Registries.BIOME, SlimeWorld.getResource(name));
         }
