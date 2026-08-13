@@ -1,6 +1,7 @@
 package com.creeping_creeper.slimeworld.init.modifiers;
 
 import com.creeping_creeper.slimeworld.library.ModUtil;
+import net.minecraft.world.entity.LivingEntity;
 import slimeknights.mantle.data.loadable.record.RecordLoadable;
 import slimeknights.tconstruct.library.json.LevelingValue;
 import slimeknights.tconstruct.library.modifiers.ModifierEntry;
@@ -33,8 +34,9 @@ public record SteadfastModule(LevelingValue amount) implements ModifierModule, E
 
     @Override
     public void onEquip(IToolStackView tool, ModifierEntry modifier, EquipmentChangeContext context) {
-        if (tool.getDamage() == 0){
-            ModUtil.addAbsorption(context.getEntity(), amount.compute(modifier));
+        LivingEntity living = context.getEntity();
+        if (tool.getDamage() == 0 && living.getHealth() == living.getMaxHealth()){
+            ModUtil.addAbsorption(living, amount.compute(modifier));
         }
     }
 

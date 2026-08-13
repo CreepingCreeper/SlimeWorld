@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld;
 
+import com.creeping_creeper.slimeworld.data.key.ModDataKeys;
 import com.creeping_creeper.slimeworld.data.provider.*;
 import com.creeping_creeper.slimeworld.data.provider.assets.ModBlockStateProvider;
 import com.creeping_creeper.slimeworld.data.provider.assets.ModItemModelProvider;
@@ -37,7 +38,6 @@ import slimeknights.tconstruct.library.utils.Util;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("unused")
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SlimeWorld {
@@ -56,7 +56,7 @@ public class SlimeWorld {
         ModOthers.registers(bus);
         ModParticles.registers(bus);
         ModSounds.registers(bus);
-
+        ModDataKeys.init();
     }
 
     @SubscribeEvent

@@ -2,10 +2,7 @@ package com.creeping_creeper.slimeworld.data.provider.tinkering;
 
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
 import com.creeping_creeper.slimeworld.init.ModItems;
-import com.creeping_creeper.slimeworld.init.modifiers.CritModule;
-import com.creeping_creeper.slimeworld.init.modifiers.OverloadModule;
-import com.creeping_creeper.slimeworld.init.modifiers.SputteringModule;
-import com.creeping_creeper.slimeworld.init.modifiers.SteadfastModule;
+import com.creeping_creeper.slimeworld.init.modifiers.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -87,6 +84,8 @@ public class ModModifierProvider extends AbstractModifierProvider {
                 .addModule(new OverloadModule(LevelingValue.eachLevel(0.15f)));
         buildModifier(ModModifierIds.steadfast)
                 .addModule(new SteadfastModule(LevelingValue.eachLevel(5f)));
+        buildModifier(ModModifierIds.unyielding)
+                .addModule(new UnyieldingModule(LevelingValue.eachLevel(10.0f)));
 
         buildModifier(ModModifierIds.crit).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(CritModule.INSTANCE);
