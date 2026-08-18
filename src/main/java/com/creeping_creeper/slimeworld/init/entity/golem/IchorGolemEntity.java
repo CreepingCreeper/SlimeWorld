@@ -24,8 +24,8 @@ import java.util.function.Predicate;
 import static slimeknights.tconstruct.library.tools.item.ranged.ModifiableCrossbowItem.KEY_CROSSBOW_AMMO;
 import static slimeknights.tconstruct.library.tools.item.ranged.ModifiableLauncherItem.KEY_DRAWBACK_AMMO;
 
-public class IchorSlimeGolemEntity extends RangeSlimeGolemEntity {
-     public IchorSlimeGolemEntity(EntityType<? extends RangeSlimeGolemEntity> entityType, Level level) {
+public class IchorGolemEntity extends RangeSlimeGolemEntity {
+     public IchorGolemEntity(EntityType<? extends RangeSlimeGolemEntity> entityType, Level level) {
         super(entityType, level);
     }
 

@@ -89,7 +89,7 @@ public class ClientEvent extends ClientEventBase {
         event.registerEntityRenderer(ModEntities.EarthSlimeGolemEntity.get(), EarthSlimeGolemRenderer::new);
         event.registerEntityRenderer(ModEntities.SkySlimeGolemEntity.get(), SKY_SLIME_GOLEM_FACTORY);
         event.registerEntityRenderer(ModEntities.OceanSlimeGolemEntity.get(), OCEAN_SLIME_GOLEM_FACTORY);
-        event.registerEntityRenderer(ModEntities.IchorSlimeGolemEntity.get(), ICHOR_SLIME_GOLEM_FACTORY);
+        event.registerEntityRenderer(ModEntities.IchorGolemEntity.get(), ICHOR_SLIME_GOLEM_FACTORY);
         event.registerEntityRenderer(ModEntities.EnderSlimeGolemEntity.get(), ENDER_SLIME_GOLEM_FACTORY);
         BlockEntityRendererProvider<DryingRackBlockEntity> tableRenderer = InventoryBlockEntityRenderer::new;
         event.registerBlockEntityRenderer(ModItems.DryingRackEntity.get(), tableRenderer);

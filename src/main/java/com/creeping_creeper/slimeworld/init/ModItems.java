@@ -313,7 +313,7 @@ public class ModItems {
         output.accept(ModEntities.EarthSlimeGolemEntity);
         output.accept(ModEntities.SkySlimeGolemEntity);
         output.accept(ModEntities.OceanSlimeGolemEntity);
-        output.accept(ModEntities.IchorSlimeGolemEntity);
+        output.accept(ModEntities.IchorGolemEntity);
         output.accept(ModEntities.EnderSlimeGolemEntity);
     }
 

@@ -82,27 +82,27 @@ public class ModEntities {
             EntityType.Builder.of(EarthSlimeGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.EarthSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.EarthSlimeGolemEntity.get().create(world)), 0x8CD782, 0x71AC63);
     public static final EntityObject<SkySlimeGolemEntity> SkySlimeGolemEntity = ENTITIES.registerWithEgg("sky_slime_golem", () ->
             EntityType.Builder.of(SkySlimeGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SkySlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.SkySlimeGolemEntity.get().create(world)), 0x82D7D5, 0x63ACAB);
     public static final EntityObject<OceanSlimeGolemEntity> OceanSlimeGolemEntity = ENTITIES.registerWithEgg("ocean_slime_golem", () ->
             EntityType.Builder.of(OceanSlimeGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.OceanSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
-    public static final EntityObject<IchorSlimeGolemEntity> IchorSlimeGolemEntity = ENTITIES.registerWithEgg("ichor_slime_golem", () ->
-            EntityType.Builder.of(IchorSlimeGolemEntity::new, MobCategory.MONSTER)
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.OceanSlimeGolemEntity.get().create(world)), 0x568bf5, 0x3f76e4);
+    public static final EntityObject<IchorGolemEntity> IchorGolemEntity = ENTITIES.registerWithEgg("ichor_golem", () ->
+            EntityType.Builder.of(com.creeping_creeper.slimeworld.init.entity.golem.IchorGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.IchorSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.IchorGolemEntity.get().create(world)), 0xFFB97C, 0xFF8324);
     public static final EntityObject<EnderSlimeGolemEntity> EnderSlimeGolemEntity = ENTITIES.registerWithEgg("ender_slime_golem", () ->
             EntityType.Builder.of(EnderSlimeGolemEntity::new, MobCategory.MONSTER)
                     .sized(0.6F, 1.99F)
                     .clientTrackingRange(8)
-                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.EnderSlimeGolemEntity.get().create(world)), 0x80916a, 0x18260d);
+                    .setCustomClientFactory((spawnEntity, world) -> ModEntities.EnderSlimeGolemEntity.get().create(world)), 0xD37CFF, 0xA936ED);
 
     public static final RegistryObject<EntityType<SteelSlimeBossEntity>> SteelSlimeBossEntity = ENTITIES.register("steelslime_boss", () ->
             EntityType.Builder.of(SteelSlimeBossEntity::new, MobCategory.MONSTER)

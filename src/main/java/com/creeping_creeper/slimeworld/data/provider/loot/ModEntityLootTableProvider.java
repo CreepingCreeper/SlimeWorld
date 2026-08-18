@@ -61,7 +61,7 @@ public class ModEntityLootTableProvider extends EntityLootSubProvider {
         add(ModEntities.EarthSlimeGolemEntity.get(), LootTable.lootTable());
         add(ModEntities.SkySlimeGolemEntity.get(), LootTable.lootTable());
         add(ModEntities.OceanSlimeGolemEntity.get(), LootTable.lootTable());
-        add(ModEntities.IchorSlimeGolemEntity.get(), LootTable.lootTable());
+        add(ModEntities.IchorGolemEntity.get(), LootTable.lootTable());
         add(ModEntities.EnderSlimeGolemEntity.get(), LootTable.lootTable());
 
         add(ModEntities.SteelSlimeBossEntity.get(), LootTable.lootTable());
