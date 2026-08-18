@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
 public class EarthSlimeGolemRenderer extends SlimeGolemRenderer{
-    private static final ResourceLocation SLIME_LOCATION =SlimeWorld.getResource("textures/entity/golem/earth_slime.png");
+    private static final ResourceLocation SLIME_LOCATION = SlimeWorld.getResource("textures/entity/golem/earth_slime");
 
     public EarthSlimeGolemRenderer(EntityRendererProvider.Context context) {
         super(context, SLIME_LOCATION);

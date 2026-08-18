@@ -59,8 +59,11 @@ public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHe
                 .define('s',  ModItems.Cinnabar.getSlab())
                 .pattern("s")
                 .pattern("s")
-                .unlockedBy("has_item", has( ModItems.Cinnabar.getSlab()))
+                .unlockedBy("has_item", has(ModItems.Cinnabar.getSlab()))
                 .save(consumer, location(building + id(ModItems.ChiseledCinnabar).getPath()));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModItems.Cinnabar), RecipeCategory.BUILDING_BLOCKS, ModItems.ChiseledCinnabar)
+                .unlockedBy("has_item", has(ModItems.Cinnabar))
+                .save(consumer, location(building + id(ModItems.ChiseledCinnabar).getPath() + "_stonecutter"));
         stairSlabWallCrafting(consumer, ModItems.Sulfur, building, true);
         polishingRecipes(consumer, ModItems.Sulfur, ModItems.PolishedSulfur, building, true);
         stairSlabWallCrafting(consumer, ModItems.PolishedSulfur, building, true);
@@ -70,8 +73,11 @@ public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHe
                 .define('s',  ModItems.Sulfur.getSlab())
                 .pattern("s")
                 .pattern("s")
-                .unlockedBy("has_item", has( ModItems.Cinnabar.getSlab()))
+                .unlockedBy("has_item", has(ModItems.Cinnabar.getSlab()))
                 .save(consumer, location(building + id(ModItems.ChiseledSulfur).getPath()));
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModItems.Sulfur), RecipeCategory.BUILDING_BLOCKS, ModItems.ChiseledSulfur)
+                .unlockedBy("has_item", has(ModItems.Sulfur))
+                .save(consumer, location(building + id(ModItems.ChiseledSulfur).getPath() + "_stonecutter"));
 
         String gadgets = "gadgets/";
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.NecroticBoneMeal, 3)

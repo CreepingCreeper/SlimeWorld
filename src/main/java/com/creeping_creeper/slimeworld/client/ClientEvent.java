@@ -58,10 +58,10 @@ import static net.minecraft.client.model.geom.LayerDefinitions.OUTER_ARMOR_DEFOR
 
 @Mod.EventBusSubscriber(modid = SlimeWorld.MODID, value= Dist.CLIENT, bus= Mod.EventBusSubscriber.Bus.MOD)
 public class ClientEvent extends ClientEventBase {
-    public static final SlimeGolemRenderer.SlimeGolemFactory SKY_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/sky_slime.png"));
-    public static final SlimeGolemRenderer.SlimeGolemFactory OCEAN_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/ocean_slime.png"));
-    public static final SlimeGolemRenderer.SlimeGolemFactory ICHOR_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/ichor_slime.png"));
-    public static final SlimeGolemRenderer.SlimeGolemFactory ENDER_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/golem/ender_slime.png"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory SKY_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/entity/golem/sky_slime"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory OCEAN_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/entity/golem/ocean_slime"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory ICHOR_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/entity/golem/ichor"));
+    public static final SlimeGolemRenderer.SlimeGolemFactory ENDER_SLIME_GOLEM_FACTORY = new SlimeGolemRenderer.SlimeGolemFactory(SlimeWorld.getResource("textures/entity/golem/ender_slime"));
 
     public static final SlimeFactory OCEAN_SLIME_FACTORY = new SlimeFactory(SlimeWorld.getResource("textures/entity/ocean_slime.png"), SlimeWorld.getResource("textures/entity/bronze_slime.png"));
     public static final InvertedSlimeFactory ICHOR_SLIME_FACTORY = new InvertedSlimeFactory(SlimeWorld.getResource("textures/entity/ichor_slime.png"), SlimeWorld.getResource("textures/entity/cobalt_slime.png"));

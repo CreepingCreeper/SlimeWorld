@@ -17,13 +17,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-@SuppressWarnings("removal")
 public class SlimeGolemRenderer extends HumanoidMobRenderer<BaseSlimeGolemEntity, SlimeGolemModel<BaseSlimeGolemEntity>>{
-    private static final ResourceLocation SKELETON_LOCATION = new ResourceLocation("textures/entity/skeleton/skeleton.png");
+    private ResourceLocation slime;
 
     public SlimeGolemRenderer(EntityRendererProvider.Context context, ResourceLocation slime) {
         this(context, ModelLayers.SKELETON, ModelLayers.SKELETON_INNER_ARMOR, ModelLayers.SKELETON_OUTER_ARMOR);
-        this.addLayer(new SlimeGolemClothingLayer<>(this, context.getModelSet(), slime));
+        this.slime = slime.withSuffix(".png");
+        this.addLayer(new SlimeGolemClothingLayer<>(this, context.getModelSet(), slime.withSuffix("_cloth.png")));
     }
 
     public SlimeGolemRenderer(EntityRendererProvider.Context context, ModelLayerLocation skeletonLayer, ModelLayerLocation innerModelLayer, ModelLayerLocation outerModelLayer) {
@@ -37,7 +37,7 @@ public class SlimeGolemRenderer extends HumanoidMobRenderer<BaseSlimeGolemEntity
     }
 
     public @NotNull ResourceLocation getTextureLocation(@NotNull BaseSlimeGolemEntity entity) {
-        return SKELETON_LOCATION;
+        return slime;
     }
 
     public record SlimeGolemFactory(ResourceLocation slime) implements EntityRendererProvider<BaseSlimeGolemEntity> {

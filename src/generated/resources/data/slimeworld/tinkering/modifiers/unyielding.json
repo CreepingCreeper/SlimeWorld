@@ -1,0 +1,12 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "slimeworld:unyielding",
+      "amount": {
+        "each_level": 10.0
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}
