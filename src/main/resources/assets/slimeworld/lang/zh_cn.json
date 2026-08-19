@@ -141,7 +141,17 @@
   "entity.slimeworld.sulfur_cube": "硫方怪",
   "item.slimeworld.sulfur_cube_bucket": "硫方怪桶",
   "item.slimeworld.sulfur_cube_spawn_egg": "硫方怪刷怪蛋",
-
+  "entity.slimeworld.earth_slime_golem": "大地黏液傀儡",
+  "item.slimeworld.earth_slime_golem_spawn_egg": "大地黏液傀儡刷怪蛋",
+  "entity.slimeworld.sky_slime_golem": "碧空黏液傀儡",
+  "item.slimeworld.sky_slime_golem_spawn_egg": "碧空黏液傀儡刷怪蛋",
+  "entity.slimeworld.ocean_slime_golem": "海洋黏液傀儡",
+  "item.slimeworld.ocean_slime_golem_spawn_egg": "海洋黏液傀儡刷怪蛋",
+  "entity.slimeworld.ichor_golem": "灵浆傀儡",
+  "item.slimeworld.ichor_golem_spawn_egg": "灵浆傀儡刷怪蛋",
+  "entity.slimeworld.ender_slime_golem": "末影黏液傀儡",
+  "item.slimeworld.ender_slime_golem_spawn_egg": "末影黏液傀儡刷怪蛋",
+  
   "entity.slimeworld.steelslime_boss": "钢史莱姆",
   "entity.slimeworld.knightslime_boss": "骑士史莱姆",
   

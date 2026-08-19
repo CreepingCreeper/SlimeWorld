@@ -110,7 +110,6 @@ public class ModEntities {
                     .setTrackingRange(48)
                     .sized(2.04F, 2.04F)
                     .setCustomClientFactory((spawnEntity, world) -> ModEntities.SteelSlimeBossEntity.get().create(world)));
-
     public static final RegistryObject<EntityType<KnightSlimeBossEntity>> KnightSlimeBossEntity = ENTITIES.register("knightslime_boss", () ->
             EntityType.Builder.of(KnightSlimeBossEntity::new, MobCategory.MONSTER)
                     .setShouldReceiveVelocityUpdates(true)

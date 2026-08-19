@@ -141,7 +141,16 @@
   "entity.slimeworld.sulfur_cube": "Sulfur Cube",
   "item.slimeworld.sulfur_cube_bucket": "Bucket of Sulfur Cube",
   "item.slimeworld.sulfur_cube_spawn_egg": "Sulfur Cube Spawn Egg",
-
+  "entity.slimeworld.earth_slime_golem": "Earth Slimegolem",
+  "item.slimeworld.earth_slime_golem_spawn_egg": "Earth Slimegolem Spawn Egg",
+  "entity.slimeworld.sky_slime_golem": "Sky Slimegolem",
+  "item.slimeworld.sky_slime_golem_spawn_egg": "Sky Slimegolem Spawn Egg",
+  "entity.slimeworld.ocean_slime_golem": "Ocean Slimegolem",
+  "item.slimeworld.ocean_slime_golem_spawn_egg": "Ocean Slimegolem Spawn Egg",
+  "entity.slimeworld.ichor_golem": "Ichorgolem",
+  "item.slimeworld.ichor_golem_spawn_egg": "Ichorgolem Spawn Egg",
+  "entity.slimeworld.ender_slime_golem": "Ender Slimegolem",
+  "item.slimeworld.ender_slime_golem_spawn_egg": "Ender Slimegolem Spawn Egg",
   "entity.slimeworld.steelslime_boss": "Steelslime",
   "entity.slimeworld.knightslime_boss": "Knightslime",
 
