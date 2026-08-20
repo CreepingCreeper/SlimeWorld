@@ -28,6 +28,7 @@ public class ModModifiers {
             ModifierModule.LOADER.register(getResource("steadfast"), SteadfastModule.LOADER);
             ModifierModule.LOADER.register(getResource("unyielding"), UnyieldingModule.LOADER);
             ModifierModule.LOADER.register(getResource("crit"), CritModule.INSTANCE.getLoader());
+            ModifierModule.LOADER.register(getResource("slime_protect"), SlimeProtectModule.INSTANCE.getLoader());
         }
     }
 

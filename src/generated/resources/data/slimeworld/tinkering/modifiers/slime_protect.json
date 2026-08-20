@@ -1,0 +1,9 @@
+{
+  "level_display": "tconstruct:no_levels",
+  "modules": [
+    {
+      "type": "slimeworld:slime_protect"
+    }
+  ],
+  "tooltip_display": "always"
+}

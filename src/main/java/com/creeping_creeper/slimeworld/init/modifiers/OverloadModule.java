@@ -45,7 +45,7 @@ public record OverloadModule(LevelingValue chance) implements ModifierModule, In
         if (!world.isClientSide && holder.tickCount % 20 == 0 && holder.getUseItem() != stack) {
             // has a chance of restoring each second per level
             CapacityBarHook bar = getBar(modifier);
-            if (bar.getAmount(tool) < bar.getCapacity(tool, modifier) && Modifier.RANDOM.nextFloat() < this.chance.compute(modifier)) {
+            if (bar.getAmount(tool) > 0 && Modifier.RANDOM.nextFloat() < this.chance.compute(modifier)) {
                 bar.removeAmount(tool, modifier, 1);
             }
         }

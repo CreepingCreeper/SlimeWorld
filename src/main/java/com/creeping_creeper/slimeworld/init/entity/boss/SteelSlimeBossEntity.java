@@ -28,8 +28,8 @@ public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
     public SteelSlimeBossEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
         if (!level.isClientSide) {
-            tryAddAttribute(Attributes.ARMOR, new AttributeModifier("slimeworld.small_armor_bonus", 4, AttributeModifier.Operation.ADDITION));
-            tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("slimeworld.small_toughness_bonus", 3, AttributeModifier.Operation.ADDITION));
+            tryAddAttribute(Attributes.ARMOR, new AttributeModifier("slimeworld.steel_slime_barmor_bonus", 4, AttributeModifier.Operation.ADDITION));
+            tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("slimeworld.steel_slime_toughness_bonus", 3, AttributeModifier.Operation.ADDITION));
           }
         this.isImmune = false;
     }
@@ -39,7 +39,6 @@ public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
         super.tick();
         if (this.level().isClientSide) return;
 
-        // 满足条件：有目标+地面+无冷却+无眩晕+不在冲刺
         if (getTarget() != null && onGround() && !isCooling() && isImmobile() && !isImmune) {
             this.setStunnedTick(40);
             startImmune();
@@ -51,11 +50,6 @@ public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
             skillTick--;
             if (skillTick <= 0) tryEndImmune();
         }
-    }
-
-    @Override
-    protected void pushLiving(@NotNull LivingEntity living) {
-        super.pushLiving(living);
     }
 
     private void startImmune() {
@@ -74,7 +68,7 @@ public class SteelSlimeBossEntity extends BaseBossSlimeEntity {
             this.skillTick = 0;
             setCooling(400 + random.nextInt(10) * 20);
             this.setStunnedTick(40);
-        }else  this.skillTick = 20;
+        }else this.skillTick = 20;
     }
 
     @Override

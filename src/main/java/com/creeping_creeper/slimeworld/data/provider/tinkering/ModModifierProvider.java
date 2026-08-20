@@ -89,6 +89,8 @@ public class ModModifierProvider extends AbstractModifierProvider {
 
         buildModifier(ModModifierIds.crit).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(CritModule.INSTANCE);
+        buildModifier(ModModifierIds.slimeProtect).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
+                .addModule(SlimeProtectModule.INSTANCE);
         buildModifier(ModModifierIds.slimeBalance).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(new SwappableToolTraitsModule(null, "", ToolHooks.TOOL_TRAITS))
                 .addModule(new SwappableToolTraitsModule(null, "", ToolHooks.TOOL_TRAITS))

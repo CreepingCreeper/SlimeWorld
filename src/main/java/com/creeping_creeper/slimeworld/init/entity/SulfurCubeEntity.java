@@ -87,6 +87,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
         this.setCanPickUpLoot(true);
         this.moveControl = new SulfurCubeMoveControl<>(this);
         this.lookControl = new SulfurCubeLookControl(this);
+        this.age = this.isTiny() ? -24000 : 0;
     }
 
     @Override
@@ -452,10 +453,10 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     }
 
     @Override
-    public void tick() {
+    public void aiStep() {
         this.tickFuse();
         this.primeWhenOnPoweredPosition();
-        super.tick();
+        super.aiStep();
         if (!this.level().isClientSide) {
             if (pickupTimer > 0){
                 pickupTimer--;

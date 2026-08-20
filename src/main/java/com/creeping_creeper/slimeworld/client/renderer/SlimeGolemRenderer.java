@@ -26,8 +26,8 @@ public class SlimeGolemRenderer extends HumanoidMobRenderer<BaseSlimeGolemEntity
         this.addLayer(new SlimeGolemClothingLayer<>(this, context.getModelSet(), slime.withSuffix("_cloth.png")));
     }
 
-    public SlimeGolemRenderer(EntityRendererProvider.Context context, ModelLayerLocation skeletonLayer, ModelLayerLocation innerModelLayer, ModelLayerLocation outerModelLayer) {
-        super(context, new SlimeGolemModel<>(context.bakeLayer(skeletonLayer)), 0.5F);
+    public SlimeGolemRenderer(EntityRendererProvider.Context context, ModelLayerLocation modelLayerLocation, ModelLayerLocation innerModelLayer, ModelLayerLocation outerModelLayer) {
+        super(context, new SlimeGolemModel<>(context.bakeLayer(modelLayerLocation)), 0.5F);
         this.addLayer(new HumanoidArmorLayer<>(this, new SlimeGolemModel<>(context.bakeLayer(innerModelLayer)), new SlimeGolemModel<>(context.bakeLayer(outerModelLayer)), context.getModelManager()));
     }
 

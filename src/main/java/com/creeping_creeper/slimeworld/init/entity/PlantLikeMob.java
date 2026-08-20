@@ -32,6 +32,7 @@ import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.IForgeShearable;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.FoliageType;
 
@@ -48,6 +49,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
     private final EastWestPathMoveGoal westGoal = new EastWestPathMoveGoal(this, 1D, false);
     private static final EntityDataAccessor<String> FOLIAGE_TYPE = SynchedEntityData.defineId(PlantLikeMob.class, EntityDataSerializers.STRING);
     private boolean wasDay = true;
+    private boolean canLive = true;
     private int moveTime = 0;
 
     public PlantLikeMob(EntityType<? extends AgeableMob> type, Level level) {
@@ -65,32 +67,36 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
         return PathfinderMob.createLivingAttributes()
                 .add(Attributes.FOLLOW_RANGE, 16.0D)
                 .add(Attributes.MAX_HEALTH, 5.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.25D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+                .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void aiStep() {
+        super.aiStep();
 
         if (level().isClientSide()) return;
 
-        if (moveTime >= 0) {
+        if (moveTime > 0) {
             if (moveTime == 1){
                 Vec3 center = this.blockPosition().getCenter();
                 this.setPos(center.x, this.getY(), center.z);
                 this.setDeltaMovement(Vec3.ZERO);
-                this.goalSelector.removeGoal(panicGoal);
-                this.goalSelector.removeGoal(eastGoal);
-                this.goalSelector.removeGoal(westGoal);
+                this.goalSelector.removeAllGoals((goal -> goal.getFlags().contains(Goal.Flag.MOVE)));
+                checkCanLive();
             }
             moveTime--;
-        }else tickDayNightMove();
+        }else {
+            tickDayNightMove();
+            if (!this.canLive){
+                this.hurt(this.damageSources().dryOut(), 2.0F);
+            }
+        }
     }
 
     @Override
-    public void setDeltaMovement(@NotNull Vec3 vec3) {
-        super.setDeltaMovement(this.moveTime >= 0 ? vec3 : new Vec3(0, vec3.y, 0));
+    public boolean causeFallDamage(float distance, float damageMultiplier, @NotNull DamageSource source) {
+        checkCanLive();
+        return super.causeFallDamage(distance, damageMultiplier, source);
     }
 
     private void tickDayNightMove() {
@@ -98,8 +104,8 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
 
         if (nowDay != wasDay) {
             if (nowDay){
-                this.goalSelector.addGoal(2, eastGoal);
-            }else this.goalSelector.addGoal(3, westGoal);
+                this.goalSelector.addGoal(3, eastGoal);
+            }else this.goalSelector.addGoal(4, westGoal);
             moveTime = 120;
         }
 
@@ -118,6 +124,9 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
         return false;
     }
 
+    @Override
+    public void push(@NotNull Entity p_33474_) {
+    }
 
     @Override
     public boolean isPushedByFluid() {
@@ -154,6 +163,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
     public void addAdditionalSaveData(@Nonnull CompoundTag compoundTag) {
         super.addAdditionalSaveData(compoundTag);
         compoundTag.putBoolean("wasDay", wasDay);
+        compoundTag.putBoolean("canLive", canLive);
         compoundTag.putInt("moveTime", moveTime);
         compoundTag.putString("foliageType", this.entityData.get(FOLIAGE_TYPE));
     }
@@ -162,6 +172,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
     public void readAdditionalSaveData(@Nonnull CompoundTag compoundTag) {
         super.readAdditionalSaveData(compoundTag);
         this.wasDay = compoundTag.getBoolean("wasDay");
+        this.canLive = compoundTag.getBoolean("canLive");
         this.moveTime = compoundTag.getInt("moveTime");
         if (compoundTag.contains("foliageType")) {
             this.entityData.set(FOLIAGE_TYPE, compoundTag.getString("foliageType"));
@@ -174,6 +185,10 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
             return TinkerWorld.slimeTallGrass.get(FoliageType.EARTH);
         }
         return TinkerWorld.slimeTallGrass.get(FoliageType.valueOf(raw));
+    }
+
+    private void checkCanLive(){
+        this.canLive = this.getBlockStateOn().is(TinkerTags.Blocks.SLIMY_SOIL) && level().canSeeSky(this.getOnPos());
     }
 
     public boolean isShearable(@NotNull ItemStack item, Level level, BlockPos pos) {
@@ -195,7 +210,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
         return Collections.emptyList();
     }
 
-    public static class EastWestPathMoveGoal extends Goal {
+    static class EastWestPathMoveGoal extends Goal {
         private final PathfinderMob mob;
         private final PathNavigation navigation;
         private final double speedModifier;
@@ -214,7 +229,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
 
         @Override
         public boolean canUse() {
-            if (mob.isNoAi()) return false;
+            if (this.mob.isNoAi()) return false;
             if (recalcPathCooldown > 0) {
                 recalcPathCooldown--;
                 return false;
@@ -224,7 +239,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
 
         @Override
         public boolean canContinueToUse() {
-            return !navigation.isStuck() && !mob.isNoAi() && currentPath != null && !currentPath.isDone();
+            return !navigation.isStuck() && !this.mob.isNoAi() && currentPath != null && !currentPath.isDone();
         }
 
         @Override
@@ -244,16 +259,16 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
 
             int range = 16;
             int dx = goEast ? range : -range;
-            int targetX = mob.getBlockX() + dx;
-            int targetY = mob.getBlockY();
-            int targetZ = mob.getBlockZ();
+            int targetX = this.mob.getBlockX() + dx;
+            int targetY = this.mob.getBlockY();
+            int targetZ = this.mob.getBlockZ();
 
             currentPath = navigation.createPath(targetX, targetY, targetZ, 0);
             if (currentPath != null && !currentPath.isDone()) {
                 navigation.moveTo(currentPath, speedModifier);
                 Direction dir = goEast ? Direction.EAST : Direction.WEST;
-                mob.setYRot(dir.toYRot());
-                mob.yBodyRot = mob.getYRot();
+                this.mob.setYRot(dir.toYRot());
+                this.mob.yBodyRot = this.mob.getYRot();
             }
         }
 
@@ -263,4 +278,5 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
             currentPath = null;
         }
     }
+
 }

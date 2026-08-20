@@ -55,7 +55,6 @@ public abstract class BaseBossSlimeEntity extends Slime {
     public BaseBossSlimeEntity(EntityType<? extends Slime> entityType, Level level) {
         super(entityType, level);
         this.bossEvent = new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS);
-        this.summonCount = 32;
         if (!level.isClientSide) {
             tryAddAttribute(Attributes.ARMOR, new AttributeModifier("tconstruct.small_armor_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
             tryAddAttribute(Attributes.ARMOR_TOUGHNESS, new AttributeModifier("tconstruct.small_toughness_bonus", 3, AttributeModifier.Operation.MULTIPLY_TOTAL));
@@ -92,8 +91,8 @@ public abstract class BaseBossSlimeEntity extends Slime {
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void aiStep() {
+        super.aiStep();
         if (!this.level().isClientSide){
             if (isCooling()) setCooling(this.getCooling() - 1);
             if (this.stunnedTick > 0 && --this.stunnedTick == 0) {
@@ -188,17 +187,17 @@ public abstract class BaseBossSlimeEntity extends Slime {
     protected void actuallyHurt(@NotNull DamageSource damageSource, float damageAmount) {
         super.actuallyHurt(damageSource, damageAmount);
         Level level = level();
-        if (summonCount == 0){
+        if (summonCount >= 32){
             return;
-        }else {
+        } else {
             List<ArmoredSlimeEntity> list = level().getEntitiesOfClass(ArmoredSlimeEntity.class, this.getBoundingBox().inflate(64, 32, 64));
-            summonCount = 32 - list.size();
+            summonCount = list.size();
         }
         int count = this.random.nextInt(4 - this.getSize() / 4);
         float offset = this.getSize() / 4.0F;
         for(int i = 0; i < count; ++i) {
             float x = ((i % 2) - 0.5F) * offset;
-            float z = ((i / 2) - 0.5F) * offset;
+            float z = (((float) i / 2) - 0.5F) * offset;
             ArmoredSlimeEntity slime = getSummonedEntity().create(level);
             assert slime != null;
             if (this.isPersistenceRequired()) {
@@ -207,7 +206,7 @@ public abstract class BaseBossSlimeEntity extends Slime {
             slime.setSize(this.random.nextInt(2) * 2 +2, true);
             slime.setItemSlot(EquipmentSlot.HEAD, tool(getSummonedPlating()).createStack());
             slime.moveTo(this.getX() + x, this.getY() + 0.5D, this.getZ() + z, this.random.nextFloat() * 360.0F, 0.0F);
-            this.summonCount --;
+            this.summonCount += count;
             level.addFreshEntity(slime);
         }
     }

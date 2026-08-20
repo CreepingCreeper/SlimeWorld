@@ -36,8 +36,8 @@ public class ModEntityTypeTagsProvider extends EntityTypeTagsProvider {
         tag(Tags.EntityTypes.BOSSES).add(ModEntities.SteelSlimeBossEntity.get(), ModEntities.KnightSlimeBossEntity.get());
         //self
         tag(ModTags.EntityTypes.ANTIGRAVITY).add(ModEntities.IchorSlimeEntity.get());
-
-        tag(ModTags.EntityTypes.ORE_BERRY_BUSHES_IMMUNE).add(EntityType.FOX, EntityType.BEE).addTag(ModTags.EntityTypes.SLIME);
+        tag(ModTags.EntityTypes.SLIME_GOLEM).add(ModEntities.EarthSlimeGolemEntity.get(), ModEntities.SkySlimeGolemEntity.get(), ModEntities.OceanSlimeEntity.get(), ModEntities.IchorGolemEntity.get(), ModEntities.EnderSlimeGolemEntity.get());
+        tag(ModTags.EntityTypes.ORE_BERRY_BUSHES_IMMUNE).add(EntityType.FOX, EntityType.BEE).addTag(ModTags.EntityTypes.SLIME).addTag(ModTags.EntityTypes.SLIME_GOLEM).addOptional(MAID);
         tag(ModTags.EntityTypes.PLAY_SULFUR_CUBE).add(EntityType.PLAYER).addOptional(MAID);
         tag(ModTags.EntityTypes.SUMMON_TOMATO_SLIME).add(ModEntities.TomatoProjectileEntity.get()).addOptional(FD_ROTTEN_TOMATO).addOptional(FC_ROTTEN_TOMATO);
     }

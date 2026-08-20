@@ -40,6 +40,7 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity implements Grow
 
     public OriginSlimeEntity(EntityType<? extends OriginSlimeEntity> type, Level worldIn) {
         super(type, worldIn);
+        this.age = this.isHuge() ? 0 : -24000;
     }
 
     @Override
@@ -49,12 +50,12 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity implements Grow
     }
 
     @Override
-    public void tick() {
-        super.tick();
+    public void aiStep() {
+        super.aiStep();
         if (!this.level().isClientSide && !this.isHuge() && this.isAlive()) {
             if (age == 0){
                 this.setSize(this.getSize() * 2, true);
-                if (this.getSize() == 2){
+                if (!this.isHuge()){
                     age = -24000;
                 }
             }else age++;
@@ -162,7 +163,7 @@ public class OriginSlimeEntity extends TravelersPlateSlimeEntity implements Grow
     @Nullable
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData spawnData, @Nullable CompoundTag dataTag) {
         SpawnGroupData spawnGroupData = super.finalizeSpawn(level, difficulty, reason, spawnData, dataTag);
-        this.age = this.isTiny() ? -24000 : 0;
+        this.age = this.isHuge() ? 0 : -24000;
         return spawnGroupData;
     }
 

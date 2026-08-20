@@ -52,7 +52,7 @@ public class BaseSlimeGolemEntity extends Monster {
      }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25F).add(ForgeMod.ENTITY_REACH.get(), 1.0F);
+        return Monster.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.4F).add(ForgeMod.ENTITY_REACH.get(), 1.0F);
     }
 
     protected void playStepSound(@NotNull BlockPos pos, @NotNull BlockState block) {

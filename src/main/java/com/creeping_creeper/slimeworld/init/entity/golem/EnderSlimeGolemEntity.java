@@ -63,6 +63,7 @@ public class EnderSlimeGolemEntity extends RangeSlimeGolemEntity {
         double d2 = target.getZ() - this.getZ();
         double d3 = Math.sqrt(d0 * d0 + d2 * d2);
         shuriken.shoot(d0, d1 + d3 * 0.2D, d2, velocity, 1F);
+        stack.shrink(1);
         level().addFreshEntity(shuriken);
         TeleportHelper.randomNearbyTeleport(this, teleportPredicate);
         this.reassessWeaponGoal();

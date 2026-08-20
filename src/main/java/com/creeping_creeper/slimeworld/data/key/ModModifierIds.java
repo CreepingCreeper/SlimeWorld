@@ -14,6 +14,7 @@ public class ModModifierIds {
     public static final ModifierId unyielding = id("unyielding");
 
     public static final ModifierId crit = id("crit");
+    public static final ModifierId slimeProtect = id("slime_protect");
     public static final ModifierId vanishingCurse = id("vanishing_curse");
     public static final ModifierId slimeBalance = id("slime_balance");
     private static ModifierId id(String name) {

@@ -72,6 +72,7 @@ public class ModTags {
     }
     public static class EntityTypes {
         public static final TagKey<EntityType<?>> SLIME = common("slimes");
+        public static final TagKey<EntityType<?>> SLIME_GOLEM = local("slime_golems");
         /** any entity types that immunize to the damage from ore berry bushes */
         public static final TagKey<EntityType<?>> ORE_BERRY_BUSHES_IMMUNE = local("ore_berry_bushes_immune");
         public static final TagKey<EntityType<?>> ANTIGRAVITY = local("antigravity");
