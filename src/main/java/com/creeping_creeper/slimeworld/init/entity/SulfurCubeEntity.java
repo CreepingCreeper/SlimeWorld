@@ -182,7 +182,7 @@ public class SulfurCubeEntity extends Slime implements IForgeShearable, Bucketab
     }
 
     @Override
-    public SoundEvent getPickupSound() {
+    public @NotNull SoundEvent getPickupSound() {
         return ModSounds.BUCKET_FILL_SULFUR_CUBE.get();
     }
 

@@ -170,6 +170,9 @@ public class ModItems {
     public static final ItemObject<Block> GoldBerryBush = BLOCKS.register("gold_berry_bush", () -> new OreBerryBushBlock(GoldShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> CobaltBerryBush = BLOCKS.register("cobalt_berry_bush", () -> new OreBerryBushBlock(TinkerWorld.cobaltShard, oreBush()), UNCOMMON_BLOCK_ITEM);
 
+    public static final ItemObject<Item> MagicPot = ITEMS.register("magic_pot", GENERAL_PROPS);
+    public static final ItemObject<Item> PlantPot = ITEMS.register("plant_pot", () -> new PotItem(GENERAL_PROPS));
+
     public static final ItemObject<Item> Bubble = ITEMS.register("bubble", GENERAL_PROPS);
     public static final ItemObject<Block> WaterBubble = BLOCKS.register("water_bubble", () -> new WaterBubbleBlock(bubble(MapColor.WATER)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> LavaBubble = BLOCKS.register("lava_bubble", () -> new BubbleBlock(builder(MapColor.COLOR_RED).randomTicks().noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never), () -> Fluids.LAVA), (b) -> new BurnableBlockItem(b, new Item.Properties().craftRemainder(Bubble.asItem()), 2000));
@@ -300,6 +303,8 @@ public class ModItems {
         output.accept(HoneyBubble);
         output.accept(VenomBubble);
 
+        output.accept(MagicPot);
+        output.accept(PlantPot);
         //output.accept(MeleeRune);
 
         output.accept(SulfurCubeBucket);

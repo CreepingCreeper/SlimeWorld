@@ -55,6 +55,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         pathItem(ModItems.MagmaSlimeDrop.get(), food);
         pathItem(ModItems.IchorSlimeDrop.get(), food);
         pathItem(ModItems.EnderSlimeDrop.get(), food);
+
+        basicItem(ModItems.MagicPot.get());
     }
 
     @SuppressWarnings("deprecation") // no its not

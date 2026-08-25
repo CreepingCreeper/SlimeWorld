@@ -1,0 +1,12 @@
+{
+  "loader": "mantle:nbt_key",
+  "parent": "forge:item/default",
+  "textures": {
+    "default": "tconstruct:item/slot/default",
+    "sky": "tconstruct:item/slot/upgrade",
+    "blood": "tconstruct:item/materials/hollow_gem",
+    "ender": "tconstruct:item/slot/defense"
+  },
+  "nbt_key": "type",
+  "extra_textures_key": "slimeworld:plant_pot"
+}

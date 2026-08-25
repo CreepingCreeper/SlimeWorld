@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.client.renderer;
 
-import com.creeping_creeper.slimeworld.init.entity.PlantLikeMob;
+import com.creeping_creeper.slimeworld.init.entity.PlantLikeEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -17,7 +17,7 @@ import net.minecraftforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
-public class BlockLikeMobRenderer<T extends PlantLikeMob> extends EntityRenderer<T> {
+public class BlockLikeMobRenderer<T extends PlantLikeEntity> extends EntityRenderer<T> {
     private final BlockRenderDispatcher blockRenderer;
 
     public BlockLikeMobRenderer(EntityRendererProvider.Context context) {

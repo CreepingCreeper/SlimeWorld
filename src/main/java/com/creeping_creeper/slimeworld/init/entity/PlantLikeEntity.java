@@ -1,7 +1,8 @@
 package com.creeping_creeper.slimeworld.init.entity;
 
 import com.creeping_creeper.slimeworld.data.key.ModTags;
-import com.creeping_creeper.slimeworld.init.ModSounds;
+import com.creeping_creeper.slimeworld.init.ModItems;
+import com.creeping_creeper.slimeworld.init.item.PotItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -10,8 +11,10 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -43,16 +46,16 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-public class PlantLikeMob extends AgeableMob implements IForgeShearable {
+public class PlantLikeEntity extends AgeableMob implements IForgeShearable {
     private final PanicGoal panicGoal = new PanicGoal(this, 1.2D);
     private final EastWestPathMoveGoal eastGoal = new EastWestPathMoveGoal(this, 1D, true);
     private final EastWestPathMoveGoal westGoal = new EastWestPathMoveGoal(this, 1D, false);
-    private static final EntityDataAccessor<String> FOLIAGE_TYPE = SynchedEntityData.defineId(PlantLikeMob.class, EntityDataSerializers.STRING);
+    private static final EntityDataAccessor<String> FOLIAGE_TYPE = SynchedEntityData.defineId(PlantLikeEntity.class, EntityDataSerializers.STRING);
     private boolean wasDay = true;
     private boolean canLive = true;
     private int moveTime = 0;
 
-    public PlantLikeMob(EntityType<? extends AgeableMob> type, Level level) {
+    public PlantLikeEntity(EntityType<? extends AgeableMob> type, Level level) {
         super(type, level);
         this.setYRot(Direction.EAST.toYRot());
     }
@@ -88,6 +91,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
         }else {
             tickDayNightMove();
             if (!this.canLive){
+                checkCanLive();
                 this.hurt(this.damageSources().dryOut(), 2.0F);
             }
         }
@@ -188,7 +192,29 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
     }
 
     private void checkCanLive(){
-        this.canLive = this.getBlockStateOn().is(TinkerTags.Blocks.SLIMY_SOIL) && level().canSeeSky(this.getOnPos());
+        this.canLive = this.getBlockStateOn().is(TinkerTags.Blocks.SLIMY_SOIL) && level().canSeeSky(this.getOnPos().above());
+    }
+
+    @Override
+    public @NotNull InteractionResult mobInteract(Player player, @NotNull InteractionHand hand) {
+        ItemStack itemStack =  player.getItemInHand(hand);
+        Level level = this.level();
+        if (!level.isClientSide()) {
+            if (itemStack.getItem() == ModItems.MagicPot.get()){
+                ItemStack itemStack1 = ModItems.PlantPot.get().getDefaultInstance();
+                CompoundTag tag = itemStack1.getOrCreateTagElement(PotItem.PLANT_DATA);
+                this.saveWithoutId(tag);
+                CompoundTag tag1 = itemStack1.getOrCreateTag();
+                tag1.putString(PotItem.Type, this.entityData.get(FOLIAGE_TYPE).toLowerCase());
+                itemStack.shrink(1);
+                player.setItemInHand(hand, itemStack1);
+                this.discard();
+                this.playSound(SoundEvents.GRASS_BREAK, 1.0F, 1.0F);
+                return InteractionResult.SUCCESS;
+            }
+
+        }
+        return super.mobInteract(player, hand);
     }
 
     public boolean isShearable(@NotNull ItemStack item, Level level, BlockPos pos) {
@@ -196,7 +222,7 @@ public class PlantLikeMob extends AgeableMob implements IForgeShearable {
     }
 
     public @NotNull List<ItemStack> onSheared(@Nullable Player player, @NotNull ItemStack item, Level level, BlockPos pos, int fortune) {
-        level.playSound(null, this, ModSounds.BOGGED_SHEAR.get(), player == null ? SoundSource.BLOCKS : SoundSource.PLAYERS, 1.0F, 1.0F);
+        this.playSound(SoundEvents.GROWING_PLANT_CROP, 1.0F, 1.0F);
         this.gameEvent(GameEvent.SHEAR, player);
         if (!level.isClientSide()) {
             this.setBaby(true);
