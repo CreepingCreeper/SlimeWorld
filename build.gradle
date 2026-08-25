@@ -172,7 +172,6 @@ repositories {
             includeGroup "curse.maven"
         }
     }
-    maven { url = "https://maven.aliyun.com/repository/public/" }
     mavenCentral()
     maven { url = "https://files.minecraftforge.net/maven" }
 }
