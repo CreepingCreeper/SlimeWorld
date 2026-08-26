@@ -2,7 +2,7 @@ package com.creeping_creeper.slimeworld.init.block.bush;
 
 import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModItems;
-import com.creeping_creeper.slimeworld.init.block.NecroticBonemealableBlock;
+import com.creeping_creeper.slimeworld.init.block.NecroticBonemealable;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -33,14 +33,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IForgeShearable;
 import net.minecraftforge.common.Tags;
-import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class OreBerryBushBlock extends BushBlock implements NecroticBonemealableBlock, IForgeShearable {
+public class OreBerryBushBlock extends BushBlock implements NecroticBonemealable, IForgeShearable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
     public static final VoxelShape  SAPLING_SHAPE = Block.box(3.0F, 0.0F, 3.0F, 13.0F, 8.0F, 13.0F);
     public static final VoxelShape MID_GROWTH_SHAPE = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 16.0F, 15.0F);
@@ -53,7 +51,7 @@ public class OreBerryBushBlock extends BushBlock implements NecroticBonemealable
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return SAPLING_SHAPE;
         } else {
@@ -62,26 +60,27 @@ public class OreBerryBushBlock extends BushBlock implements NecroticBonemealable
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         return state.is(Tags.Blocks.STONE);
     }
 
-    @Nonnull
     @Override
-    public List<ItemStack> onSheared(@Nullable Player player, @NotNull ItemStack item, Level world, BlockPos pos, int fortune) {
+    public List<ItemStack> onSheared(@Nullable Player player, ItemStack item, Level world, BlockPos pos, int fortune) {
         return Lists.newArrayList(new ItemStack(this, 1));
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState state, LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return level.getRawBrightness(pos, 0) < 10 && level.getBlockState(pos.below()).is(Tags.Blocks.STONE);
     }
 
+    @Override
     public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < 3;
     }
 
-    public void randomTick(BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    @Override
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int i = state.getValue(AGE);
         if (i < 3 && level.getRawBrightness(pos.above(), 0) < 10 && ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(8) == 0)) {
             BlockState blockstate = state.setValue(AGE, i + 1);
@@ -91,7 +90,8 @@ public class OreBerryBushBlock extends BushBlock implements NecroticBonemealable
         }
     }
 
-    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+    @Override
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && !entity.getType().is(ModTags.EntityTypes.ORE_BERRY_BUSHES_IMMUNE)) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75F, 0.8F));
             if (!level.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
@@ -105,7 +105,7 @@ public class OreBerryBushBlock extends BushBlock implements NecroticBonemealable
     }
 
     @Override
-    public InteractionResult use(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean flag = i == 3;
         if (!flag && player.getItemInHand(hand).is(ModItems.NecroticBoneMeal.get())) {

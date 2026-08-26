@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerEffect;
 import slimeknights.tconstruct.common.TinkerTags;
 
@@ -30,19 +29,19 @@ public abstract class BaseFlowerBlock extends FlowerBlock implements SuspiciousE
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         return state.is(TinkerTags.Blocks.SLIMY_SOIL);
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return level.getBlockState(pos.below()).is(TinkerTags.Blocks.SLIMY_SOIL);
     }
 
     public abstract SimpleParticleType particleType();
 
     @Override
-    public void animateTick(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (!level.isClientSide()) return;
         VoxelShape voxelshape = this.getShape(state, level, pos, CollisionContext.empty());
         Vec3 vec3 = voxelshape.bounds().getCenter();
@@ -57,7 +56,7 @@ public abstract class BaseFlowerBlock extends FlowerBlock implements SuspiciousE
     }
 
     @Override
-    public @NotNull MobEffect getSuspiciousEffect() {
+    public MobEffect getSuspiciousEffect() {
         return this.effect.get();
     }
 

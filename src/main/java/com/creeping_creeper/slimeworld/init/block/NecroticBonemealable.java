@@ -6,7 +6,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 
-public interface NecroticBonemealableBlock {
+public interface NecroticBonemealable {
     boolean isValidBonemealTarget(LevelReader reader, BlockPos pos, BlockState state, boolean var);
 
     void performBonemeal(ServerLevel level, RandomSource source, BlockPos pos, BlockState state);

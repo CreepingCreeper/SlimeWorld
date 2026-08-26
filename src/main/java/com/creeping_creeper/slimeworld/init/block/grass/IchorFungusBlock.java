@@ -11,7 +11,7 @@ import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.DirtType;
 
-/** Update of fungus that grows on slime soil instead */
+/** Update of fungus that grows below slime soil instead */
 public class IchorFungusBlock extends FungusBlock {
   public IchorFungusBlock(Properties properties, ResourceKey<ConfiguredFeature<?,?>> fungusFeature) {
     super(properties, fungusFeature, TinkerWorld.slimeDirt.get(DirtType.ICHOR));

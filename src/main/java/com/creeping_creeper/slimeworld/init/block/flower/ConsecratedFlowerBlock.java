@@ -9,7 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 
 public class ConsecratedFlowerBlock extends BaseFlowerBlock {
     public ConsecratedFlowerBlock(Properties properties) {
@@ -17,7 +16,7 @@ public class ConsecratedFlowerBlock extends BaseFlowerBlock {
     }
 
     @Override
-    public void entityInside(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (!level.isClientSide && entity instanceof LivingEntity living) {
             ModEffects.Blessing.get().apply(living, 20, 0, true);
             if(living.getMobType() == MobType.UNDEAD){

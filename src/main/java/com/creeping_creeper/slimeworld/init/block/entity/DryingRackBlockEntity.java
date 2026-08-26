@@ -22,14 +22,11 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemHandlerHelper;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import slimeknights.mantle.recipe.container.ISingleStackContainer;
 import slimeknights.mantle.recipe.helper.RecipeHelper;
 import slimeknights.mantle.util.BlockEntityHelper;
 import slimeknights.tconstruct.tables.block.entity.table.RetexturedTableBlockEntity;
-
-import javax.annotation.Nonnull;
 
 public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements WorldlyContainer {
     public static final int INPUT = 0;
@@ -54,8 +51,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     }
 
     @Override
-    @Nonnull
-    public int[] getSlotsForFace(@NotNull Direction side) {
+    public int[] getSlotsForFace(Direction side) {
         return new int[]{INPUT, OUTPUT};
     }
 
@@ -99,12 +95,12 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     }
 
     @Override
-    public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStackIn, @Nullable Direction direction) {
+    public boolean canPlaceItemThroughFace(int index, ItemStack itemStackIn, @Nullable Direction direction) {
         return index == INPUT && !isStackInSlot(OUTPUT);
     }
 
     @Override
-    public boolean canTakeItemThroughFace(int index, @NotNull ItemStack stack, @NotNull Direction direction) {
+    public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         return index == OUTPUT;
     }
 
@@ -114,7 +110,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     }
 
     @Override
-    public void setItem(int slot, @NotNull ItemStack newStack) {
+    public void setItem(int slot, ItemStack newStack) {
         ItemStack oldStack = getItem(slot);
         super.setItem(slot, newStack);
 
@@ -130,7 +126,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int p_39954_, @NotNull Inventory p_39955_, @NotNull Player p_39956_) {
+    public @Nullable AbstractContainerMenu createMenu(int p_39954_, Inventory p_39955_, Player p_39956_) {
         return null;
     }
 
@@ -205,7 +201,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     }
 
     @Override
-    public void setLevel(@NotNull Level pLevel) {
+    public void setLevel(Level pLevel) {
         super.setLevel(pLevel);
         // if we have a recipe name, swap recipe name for recipe instance
         if (recipeName != null) {
@@ -215,7 +211,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
     }
 
     @Override
-    public void saveSynced(@NotNull CompoundTag tags) {
+    public void saveSynced(CompoundTag tags) {
         super.saveSynced(tags);
         if (currentRecipe != null || recipeName != null) {
             tags.putInt(TAG_TIMER, timer);
@@ -229,7 +225,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
 
     @SuppressWarnings("removal")
     @Override
-    public void load(@NotNull CompoundTag tags) {
+    public void load(CompoundTag tags) {
         super.load(tags);
         timer = tags.getInt(TAG_TIMER);
         if (tags.contains(TAG_RECIPE, CompoundTag.TAG_STRING)) {

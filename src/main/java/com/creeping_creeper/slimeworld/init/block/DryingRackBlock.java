@@ -33,7 +33,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.mantle.block.InventoryBlock;
 import slimeknights.mantle.block.RetexturedBlock;
 import slimeknights.mantle.util.RetexturedHelper;
@@ -58,7 +57,7 @@ public class DryingRackBlock extends InventoryBlock implements SimpleWaterlogged
 
     @Deprecated
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level world, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult rayTraceResult) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rayTraceResult) {
         if (player.isShiftKeyDown()) {
             return InteractionResult.PASS;
         }
@@ -71,12 +70,12 @@ public class DryingRackBlock extends InventoryBlock implements SimpleWaterlogged
     }
 
     @Override
-    protected boolean openGui(@NotNull Player playerEntity, @NotNull Level world, @NotNull BlockPos blockPos) {
+    protected boolean openGui(Player playerEntity, Level world, BlockPos blockPos) {
         return false;
     }
 
     @Override
-    public @NotNull VoxelShape getShape(BlockState blockState, @NotNull BlockGetter blockGetter, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
         return blockState.getValue(FACING).getAxis()== Direction.Axis.X ? EAST : NORTH;
     }
 
@@ -88,13 +87,13 @@ public class DryingRackBlock extends InventoryBlock implements SimpleWaterlogged
 
     @Deprecated
     @Override
-    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
+    public BlockState rotate(BlockState state, Rotation rot) {
         return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
     }
 
     @Deprecated
     @Override
-    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
+    public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
     }
 
@@ -104,12 +103,12 @@ public class DryingRackBlock extends InventoryBlock implements SimpleWaterlogged
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, @Nullable BlockGetter pLevel, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter pLevel, List<Component> tooltip, TooltipFlag flag) {
         RetexturedHelper.addTooltip(stack, tooltip, flag);
     }
 
     @Override
-    public void setPlacedBy(@NotNull Level world, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         super.setPlacedBy(world, pos, state, placer, stack);
         RetexturedBlock.updateTextureBlock(world, pos, stack);
     }
@@ -121,24 +120,24 @@ public class DryingRackBlock extends InventoryBlock implements SimpleWaterlogged
 
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new DryingRackBlockEntity(pPos, pState);
     }
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> check) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> check) {
         return state.getValue(WATERLOGGED) ? null : DryingRackBlockEntity.getTicker(level, check, ModItems.DryingRackEntity.get());
     }
 
     @Deprecated
     @Override
-    public @NotNull FluidState getFluidState(BlockState state) {
+    public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull PathComputationType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
         return false;
     }
 }

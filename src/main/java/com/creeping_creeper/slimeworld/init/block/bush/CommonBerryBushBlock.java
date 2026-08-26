@@ -21,7 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.TinkerTags;
 
 public class CommonBerryBushBlock extends SweetBerryBushBlock {
@@ -34,22 +33,22 @@ public class CommonBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
         return getBerry(state).getDefaultInstance();
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
         return state.is(TinkerTags.Blocks.SLIMY_SOIL);
     }
 
     @Override
-    public boolean canSurvive(@NotNull BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         return level.getBlockState(pos.below()).is(TinkerTags.Blocks.SLIMY_SOIL);
     }
 
     @Override
-    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && !entity.getType().is(ModTags.EntityTypes.ORE_BERRY_BUSHES_IMMUNE)) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75F, 0.8F));
             if (!level.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
@@ -63,7 +62,7 @@ public class CommonBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public @NotNull InteractionResult use(BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean flag = i == 3;
         if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {

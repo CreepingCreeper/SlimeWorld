@@ -12,7 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.shared.TinkerEffects;
 
 public class PoisonFlowerBlock extends BaseFlowerBlock {
@@ -21,7 +20,7 @@ public class PoisonFlowerBlock extends BaseFlowerBlock {
     }
 
     @Override
-    public void entityInside(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
         if (!level.isClientSide && entity instanceof LivingEntity living) {
             TinkerEffects.venom.get().apply(living, 100,  0, true);
             living.addEffect(new MobEffectInstance(MobEffects.POISON, 25));

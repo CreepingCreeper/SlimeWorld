@@ -22,7 +22,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -125,7 +124,7 @@ public class PotentSulfurBlockEntity extends BlockEntity {
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
+    protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putInt("dormant_time", this.dormantGeyserTime);
         tag.putInt("eruption_time", this.geyserEruptionTime);
@@ -133,14 +132,14 @@ public class PotentSulfurBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(@NotNull CompoundTag tag) {
+    public void load(CompoundTag tag) {
         super.load(tag);
         this.dormantGeyserTime = tag.getInt("dormant_time");
         this.geyserEruptionTime = tag.getInt("eruption_time");
         this.waitingCountdown = tag.getInt("countdown");
     }
 
-    public void setLevel(@NotNull Level level) {
+    public void setLevel(Level level) {
         super.setLevel(level);
         if (this.geyserEruptionTime == -1) {
             this.geyserEruptionTime = level.getRandom().nextIntBetweenInclusive(1, 2);

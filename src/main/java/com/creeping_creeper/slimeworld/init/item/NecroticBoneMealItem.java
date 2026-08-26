@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.init.item;
 
 import com.creeping_creeper.slimeworld.data.key.ModTags;
-import com.creeping_creeper.slimeworld.init.block.NecroticBonemealableBlock;
+import com.creeping_creeper.slimeworld.init.block.NecroticBonemealable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -54,7 +54,7 @@ public class NecroticBoneMealItem extends Item {
                 }
                 item.shrink(1);
                 return true;
-            }else if (blockstate.getBlock() instanceof NecroticBonemealableBlock block) {
+            }else if (blockstate.getBlock() instanceof NecroticBonemealable block) {
                 if (block.isValidBonemealTarget(level, pos, blockstate, level.isClientSide)) {
                     if (level instanceof ServerLevel) {
                         player.hurt(TinkerDamageTypes.source(level.registryAccess(), TinkerDamageTypes.BLEEDING), 3);
