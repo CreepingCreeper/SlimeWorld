@@ -11,7 +11,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import slimeknights.mantle.registration.object.WallBuildingBlockObject;
-import slimeknights.tconstruct.TConstruct;
 
 @SuppressWarnings({"UnusedReturnValue", "SameParameterValue", "removal"})
 public class ModBlockStateProvider extends BlockStateProvider {

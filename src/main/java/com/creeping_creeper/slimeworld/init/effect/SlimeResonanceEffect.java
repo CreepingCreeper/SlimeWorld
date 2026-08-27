@@ -10,12 +10,8 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.RelativeMovement;
 import net.minecraft.world.level.Level;
 import slimeknights.tconstruct.common.TinkerEffect;
-
-import java.util.EnumSet;
-import java.util.Set;
 
 public class SlimeResonanceEffect extends TinkerEffect {
     public SlimeResonanceEffect(MobEffectCategory typeIn, int color, boolean show) {
