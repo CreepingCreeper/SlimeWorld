@@ -25,6 +25,7 @@ import slimeknights.mantle.registration.object.FluidObject;
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.common.registration.GeodeItemObject;
 import slimeknights.tconstruct.fluids.TinkerFluids;
+import slimeknights.tconstruct.library.data.recipe.ISmelteryRecipeHelper;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
@@ -37,7 +38,7 @@ import slimeknights.tconstruct.shared.block.SlimeType;
 
 import java.util.function.Consumer;
 
-public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHelper {
+public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHelper, ISmelteryRecipeHelper {
     public ModRecipeProvider(PackOutput output) {
         super(output);
     }
@@ -89,6 +90,11 @@ public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHe
                 .addInput(TinkerTags.Fluids.SLIME, FluidValues.SLIMEBALL)
                 .addInput(TinkerFluids.moltenEnder.ingredient(FluidValues.SLIMEBALL))
                 .save(consumer, prefix(ModFluids.ResonanceSlime, gadgets));
+        AlloyRecipeBuilder.alloy(ModFluids.ResonanceSlime, FluidValues.INGOT * 2)
+                .addInput(ModFluids.OceanSlime.getTag(), FluidValues.SLIMEBALL)
+                .addInput(TinkerFluids.moltenCopper.getTag(), FluidValues.INGOT)
+                .addInput(TinkerFluids.moltenQuartz.ingredient(FluidValues.GEM))
+                .save(consumer, prefix(ModFluids.MoltenSlimeBronze, gadgets));
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ModItems.PotentSulfurNausea)
                 .define('#', ModItems.Sulfur)
                 .pattern("###")
@@ -151,7 +157,6 @@ public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHe
                 .unlockedBy("has_item", RecipeProvider.has(Items.REDSTONE))
                 .save(consumer, wrap(id(ModItems.IsomericRedstoneBlock), material, String.format("_from_%ss", id(Items.REDSTONE).getPath())));
 
-
         String metal = material + "metal/";
         metalCrafting(consumer, ModItems.Bronze, metal);
         MeltingRecipeBuilder.melting(Ingredient.of(ModItems.BronzeCluster), TinkerFluids.moltenBronze, FluidValues.NUGGET * 4, 5/2f)
@@ -160,14 +165,17 @@ public class ModRecipeProvider extends RecipeProvider implements ICommonRecipeHe
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.CopperShard, TinkerMaterials.copperNugget, metal, 0.2F, 50, 1);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.IronShard, Items.IRON_NUGGET, metal, 0.2F, 50, 1);
         smeltingRecipes(consumer, RecipeCategory.MISC, ModItems.GoldShard, Items.GOLD_NUGGET, metal, 0.2F, 50, 1);
+        String melting = metal + "melting/";
+        String casting = metal + "casting/";
         MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_BRONZE_NUGGET), TinkerFluids.moltenBronze, FluidValues.NUGGET, 1/2f)
-                .save(consumer, location(metal + id(ModItems.BronzeShard).getPath() + "_melting"));
+                .save(consumer, location(melting + id(ModItems.BronzeShard).getPath()));
         MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_COPPER_NUGGET), TinkerFluids.moltenCopper, FluidValues.NUGGET, 1/2f)
-                .save(consumer, location(metal + id(ModItems.CopperShard).getPath() + "_melting"));
+                .save(consumer, location(melting + id(ModItems.CopperShard).getPath()));
         MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_IRON_NUGGET), TinkerFluids.moltenIron, FluidValues.NUGGET, 1/2f)
-                .save(consumer, location(metal + id(ModItems.IronShard).getPath() + "_melting"));
+                .save(consumer, location(melting + id(ModItems.IronShard).getPath()));
         MeltingRecipeBuilder.melting(Ingredient.of(ModTags.Items.RAW_GOLD_NUGGET), TinkerFluids.moltenGold, FluidValues.NUGGET, 1/2f)
-                .save(consumer, location(metal + id(ModItems.GoldShard).getPath() + "_melting"));
+                .save(consumer, location(melting + id(ModItems.GoldShard).getPath()));
+        molten(consumer, ModFluids.MoltenSlimeBronze).castingFolder(casting).meltingFolder(melting).metal();
 
         String slime = material + "ocean_slime/";
         geodeRecipes(consumer, ModItems.OceanGeode, ModItems.OceanSlimeBall, ModItems.SlimeGravel, ModFluids.OceanSlime, slime);

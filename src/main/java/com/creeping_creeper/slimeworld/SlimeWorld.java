@@ -2,9 +2,7 @@ package com.creeping_creeper.slimeworld;
 
 import com.creeping_creeper.slimeworld.data.key.ModDataKeys;
 import com.creeping_creeper.slimeworld.data.provider.*;
-import com.creeping_creeper.slimeworld.data.provider.assets.ModBlockStateProvider;
-import com.creeping_creeper.slimeworld.data.provider.assets.ModFluidTextureProvider;
-import com.creeping_creeper.slimeworld.data.provider.assets.ModItemModelProvider;
+import com.creeping_creeper.slimeworld.data.provider.assets.*;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModGlobalLootModifiersProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
 import com.creeping_creeper.slimeworld.data.provider.tags.*;
@@ -36,8 +34,10 @@ import slimeknights.mantle.fluid.texture.FluidTextureCameraProvider;
 import slimeknights.tconstruct.TConstruct;
 import slimeknights.tconstruct.fluids.data.FluidBlockstateModelProvider;
 import slimeknights.tconstruct.fluids.data.FluidBucketModelProvider;
+import slimeknights.tconstruct.library.client.data.material.MaterialPartTextureGenerator;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
+import slimeknights.tconstruct.tools.data.sprite.TinkerPartSpriteProvider;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -87,8 +87,13 @@ public class SlimeWorld {
         ModFluidTextureProvider textureProvider = new ModFluidTextureProvider(output);
         generator.addProvider(client, textureProvider);
         generator.addProvider(client, new FluidTextureCameraProvider(output, event.getExistingFileHelper(), textureProvider));
-        generator.addProvider(client, new FluidBucketModelProvider(output, SlimeWorld.MODID));
-        generator.addProvider(client, new FluidBlockstateModelProvider(output, SlimeWorld.MODID));
+        generator.addProvider(client, new FluidBucketModelProvider(output, MODID));
+        generator.addProvider(client, new FluidBlockstateModelProvider(output, MODID));
+        TinkerPartSpriteProvider partSprites = new TinkerPartSpriteProvider();
+        ModMaterialSpriteProvider materialSprites = new ModMaterialSpriteProvider();
+        generator.addProvider(client, new ModMaterialRenderInfoProvider(output, materialSprites, existingFileHelper));
+        generator.addProvider(client, new MaterialPartTextureGenerator(output, existingFileHelper, partSprites, materialSprites));
+
         //data pack
         DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
         generator.addProvider(server, datapackProvider);
