@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tconstruct:block/storage/fallback_tconstruct_bronze"
+    "all": "slimeworld:block/bronze_block"
   }
 }

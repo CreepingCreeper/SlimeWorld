@@ -3,6 +3,7 @@ package com.creeping_creeper.slimeworld;
 import com.creeping_creeper.slimeworld.data.key.ModDataKeys;
 import com.creeping_creeper.slimeworld.data.provider.*;
 import com.creeping_creeper.slimeworld.data.provider.assets.ModBlockStateProvider;
+import com.creeping_creeper.slimeworld.data.provider.assets.ModFluidTextureProvider;
 import com.creeping_creeper.slimeworld.data.provider.assets.ModItemModelProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModGlobalLootModifiersProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
@@ -31,7 +32,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import slimeknights.mantle.fluid.texture.FluidTextureCameraProvider;
 import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.fluids.data.FluidBlockstateModelProvider;
+import slimeknights.tconstruct.fluids.data.FluidBucketModelProvider;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
 
@@ -74,10 +78,18 @@ public class SlimeWorld {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         boolean server = event.includeServer();
         boolean client = event.includeClient();
-        RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder();
         //registers
+        RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder();
         ModWorldgenProvider.register(registrySetBuilder);
-        //dataPack
+        //resource pack
+        generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
+        generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
+        ModFluidTextureProvider textureProvider = new ModFluidTextureProvider(output);
+        generator.addProvider(client, textureProvider);
+        generator.addProvider(client, new FluidTextureCameraProvider(output, event.getExistingFileHelper(), textureProvider));
+        generator.addProvider(client, new FluidBucketModelProvider(output, SlimeWorld.MODID));
+        generator.addProvider(client, new FluidBlockstateModelProvider(output, SlimeWorld.MODID));
+        //data pack
         DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
         generator.addProvider(server, datapackProvider);
         //tags
@@ -92,9 +104,6 @@ public class SlimeWorld {
         //loots
         generator.addProvider(server, new ModLootTableProvider(output));
         generator.addProvider(server, new ModGlobalLootModifiersProvider(output));
-        //models
-        generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
-        generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
         //others
         generator.addProvider(server, new ModRecipeProvider(output));
         ModMaterialProvider materials = new ModMaterialProvider(output);

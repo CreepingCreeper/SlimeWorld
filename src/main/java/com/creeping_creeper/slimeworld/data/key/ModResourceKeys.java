@@ -14,8 +14,11 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModResourceKeys {
     public static final ResourceLocation SLIMEWORLD_LOCATION = SlimeWorld.getResource("slimeworld");
+    public static final ResourceLocation UNKNOWN_AREA_LOCATION = SlimeWorld.getResource("unknown_area");
+
     //level
     public static final ResourceKey<Level> SLIMEWORLD = ResourceKey.create(Registries.DIMENSION, SLIMEWORLD_LOCATION);
+    public static final ResourceKey<Level> UNKNOWN_AREA = ResourceKey.create(Registries.DIMENSION, UNKNOWN_AREA_LOCATION);
     //configured_feature
     public static final ResourceKey<ConfiguredFeature<?,?>> ichorSlimeFungus = key(Registries.CONFIGURED_FEATURE, "ichor_slime_fungus");
     public static final ResourceKey<ConfiguredFeature<?,?>> magicvubbleTree = key(Registries.CONFIGURED_FEATURE, "magicbubble_tree");

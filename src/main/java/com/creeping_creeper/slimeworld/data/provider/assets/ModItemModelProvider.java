@@ -24,6 +24,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.NecroticBoneMeal.get());
         basicItem(ModItems.SulfurGoo.get());
         basicItem(ModItems.OceanSlimeBall.get());
+        basicItem(ModItems.Bronze.getIngot());
+        basicItem(ModItems.Bronze.getNugget());
+        basicItem(ModItems.SlimeBronze.getIngot());
+        basicItem(ModItems.SlimeBronze.getNugget());
+
         
         basicItem(ModItems.CopperShard.get());
         basicItem(ModItems.CopperShard.get());

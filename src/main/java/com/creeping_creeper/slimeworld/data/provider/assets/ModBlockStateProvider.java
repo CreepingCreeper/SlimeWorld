@@ -2,6 +2,7 @@ package com.creeping_creeper.slimeworld.data.provider.assets;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
+import com.creeping_creeper.slimeworld.init.block.UnknownTpBlock;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -22,13 +23,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        customBlock(ModItems.Bronze.get(), "block/bronze_block", TConstruct.getResource("block/storage/fallback_tconstruct_bronze"));
         String geode = "geode/";
         pathBlock(ModItems.OceanGeode.getBlock(), geode);
         pathBlock(ModItems.OceanGeode.getBudding(), geode);
         basicBlock(ModItems.OceanSlime.get());
         basicBlock(ModItems.OceanCongealedSlime.get());
         basicBlock(ModItems.SlimeGravel.get());
+        basicBlock(ModItems.Bronze.get());
+        basicBlock(ModItems.SlimeBronze.get());
 
         addWallBuildingBlock(ModItems.Cinnabar, name(ModItems.Cinnabar.get()), "", blockTexture(ModItems.Cinnabar.get()));
         addWallBuildingBlock(ModItems.PolishedCinnabar, name(ModItems.PolishedCinnabar.get()), "", blockTexture(ModItems.PolishedCinnabar.get()));
@@ -45,6 +47,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
         customBlock(ModItems.PotentSulfurWeakness.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
         customBlock(ModItems.PotentSulfurRegeneration.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
         customBlock(ModItems.PotentSulfurStrength.get(), "block/potent_sulfur", SlimeWorld.getResource("block/potent_sulfur"));
+
+        tp(ModItems.UnknownTpSteel.get(), "steel");
+        tp(ModItems.UnknownTpBronze.get(), "bronze");
+        tp(ModItems.UnknownTpCinder.get(), "cinder");
+        tp(ModItems.UnknownTpQueen.get(), "queen");
+        tp(ModItems.UnknownTpKnight.get(), "knight");
 
     }
 
@@ -64,44 +72,55 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return model;
     }
 
-    public ModelFile customBlock(Block block, String location, ResourceLocation texture) {
+    private ModelFile customBlock(Block block, String location, ResourceLocation texture) {
         return basicBlock(block, models().cubeAll(location, texture));
     }
 
-    public ModelFile basicBlock(Block block) {
+    private ModelFile basicBlock(Block block) {
         return basicBlock(block, models().cubeAll(name(block), new ResourceLocation(key(block).getNamespace(),  "block/" + name(block))));
     }
 
-    public ModelFile basicBlock(Block block, String location, ResourceLocation texture) {
+    private ModelFile basicBlock(Block block, String location, ResourceLocation texture) {
         return basicBlock(block, models().cubeAll(location, texture));
     }
 
-    public ModelFile pathBlock(Block block, String path) {
+    private ModelFile pathBlock(Block block, String path) {
         return basicBlock(block, models().cubeAll( "block/" + path + name(block), new ResourceLocation(key(block).getNamespace(), "block/" + path + name(block))));
     }
 
-    protected void addWallBuildingBlock(WallBuildingBlockObject block, String folder, String name, ResourceLocation texture) {
+    private void addWallBuildingBlock(WallBuildingBlockObject block, String folder, String name, ResourceLocation texture) {
         ModelFile blockModel = basicBlock(block.get(), folder + name, texture);
         slab(block.getSlab(), folder + "_slab", blockModel, texture, texture, texture);
         stairs(block.getStairs(), folder + "_stairs", texture, texture, texture);
         wall(block.getWall(), folder, texture);
     }
 
-    public void slab(SlabBlock block, String location, ModelFile doubleModel, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture) {
+    private void slab(SlabBlock block, String location, ModelFile doubleModel, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture) {
         ModelFile slab = models().slab(location, sideTexture, bottomTexture, topTexture);
         slabBlock(block, slab, models().slabTop(location + "_top", sideTexture, bottomTexture, topTexture), doubleModel);
         simpleBlockItem(block, slab);
     }
 
-    public void stairs(StairBlock block, String location, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture) {
+    private void stairs(StairBlock block, String location, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture) {
         ModelFile stairs = models().stairs(location, sideTexture, bottomTexture, topTexture);
         stairsBlock(block, stairs, models().stairsInner(location + "_inner", sideTexture, bottomTexture, topTexture), models().stairsOuter(location + "_outer", sideTexture, bottomTexture, topTexture));
         simpleBlockItem(block, stairs);
     }
 
-    public void wall(WallBlock block, String location, ResourceLocation texture){
+    private void wall(WallBlock block, String location, ResourceLocation texture){
         ModelFile wallInventory = models().wallInventory(location + "_wall_inventory", texture);
         wallBlock(block, location, texture);
         simpleBlockItem(block, wallInventory);
+    }
+
+    private void tp(Block block, String variant){
+        String location = "block/unknown_teleporter_" + variant;
+        ResourceLocation texture = SlimeWorld.getResource("block/unknown_teleporter/" + variant + "/");
+        ModelFile tp = models().cubeBottomTop(location, texture.withSuffix("side"), texture.withSuffix("bottom"), texture.withSuffix("top"));
+        ModelFile tpUsed = models().cubeBottomTop(location + "_used", texture.withSuffix("side_used"), texture.withSuffix("bottom_used"), texture.withSuffix("top_used"));
+        getVariantBuilder(block)
+                .partialState().with(UnknownTpBlock.USED, false).modelForState().modelFile(tp).addModel()
+                .partialState().with(UnknownTpBlock.USED, true).modelForState().modelFile(tpUsed).addModel();
+        simpleBlockItem(block, tp);
     }
 }

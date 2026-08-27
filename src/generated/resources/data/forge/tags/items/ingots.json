@@ -1,5 +1,6 @@
 {
   "values": [
-    "#forge:ingots/bronze"
+    "#forge:ingots/bronze",
+    "#forge:ingots/slime_bronze"
   ]
 }

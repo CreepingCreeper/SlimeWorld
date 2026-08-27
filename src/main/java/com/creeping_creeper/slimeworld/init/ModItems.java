@@ -45,6 +45,8 @@ import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.fluids.item.ContainerFoodItem;
 import slimeknights.tconstruct.gadgets.block.FoodCakeBlock;
 import slimeknights.tconstruct.library.recipe.FluidValues;
+import slimeknights.tconstruct.shared.TinkerMaterials;
+import slimeknights.tconstruct.world.TinkerStructures;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.*;
 
@@ -126,7 +128,7 @@ public class ModItems {
 
     public static final ItemObject<Block> SlimeWeed = BLOCKS.register("slime_weed", () -> new GlowLichenBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().instabreak().sound(SoundType.WET_GRASS).pushReaction(PushReaction.DESTROY)), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> StickPunjis = BLOCKS.register("stick_punjis", () -> new StickPunjisBlock(grass().strength(3.0F).speedFactor(0.4F).noOcclusion()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> FieryFlower = BLOCKS.register("fiery_flower", () -> new FieryFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
+    public static final ItemObject<Block> FieryFlower = BLOCKS.register("fiery_flower", () -> new FieryFlowerBlock(grass().lightLevel(s -> 15)), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> PoisonFlower = BLOCKS.register("poison_flower", () -> new PoisonFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> SpringyFlower = BLOCKS.register("springy_flower", () -> new SpringyFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> ConsecratedFlower = BLOCKS.register("consecrated_flower", () -> new ConsecratedFlowerBlock(grass()), UNCOMMON_BLOCK_ITEM);
@@ -164,6 +166,7 @@ public class ModItems {
     public static final ItemObject<Item> BronzeShard = ITEMS.register("bronze_shard", GENERAL_PROPS);
     public static final ItemObject<Block> BronzeCluster = BLOCKS.register("bronze_cluster", () -> new CrystalClusterBlock(Sounds.ENDER_CRYSTAL_CHIME.getSound(), 7, 3, builder(MapColor.STONE).forceSolidOn().noOcclusion().randomTicks().strength(2.5f).requiresCorrectToolForDrops().pushReaction(PushReaction.DESTROY).lightLevel(state -> 5).sound(SoundType.METAL)), TOOLTIP_BLOCK_ITEM);
     public static final MetalItemObject Bronze = BLOCKS.registerMetal("bronze", metalBuilder(MapColor.COLOR_BROWN), GENERAL_BLOCK_ITEM, GENERAL_PROPS);
+    public static final MetalItemObject SlimeBronze = BLOCKS.registerMetal("slime_bronze", metalBuilder(MapColor.COLOR_GREEN), GENERAL_BLOCK_ITEM, GENERAL_PROPS);
 
     public static final ItemObject<Block> CopperBerryBush = BLOCKS.register("copper_berry_bush", () -> new OreBerryBushBlock(CopperShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> IronBerryBush = BLOCKS.register("iron_berry_bush", () -> new OreBerryBushBlock(IronShard, oreBush()), UNCOMMON_BLOCK_ITEM);
@@ -184,6 +187,12 @@ public class ModItems {
     public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, ModSounds.BUCKET_EMPTY_SULFUR_CUBE, (new Item.Properties()).stacksTo(1)));
+
+    public static final ItemObject<Block> UnknownTpSteel = BLOCKS.register("unknown_teleporter_steel", () -> new UnknownTpBlock(tp(MapColor.COLOR_LIGHT_BLUE), TinkerStructures.skySlimeIsland, TinkerMaterials.slimesteel.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpBronze = BLOCKS.register("unknown_teleporter_bronze", () -> new UnknownTpBlock(tp(MapColor.COLOR_BLUE), TinkerStructures.skySlimeIsland, SlimeBronze.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpCinder = BLOCKS.register("unknown_teleporter_cinder", () -> new UnknownTpBlock(tp(MapColor.COLOR_RED), TinkerStructures.bloodIsland, TinkerMaterials.cinderslime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpQueen = BLOCKS.register("unknown_teleporter_queen", () -> new UnknownTpBlock(tp(MapColor.COLOR_ORANGE), TinkerStructures.bloodIsland, TinkerMaterials.queensSlime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpKnight = BLOCKS.register("unknown_teleporter_knight", () -> new UnknownTpBlock(tp(MapColor.COLOR_PURPLE), TinkerStructures.endSlimeIsland, TinkerMaterials.knightslime.getIngotTag()), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Item> MeleeRune = ITEMS.register("melee_rune", () -> new ModifierRuneItem(TinkerTags.Items.MELEE, (new Item.Properties()).stacksTo(16)));
     public static final ItemObject<Item> RangedRune = ITEMS.register("ranged_rune", () -> new ModifierRuneItem(TinkerTags.Items.RANGED, (new Item.Properties()).stacksTo(16)));
@@ -233,6 +242,7 @@ public class ModItems {
         output.accept(BronzeShard);
         output.accept(BronzeCluster);
         accept(output, Bronze);
+        accept(output, SlimeBronze);
 
         output.accept(SlimeGravel);
         output.accept(IchorVent);
@@ -291,6 +301,7 @@ public class ModItems {
         output.accept(ModFluids.OceanSlime);
         output.accept(ModFluids.ResonanceSlime);
         output.accept(ModFluids.LiquidMud);
+        output.accept(ModFluids.MoltenSlimeBronze);
 
         output.accept(Bubble);
         output.accept(WaterBubble);
@@ -305,6 +316,12 @@ public class ModItems {
 
         output.accept(MagicPot);
         output.accept(PlantPot);
+
+        output.accept(UnknownTpSteel);
+        output.accept(UnknownTpBronze);
+        output.accept(UnknownTpCinder);
+        output.accept(UnknownTpQueen);
+        output.accept(UnknownTpKnight);
         //output.accept(MeleeRune);
 
         output.accept(SulfurCubeBucket);
@@ -322,6 +339,10 @@ public class ModItems {
         output.accept(ModEntities.EnderSlimeGolemEntity);
     }
 
+    protected static BlockBehaviour.Properties builder(MapColor color) {
+        return Block.Properties.of().mapColor(color);
+    }
+
     protected static BlockBehaviour.Properties metalBuilder(MapColor color) {
         return builder(color).sound(METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(5.0F);
     }
@@ -333,23 +354,29 @@ public class ModItems {
     protected static BlockBehaviour.Properties grass() {
         return plant().sound(SoundType.GRASS).instabreak().offsetType(BlockBehaviour.OffsetType.XZ);
     }
+
     protected static BlockBehaviour.Properties bush() {
         return plant().sound(SoundType.SWEET_BERRY_BUSH).randomTicks();
     }
+
     protected static BlockBehaviour.Properties oreBush() {
         return bush().lightLevel(state -> state.getValue(AGE) > 2 ? 3 : 0);
     }
+
     protected static BlockBehaviour.Properties plant() {
         return builder(MapColor.PLANT).noCollission().pushReaction(PushReaction.DESTROY);
     }
+
     protected static BlockBehaviour.Properties ichorNylium() {
         return builder(MapColor.COLOR_ORANGE).sound(SoundType.SLIME_BLOCK).strength(2.0f).requiresCorrectToolForDrops().randomTicks();
     }
+
     protected static BlockBehaviour.Properties bubble(MapColor color) {
         return builder(color).sound(SoundType.WOOL).noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never);
     }
-    protected static BlockBehaviour.Properties builder(MapColor color) {
-        return Block.Properties.of().mapColor(color);
+
+    protected static BlockBehaviour.Properties tp(MapColor color) {
+        return builder(color).sound(SoundType.TUFF).instrument(NoteBlockInstrument.BASEDRUM).strength(-1.0F, 3600000.0F).noLootTable().isValidSpawn(Blocks::never).lightLevel(s -> s.getValue(UnknownTpBlock.USED) ? 15 : 0);
     }
 
     private static void accept(CreativeModeTab.Output output, MetalItemObject metal) {

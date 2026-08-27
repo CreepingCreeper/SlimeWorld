@@ -48,6 +48,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         tag(Tags.Items.INGOTS).addTag(ModItems.Bronze.getIngotTag());
         tag(ModItems.Bronze.getNuggetTag()).add(ModItems.Bronze.getNugget());
         tag(Tags.Items.NUGGETS).addTag(ModItems.Bronze.getNuggetTag());
+        tag(ModItems.SlimeBronze.getIngotTag()).add(ModItems.SlimeBronze.getIngot());
+        tag(Tags.Items.INGOTS).addTag(ModItems.SlimeBronze.getIngotTag());
+        tag(ModItems.SlimeBronze.getNuggetTag()).add(ModItems.SlimeBronze.getNugget());
+        tag(Tags.Items.NUGGETS).addTag(ModItems.SlimeBronze.getNuggetTag());
         tag(ModTags.Items.RAW_BRONZE_NUGGET).add(ModItems.BronzeShard.get());
         tag(ModTags.Items.RAW_COPPER_NUGGET).add(ModItems.CopperShard.get());
         tag(ModTags.Items.RAW_IRON_NUGGET).add(ModItems.IronShard.get());
@@ -59,6 +63,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         copy(ModTags.Blocks.GLOWSTONE_ORE, ModTags.Items.GLOWSTONE_ORE);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(ModItems.Bronze.getBlockTag(), ModItems.Bronze.getBlockItemTag());
+        copy(ModItems.SlimeBronze.getBlockTag(), ModItems.SlimeBronze.getBlockItemTag());
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
         copy(ModTags.Blocks.STRIPPED_LOGS, ModTags.Items.STRIPPED_LOGS);
         //tconstruct

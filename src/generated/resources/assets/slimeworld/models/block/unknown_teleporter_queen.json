@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "slimeworld:block/unknown_teleporter/queen/bottom",
+    "side": "slimeworld:block/unknown_teleporter/queen/side",
+    "top": "slimeworld:block/unknown_teleporter/queen/top"
+  }
+}

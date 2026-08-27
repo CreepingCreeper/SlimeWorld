@@ -119,6 +119,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModItems.BerriperBush.get(), block -> createBerry(block, SweetBerryBushBlock.AGE, ModItems.Berriper));
         dropCluster(ModItems.BronzeCluster.get(), ModItems.BronzeShard.get());
         dropSelf(ModItems.Bronze.get());
+        dropSelf(ModItems.SlimeBronze.get());
         add(ModItems.CopperBerryBush.get(), block -> createBerry(block, OreBerryBushBlock.AGE, ModItems.CopperShard));
         add(ModItems.IronBerryBush.get(), block -> createBerry(block, OreBerryBushBlock.AGE, ModItems.IronShard));
         add(ModItems.GoldBerryBush.get(), block -> createBerry(block, OreBerryBushBlock.AGE, ModItems.GoldShard));

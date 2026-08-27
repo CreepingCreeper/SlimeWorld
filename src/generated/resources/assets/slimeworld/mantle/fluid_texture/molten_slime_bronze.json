@@ -1,0 +1,13 @@
+{
+  "camera": "slimeworld:fluid/molten/alloy/slime_bronze/camera",
+  "camera_opacity": 0.1,
+  "color": "FFFFFFFF",
+  "flowing": "slimeworld:fluid/molten/alloy/slime_bronze/flowing",
+  "fog": {
+    "calculate_color": true,
+    "end": 2.0,
+    "shape": "sphere",
+    "start": 0.25
+  },
+  "still": "slimeworld:fluid/molten/alloy/slime_bronze/still"
+}

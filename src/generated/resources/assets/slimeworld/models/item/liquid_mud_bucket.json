@@ -1,0 +1,6 @@
+{
+  "parent": "forge:item/bucket_drip",
+  "flip_gas": false,
+  "fluid": "slimeworld:liquid_mud",
+  "loader": "tconstruct:fluid_container"
+}

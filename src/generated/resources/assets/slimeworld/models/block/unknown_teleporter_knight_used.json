@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "slimeworld:block/unknown_teleporter/knight/bottom_used",
+    "side": "slimeworld:block/unknown_teleporter/knight/side_used",
+    "top": "slimeworld:block/unknown_teleporter/knight/top_used"
+  }
+}
