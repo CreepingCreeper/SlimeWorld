@@ -1,0 +1,12 @@
+{
+  "type": "tconstruct:melting",
+  "ingredient": {
+    "tag": "forge:nuggets/slime_bronze"
+  },
+  "result": {
+    "amount": 10,
+    "fluid": "slimeworld:molten_slime_bronze"
+  },
+  "temperature": 1000,
+  "time": 22
+}

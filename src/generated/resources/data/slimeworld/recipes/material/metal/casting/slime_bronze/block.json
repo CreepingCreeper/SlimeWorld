@@ -1,0 +1,11 @@
+{
+  "type": "tconstruct:casting_basin",
+  "cooling_time": 199,
+  "fluid": {
+    "amount": 810,
+    "tag": "slimeworld:molten_slime_bronze"
+  },
+  "result": {
+    "tag": "forge:storage_blocks/slime_bronze"
+  }
+}

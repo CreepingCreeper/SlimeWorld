@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "slimeworld:bronze_ingot",
+  "ingredients": [
+    {
+      "item": "slimeworld:bronze_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "slimeworld:bronze_ingot"
+  }
+}

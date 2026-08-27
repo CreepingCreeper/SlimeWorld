@@ -1,0 +1,22 @@
+{
+  "type": "tconstruct:alloy",
+  "inputs": [
+    {
+      "amount": 250,
+      "tag": "slimeworld:ocean_slime"
+    },
+    {
+      "amount": 90,
+      "tag": "forge:molten_copper"
+    },
+    {
+      "amount": 100,
+      "tag": "tconstruct:molten_quartz"
+    }
+  ],
+  "result": {
+    "amount": 180,
+    "fluid": "slimeworld:resonance_slime"
+  },
+  "temperature": 950
+}
