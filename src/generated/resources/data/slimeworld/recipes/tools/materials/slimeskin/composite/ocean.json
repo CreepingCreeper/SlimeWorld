@@ -2,7 +2,7 @@
   "type": "tconstruct:material_fluid",
   "fluid": {
     "amount": 250,
-    "tag": "tconstruct:ocean_slime"
+    "tag": "slimeworld:ocean_slime"
   },
   "input": "tconstruct:leather",
   "output": "slimeworld:kelp#slimeskin",

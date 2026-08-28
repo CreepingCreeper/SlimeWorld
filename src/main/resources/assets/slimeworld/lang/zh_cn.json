@@ -37,6 +37,15 @@
   "item.slimeworld.ocean_slime_bottle": "海洋黏液瓶",
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
+  "block.slimeworld.slime_bronze_block": "黏液青铜块",
+  "item.slimeworld.slime_bronze_ingot": "黏液青铜锭",
+  "item.slimeworld.slime_bronze_nugget": "黏液青铜粒",
+  "block.tconstruct.molten_slime_bronze_fluid": "熔融黏液青铜",
+  "fluid.tconstruct.molten_slime_bronze": "熔融黏液青铜",
+  "fluid.tconstruct.flowing_molten_slime_bronze": "流动的熔融黏液青铜",
+  "item.tconstruct.molten_slime_bronze_bucket": "熔融黏液青铜桶",
+  "fluid.tconstruct.molten_slime_bronze.fluid_effect": "",
+
   "block.slimeworld.cinnabar": "朱砂",
   "block.slimeworld.cinnabar_stairs": "朱砂楼梯",
   "block.slimeworld.cinnabar_slab": "朱砂台阶",
@@ -159,6 +168,12 @@
   "item.slimeworld.bogged_spawn_egg": "沼骸刷怪蛋",
   "entity.slimeworld.parched": "焦骸",
   "item.slimeworld.parched_spawn_egg": "焦骸刷怪蛋",
+
+  "material.slimeworld.slime_bronze": "黏液青铜",
+  "material.slimeworld.slime_bronze.flavor": "别和其他青铜搞混了",
+  "material.slimeworld.slime_bronze.encyclopedia": "Grants +1 mining speed per level to blocks that don't require tools, notably ones where the tool is not effective",
+  "material.slimeworld.slime_bronze.ranged": "Adds +0.1 velocity per level at the cost of limiting arrow angles to 32, 16, or 8 directions at the first 3 levels respectively",
+  "material.slimeworld.slime_bronze.armor": "Grants +5% attack speed per level at the cost of +5% duration on negative effects and limiting taken knockback angles to 32, 16, 8, or 4 directions",
 
   "material.slimeworld.kelp": "海带",
   "material.slimeworld.kelp.flavor": "潮起，潮落",

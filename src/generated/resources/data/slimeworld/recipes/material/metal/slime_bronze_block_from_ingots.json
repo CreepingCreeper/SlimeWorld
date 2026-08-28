@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "slimeworld:slime_bronze_block",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/slime_bronze"
+    },
+    "*": {
+      "item": "slimeworld:slime_bronze_ingot"
+    }
+  },
+  "pattern": [
+    "###",
+    "#*#",
+    "###"
+  ],
+  "result": {
+    "item": "slimeworld:slime_bronze_block"
+  },
+  "show_notification": true
+}

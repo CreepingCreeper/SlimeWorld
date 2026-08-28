@@ -25,8 +25,7 @@ import static slimeknights.mantle.Mantle.commonResource;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
     private static final TagKey<Item> COOKED_EGGS = ItemTags.create(commonResource("cooked_eggs"));
-    @SuppressWarnings("removal")
-    private static final TagKey<Item> MAID_TAMED = ItemTags.create(new ResourceLocation("touhou_little_maid", "maid_tamed_item"));
+    private static final TagKey<Item> MAID_TAMED = ItemTags.create(ResourceLocation.fromNamespaceAndPath("touhou_little_maid", "maid_tamed_item"));
 
     public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, blockTagProvider, SlimeWorld.MODID, existingFileHelper);
@@ -69,6 +68,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         //tconstruct
         copy(TinkerTags.Blocks.SLIME_BLOCK, TinkerTags.Items.SLIME_BLOCK);
         copy(TinkerTags.Blocks.CONGEALED_SLIME, TinkerTags.Items.CONGEALED_SLIME);
+        copy(TinkerTags.Blocks.ANVIL_METAL, TinkerTags.Items.ANVIL_METAL);
         //self
         tag(ModTags.Items.SULFUR_CUBE_SWALLOWABLE).addTags(ModTags.Items.ARCHETYPE_BOUNCY, ModTags.Items.ARCHETYPE_FAST_FLAT, ModTags.Items.ARCHETYPE_FAST_SLIDING, ModTags.Items.ARCHETYPE_HIGH_RESISTANCE,
                 ModTags.Items.ARCHETYPE_LIGHT, ModTags.Items.ARCHETYPE_REGULAR, ModTags.Items.ARCHETYPE_SLOW_BOUNCY, ModTags.Items.ARCHETYPE_SLOW_FLAT, ModTags.Items.ARCHETYPE_SLOW_SLIDING, ModTags.Items.ARCHETYPE_STICKY,

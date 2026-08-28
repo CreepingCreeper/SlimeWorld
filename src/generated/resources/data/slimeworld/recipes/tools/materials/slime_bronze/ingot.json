@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material",
+  "ingredient": {
+    "tag": "forge:ingots/slime_bronze"
+  },
+  "material": "slimeworld:slime_bronze",
+  "needed": 1,
+  "value": 1
+}

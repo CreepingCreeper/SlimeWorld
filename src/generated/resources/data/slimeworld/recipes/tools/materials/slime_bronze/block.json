@@ -1,0 +1,13 @@
+{
+  "type": "tconstruct:material",
+  "ingredient": {
+    "tag": "forge:storage_blocks/slime_bronze"
+  },
+  "leftover": {
+    "count": 1,
+    "tag": "forge:ingots/slime_bronze"
+  },
+  "material": "slimeworld:slime_bronze",
+  "needed": 1,
+  "value": 9
+}

@@ -5,6 +5,9 @@ import com.creeping_creeper.slimeworld.data.provider.*;
 import com.creeping_creeper.slimeworld.data.provider.assets.*;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModGlobalLootModifiersProvider;
 import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
+import com.creeping_creeper.slimeworld.data.provider.recipes.ModCommonRecipeProvider;
+import com.creeping_creeper.slimeworld.data.provider.recipes.ModMaterialRecipeProvider;
+import com.creeping_creeper.slimeworld.data.provider.recipes.ModSmelteryRecipeProvider;
 import com.creeping_creeper.slimeworld.data.provider.tags.*;
 import com.creeping_creeper.slimeworld.data.provider.tinkering.*;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
@@ -97,6 +100,10 @@ public class SlimeWorld {
         //data pack
         DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
         generator.addProvider(server, datapackProvider);
+        //recipes
+        generator.addProvider(server, new ModCommonRecipeProvider(output));
+        generator.addProvider(server, new ModSmelteryRecipeProvider(output));
+        generator.addProvider(server, new ModMaterialRecipeProvider(output));
         //tags
         ModBlockTagsProvider blockTags = new ModBlockTagsProvider(output, lookupProvider, existingFileHelper);
         generator.addProvider(server, blockTags);
@@ -106,11 +113,11 @@ public class SlimeWorld {
         generator.addProvider(server, new ModBiomeTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(server, new ModModifierTagsProvider(output, existingFileHelper));
+        generator.addProvider(server, new ModMaterialTagsProvider(output, existingFileHelper));
         //loots
         generator.addProvider(server, new ModLootTableProvider(output));
         generator.addProvider(server, new ModGlobalLootModifiersProvider(output));
         //others
-        generator.addProvider(server, new ModRecipeProvider(output));
         ModMaterialProvider materials = new ModMaterialProvider(output);
         generator.addProvider(server, materials);
         generator.addProvider(server, new ModStatsProvider(output, materials));
@@ -139,9 +146,8 @@ public class SlimeWorld {
         return type + "." + MODID + "." + name;
     }
 
-    @SuppressWarnings("removal")
     public static ResourceLocation getResource(String name) {
-        return new ResourceLocation(MODID, name);
+        return ResourceLocation.fromNamespaceAndPath(MODID, name);
     }
 
     public static <T> TinkerDataCapability.TinkerDataKey<T> createKey(String name) {

@@ -2,9 +2,9 @@
   "type": "tconstruct:material_fluid",
   "fluid": {
     "amount": 50,
-    "tag": "tconstruct:venom"
+    "tag": "slimeworld:ocean_slime"
   },
   "input": "slimeworld:kelp#slimeskin",
   "output": "tconstruct:leather",
-  "temperature": 10
+  "temperature": 70
 }

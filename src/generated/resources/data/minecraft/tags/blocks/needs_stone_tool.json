@@ -1,6 +1,7 @@
 {
   "values": [
     "slimeworld:glowstone_ore",
-    "slimeworld:deepslate_glowstone_ore"
+    "slimeworld:deepslate_glowstone_ore",
+    "slimeworld:slime_bronze_block"
   ]
 }

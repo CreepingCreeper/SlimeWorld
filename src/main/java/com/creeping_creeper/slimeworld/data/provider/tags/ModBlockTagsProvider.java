@@ -47,7 +47,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get(), ModItems.SulfurMud.get());
         tag(BlockTags.NEEDS_IRON_TOOL).add(ModItems.Bronze.get(), ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(),
                 ModItems.IchorVanillaSlimeNylium.get());
-        tag(BlockTags.NEEDS_STONE_TOOL).add(ModItems.GlowstoneOre.get(), ModItems.DeepSlateGlowstoneOre.get());
+        tag(BlockTags.NEEDS_STONE_TOOL).add(ModItems.GlowstoneOre.get(), ModItems.DeepSlateGlowstoneOre.get(), ModItems.SlimeBronze.get());
 
         tag(BlockTags.DRAGON_IMMUNE).add(ModItems.UnknownTpSteel.get(), ModItems.UnknownTpBronze.get(), ModItems.UnknownTpCinder.get(), ModItems.UnknownTpQueen.get(), ModItems.UnknownTpKnight.get());
         tag(BlockTags.WITHER_IMMUNE).add(ModItems.UnknownTpSteel.get(), ModItems.UnknownTpBronze.get(), ModItems.UnknownTpCinder.get(), ModItems.UnknownTpQueen.get(), ModItems.UnknownTpKnight.get());
@@ -74,6 +74,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(TinkerTags.Blocks.SLIMY_SOIL).add(ModItems.SulfurMud.get());
         tag(TinkerTags.Blocks.SLIME_BLOCK).add(ModItems.OceanSlime.get());
         tag(TinkerTags.Blocks.CONGEALED_SLIME).add(ModItems.OceanCongealedSlime.get());
+        tag(TinkerTags.Blocks.ANVIL_METAL).addTag(ModItems.SlimeBronze.getBlockTag());
         //self
         tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
         tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());

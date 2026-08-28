@@ -1,0 +1,58 @@
+{
+  "type": "mantle:add_entry",
+  "conditions": [
+    {
+      "block": "minecraft:air",
+      "condition": "minecraft:block_state_property"
+    },
+    {
+      "condition": "mantle:tag_filled",
+      "tag": "forge:dusts/certus_quartz"
+    },
+    {
+      "condition": "tconstruct:has_modifier",
+      "modifier": "slimeworld:overwash"
+    },
+    {
+      "condition": "slimeworld:has_overslime"
+    }
+  ],
+  "entry": {
+    "type": "mantle:tag_preference",
+    "tag": "forge:dusts/certus_quartz"
+  },
+  "functions": [
+    {
+      "add": false,
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 5,
+        "min": 3
+      },
+      "function": "minecraft:set_count"
+    },
+    {
+      "formula": "minecraft:ore_drops",
+      "function": "tconstruct:modifier_bonus",
+      "include_base": false,
+      "modifier": "slimeworld:overwash"
+    },
+    {
+      "function": "slimeworld:remove_overslime"
+    },
+    {
+      "function": "minecraft:explosion_decay"
+    }
+  ],
+  "post_conditions": [
+    {
+      "type": "mantle:inverted",
+      "condition": {
+        "type": "mantle:contains_item",
+        "ingredient": {
+          "tag": "forge:ores/certus_quartz"
+        }
+      }
+    }
+  ]
+}

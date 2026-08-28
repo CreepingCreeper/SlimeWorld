@@ -1,0 +1,9 @@
+{
+  "type": "tconstruct:material_fluid",
+  "fluid": {
+    "amount": 90,
+    "tag": "slimeworld:molten_slime_bronze"
+  },
+  "output": "slimeworld:slime_bronze",
+  "temperature": 1000
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "slimeworld:slime_bronze_nugget",
+  "ingredients": [
+    {
+      "item": "slimeworld:slime_bronze_ingot"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "slimeworld:slime_bronze_nugget"
+  }
+}

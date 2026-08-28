@@ -37,6 +37,15 @@
   "item.slimeworld.ocean_slime_bottle": "OceansLime Bottle",
   "fluid.slimeworld.ocean_slime.fluid_effect": "",
 
+  "block.slimeworld.slime_bronze_block": "Block of Slime Bronze",
+  "item.slimeworld.slime_bronze_ingot": "Slime Bronze Ingot",
+  "item.slimeworld.slime_bronze_nugget": "Slime Bronze Nugget",
+  "block.tconstruct.molten_slime_bronze_fluid": "Molten Slime Bronze",
+  "fluid.tconstruct.molten_slime_bronze": "Molten Slime Bronze",
+  "fluid.tconstruct.flowing_molten_slime_bronze": "Flowing Molten Slime Bronze",
+  "item.tconstruct.molten_slime_bronze_bucket": "Molten Slime Bronze Bucket",
+  "fluid.tconstruct.molten_slime_bronze.fluid_effect": "",
+
   "block.slimeworld.cinnabar": "Cinnabar",
   "block.slimeworld.cinnabar_stairs": "Cinnabar Stairs",
   "block.slimeworld.cinnabar_slab": "Cinnabar Slab",
@@ -158,6 +167,12 @@
   "item.slimeworld.bogged_spawn_egg": "Bogged Spawn Egg",
   "entity.slimeworld.parched": "Parched",
   "item.slimeworld.parched_spawn_egg": "Parched Spawn Egg",
+
+  "material.slimeworld.slime_bronze": "Slime Bronze",
+  "material.slimeworld.slime_bronze.flavor": "Not to be confused with other bronze.",
+  "material.slimeworld.slime_bronze.encyclopedia": "Grants +1 mining speed per level to blocks that don't require tools, notably ones where the tool is not effective",
+  "material.slimeworld.slime_bronze.ranged": "Adds +0.1 velocity per level at the cost of limiting arrow angles to 32, 16, or 8 directions at the first 3 levels respectively",
+  "material.slimeworld.slime_bronze.armor": "Grants +5% attack speed per level at the cost of +5% duration on negative effects and limiting taken knockback angles to 32, 16, 8, or 4 directions",
 
   "material.slimeworld.kelp": "kelp",
   "material.slimeworld.kelp.flavor": "潮起，潮落",

@@ -3,11 +3,11 @@
   "conditions": [
     {
       "condition": "mantle:block_tag",
-      "tag": "forge:ores/certus_quartz"
+      "tag": "forge:ores/certus_quartz_2"
     },
     {
       "condition": "mantle:tag_filled",
-      "tag": "forge:dusts/certus_quartz"
+      "tag": "forge:dusts/certus_quartz_2"
     },
     {
       "condition": "tconstruct:has_modifier",
@@ -19,7 +19,7 @@
   ],
   "entry": {
     "type": "mantle:tag_preference",
-    "tag": "forge:dusts/certus_quartz"
+    "tag": "forge:dusts/certus_quartz_2"
   },
   "functions": [
     {
@@ -50,7 +50,7 @@
       "condition": {
         "type": "mantle:contains_item",
         "ingredient": {
-          "tag": "forge:ores/certus_quartz"
+          "tag": "forge:ores/certus_quartz_2"
         }
       }
     }
