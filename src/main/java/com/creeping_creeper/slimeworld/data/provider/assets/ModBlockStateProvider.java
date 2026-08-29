@@ -12,7 +12,7 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import slimeknights.mantle.registration.object.WallBuildingBlockObject;
 
-@SuppressWarnings({"UnusedReturnValue", "SameParameterValue", "removal"})
+@SuppressWarnings({"UnusedReturnValue", "SameParameterValue"})
 public class ModBlockStateProvider extends BlockStateProvider {
     private final ModelFile.UncheckedModelFile GENERATED = new ModelFile.UncheckedModelFile("item/generated");
 
@@ -28,6 +28,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         basicBlock(ModItems.OceanSlime.get());
         basicBlock(ModItems.OceanCongealedSlime.get());
         basicBlock(ModItems.SlimeGravel.get());
+        cubeColumn(ModItems.OceanSlimyEnderbarkRoots.get(), SlimeWorld.getResource("block/wood/ocean_enderbark_roots"), SlimeWorld.getResource("block/wood/ocean_enderbark_roots_top"));
+
         basicBlock(ModItems.Bronze.get());
         basicBlock(ModItems.SlimeBronze.get());
 
@@ -76,15 +78,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private ModelFile basicBlock(Block block) {
-        return basicBlock(block, models().cubeAll(name(block), new ResourceLocation(key(block).getNamespace(),  "block/" + name(block))));
+        return basicBlock(block, models().cubeAll(name(block), ResourceLocation.fromNamespaceAndPath(key(block).getNamespace(),  "block/" + name(block))));
     }
 
     private ModelFile basicBlock(Block block, String location, ResourceLocation texture) {
         return basicBlock(block, models().cubeAll(location, texture));
     }
 
+    public ModelFile cubeColumn(Block block, ResourceLocation side, ResourceLocation top) {
+        return basicBlock(block, models().cubeColumn(name(block), side, top));
+    }
+
     private ModelFile pathBlock(Block block, String path) {
-        return basicBlock(block, models().cubeAll( "block/" + path + name(block), new ResourceLocation(key(block).getNamespace(), "block/" + path + name(block))));
+        return basicBlock(block, models().cubeAll( "block/" + path + name(block), ResourceLocation.fromNamespaceAndPath(key(block).getNamespace(), "block/" + path + name(block))));
     }
 
     private void addWallBuildingBlock(WallBuildingBlockObject block, String folder, String name, ResourceLocation texture) {

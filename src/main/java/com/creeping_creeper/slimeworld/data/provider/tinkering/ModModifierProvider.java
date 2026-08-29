@@ -70,7 +70,7 @@ public class ModModifierProvider extends AbstractModifierProvider {
                         .formula()
                         .customVariable("overslime", new ModDataVariable(overslime, ModDataSource.PERSISTENT))
                         .variable(LEVEL).min()
-                        .constant(0.08f).multiply()
+                        .constant(0.1f).multiply()
                         .build())
                 .addModule(AttributeModule.builder(Attributes.ATTACK_DAMAGE, AttributeModifier.Operation.MULTIPLY_TOTAL)
                         .tooltipStyle(AttributeModule.TooltipStyle.PERCENT)
@@ -78,7 +78,7 @@ public class ModModifierProvider extends AbstractModifierProvider {
                         .formula()
                         .customVariable("overslime", new ModDataVariable(overslime, ModDataSource.PERSISTENT))
                         .variable(LEVEL).min()
-                        .constant(0.08f).multiply()
+                        .constant(0.1f).multiply()
                         .build());
         buildModifier(ModModifierIds.overtomato)
                 .addModule(new OverloadModule(LevelingValue.eachLevel(0.15f)));

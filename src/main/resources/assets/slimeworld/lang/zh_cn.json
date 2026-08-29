@@ -123,6 +123,7 @@
 
   "block.slimeworld.slime_gravel": "黏性沙砾",
   "block.slimeworld.slime_gravel.tooltip": "",
+  "block.slimeworld.ocean_enderbark_roots": "黏液末影皮树根",
   "block.slimeworld.ichor_vanilla_slime_grass": "灵浆菌岩",
   "block.slimeworld.ichor_vanilla_slime_grass.tooltip": "能让你反向跳得更高，位于下界时生成灵浆史莱姆",
   "block.slimeworld.ichor_earth_slime_grass": "灵浆菌岩",
@@ -171,9 +172,9 @@
 
   "material.slimeworld.slime_bronze": "黏液青铜",
   "material.slimeworld.slime_bronze.flavor": "别和其他青铜搞混了",
-  "material.slimeworld.slime_bronze.encyclopedia": "Grants +1 mining speed per level to blocks that don't require tools, notably ones where the tool is not effective",
-  "material.slimeworld.slime_bronze.ranged": "Adds +0.1 velocity per level at the cost of limiting arrow angles to 32, 16, or 8 directions at the first 3 levels respectively",
-  "material.slimeworld.slime_bronze.armor": "Grants +5% attack speed per level at the cost of +5% duration on negative effects and limiting taken knockback angles to 32, 16, 8, or 4 directions",
+  "material.slimeworld.slime_bronze.encyclopedia": "挖掘非金属矿石和水晶簇时，每级消耗3点黏液覆层掉落额外的对应粉末（如果存在的话）",
+  "material.slimeworld.slime_bronze.ranged": "有黏液覆层时每级+10%弹射物力量，但黏液覆层会随着时间逐渐减少",
+  "material.slimeworld.slime_bronze.armor": "有黏液覆层时每级+10%伤害，但黏液覆层会随着时间逐渐减少",
 
   "material.slimeworld.kelp": "海带",
   "material.slimeworld.kelp.flavor": "潮起，潮落",
@@ -193,6 +194,13 @@
   "modifier.slimeworld.undercurrent": "暗流",
   "modifier.slimeworld.undercurrent.flavor": "潜伏于表面之下",
   "modifier.slimeworld.undercurrent.description": "潜行时提升伤害",
+
+  "modifier.slimeworld.overwash": "黏液浸洗",
+  "modifier.slimeworld.overwash.flavor": "充分榨干价值",
+  "modifier.slimeworld.overwash.description": "挖掘非金属矿石和水晶簇时，消耗黏液覆层掉落额外的对应粉末（如果存在的话）",
+  "modifier.slimeworld.overload": "黏液过载",
+  "modifier.slimeworld.overload.flavor": "不惜一切代价",
+  "modifier.slimeworld.overload.description": "有黏液覆层时提高伤害，但黏液覆层会随着时间逐渐减少",
 
   "modifier.slimeworld.sputtering": "飞溅",
   "modifier.slimeworld.sputtering.flavor": "液滴飞溅！",

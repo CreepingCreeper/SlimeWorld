@@ -64,6 +64,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModItems.OceanCake.get(), noDrop());
         dropGeode(ModItems.OceanGeode);
         dropSelf(ModItems.SlimeGravel.get());
+        dropSelf(ModItems.OceanSlimyEnderbarkRoots.get());
         dropSelf(ModItems.IchorVent.get());
         add(ModItems.DryingRack.get(), block -> droppingWithFunctions(block, (builder) -> builder.apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(RetexturedLootFunction::new)));
 

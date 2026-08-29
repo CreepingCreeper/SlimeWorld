@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "slimeworld:block/wood/ocean_enderbark_roots_top",
+    "side": "slimeworld:block/wood/ocean_enderbark_roots"
+  }
+}

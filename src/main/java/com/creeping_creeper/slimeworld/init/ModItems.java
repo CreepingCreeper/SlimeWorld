@@ -33,6 +33,7 @@ import slimeknights.mantle.item.BlockTooltipItem;
 import slimeknights.mantle.item.BurnableBlockItem;
 import slimeknights.mantle.registration.deferred.BlockEntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.SynchronizedDeferredRegister;
+import slimeknights.mantle.registration.object.EnumObject;
 import slimeknights.mantle.registration.object.ItemObject;
 import slimeknights.mantle.registration.object.MetalItemObject;
 import slimeknights.mantle.registration.object.WallBuildingBlockObject;
@@ -46,6 +47,7 @@ import slimeknights.tconstruct.fluids.item.ContainerFoodItem;
 import slimeknights.tconstruct.gadgets.block.FoodCakeBlock;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.shared.TinkerMaterials;
+import slimeknights.tconstruct.shared.block.SlimeType;
 import slimeknights.tconstruct.world.TinkerStructures;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.*;
@@ -83,6 +85,8 @@ public class ModItems {
     public static final ItemObject<Block> OceanCake = BLOCKS.register("ocean_cake", () -> new WaterFoodCakeBlock(Block.Properties.of().sound(SoundType.WOOL).forceSolidOn().strength(0.5F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY), ModFood.OCEAN_CAKE, FoodCakeBlock.EffectCombination.BLOCK), (b) -> new BlockItem(b, new Item.Properties().stacksTo(1)));
     public static final GeodeItemObject OceanGeode = BLOCKS.registerGeode("ocean_slime_crystal", MapColor.COLOR_BLUE, Sounds.ENDER_CRYSTAL, Sounds.ENDER_CRYSTAL_CHIME.getSound(), Sounds.ENDER_CRYSTAL_CLUSTER, 5, GENERAL_PROPS);
     public static final ItemObject<Block> SlimeGravel = BLOCKS.register("slime_gravel", () -> new SlimeGravelBlock(builder(MapColor.COLOR_BLUE).sound(SoundType.GRAVEL).instrument(NoteBlockInstrument.SNARE).strength(0.6F)), TOOLTIP_BLOCK_ITEM);
+    public static final ItemObject<Block> OceanSlimyEnderbarkRoots = BLOCKS.register("ocean_enderbark_roots", () -> new SlimeDirtBlock(builder(MapColor.COLOR_BLUE).strength(0.7F).sound(SoundType.MUDDY_MANGROVE_ROOTS).lightLevel(s -> 3)), GENERAL_BLOCK_ITEM);
+
     public static final ItemObject<Block> IchorVent = BLOCKS.register("ichor_vent", () -> new IchorVentBlock(builder(MapColor.STONE).sound(SoundType.STONE).strength(1F).requiresCorrectToolForDrops()), TOOLTIP_BLOCK_ITEM);
     public static final ItemObject<Block> DryingRack = BLOCKS.register("drying_rack", () -> new DryingRackBlock(builder(MapColor.WOOD).sound(SoundType.WOOD).strength(0.5F)), GENERAL_BLOCK_ITEM);
 
@@ -245,6 +249,7 @@ public class ModItems {
         accept(output, SlimeBronze);
 
         output.accept(SlimeGravel);
+        output.accept(OceanSlimyEnderbarkRoots);
         output.accept(IchorVent);
 
         acceptWallBuilding(output, Cinnabar);

@@ -20,6 +20,7 @@ import slimeknights.tconstruct.library.recipe.alloying.AlloyRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.casting.ItemCastingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.entitymelting.EntityMeltingRecipeBuilder;
 import slimeknights.tconstruct.library.recipe.melting.MeltingRecipeBuilder;
+import slimeknights.tconstruct.world.TinkerWorld;
 
 import java.util.function.Consumer;
 
@@ -73,10 +74,10 @@ public class ModSmelteryRecipeProvider extends RecipeProvider implements ISmelte
         ItemCastingRecipeBuilder.basinRecipe(ModItems.OceanCongealedSlime)
                 .setFluidAndTime(ModFluids.OceanSlime, FluidValues.SLIME_CONGEALED)
                 .save(consumer, location(slime + "congealed_casting"));
-//        ItemCastingRecipeBuilder.basinRecipe(TinkerWorld.slimyEnderbarkRoots.get(slimeType))
-//                .setFluidAndTime(ModFluids.OceanSlime, FluidValues.SLIME_CONGEALED)
-//                .setCast(TinkerWorld.enderbarkRoots, true)
-//                .save(consumer, location(slime + "roots_casting"));
+        ItemCastingRecipeBuilder.basinRecipe(ModItems.OceanSlimyEnderbarkRoots)
+                .setFluidAndTime(ModFluids.OceanSlime, FluidValues.SLIME_CONGEALED)
+                .setCast(TinkerWorld.enderbarkRoots, true)
+                .save(consumer, location(slime + "roots_casting"));
         ItemCastingRecipeBuilder.basinRecipe(ModItems.OceanSlime)
                 .setFluidAndTime(ModFluids.OceanSlime, FluidValues.SLIME_BLOCK - FluidValues.SLIME_CONGEALED)
                 .setCast(ModItems.OceanCongealedSlime, true)

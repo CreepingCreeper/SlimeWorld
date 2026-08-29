@@ -123,6 +123,7 @@
 
   "block.slimeworld.slime_gravel": "Slime Gravel",
   "block.slimeworld.slime_gravel.tooltip": "",
+  "block.slimeworld.ocean_enderbark_roots": "Slimy Enderbark Roots",
   "block.slimeworld.ichor_vanilla_slime_grass": "Ichor Nylium",
   "block.slimeworld.ichor_vanilla_slime_grass.tooltip": "Lets you jump inverted higher and spawns ichorslimes in the nether",
   "block.slimeworld.ichor_earth_slime_grass": "Ichor Nylium",
@@ -196,6 +197,13 @@
   "modifier.slimeworld.sputtering": "Sputtering",
   "modifier.slimeworld.sputtering.flavor": "液滴飞溅！",
   "modifier.slimeworld.sputtering.description": "弹药也会目标附近的生物造成伤害",
+
+  "modifier.slimeworld.overwash": "Overwash",
+  "modifier.slimeworld.overwash.flavor": "充分榨干价值",
+  "modifier.slimeworld.overwash.description": "挖掘非金属矿石和水晶簇时，消耗黏液覆层掉落额外的对应粉末（如果存在的话）",
+  "modifier.slimeworld.overload": "Overload",
+  "modifier.slimeworld.overload.flavor": "不惜一切代价",
+  "modifier.slimeworld.overload.description": "有黏液覆层时提高伤害，但黏液覆层会随着时间逐渐减少",
 
   "effect.slimeworld.slime_resonance": "Slime Resonance",
   "effect.slimeworld.blessing": "Blessing",

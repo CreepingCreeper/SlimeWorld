@@ -29,7 +29,7 @@ public class RemoveOverslimeFunction extends LootItemConditionalFunction {
         ItemStack stack1 = lootContext.getParam(LootContextParams.TOOL);
         if (stack1.is(TinkerTags.Items.MODIFIABLE)){
             ToolStack tool = ToolStack.from(stack1);
-            OverslimeModule.INSTANCE.removeAmount(tool, tool.getModifierLevel(ModModifierIds.overwash));
+            OverslimeModule.INSTANCE.removeAmount(tool, tool.getModifierLevel(ModModifierIds.overwash) * 3);
         }
         return stack;
     }

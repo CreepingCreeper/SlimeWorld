@@ -13,7 +13,7 @@
         "$overslime",
         "$level",
         "min",
-        0.08,
+        0.1,
         "*"
       ],
       "percent": false,
@@ -33,7 +33,7 @@
         "$overslime",
         "$level",
         "min",
-        0.08,
+        0.1,
         "*"
       ],
       "operation": "multiply_total",
