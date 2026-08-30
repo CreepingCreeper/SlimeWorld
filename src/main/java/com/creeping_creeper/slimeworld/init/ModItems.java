@@ -305,6 +305,8 @@ public class ModItems {
         output.accept(ModFluids.ResonanceSlime);
         output.accept(ModFluids.LiquidMud);
         output.accept(ModFluids.MoltenSlimeBronze);
+        output.accept(ModFluids.Mercury);
+        output.accept(ModFluids.SulfuricAcid);
 
         output.accept(Bubble);
         output.accept(WaterBubble);
