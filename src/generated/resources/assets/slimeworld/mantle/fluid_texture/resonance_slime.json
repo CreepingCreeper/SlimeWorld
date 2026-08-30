@@ -1,5 +1,5 @@
 {
-  "color": "FFFFFFFF",
+  "color": "FF7CF6FC",
   "flowing": "tconstruct:fluid/liquid/flowing",
   "fog": {
     "calculate_color": true,

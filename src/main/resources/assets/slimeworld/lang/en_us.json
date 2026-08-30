@@ -40,11 +40,11 @@
   "block.slimeworld.slime_bronze_block": "Block of Slime Bronze",
   "item.slimeworld.slime_bronze_ingot": "Slime Bronze Ingot",
   "item.slimeworld.slime_bronze_nugget": "Slime Bronze Nugget",
-  "block.tconstruct.molten_slime_bronze_fluid": "Molten Slime Bronze",
-  "fluid.tconstruct.molten_slime_bronze": "Molten Slime Bronze",
-  "fluid.tconstruct.flowing_molten_slime_bronze": "Flowing Molten Slime Bronze",
-  "item.tconstruct.molten_slime_bronze_bucket": "Molten Slime Bronze Bucket",
-  "fluid.tconstruct.molten_slime_bronze.fluid_effect": "",
+  "block.slimeworld.molten_slime_bronze_fluid": "Molten Slime Bronze",
+  "fluid.slimeworld.molten_slime_bronze": "Molten Slime Bronze",
+  "fluid.slimeworld.flowing_molten_slime_bronze": "Flowing Molten Slime Bronze",
+  "item.slimeworld.molten_slime_bronze_bucket": "Molten Slime Bronze Bucket",
+  "fluid.slimeworld.molten_slime_bronze.fluid_effect": "",
 
   "block.slimeworld.cinnabar": "Cinnabar",
   "block.slimeworld.cinnabar_stairs": "Cinnabar Stairs",
@@ -161,6 +161,7 @@
   "item.slimeworld.ichor_golem_spawn_egg": "Ichorgolem Spawn Egg",
   "entity.slimeworld.ender_slime_golem": "Ender Slimegolem",
   "item.slimeworld.ender_slime_golem_spawn_egg": "Ender Slimegolem Spawn Egg",
+
   "entity.slimeworld.steelslime_boss": "Steelslime",
   "entity.slimeworld.knightslime_boss": "Knightslime",
 

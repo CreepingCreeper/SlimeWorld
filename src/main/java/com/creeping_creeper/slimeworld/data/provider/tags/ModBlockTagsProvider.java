@@ -73,6 +73,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(FoliageType.ICHOR.getGrassBlockTag()).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
         tag(DirtType.ICHOR.getBlockTag()).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
         tag(TinkerTags.Blocks.SLIMY_SOIL).add(ModItems.OceanSlimyEnderbarkRoots.get(), ModItems.SulfurMud.get());
+        tag(TinkerTags.Blocks.ENDERBARK_ROOTS).add(ModItems.OceanSlimyEnderbarkRoots.get());
         tag(TinkerTags.Blocks.SLIME_BLOCK).add(ModItems.OceanSlime.get());
         tag(TinkerTags.Blocks.CONGEALED_SLIME).add(ModItems.OceanCongealedSlime.get());
         tag(TinkerTags.Blocks.ANVIL_METAL).addTag(ModItems.SlimeBronze.getBlockTag());

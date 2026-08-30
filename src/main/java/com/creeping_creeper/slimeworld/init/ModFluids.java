@@ -2,7 +2,9 @@ package com.creeping_creeper.slimeworld.init;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,10 +23,13 @@ import static slimeknights.tconstruct.fluids.block.MobEffectLiquidBlock.createEf
 public class ModFluids {
     protected static final FluidDeferredRegisterExtension FLUIDS = new FluidDeferredRegisterExtension(SlimeWorld.MODID);
 
-    public static final FlowingFluidObject<SlimeFluid> OceanSlime = FLUIDS.registerSlime("ocean_slime").type(slime("ocean_slime").temperature(370).lightLevel(1)).block(createEffect(COLOR_BLUE,1, () -> new MobEffectInstance(TinkerEffects.doubleJump.get(), 5 * 20))).bucket().flowing(SlimeFluid.Source::new, SlimeFluid.Flowing::new);
+    public static final FlowingFluidObject<SlimeFluid> OceanSlime = FLUIDS.registerSlime("ocean_slime").type(slime("ocean_slime").temperature(370).lightLevel(3)).block(createEffect(COLOR_BLUE,3, () -> new MobEffectInstance(TinkerEffects.doubleJump.get(), 5 * 20))).bucket().flowing(SlimeFluid.Source::new, SlimeFluid.Flowing::new);
     public static final FlowingFluidObject<ForgeFlowingFluid> ResonanceSlime = FLUIDS.registerSlime("resonance_slime").type(hot("resonance_slime").temperature(1250).lightLevel(15)).block(createBurning(COLOR_RED,12, 10, 4f)).bucket().flowing();
     public static final FlowingFluidObject<ForgeFlowingFluid> LiquidMud = FLUIDS.registerSlime("liquid_mud").type(slime("liquid_mud").temperature(300).lightLevel(0)).block(createMud(TERRACOTTA_CYAN)).bucket().flowing();
     public static final FlowingFluidObject<ForgeFlowingFluid> MoltenSlimeBronze = FLUIDS.registerMetal("molten_slime_bronze").type(hot("molten_slime_bronze").temperature(1300).lightLevel(9)).block(createBurning(TERRACOTTA_GREEN, 9, 10, 7f)).bucket().flowing();
+    public static final FlowingFluidObject<ForgeFlowingFluid> Mercury = FLUIDS.registerMetal("mercury").type(common("mercury").temperature(320).lightLevel(3)).block(createEffect(COLOR_LIGHT_GRAY, 3, () -> new MobEffectInstance(MobEffects.POISON, 5 * 20, 1))).bucket().flowing();
+    public static final FlowingFluidObject<ForgeFlowingFluid> SulfuricAcid = FLUIDS.registerSlime("sulfuric_acid").type(common("sulfuric_acid").temperature(350).lightLevel(0)).block(createEffect(COLOR_YELLOW, 0, () -> new MobEffectInstance(TinkerEffects.pierce.get(), 5 * 20, 9))).bucket().flowing();
+
     //public static final FlowingFluidObject<InvertedFluid> XPGas = FLUIDS.register("xp_gas").type(gas("xp_gas").temperature(300).lightLevel(0)).block(createMud(COLOR_LIGHT_GREEN)).bucket().invertedFlowing();
 
     private static FluidType.Properties gas(String name) {

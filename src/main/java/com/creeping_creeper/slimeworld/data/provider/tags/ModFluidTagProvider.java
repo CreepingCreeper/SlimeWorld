@@ -27,12 +27,14 @@ public class ModFluidTagProvider extends FluidTagsProvider {
         tag(TinkerTags.Fluids.SLIME_TOOLTIPS).addTags(ModFluids.OceanSlime.getTag(), ModFluids.ResonanceSlime.getTag());
         tag(TinkerTags.Fluids.SLIME).addTags(ModFluids.OceanSlime.getTag(), ModFluids.ResonanceSlime.getTag());
         tag(TinkerTags.Fluids.CLAY_TOOLTIPS).addTag(ModFluids.LiquidMud.getTag());
-        tag(TinkerTags.Fluids.METAL_TOOLTIPS).addTag(ModFluids.MoltenSlimeBronze.getTag());
+        tag(TinkerTags.Fluids.METAL_TOOLTIPS).addTags(ModFluids.MoltenSlimeBronze.getTag(), ModFluids.Mercury.getTag());
         //self
         fluidTag(ModFluids.OceanSlime);
         fluidTag(ModFluids.ResonanceSlime);
         fluidTag(ModFluids.LiquidMud);
         fluidTag(ModFluids.MoltenSlimeBronze);
+        fluidTag(ModFluids.Mercury);
+        fluidTag(ModFluids.SulfuricAcid);
     }
 
     private void fluidTag(FlowingFluidObject<?> fluid) {

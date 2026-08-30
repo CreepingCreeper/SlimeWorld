@@ -21,10 +21,12 @@ public class ModFluidTextureProvider extends AbstractFluidTextureProvider {
 
     @Override
     public void addTextures() {
-        texture(ModFluids.ResonanceSlime).root(TConstruct.getResource("fluid/liquid/")).still().flowing().calculateFogColor(true).fog(FogShape.SPHERE, 0.25f, 2);
+        tinted(ModFluids.ResonanceSlime, "fluid/liquid/", 0xFF7cf6fc);
         slime(ModFluids.OceanSlime, "ocean");
         texture(ModFluids.LiquidMud).still(ResourceLocation.withDefaultNamespace("block/mud")).flowing(ResourceLocation.withDefaultNamespace("block/mud")).calculateFogColor(true).fog(FogShape.SPHERE, 0.25f, 8);
         alloy(ModFluids.MoltenSlimeBronze);
+        tinted(ModFluids.Mercury, "fluid/liquid/", 0xFFFFFFFF);
+        tinted(ModFluids.SulfuricAcid, "fluid/liquid/", 0xFFFFFFFF);
     }
 
     private FluidTexture.Builder root(FluidObject<?> fluid) {
@@ -46,6 +48,11 @@ public class ModFluidTextureProvider extends AbstractFluidTextureProvider {
 
     private FluidTexture.Builder alloy(FluidObject<?> fluid) {
         return moltenFolder(fluid, "alloy");
+    }
+
+    private FluidTexture.Builder tinted(FluidObject<?> fluid, String location, int color){
+        return texture(fluid).root(TConstruct.getResource(location)).still().flowing().calculateFogColor(true).fog(FogShape.SPHERE, 0.25f, 2).color(color);
+
     }
 
     @Override
