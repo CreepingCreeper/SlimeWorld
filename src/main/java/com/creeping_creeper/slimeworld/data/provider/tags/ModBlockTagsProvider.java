@@ -41,8 +41,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModItems.Cinnabar.get(), ModItems.Cinnabar.getStairs(), ModItems.Cinnabar.getSlab(), ModItems.Cinnabar.getWall(), ModItems.PolishedCinnabar.get(), ModItems.PolishedCinnabar.getStairs(), ModItems.ChiseledCinnabar.get(),
                 ModItems.PolishedCinnabar.getSlab(), ModItems.PolishedCinnabar.getWall(), ModItems.CinnabarBricks.get(), ModItems.CinnabarBricks.getStairs(), ModItems.CinnabarBricks.getSlab(), ModItems.CinnabarBricks.getWall(),
                 ModItems.Sulfur.get(), ModItems.Sulfur.getStairs(), ModItems.Sulfur.getSlab(), ModItems.Sulfur.getWall(), ModItems.PolishedSulfur.get(), ModItems.PolishedSulfur.getStairs(), ModItems.ChiseledSulfur.get(),
-                ModItems.PolishedSulfur.getSlab(), ModItems.PolishedSulfur.getWall(), ModItems.SulfurBricks.get(), ModItems.SulfurBricks.getStairs(), ModItems.SulfurBricks.getSlab(), ModItems.SulfurBricks.getWall(),
-                ModItems.PotentSulfurNausea.get(), ModItems.PotentSulfurBlindness.get(), ModItems.PotentSulfurWeakness.get(), ModItems.PotentSulfurRegeneration.get(), ModItems.PotentSulfurStrength.get(), ModItems.SulfurSpike.get());
+                ModItems.PolishedSulfur.getSlab(), ModItems.PolishedSulfur.getWall(), ModItems.SulfurBricks.get(), ModItems.SulfurBricks.getStairs(), ModItems.SulfurBricks.getSlab(), ModItems.SulfurBricks.getWall()
+                , ModItems.SulfurSpike.get()).addTag(ModTags.Blocks.POTENT_SULFUR);
         tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ModItems.OceanCongealedSlime.get(), ModItems.SlimeGravel.get(), ModItems.OceanSlimyEnderbarkRoots.get(), ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(),
                 ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get(), ModItems.SulfurMud.get());
         tag(BlockTags.NEEDS_IRON_TOOL).add(ModItems.Bronze.get(), ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(),
@@ -78,6 +78,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(TinkerTags.Blocks.CONGEALED_SLIME).add(ModItems.OceanCongealedSlime.get());
         tag(TinkerTags.Blocks.ANVIL_METAL).addTag(ModItems.SlimeBronze.getBlockTag());
         //self
+        tag(ModTags.Blocks.POTENT_SULFUR).add(ModItems.PotentSulfurNausea.get(), ModItems.PotentSulfurBlindness.get(), ModItems.PotentSulfurWeakness.get(), ModItems.PotentSulfurRegeneration.get(), ModItems.PotentSulfurStrength.get());
         tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
         tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());
         tag(ModTags.Blocks.ANIMALS_SPAWNABLE).addTag(TinkerTags.Blocks.SLIMY_GRASS);

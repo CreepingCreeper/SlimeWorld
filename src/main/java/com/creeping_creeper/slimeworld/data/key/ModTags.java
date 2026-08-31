@@ -58,6 +58,7 @@ public class ModTags {
         public static final TagKey<Block> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS = local("causes_continuous_geyser_eruptions");
         public static final TagKey<Block> CAUSES_PERIODIC_GEYSER_ERUPTIONS = local("causes_periodic_geyser_eruptions");
 
+        public static final TagKey<Block> POTENT_SULFUR = local("potent_sulfur");
         private static TagKey<Block> local(String name) {
             return TagKey.create(Registries.BLOCK, SlimeWorld.getResource(name));
         }

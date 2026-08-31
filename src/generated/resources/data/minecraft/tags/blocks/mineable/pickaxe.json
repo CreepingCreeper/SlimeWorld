@@ -38,11 +38,7 @@
     "slimeworld:sulfur_bricks_stairs",
     "slimeworld:sulfur_bricks_slab",
     "slimeworld:sulfur_bricks_wall",
-    "slimeworld:potent_sulfur_nausea",
-    "slimeworld:potent_sulfur_blindness",
-    "slimeworld:potent_sulfur_weakness",
-    "slimeworld:potent_sulfur_regeneration",
-    "slimeworld:potent_sulfur_strength",
-    "slimeworld:sulfur_spike"
+    "slimeworld:sulfur_spike",
+    "#slimeworld:potent_sulfur"
   ]
 }

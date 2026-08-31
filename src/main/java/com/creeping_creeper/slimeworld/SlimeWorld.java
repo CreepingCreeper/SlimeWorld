@@ -67,7 +67,7 @@ public class SlimeWorld {
     }
 
     @SubscribeEvent
-    void commonSetup(final FMLCommonSetupEvent event) {
+    static void commonSetup(final FMLCommonSetupEvent event) {
         ModEffects.init();
         WorldEvents.init();
         MinecraftForge.EVENT_BUS.register(new EntityEvents());

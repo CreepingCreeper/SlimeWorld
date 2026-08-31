@@ -26,7 +26,6 @@ public class ModFluidTextureProvider extends AbstractFluidTextureProvider {
         texture(ModFluids.LiquidMud).still(ResourceLocation.withDefaultNamespace("block/mud")).flowing(ResourceLocation.withDefaultNamespace("block/mud")).calculateFogColor(true).fog(FogShape.SPHERE, 0.25f, 8);
         alloy(ModFluids.MoltenSlimeBronze);
         tinted(ModFluids.Mercury, "fluid/liquid/", 0xFFFFFFFF);
-        tinted(ModFluids.SulfuricAcid, "fluid/liquid/", 0xFFFFFFFF);
     }
 
     private FluidTexture.Builder root(FluidObject<?> fluid) {

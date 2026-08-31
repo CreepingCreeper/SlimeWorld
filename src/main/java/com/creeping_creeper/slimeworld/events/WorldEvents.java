@@ -1,5 +1,6 @@
 package com.creeping_creeper.slimeworld.events;
 
+import com.creeping_creeper.slimeworld.data.key.ModTags;
 import com.creeping_creeper.slimeworld.init.ModFluids;
 import com.creeping_creeper.slimeworld.init.ModItems;
 import net.minecraft.core.BlockPos;
@@ -11,6 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.fluids.FluidInteractionRegistry;
 import org.jetbrains.annotations.NotNull;
 
 public class WorldEvents {
@@ -35,7 +38,7 @@ public class WorldEvents {
 
             @Override
             public @NotNull ItemStack execute(BlockSource source, ItemStack stack) {
-                DispensibleContainerItem container = (DispensibleContainerItem)stack.getItem();
+                DispensibleContainerItem container = (DispensibleContainerItem) stack.getItem();
                 BlockPos blockpos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
                 Level level = source.getLevel();
                 if (container.emptyContents(null, level, blockpos, null, stack)) {
@@ -52,7 +55,6 @@ public class WorldEvents {
         DispenserBlock.registerBehavior(ModFluids.LiquidMud, dispenseBucket);
         DispenserBlock.registerBehavior(ModFluids.MoltenSlimeBronze, dispenseBucket);
         DispenserBlock.registerBehavior(ModFluids.Mercury, dispenseBucket);
-        DispenserBlock.registerBehavior(ModFluids.SulfuricAcid, dispenseBucket);
         DispenserBlock.registerBehavior(ModItems.SulfurCubeBucket, dispenseBucket);
 
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
@@ -62,5 +64,8 @@ public class WorldEvents {
         fireblock.setFlammable(ModItems.ActiveMagicbubbleLog.get(), 5, 5);
         fireblock.setFlammable(ModItems.SnowaveLog.get(), 5, 5);
         fireblock.setFlammable(ModItems.StrippedSnowaveLog.get(), 5, 5);
+
+        FluidInteractionRegistry.addInteraction(ModFluids.LiquidMud.get().getFluidType(), new FluidInteractionRegistry.InteractionInformation(ForgeMod.LAVA_TYPE.get(), Blocks.MUD.defaultBlockState()));
+        FluidInteractionRegistry.addInteraction(ModFluids.Mercury.getType(), new FluidInteractionRegistry.InteractionInformation((level, currentPos, relativePos, currentState) -> level.getBlockState(currentPos.below()).is(ModTags.Blocks.POTENT_SULFUR), ModItems.Cinnabar.get().defaultBlockState()));
     }
 }

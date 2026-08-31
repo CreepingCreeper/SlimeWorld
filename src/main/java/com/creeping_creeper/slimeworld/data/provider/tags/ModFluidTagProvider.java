@@ -34,7 +34,6 @@ public class ModFluidTagProvider extends FluidTagsProvider {
         fluidTag(ModFluids.LiquidMud);
         fluidTag(ModFluids.MoltenSlimeBronze);
         fluidTag(ModFluids.Mercury);
-        fluidTag(ModFluids.SulfuricAcid);
     }
 
     private void fluidTag(FlowingFluidObject<?> fluid) {

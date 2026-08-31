@@ -46,7 +46,6 @@ import slimeknights.tconstruct.fluids.item.ContainerFoodItem;
 import slimeknights.tconstruct.gadgets.block.FoodCakeBlock;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.shared.TinkerMaterials;
-import slimeknights.tconstruct.world.TinkerStructures;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.*;
 
@@ -190,11 +189,11 @@ public class ModItems {
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, ModSounds.BUCKET_EMPTY_SULFUR_CUBE, (new Item.Properties()).stacksTo(1)));
 
-    public static final ItemObject<Block> UnknownTpSteel = BLOCKS.register("unknown_teleporter_steel", () -> new UnknownTpBlock(tp(MapColor.COLOR_LIGHT_BLUE), TinkerStructures.skySlimeIsland, TinkerMaterials.slimesteel.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpBronze = BLOCKS.register("unknown_teleporter_bronze", () -> new UnknownTpBlock(tp(MapColor.COLOR_BLUE), TinkerStructures.skySlimeIsland, SlimeBronze.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpCinder = BLOCKS.register("unknown_teleporter_cinder", () -> new UnknownTpBlock(tp(MapColor.COLOR_RED), TinkerStructures.bloodIsland, TinkerMaterials.cinderslime.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpQueen = BLOCKS.register("unknown_teleporter_queen", () -> new UnknownTpBlock(tp(MapColor.COLOR_ORANGE), TinkerStructures.bloodIsland, TinkerMaterials.queensSlime.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpKnight = BLOCKS.register("unknown_teleporter_knight", () -> new UnknownTpBlock(tp(MapColor.COLOR_PURPLE), TinkerStructures.endSlimeIsland, TinkerMaterials.knightslime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpSteel = BLOCKS.register("unknown_teleporter_steel", () -> new UnknownTpBlock(tp(MapColor.COLOR_LIGHT_BLUE), TinkerWorld.earthSlimeGrass.get(FoliageType.SKY), ModResourceKeys.bakeryPool, TinkerMaterials.slimesteel.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpBronze = BLOCKS.register("unknown_teleporter_bronze", () -> new UnknownTpBlock(tp(MapColor.COLOR_BLUE), SlimeGravel.get(), ModResourceKeys.bakeryPool, SlimeBronze.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpCinder = BLOCKS.register("unknown_teleporter_cinder", () -> new UnknownTpBlock(tp(MapColor.COLOR_RED), TinkerWorld.ichorSlimeGrass.get(FoliageType.ICHOR), ModResourceKeys.bakeryPool, TinkerMaterials.cinderslime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpQueen = BLOCKS.register("unknown_teleporter_queen", () -> new UnknownTpBlock(tp(MapColor.COLOR_ORANGE), TinkerWorld.earthSlimeGrass.get(FoliageType.EARTH), ModResourceKeys.bakeryPool, TinkerMaterials.queensSlime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpKnight = BLOCKS.register("unknown_teleporter_knight", () -> new UnknownTpBlock(tp(MapColor.COLOR_PURPLE), TinkerWorld.enderSlimeGrass.get(FoliageType.ENDER), ModResourceKeys.bakeryPool, TinkerMaterials.knightslime.getIngotTag()), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Item> MeleeRune = ITEMS.register("melee_rune", () -> new ModifierRuneItem(TinkerTags.Items.MELEE, (new Item.Properties()).stacksTo(16)));
     public static final ItemObject<Item> RangedRune = ITEMS.register("ranged_rune", () -> new ModifierRuneItem(TinkerTags.Items.RANGED, (new Item.Properties()).stacksTo(16)));
@@ -306,7 +305,6 @@ public class ModItems {
         output.accept(ModFluids.LiquidMud);
         output.accept(ModFluids.MoltenSlimeBronze);
         output.accept(ModFluids.Mercury);
-        output.accept(ModFluids.SulfuricAcid);
 
         output.accept(Bubble);
         output.accept(WaterBubble);
