@@ -31,6 +31,8 @@ public class ModResourceKeys {
     public static final ResourceKey<Structure> bakery = key(Registries.STRUCTURE, "bakery");
     //pool
     public static final ResourceKey<StructureTemplatePool> bakeryPool = key(Registries.TEMPLATE_POOL, "bakery");
+    public static final ResourceKey<StructureTemplatePool> startPool = key(Registries.TEMPLATE_POOL, "great_wall/start");
+
     //biome
     public static final ResourceKey<Biome> HoneyFields = key(Registries.BIOME, "honey_fields");
     public static final ResourceKey<Biome> DeepForgottenOcean = key(Registries.BIOME, "deep_forgotten_ocean");

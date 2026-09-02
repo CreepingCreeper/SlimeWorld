@@ -40,7 +40,7 @@
       "type": "minecraft:uniform",
       "value": {
         "max_exclusive": 1.6,
-        "min_inclusive": 0.8
+        "min_inclusive": 1
       }
     }
   }

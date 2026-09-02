@@ -182,18 +182,18 @@ public class ModItems {
     public static final ItemObject<Block> LavaBubble = BLOCKS.register("lava_bubble", () -> new BubbleBlock(builder(MapColor.COLOR_RED).randomTicks().noCollission().noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor(Blocks::never).isSuffocating(Blocks::never).isViewBlocking(Blocks::never), () -> Fluids.LAVA), (b) -> new BurnableBlockItem(b, new Item.Properties().craftRemainder(Bubble.asItem()), 2000));
     public static final ItemObject<Block> EarthSlimeBubble = BLOCKS.register("earth_slime_bubble", () -> new SlimeBubbleBlock(bubble(MapColor.COLOR_LIGHT_GREEN), TinkerFluids.earthSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> SkySlimeBubble = BLOCKS.register("sky_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_BLUE)), TinkerFluids.skySlime), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> IchorSlimeBubble = BLOCKS.register("ichor_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_ORANGE)), TinkerFluids.ichor), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> IchorBubble = BLOCKS.register("ichor_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_ORANGE)), TinkerFluids.ichor), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> EnderSlimeBubble = BLOCKS.register("ender_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_PURPLE)), TinkerFluids.enderSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> OceanSlimeBubble = BLOCKS.register("ocean_slime_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_BLUE)), ModFluids.OceanSlime), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> HoneyBubble = BLOCKS.register("honey_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_YELLOW)), TinkerFluids.honey), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Block> VenomBubble = BLOCKS.register("venom_bubble", () -> new SlimeBubbleBlock((bubble(MapColor.COLOR_LIGHT_GRAY)), TinkerFluids.venom), GENERAL_BLOCK_ITEM);
     public static final ItemObject<Item> SulfurCubeBucket = ITEMS.register("sulfur_cube_bucket", () -> new EmptyMobBucketItem(ModEntities.SulfurCubeEntity, ModSounds.BUCKET_EMPTY_SULFUR_CUBE, (new Item.Properties()).stacksTo(1)));
 
-    public static final ItemObject<Block> UnknownTpSteel = BLOCKS.register("unknown_teleporter_steel", () -> new UnknownTpBlock(tp(MapColor.COLOR_LIGHT_BLUE), TinkerWorld.earthSlimeGrass.get(FoliageType.SKY), ModResourceKeys.bakeryPool, TinkerMaterials.slimesteel.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpBronze = BLOCKS.register("unknown_teleporter_bronze", () -> new UnknownTpBlock(tp(MapColor.COLOR_BLUE), SlimeGravel.get(), ModResourceKeys.bakeryPool, SlimeBronze.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpCinder = BLOCKS.register("unknown_teleporter_cinder", () -> new UnknownTpBlock(tp(MapColor.COLOR_RED), TinkerWorld.ichorSlimeGrass.get(FoliageType.ICHOR), ModResourceKeys.bakeryPool, TinkerMaterials.cinderslime.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpQueen = BLOCKS.register("unknown_teleporter_queen", () -> new UnknownTpBlock(tp(MapColor.COLOR_ORANGE), TinkerWorld.earthSlimeGrass.get(FoliageType.EARTH), ModResourceKeys.bakeryPool, TinkerMaterials.queensSlime.getIngotTag()), GENERAL_BLOCK_ITEM);
-    public static final ItemObject<Block> UnknownTpKnight = BLOCKS.register("unknown_teleporter_knight", () -> new UnknownTpBlock(tp(MapColor.COLOR_PURPLE), TinkerWorld.enderSlimeGrass.get(FoliageType.ENDER), ModResourceKeys.bakeryPool, TinkerMaterials.knightslime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpSteel = BLOCKS.register("unknown_teleporter_steel", () -> new UnknownTpBlock(tp(MapColor.COLOR_LIGHT_BLUE), ModEntities.SteelSlimeBossEntity::get, TinkerWorld.skySlimeGrass.get(FoliageType.SKY), ModResourceKeys.bakeryPool, TinkerMaterials.slimesteel.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpBronze = BLOCKS.register("unknown_teleporter_bronze", () -> new UnknownTpBlock(tp(MapColor.COLOR_BLUE), ModEntities.SteelSlimeBossEntity::get, SlimeGravel.get(), ModResourceKeys.startPool, SlimeBronze.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpCinder = BLOCKS.register("unknown_teleporter_cinder", () -> new UnknownTpBlock(tp(MapColor.COLOR_RED), ModEntities.SteelSlimeBossEntity::get, TinkerWorld.ichorSlimeGrass.get(FoliageType.ICHOR), ModResourceKeys.bakeryPool, TinkerMaterials.cinderslime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpQueen = BLOCKS.register("unknown_teleporter_queen", () -> new UnknownTpBlock(tp(MapColor.COLOR_ORANGE), ModEntities.SteelSlimeBossEntity::get, TinkerWorld.earthSlimeGrass.get(FoliageType.EARTH), ModResourceKeys.bakeryPool, TinkerMaterials.queensSlime.getIngotTag()), GENERAL_BLOCK_ITEM);
+    public static final ItemObject<Block> UnknownTpKnight = BLOCKS.register("unknown_teleporter_knight", () -> new UnknownTpBlock(tp(MapColor.COLOR_PURPLE), ModEntities.KnightSlimeBossEntity::get, TinkerWorld.enderSlimeGrass.get(FoliageType.ENDER), ModResourceKeys.bakeryPool, TinkerMaterials.knightslime.getIngotTag()), GENERAL_BLOCK_ITEM);
 
     public static final ItemObject<Item> MeleeRune = ITEMS.register("melee_rune", () -> new ModifierRuneItem(TinkerTags.Items.MELEE, (new Item.Properties()).stacksTo(16)));
     public static final ItemObject<Item> RangedRune = ITEMS.register("ranged_rune", () -> new ModifierRuneItem(TinkerTags.Items.RANGED, (new Item.Properties()).stacksTo(16)));
@@ -311,7 +311,7 @@ public class ModItems {
         output.accept(LavaBubble);
         output.accept(EarthSlimeBubble);
         output.accept(SkySlimeBubble);
-        output.accept(IchorSlimeBubble);
+        output.accept(IchorBubble);
         output.accept(EnderSlimeBubble);
         output.accept(OceanSlimeBubble);
         output.accept(HoneyBubble);

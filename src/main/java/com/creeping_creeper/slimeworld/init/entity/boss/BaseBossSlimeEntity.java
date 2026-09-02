@@ -166,6 +166,7 @@ public abstract class BaseBossSlimeEntity extends Slime {
         SpawnGroupData spawnData = super.finalizeSpawn(level, difficulty, reason, pSpawnData, dataTag);
         this.setSize(8, true);
         this.setItemSlot(EquipmentSlot.HEAD, tool(getPlating()).createStack());
+        this.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 120, 0));
         return spawnData;
     }
 
@@ -214,11 +215,18 @@ public abstract class BaseBossSlimeEntity extends Slime {
     @Override
     public boolean addEffect(MobEffectInstance effectInstance, @Nullable Entity entity) {
         MobEffect effect = effectInstance.getEffect();
-        return effect.isBeneficial() || effect == MobEffects.GLOWING && super.addEffect(effectInstance, entity);
+        return (effect.isBeneficial() || effect == MobEffects.GLOWING)&& super.addEffect(effectInstance, entity);
     }
 
     @Override
-    public void remove(Entity.@NotNull RemovalReason reason) {
+    public void die(@NotNull DamageSource source) {
+        if (getSize() > 2) {
+            setSize(getSize() / 2, true);
+        }else super.die(source);
+    }
+
+    @Override
+    public void remove(@NotNull Entity.RemovalReason reason) {
         this.setRemoved(reason);
         if (reason == Entity.RemovalReason.KILLED) {
             this.gameEvent(GameEvent.ENTITY_DIE);
@@ -308,4 +316,5 @@ public abstract class BaseBossSlimeEntity extends Slime {
         };
         this.bossEvent.setColor(color);
     }
+
 }

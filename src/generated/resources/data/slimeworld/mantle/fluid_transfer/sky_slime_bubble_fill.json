@@ -2,10 +2,10 @@
   "type": "mantle:fill_item",
   "fluid": {
     "amount": 1000,
-    "fluid": "tconstruct:honey"
+    "tag": "tconstruct:sky_slime"
   },
   "input": {
     "item": "slimeworld:bubble"
   },
-  "result": "slimeworld:honey_bubble"
+  "result": "slimeworld:sky_slime_bubble"
 }

@@ -2,10 +2,10 @@
   "type": "mantle:fill_item",
   "fluid": {
     "amount": 1000,
-    "fluid": "tconstruct:venom"
+    "tag": "mantle:lava"
   },
   "input": {
     "item": "slimeworld:bubble"
   },
-  "result": "slimeworld:venom_bubble"
+  "result": "slimeworld:lava_bubble"
 }

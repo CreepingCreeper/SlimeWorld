@@ -130,7 +130,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(ModItems.LavaBubble.get(), noDrop());
         add(ModItems.EarthSlimeBubble.get(), noDrop());
         add(ModItems.SkySlimeBubble.get(), noDrop());
-        add(ModItems.IchorSlimeBubble.get(), noDrop());
+        add(ModItems.IchorBubble.get(), noDrop());
         add(ModItems.EnderSlimeBubble.get(), noDrop());
         add(ModItems.OceanSlimeBubble.get(), noDrop());
         add(ModItems.HoneyBubble.get(), noDrop());

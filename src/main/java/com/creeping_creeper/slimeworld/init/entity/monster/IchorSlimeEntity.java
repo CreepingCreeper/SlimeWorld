@@ -5,10 +5,14 @@ import com.creeping_creeper.slimeworld.init.ModParticles;
 import com.creeping_creeper.slimeworld.library.InvertedGroundPathNavigation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.Slime;
@@ -19,8 +23,11 @@ import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.library.materials.definition.MaterialId;
+import slimeknights.tconstruct.shared.TinkerEffects;
 import slimeknights.tconstruct.tools.data.material.MaterialIds;
 import slimeknights.tconstruct.world.entity.TravelersPlateSlimeEntity;
+
+import javax.annotation.Nullable;
 
 public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
     private double bounceAmount = 0f;
@@ -112,6 +119,14 @@ public class IchorSlimeEntity extends TravelersPlateSlimeEntity {
             setDeltaMovement(motion.x, bounceAmount, motion.z);
             bounceAmount = 0;
         }
+    }
+
+    @Override
+    @Nullable
+    public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull MobSpawnType reason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag dataTag) {
+        SpawnGroupData spawnData = super.finalizeSpawn(level, difficulty, reason, pSpawnData, dataTag);
+        this.addEffect(new MobEffectInstance(TinkerEffects.antigravity.get(), -1, 0, true, false));
+        return spawnData;
     }
 
     @Override

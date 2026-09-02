@@ -44,7 +44,6 @@ public class RemoveOverslimeFunction extends LootItemConditionalFunction {
     }
 
 
-
     public static class Builder extends LootItemConditionalFunction.Builder<RemoveOverslimeFunction.Builder> {
 
         protected RemoveOverslimeFunction.@NotNull Builder getThis() {

@@ -2,10 +2,10 @@
   "type": "mantle:fill_item",
   "fluid": {
     "amount": 1000,
-    "fluid": "tconstruct:earth_slime"
+    "tag": "forge:honey"
   },
   "input": {
     "item": "slimeworld:bubble"
   },
-  "result": "slimeworld:earth_slime_bubble"
+  "result": "slimeworld:honey_bubble"
 }

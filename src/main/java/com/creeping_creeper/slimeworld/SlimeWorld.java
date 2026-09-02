@@ -70,7 +70,7 @@ public class SlimeWorld {
     static void commonSetup(final FMLCommonSetupEvent event) {
         ModEffects.init();
         WorldEvents.init();
-        MinecraftForge.EVENT_BUS.register(new EntityEvents());
+        MinecraftForge.EVENT_BUS.register(EntityEvents.class);
     }
 
     @SubscribeEvent
@@ -118,6 +118,7 @@ public class SlimeWorld {
         generator.addProvider(server, new ModLootTableProvider(output));
         generator.addProvider(server, new ModGlobalLootModifiersProvider(output));
         //others
+        generator.addProvider(server, new ModFluidContainerTransferProvider(output));
         ModMaterialProvider materials = new ModMaterialProvider(output);
         generator.addProvider(server, materials);
         generator.addProvider(server, new ModStatsProvider(output, materials));

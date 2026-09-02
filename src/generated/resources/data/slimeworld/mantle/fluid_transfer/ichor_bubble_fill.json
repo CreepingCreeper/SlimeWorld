@@ -2,10 +2,10 @@
   "type": "mantle:fill_item",
   "fluid": {
     "amount": 1000,
-    "fluid": "tconstruct:sky_slime"
+    "tag": "tconstruct:ichor"
   },
   "input": {
     "item": "slimeworld:bubble"
   },
-  "result": "slimeworld:sky_slime_bubble"
+  "result": "slimeworld:ichor_bubble"
 }
