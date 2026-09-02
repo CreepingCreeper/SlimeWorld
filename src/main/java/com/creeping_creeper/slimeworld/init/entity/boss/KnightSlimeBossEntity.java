@@ -1,7 +1,6 @@
 package com.creeping_creeper.slimeworld.init.entity.boss;
 
 import com.creeping_creeper.slimeworld.events.MobTeleportEvent;
-import com.creeping_creeper.slimeworld.init.ModEntities;
 import com.creeping_creeper.slimeworld.init.ModParticles;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceKey;
