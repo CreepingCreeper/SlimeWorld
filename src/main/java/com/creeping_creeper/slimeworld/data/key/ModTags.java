@@ -47,17 +47,15 @@ public class ModTags {
         public static final TagKey<Block> GLOWSTONE_ORE = common("ores/glowstone");
         public static final TagKey<Block> STRIPPED_LOGS = common("stripped_logs");
 
-        public static final TagKey<Block> ANIMALS_SPAWNABLE = local("animals_spawnable");
-        /** any entity types that immunize to the damage from ore berry bushes */
-        public static final TagKey<Block> NECROTIC_CLONABLE = local("necrotic_clonable");
         public static final TagKey<Block> ICHOR_CAVES_REPLACEABLE = local("ichor_caves_replaceable");
+        public static final TagKey<Block> SULFUR_FEATURE_REPLACEABLE = local("sulfur_feature_replaceable");
+        public static final TagKey<Block> ANIMALS_SPAWN = local("animals_spawn");
         public static final TagKey<Block> ICHOR_SLIME_SPAWN = local("ichor_slime_spawn");
-        public static final TagKey<Block> SULFUR_FEATURE_BASE = local("sulfur_feature_base");
         public static final TagKey<Block> TERRACUBE_SPAWN = local("terracube_spawn");
+        public static final TagKey<Block> NECROTIC_CLONABLE = local("necrotic_clonable");
         public static final TagKey<Block> SLIMY = local("slimy");
         public static final TagKey<Block> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS = local("causes_continuous_geyser_eruptions");
         public static final TagKey<Block> CAUSES_PERIODIC_GEYSER_ERUPTIONS = local("causes_periodic_geyser_eruptions");
-
         public static final TagKey<Block> POTENT_SULFUR = local("potent_sulfur");
         private static TagKey<Block> local(String name) {
             return TagKey.create(Registries.BLOCK, SlimeWorld.getResource(name));
@@ -103,11 +101,12 @@ public class ModTags {
         public static final TagKey<Biome> SMELTING_WORKSHOP = structure("smelting_workshop");
         public static final TagKey<Biome> CAT_CAFE = structure("cat_cafe");
 
-        private static TagKey<Biome> structure(String name) {
-            return TagKey.create(Registries.BIOME, SlimeWorld.getResource("has_structure/" + name));
-        }
         private static TagKey<Biome> local(String name) {
             return TagKey.create(Registries.BIOME, SlimeWorld.getResource(name));
+        }
+
+        private static TagKey<Biome> structure(String name) {
+            return local("has_structure/" + name);
         }
     }
 }

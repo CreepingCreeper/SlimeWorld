@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
-import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.ModMisc;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
@@ -20,7 +20,7 @@ public class HasOverslimeCondition implements LootItemCondition {
 
     @Override
     public @NotNull LootItemConditionType getType() {
-        return ModOthers.hasModifierLootCondition.get();
+        return ModMisc.hasModifierLootCondition.get();
     }
 
     @Override

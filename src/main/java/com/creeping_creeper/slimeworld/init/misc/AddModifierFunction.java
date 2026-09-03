@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
-import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.ModMisc;
 import com.creeping_creeper.slimeworld.init.item.ModifierRuneItem;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
@@ -43,7 +43,7 @@ public class AddModifierFunction extends LootItemConditionalFunction {
 
     @Override
     public @NotNull LootItemFunctionType getType() {
-        return ModOthers.AddModifier.get();
+        return ModMisc.AddModifier.get();
     }
 
     public static Builder addModifier(ModifierId modifier, int maxLevel) {

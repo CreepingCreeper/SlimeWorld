@@ -1,6 +1,6 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
-import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.ModMisc;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -59,12 +59,12 @@ public class DryingRackRecipe implements ICommonRecipe<ISingleStackContainer> {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return ModOthers.DryingRecipeSerializer.get();
+        return ModMisc.DryingRecipeSerializer.get();
     }
 
     @Override
     public @NotNull RecipeType<?> getType() {
-        return ModOthers.DryingRecipeType.get();
+        return ModMisc.DryingRecipeType.get();
     }
 
     public Ingredient getIngredient() {

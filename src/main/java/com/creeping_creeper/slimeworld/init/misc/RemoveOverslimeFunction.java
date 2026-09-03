@@ -1,7 +1,7 @@
 package com.creeping_creeper.slimeworld.init.misc;
 
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
-import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.ModMisc;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
@@ -36,7 +36,7 @@ public class RemoveOverslimeFunction extends LootItemConditionalFunction {
 
     @Override
     public @NotNull LootItemFunctionType getType() {
-        return ModOthers.RemoveOverslime.get();
+        return ModMisc.RemoveOverslime.get();
     }
 
     public static LootItemConditionalFunction.Builder<?> removeOverslime() {

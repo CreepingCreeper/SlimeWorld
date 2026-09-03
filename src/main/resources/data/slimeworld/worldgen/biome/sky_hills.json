@@ -87,7 +87,20 @@
   "spawners": {
     "ambient": [],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "type": "slimeworld:sllama",
+        "maxCount": 2,
+        "minCount": 1,
+        "weight": 5
+      },
+      {
+        "type": "slimeworld:grass",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 20
+      }
+    ],
     "misc": [],
     "monster": [
       {

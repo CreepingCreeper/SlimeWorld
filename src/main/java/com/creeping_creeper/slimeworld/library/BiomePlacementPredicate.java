@@ -12,8 +12,9 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public record BiomePlacementPredicate<T extends Mob>(TagKey<Biome> biomeTag, TagKey<Block> blockTag, int chance) implements SpawnPlacements.SpawnPredicate<T> {
+public record BiomePlacementPredicate<T extends Mob>(@Nullable TagKey<Biome> biomeTag, TagKey<Block> blockTag, int chance) implements SpawnPlacements.SpawnPredicate<T> {
     @Override
     public boolean test(@NotNull EntityType<T> entityType, ServerLevelAccessor world, @NotNull MobSpawnType reason, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (world.getDifficulty() == Difficulty.PEACEFUL) {

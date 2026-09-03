@@ -2,7 +2,7 @@ package com.creeping_creeper.slimeworld.init.block.entity;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
-import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.ModMisc;
 import com.creeping_creeper.slimeworld.init.misc.DryingRackRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -177,7 +177,7 @@ public class DryingRackBlockEntity extends RetexturedTableBlockEntity implements
         if (this.lastDryingRecipe != null && this.lastDryingRecipe.matches(dryingInventory, level)) {
             return this.lastDryingRecipe;
         }
-        DryingRackRecipe dryingRecipe = level.getRecipeManager().getRecipeFor(ModOthers.DryingRecipeType.get(), dryingInventory, level).orElse(null);
+        DryingRackRecipe dryingRecipe = level.getRecipeManager().getRecipeFor(ModMisc.DryingRecipeType.get(), dryingInventory, level).orElse(null);
         if (dryingRecipe != null) {
             this.lastDryingRecipe = dryingRecipe;
         }

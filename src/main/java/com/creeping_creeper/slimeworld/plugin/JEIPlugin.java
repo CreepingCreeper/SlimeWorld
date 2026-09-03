@@ -2,7 +2,7 @@ package com.creeping_creeper.slimeworld.plugin;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.init.ModItems;
-import com.creeping_creeper.slimeworld.init.ModOthers;
+import com.creeping_creeper.slimeworld.init.ModMisc;
 import com.creeping_creeper.slimeworld.init.misc.DryingRackRecipe;
 import com.creeping_creeper.slimeworld.plugin.jei.DryingRackRecipeCategory;
 import mezz.jei.api.IModPlugin;
@@ -37,7 +37,7 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        List<DryingRackRecipe> recipesDryingRack = rm.getAllRecipesFor(ModOthers.DryingRecipeType.get());
+        List<DryingRackRecipe> recipesDryingRack = rm.getAllRecipesFor(ModMisc.DryingRecipeType.get());
         registration.addRecipes(DryingRecipeType,recipesDryingRack);
     }
 

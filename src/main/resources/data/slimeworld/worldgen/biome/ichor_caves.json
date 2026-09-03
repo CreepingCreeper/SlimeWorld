@@ -97,37 +97,37 @@
         "type": "slimeworld:ichor_slime",
         "maxCount": 4,
         "minCount": 2,
-        "weight": 200
+        "weight": 100
       },
       {
         "type": "minecraft:spider",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 100
+        "weight": 50
       },
       {
         "type": "minecraft:zombie",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 95
+        "weight": 45
       },
       {
         "type": "minecraft:skeleton",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 100
+        "weight": 50
       },
       {
         "type": "minecraft:creeper",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 100
+        "weight": 50
       },
       {
         "type": "minecraft:enderman",
         "maxCount": 4,
         "minCount": 1,
-        "weight": 10
+        "weight": 5
       }
     ],
     "underground_water_creature": [

@@ -49,6 +49,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 ModItems.IchorVanillaSlimeNylium.get());
         tag(BlockTags.NEEDS_STONE_TOOL).add(ModItems.GlowstoneOre.get(), ModItems.DeepSlateGlowstoneOre.get(), ModItems.SlimeBronze.get());
         tag(BlockTags.NEEDS_DIAMOND_TOOL).add(ModItems.OceanSlimyEnderbarkRoots.get());
+        tag(BlockTags.SWORD_EFFICIENT).add(ModItems.IchorFern.get(), ModItems.IchorTallGrass.get());
+        tag(BlockTags.REPLACEABLE).add(ModItems.IchorFern.get(), ModItems.IchorTallGrass.get());
+        tag(BlockTags.REPLACEABLE_BY_TREES).add(ModItems.IchorFern.get(), ModItems.IchorTallGrass.get());
+        tag(BlockTags.AZALEA_ROOT_REPLACEABLE).add(ModItems.IchorFern.get(), ModItems.IchorTallGrass.get());
 
         tag(BlockTags.DRAGON_IMMUNE).add(ModItems.UnknownTpSteel.get(), ModItems.UnknownTpBronze.get(), ModItems.UnknownTpCinder.get(), ModItems.UnknownTpQueen.get(), ModItems.UnknownTpKnight.get());
         tag(BlockTags.WITHER_IMMUNE).add(ModItems.UnknownTpSteel.get(), ModItems.UnknownTpBronze.get(), ModItems.UnknownTpCinder.get(), ModItems.UnknownTpQueen.get(), ModItems.UnknownTpKnight.get());
@@ -77,20 +81,22 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         tag(TinkerTags.Blocks.SLIME_BLOCK).add(ModItems.OceanSlime.get());
         tag(TinkerTags.Blocks.CONGEALED_SLIME).add(ModItems.OceanCongealedSlime.get());
         tag(TinkerTags.Blocks.ANVIL_METAL).addTag(ModItems.SlimeBronze.getBlockTag());
+        this.tag(TinkerTags.Blocks.SLIMY_FUNGUS_CAN_GROW_THROUGH).add(ModItems.IchorFern.get(), ModItems.IchorTallGrass.get());
         //self
-        tag(ModTags.Blocks.POTENT_SULFUR).add(ModItems.PotentSulfurNausea.get(), ModItems.PotentSulfurBlindness.get(), ModItems.PotentSulfurWeakness.get(), ModItems.PotentSulfurRegeneration.get(), ModItems.PotentSulfurStrength.get());
-        tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
-        tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());
-        tag(ModTags.Blocks.ANIMALS_SPAWNABLE).addTag(TinkerTags.Blocks.SLIMY_GRASS);
-        tag(ModTags.Blocks.ICHOR_SLIME_SPAWN).addTag(BlockTags.MOSS_REPLACEABLE).add(TinkerWorld.slimeDirt.get(DirtType.ICHOR));
+        tag(ModTags.Blocks.ICHOR_CAVES_REPLACEABLE).addTag(BlockTags.BASE_STONE_OVERWORLD).add(Blocks.GRAVEL, TinkerWorld.slimeDirt.get(DirtType.ICHOR));
+        tag(ModTags.Blocks.SULFUR_FEATURE_REPLACEABLE).add(ModItems.Sulfur.get(), ModItems.SulfurMud.get());
+        tag(ModTags.Blocks.ANIMALS_SPAWN).addTag(TinkerTags.Blocks.SLIMY_GRASS);
         tag(ModTags.Blocks.ICHOR_SLIME_SPAWN).add(ModItems.IchorEarthSlimeNylium.get(), ModItems.IchorSkySlimeNylium.get(), ModItems.IchorIchorSlimeNylium.get(), ModItems.IchorEnderSlimeNylium.get(), ModItems.IchorVanillaSlimeNylium.get());
+        tag(ModTags.Blocks.TERRACUBE_SPAWN).add(Blocks.CLAY);
         tag(ModTags.Blocks.NECROTIC_CLONABLE).add(Blocks.WITHER_ROSE, ModItems.FieryFlower.get(), ModItems.PoisonFlower.get(), ModItems.SpringyFlower.get(), ModItems.ConsecratedFlower.get(), ModItems.GraveyardFlower.get());
         tag(ModTags.Blocks.SLIMY).add(Blocks.SLIME_BLOCK, Blocks.HONEY_BLOCK, ModItems.OceanSlime.get());
         for (SlimeType type : SlimeType.values()) {
             tag(ModTags.Blocks.SLIMY).add(TinkerWorld.slime.get(type));
         }
-        tag(ModTags.Blocks.SULFUR_FEATURE_BASE).add(ModItems.Sulfur.get(), ModItems.SulfurMud.get());
-        tag(ModTags.Blocks.TERRACUBE_SPAWN).add(Blocks.CLAY);
+        tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.LAVA, TinkerFluids.blazingBlood.getBlock());
+        tag(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS).add(Blocks.MAGMA_BLOCK, TinkerFluids.magma.getBlock());
+        tag(ModTags.Blocks.POTENT_SULFUR).add(ModItems.PotentSulfurNausea.get(), ModItems.PotentSulfurBlindness.get(), ModItems.PotentSulfurWeakness.get(), ModItems.PotentSulfurRegeneration.get(), ModItems.PotentSulfurStrength.get());
+
         //touhou little maid
         tag(MAID_AVOID).add(Blocks.WITHER_ROSE, ModItems.FieryFlower.get(), ModItems.PoisonFlower.get());
     }

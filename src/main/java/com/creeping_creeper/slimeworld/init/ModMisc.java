@@ -25,12 +25,12 @@ import slimeknights.mantle.recipe.helper.LoadableRecipeSerializer;
 import slimeknights.tconstruct.world.worldgen.trees.config.SlimeFungusConfig;
 
 @SuppressWarnings("unused")
-public class ModOthers {
+public class ModMisc {
     protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, SlimeWorld.MODID);
     protected static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SlimeWorld.MODID);
     protected static final DeferredRegister<LootItemConditionType> LOOT_CONDITIONS = DeferredRegister.create(Registries.LOOT_CONDITION_TYPE, SlimeWorld.MODID);
     protected static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTIONS = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE, SlimeWorld.MODID);
-    private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, SlimeWorld.MODID);
+    protected static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, SlimeWorld.MODID);
     protected static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SlimeWorld.MODID);
 
     public static final RegistryObject<BetterFillLayerFeature> BetterFillLayer = FEATURES.register("better_fill_layer", () -> new BetterFillLayerFeature(LayerConfiguration.CODEC));
