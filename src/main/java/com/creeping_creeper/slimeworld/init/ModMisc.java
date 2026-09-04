@@ -12,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.LayerConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
@@ -24,7 +25,7 @@ import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.recipe.helper.LoadableRecipeSerializer;
 import slimeknights.tconstruct.world.worldgen.trees.config.SlimeFungusConfig;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "deprecation"})
 public class ModMisc {
     protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, SlimeWorld.MODID);
     protected static final DeferredRegister<Codec<? extends BiomeModifier>> BIOME_MODIFIER_SERIALIZERS = DeferredRegister.create(ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS, SlimeWorld.MODID);
@@ -34,9 +35,10 @@ public class ModMisc {
     protected static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, SlimeWorld.MODID);
 
     public static final RegistryObject<BetterFillLayerFeature> BetterFillLayer = FEATURES.register("better_fill_layer", () -> new BetterFillLayerFeature(LayerConfiguration.CODEC));
-    public static final RegistryObject<OceanLakeFeature> OceanLake = FEATURES.register("ocean_lake", () -> new OceanLakeFeature(OceanLakeFeature.Configuration.CODEC));
-    public static final RegistryObject<InvertedLakeFeature> InvertedLake = FEATURES.register("inverted_lake", () -> new InvertedLakeFeature(InvertedLakeFeature.Configuration.CODEC));
-    public static final RegistryObject<SulfurPoolFeature> SulfurPool = FEATURES.register("sulfur_pool", () -> new SulfurPoolFeature(SulfurPoolFeature.Configuration.CODEC));
+    public static final RegistryObject<OceanLakeFeature> OceanLake = FEATURES.register("ocean_lake", () -> new OceanLakeFeature(LakeFeature.Configuration.CODEC));
+    public static final RegistryObject<InvertedLakeFeature> InvertedLake = FEATURES.register("inverted_lake", () -> new InvertedLakeFeature(LakeFeature.Configuration.CODEC));
+    public static final RegistryObject<ShallowLakeFeature> ShallowLake = FEATURES.register("shallow_lake", () -> new ShallowLakeFeature(LakeFeature.Configuration.CODEC));
+    public static final RegistryObject<SulfurPoolFeature> SulfurPool = FEATURES.register("sulfur_pool", () -> new SulfurPoolFeature(LakeFeature.Configuration.CODEC));
 
     public static final RegistryObject<IchorFungusFeature> IchorFungus = FEATURES.register("ichor_fungus", () -> new IchorFungusFeature(SlimeFungusConfig.CODEC));
     public static final RegistryObject<HugeSulfurSpikeFeature> HugeSulfurSpike = FEATURES.register("huge_sulfur_spike", () -> new HugeSulfurSpikeFeature(NoneFeatureConfiguration.CODEC));

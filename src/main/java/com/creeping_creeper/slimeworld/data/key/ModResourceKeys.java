@@ -22,16 +22,39 @@ public class ModResourceKeys {
     public static final ResourceKey<Level> SLIMEWORLD = ResourceKey.create(Registries.DIMENSION, SLIMEWORLD_LOCATION);
     public static final ResourceKey<Level> UNKNOWN_AREA = ResourceKey.create(Registries.DIMENSION, UNKNOWN_AREA_LOCATION);
     //configured feature
-    public static final ResourceKey<ConfiguredFeature<?,?>> ichorSlimeFungus = key(Registries.CONFIGURED_FEATURE, "ichor_slime_fungus");
-    public static final ResourceKey<ConfiguredFeature<?,?>> magicvubbleTree = key(Registries.CONFIGURED_FEATURE, "magicbubble_tree");
-    public static final ResourceKey<ConfiguredFeature<?,?>> oceanGeode = key(Registries.CONFIGURED_FEATURE, "ocean_geode");
+    public static final ResourceKey<ConfiguredFeature<?,?>> IchorSlimeFungus = key(Registries.CONFIGURED_FEATURE, "ichor_slime_fungus");
+    public static final ResourceKey<ConfiguredFeature<?,?>> MagicbubbleTree = key(Registries.CONFIGURED_FEATURE, "magicbubble_tree");
+    public static final ResourceKey<ConfiguredFeature<?,?>> OceanGeode = key(Registries.CONFIGURED_FEATURE, "ocean_geode");
+    public static final ResourceKey<ConfiguredFeature<?,?>> EarthSlimeLake = key(Registries.CONFIGURED_FEATURE, "lake_earth_slime");
+    public static final ResourceKey<ConfiguredFeature<?,?>> SkySlimeLake = key(Registries.CONFIGURED_FEATURE, "lake_sky_slime");
+    public static final ResourceKey<ConfiguredFeature<?,?>> OceanSlimeLake = key(Registries.CONFIGURED_FEATURE, "lake_ocean_slime");
+    public static final ResourceKey<ConfiguredFeature<?,?>> IchorLake = key(Registries.CONFIGURED_FEATURE, "lake_ichor");
+    public static final ResourceKey<ConfiguredFeature<?,?>> MagmaLake = key(Registries.CONFIGURED_FEATURE, "lake_magma");
+    public static final ResourceKey<ConfiguredFeature<?,?>> EnderSlimeLake = key(Registries.CONFIGURED_FEATURE, "lake_ender_slime");
+    public static final ResourceKey<ConfiguredFeature<?,?>> HoneyLake = key(Registries.CONFIGURED_FEATURE, "lake_honey");
+    public static final ResourceKey<ConfiguredFeature<?,?>> MudLake = key(Registries.CONFIGURED_FEATURE, "lake_liquid_mud");
+    public static final ResourceKey<ConfiguredFeature<?,?>> SulfurPool = key(Registries.CONFIGURED_FEATURE, "sulfur_pool");
+    public static final ResourceKey<ConfiguredFeature<?,?>> ShallowSkySlimeLake = key(Registries.CONFIGURED_FEATURE, "shallow_lake_sky_slime");
+
     //placed feature
     public static final ResourceKey<PlacedFeature> placedOceanGeode = key(Registries.PLACED_FEATURE, "ocean_geode");
+    public static final ResourceKey<PlacedFeature> placedEarthSlimeLake = key(Registries.PLACED_FEATURE, "lake_earth_slime");
+    public static final ResourceKey<PlacedFeature> placedSkySlimeLake = key(Registries.PLACED_FEATURE, "lake_sky_slime");
+    public static final ResourceKey<PlacedFeature> placedOceanSlimeLake = key(Registries.PLACED_FEATURE, "lake_ocean_slime");
+    public static final ResourceKey<PlacedFeature> placedIchorLake = key(Registries.PLACED_FEATURE, "lake_ichor");
+    public static final ResourceKey<PlacedFeature> placedMagmaLake = key(Registries.PLACED_FEATURE, "lake_magma");
+    public static final ResourceKey<PlacedFeature> placedEnderSlimeLake = key(Registries.PLACED_FEATURE, "lake_ender_slime");
+    public static final ResourceKey<PlacedFeature> placedHoneyLake = key(Registries.PLACED_FEATURE, "lake_honey");
+    public static final ResourceKey<PlacedFeature> placedMudLake = key(Registries.PLACED_FEATURE, "lake_liquid_mud");
+    public static final ResourceKey<PlacedFeature> placedSulfurPool = key(Registries.PLACED_FEATURE, "sulfur_pool");
+    public static final ResourceKey<PlacedFeature> placedShallowSkySlimeLake = key(Registries.PLACED_FEATURE, "shallow_lake_sky_slime");
+
     //structure
     public static final ResourceKey<Structure> bakery = key(Registries.STRUCTURE, "bakery");
     //pool
     public static final ResourceKey<StructureTemplatePool> bakeryPool = key(Registries.TEMPLATE_POOL, "bakery");
     public static final ResourceKey<StructureTemplatePool> startPool = key(Registries.TEMPLATE_POOL, "great_wall/start");
+    public static final ResourceKey<StructureTemplatePool> bossSteelChain = key(Registries.TEMPLATE_POOL, "boss/steel/chain");
 
     //biome
     public static final ResourceKey<Biome> HoneyFields = key(Registries.BIOME, "honey_fields");

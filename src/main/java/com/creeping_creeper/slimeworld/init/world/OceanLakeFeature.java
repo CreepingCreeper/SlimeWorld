@@ -10,21 +10,23 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.LakeFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
-public class OceanLakeFeature extends Feature<OceanLakeFeature.Configuration> {
+public class OceanLakeFeature extends LakeFeature {
     private static final BlockState AIR = Blocks.CAVE_AIR.defaultBlockState();
 
-    public OceanLakeFeature(Codec<OceanLakeFeature.Configuration> codec) {
+    public OceanLakeFeature(Codec<Configuration> codec) {
         super(codec);
     }
 
-    public boolean place(FeaturePlaceContext<OceanLakeFeature.Configuration> context) {
+    @Override
+    public boolean place(FeaturePlaceContext<Configuration> context) {
         BlockPos blockpos = context.origin();
         WorldGenLevel worldgenlevel = context.level();
         RandomSource randomsource = context.random();
-        OceanLakeFeature.Configuration lakefeature$configuration = context.config();
+        Configuration lakefeature$configuration = context.config();
         if (blockpos.getY() <= worldgenlevel.getMinBuildHeight() + 4) {
             return false;
         } else {
@@ -120,7 +122,4 @@ public class OceanLakeFeature extends Feature<OceanLakeFeature.Configuration> {
         return !state.is(BlockTags.FEATURES_CANNOT_REPLACE);
     }
 
-    public record Configuration(BlockStateProvider fluid, BlockStateProvider barrier) implements FeatureConfiguration {
-        public static final Codec<OceanLakeFeature.Configuration> CODEC = RecordCodecBuilder.create((p_190962_) -> p_190962_.group(BlockStateProvider.CODEC.fieldOf("fluid").forGetter(Configuration::fluid), BlockStateProvider.CODEC.fieldOf("barrier").forGetter(Configuration::barrier)).apply(p_190962_, Configuration::new));
-    }
 }

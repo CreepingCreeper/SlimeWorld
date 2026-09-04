@@ -14,6 +14,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.EntityType;
@@ -75,7 +76,7 @@ public class UnknownTpBlock extends Block {
                 if (!player.getAbilities().instabuild) {
                     itemStack.shrink(1);
                 }
-                player.teleportTo(serverLevel, pos.getX(), pos.getY() + 2, pos.getZ(), ModUtil.DEFAULT_TELEPORT_FLAGS, player.getYRot(), player.getXRot());
+                player.teleportTo(serverLevel, pos.getX(), 3, pos.getZ(), ModUtil.DEFAULT_TELEPORT_FLAGS, player.getYRot(), player.getXRot());
                 serverLevel.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.CHORUS_FRUIT_TELEPORT, SoundSource.PLAYERS, 1.0F, 1.0F);
             }
         }
@@ -92,6 +93,7 @@ public class UnknownTpBlock extends Block {
         for (BlockPos pos : BlockPos.betweenClosed(platformMin, platformMax)) {
             setBlockFast(serverLevel, pos, bedrock);
             setBlockFast(serverLevel, pos.above(), floorState);
+            setBlockFast(serverLevel, pos.above(2), floorState);
         }
         //ceiling
         BlockPos ceilingMin = centerPos.offset(-32, 0, -32).atY(64);
@@ -113,18 +115,19 @@ public class UnknownTpBlock extends Block {
                 setBlockFast(serverLevel, pos, barrier);
             }
             //jigsaw
-            BlockPos feature = centerPos.offset(dir.multiply(16)).atY(3);
-            JigsawPlacement.generateJigsaw(serverLevel, poolHolder, ResourceLocation.withDefaultNamespace("bottom"), 7, feature, false);
-            BlockPos feature1 = centerPos.offset(start.multiply(16)).atY(3);
-            JigsawPlacement.generateJigsaw(serverLevel, poolHolder, ResourceLocation.withDefaultNamespace("bottom"), 7, feature1, false);
-
+            RandomSource random = serverLevel.getRandom();
+            int num = random.nextInt(16) + 16;
+            BlockPos feature;
+            for (int i = 0; i < num; i++){
+                feature = centerPos.offset(random.nextInt(47) - 24, 3, random.nextInt(47) - 24);
+                JigsawPlacement.generateJigsaw(serverLevel, poolHolder, ResourceLocation.withDefaultNamespace("bottom"), 7, feature, false);
+            }
         }
         //boss
-        centerPos.atY(16);
         BaseBossSlimeEntity boss = (BaseBossSlimeEntity) this.boss.get().create(serverLevel);
         if (boss != null) {
             boss.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(centerPos), MobSpawnType.STRUCTURE, null, null);
-            boss.moveTo(centerPos, 0, 0);
+            boss.moveTo(centerPos.atY(24), 0, 0);
             serverLevel.addFreshEntity(boss);
         }
     }

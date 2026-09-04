@@ -1,0 +1,39 @@
+{
+  "name": "slimeworld:boss/steel/feature",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 4,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:feature_pool_element",
+        "feature": {
+          "feature": "slimeworld:sky_slime_grass",
+          "placement": []
+        }
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:feature_pool_element",
+        "feature": {
+          "feature": "tconstruct:sky_slime_tree",
+          "placement": []
+        }
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:feature_pool_element",
+        "feature": {
+          "feature": "slimeworld:shallow_lake_sky_slime",
+          "placement": []
+        }
+      }
+    }
+  ]
+}

@@ -9,6 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class MagicbubbleTreeGrower extends AbstractTreeGrower {
     protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(@NotNull RandomSource source, boolean hasFlowers) {
-        return ModResourceKeys.magicvubbleTree;
+        return ModResourceKeys.MagicbubbleTree;
     }
 }
