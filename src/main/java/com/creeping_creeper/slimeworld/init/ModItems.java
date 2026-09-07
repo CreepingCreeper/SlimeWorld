@@ -46,6 +46,7 @@ import slimeknights.tconstruct.fluids.item.ContainerFoodItem;
 import slimeknights.tconstruct.gadgets.block.FoodCakeBlock;
 import slimeknights.tconstruct.library.recipe.FluidValues;
 import slimeknights.tconstruct.shared.TinkerMaterials;
+import slimeknights.tconstruct.shared.block.SlimesteelBlock;
 import slimeknights.tconstruct.world.TinkerWorld;
 import slimeknights.tconstruct.world.block.*;
 
@@ -167,7 +168,7 @@ public class ModItems {
     public static final ItemObject<Item> BronzeShard = ITEMS.register("bronze_shard", GENERAL_PROPS);
     public static final ItemObject<Block> BronzeCluster = BLOCKS.register("bronze_cluster", () -> new CrystalClusterBlock(Sounds.ENDER_CRYSTAL_CHIME.getSound(), 7, 3, builder(MapColor.STONE).forceSolidOn().noOcclusion().randomTicks().strength(2.5f).requiresCorrectToolForDrops().pushReaction(PushReaction.DESTROY).lightLevel(state -> 5).sound(SoundType.METAL)), TOOLTIP_BLOCK_ITEM);
     public static final MetalItemObject Bronze = BLOCKS.registerMetal("bronze", metalBuilder(MapColor.COLOR_BROWN), GENERAL_BLOCK_ITEM, GENERAL_PROPS);
-    public static final MetalItemObject SlimeBronze = BLOCKS.registerMetal("slime_bronze", metalBuilder(MapColor.COLOR_GREEN), GENERAL_BLOCK_ITEM, GENERAL_PROPS);
+    public static final MetalItemObject SlimeBronze = BLOCKS.registerMetal("slime_bronze", () -> new SlimesteelBlock(metalBuilder(MapColor.COLOR_GREEN).noOcclusion()), GENERAL_BLOCK_ITEM, GENERAL_PROPS);
 
     public static final ItemObject<Block> CopperBerryBush = BLOCKS.register("copper_berry_bush", () -> new OreBerryBushBlock(CopperShard, oreBush()), UNCOMMON_BLOCK_ITEM);
     public static final ItemObject<Block> IronBerryBush = BLOCKS.register("iron_berry_bush", () -> new OreBerryBushBlock(IronShard, oreBush()), UNCOMMON_BLOCK_ITEM);
