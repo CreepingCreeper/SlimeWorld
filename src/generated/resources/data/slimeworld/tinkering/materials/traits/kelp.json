@@ -6,6 +6,12 @@
         "name": "slimeworld:undercurrent"
       }
     ],
+    "tconstruct:laces": [
+      {
+        "level": 1,
+        "name": "slimeworld:undercurrent"
+      }
+    ],
     "tconstruct:ranged": [
       {
         "level": 1,

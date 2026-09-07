@@ -11,6 +11,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.tconstruct.fluids.TinkerFluids;
 import slimeknights.tconstruct.library.data.recipe.IMaterialRecipeHelper;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.recipe.FluidValues;
@@ -39,7 +40,10 @@ public class ModMaterialRecipeProvider extends RecipeProvider implements IMateri
         // slimeskin
         String slimeskin = material + "slimeskin/";
         materialComposite(consumer, MaterialIds.leather, ModMaterialIds.oceanSlimeskin, ModFluids.OceanSlime, FluidValues.SLIMEBALL, slimeskin, "ocean");
-        materialComposite(consumer, ModMaterialIds.oceanSlimeskin, MaterialIds.leather, ModFluids.OceanSlime, FluidValues.SIP, slimeskin, "ocean_cleaning");
+        materialComposite(consumer, ModMaterialIds.oceanSlimeskin, MaterialIds.leather, TinkerFluids.venom, FluidValues.SIP, slimeskin, "ocean_cleaning");
+        // slimesuit
+        materialMeltingCasting(consumer, MaterialIds.earthslime, TinkerFluids.earthSlime, FluidValues.SLIMEBALL, material + "oceanslime_suit");
+
     }
 
 
