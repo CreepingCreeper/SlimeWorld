@@ -12,9 +12,9 @@ public class ModMaterialProvider extends AbstractMaterialDataProvider {
 
     @Override
     protected void addMaterials() {
-        addMaterial(ModMaterialIds.kelp, 1, ORDER_BINDING, true);
-        addMaterial(ModMaterialIds.oceanslime, 2, ORDER_REPAIR, true);
-        addMaterial(ModMaterialIds.slimeBronze, 3, ORDER_GENERAL, false);
+        material(ModMaterialIds.kelp).tier(1).sort(ORDER_BINDING).craftable();
+        material(ModMaterialIds.oceanslime).tier(2).sort(ORDER_REPAIR).craftable();
+        material(ModMaterialIds.slimeBronze).tier(3).sort(ORDER_GENERAL).craftable();
     }
 
     @Override

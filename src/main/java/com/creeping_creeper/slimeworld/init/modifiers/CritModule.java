@@ -22,11 +22,11 @@ public enum CritModule implements ModifierModule, ProjectileLaunchModifierHook {
 
     private static final List<ModuleHook<?>> DEFAULT_HOOKS = HookProvider.<CritModule>defaultHooks(ModifierHooks.PROJECTILE_LAUNCH);
 
-    private final SingletonLoader<CritModule> loader = new SingletonLoader<>(this);
+    private final SingletonLoader<CritModule> LOADER = new SingletonLoader<>(this);
 
     @Override
     public RecordLoadable<? extends ModifierModule> getLoader() {
-        return loader;
+        return LOADER;
     }
 
     @Override

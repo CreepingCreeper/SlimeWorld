@@ -3,47 +3,27 @@ package com.creeping_creeper.slimeworld;
 import com.creeping_creeper.slimeworld.data.key.ModDataKeys;
 import com.creeping_creeper.slimeworld.data.provider.*;
 import com.creeping_creeper.slimeworld.data.provider.assets.*;
-import com.creeping_creeper.slimeworld.data.provider.loot.ModGlobalLootModifiersProvider;
-import com.creeping_creeper.slimeworld.data.provider.loot.ModLootTableProvider;
-import com.creeping_creeper.slimeworld.data.provider.recipes.ModCommonRecipeProvider;
-import com.creeping_creeper.slimeworld.data.provider.recipes.ModMaterialRecipeProvider;
-import com.creeping_creeper.slimeworld.data.provider.recipes.ModSmelteryRecipeProvider;
 import com.creeping_creeper.slimeworld.data.provider.tags.*;
 import com.creeping_creeper.slimeworld.data.provider.tinkering.*;
 import com.creeping_creeper.slimeworld.events.EntityEvents;
 import com.creeping_creeper.slimeworld.events.WorldEvents;
 import com.creeping_creeper.slimeworld.init.*;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
-import net.minecraft.core.RegistrySetBuilder;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import slimeknights.mantle.fluid.texture.FluidTextureCameraProvider;
 import slimeknights.tconstruct.TConstruct;
-import slimeknights.tconstruct.fluids.data.FluidBlockstateModelProvider;
-import slimeknights.tconstruct.fluids.data.FluidBucketModelProvider;
-import slimeknights.tconstruct.library.client.data.material.MaterialPartTextureGenerator;
 import slimeknights.tconstruct.library.tools.capability.TinkerDataCapability;
 import slimeknights.tconstruct.library.utils.Util;
-import slimeknights.tconstruct.tools.data.sprite.TinkerPartSpriteProvider;
-
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 @Mod(SlimeWorld.MODID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -71,60 +51,6 @@ public class SlimeWorld {
         ModEffects.init();
         WorldEvents.init();
         MinecraftForge.EVENT_BUS.register(EntityEvents.class);
-    }
-
-    @SubscribeEvent
-    static void gatherData(final GatherDataEvent event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput output = generator.getPackOutput();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-        boolean server = event.includeServer();
-        boolean client = event.includeClient();
-        //registers
-        RegistrySetBuilder registrySetBuilder = new RegistrySetBuilder();
-        ModWorldgenProvider.register(registrySetBuilder);
-        //resource pack
-        generator.addProvider(client, new ModItemModelProvider(output, existingFileHelper));
-        generator.addProvider(client, new ModBlockStateProvider(output, existingFileHelper));
-        ModFluidTextureProvider textureProvider = new ModFluidTextureProvider(output);
-        generator.addProvider(client, textureProvider);
-        generator.addProvider(client, new FluidTextureCameraProvider(output, event.getExistingFileHelper(), textureProvider));
-        generator.addProvider(client, new FluidBucketModelProvider(output, MODID));
-        generator.addProvider(client, new FluidBlockstateModelProvider(output, MODID));
-        TinkerPartSpriteProvider partSprites = new TinkerPartSpriteProvider();
-        ModMaterialSpriteProvider materialSprites = new ModMaterialSpriteProvider();
-        generator.addProvider(client, new ModMaterialRenderInfoProvider(output, materialSprites, existingFileHelper));
-        generator.addProvider(client, new MaterialPartTextureGenerator(output, existingFileHelper, partSprites, materialSprites));
-
-        //data pack
-        DatapackBuiltinEntriesProvider datapackProvider = new DatapackBuiltinEntriesProvider(output, event.getLookupProvider(), registrySetBuilder, Set.of(MODID));
-        generator.addProvider(server, datapackProvider);
-        //recipes
-        generator.addProvider(server, new ModCommonRecipeProvider(output));
-        generator.addProvider(server, new ModSmelteryRecipeProvider(output));
-        generator.addProvider(server, new ModMaterialRecipeProvider(output));
-        //tags
-        ModBlockTagsProvider blockTags = new ModBlockTagsProvider(output, lookupProvider, existingFileHelper);
-        generator.addProvider(server, blockTags);
-        generator.addProvider(server, new ModItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
-        generator.addProvider(server, new ModFluidTagProvider(output, lookupProvider, existingFileHelper));
-        generator.addProvider(server, new ModEntityTypeTagsProvider(output, lookupProvider, existingFileHelper));
-        generator.addProvider(server, new ModBiomeTagsProvider(output, lookupProvider, existingFileHelper));
-        generator.addProvider(server, new ModDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
-        generator.addProvider(server, new ModModifierTagsProvider(output, existingFileHelper));
-        generator.addProvider(server, new ModMaterialTagsProvider(output, existingFileHelper));
-        //loots
-        generator.addProvider(server, new ModLootTableProvider(output));
-        generator.addProvider(server, new ModGlobalLootModifiersProvider(output));
-        //others
-        generator.addProvider(server, new ModFluidContainerTransferProvider(output));
-        ModMaterialProvider materials = new ModMaterialProvider(output);
-        generator.addProvider(server, materials);
-        generator.addProvider(server, new ModStatsProvider(output, materials));
-        generator.addProvider(server, new ModTraitsProvider(output, materials));
-        generator.addProvider(server, new ModFluidEffectProvider(output));
-        generator.addProvider(server, new ModModifierProvider(output));
     }
 
     public static String makeTranslationKey(String base, String name) {

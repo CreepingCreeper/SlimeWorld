@@ -13,6 +13,9 @@ public class ModModifierIds {
     public static final ModifierId steadfast = id("steadfast");
     public static final ModifierId unyielding = id("unyielding");
 
+    public static final ModifierId affix = id("affix");
+
+
     public static final ModifierId crit = id("crit");
     public static final ModifierId slimeProtect = id("slime_protect");
     public static final ModifierId vanishingCurse = id("vanishing_curse");

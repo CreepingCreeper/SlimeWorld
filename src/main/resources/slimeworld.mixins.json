@@ -11,6 +11,9 @@
   },
   "mixins": [
     "PlayerMixin",
-    "SlimeMixin"
+    "SlimeMixin",
+    "ToolBuildingRecipeMixin",
+    "ToolCastingRecipeMixin",
+    "ToolNameHookMixin"
   ]
 }

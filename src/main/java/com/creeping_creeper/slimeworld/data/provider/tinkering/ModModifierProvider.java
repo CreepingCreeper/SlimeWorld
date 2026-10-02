@@ -87,6 +87,8 @@ public class ModModifierProvider extends AbstractModifierProvider {
         buildModifier(ModModifierIds.unyielding)
                 .addModule(new UnyieldingModule(LevelingValue.eachLevel(10.0f)));
 
+        buildModifier(ModModifierIds.affix).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(AffixModule.INSTANCE);
+
         buildModifier(ModModifierIds.crit).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(CritModule.INSTANCE);
         buildModifier(ModModifierIds.slimeProtect).levelDisplay(ModifierLevelDisplay.NO_LEVELS)

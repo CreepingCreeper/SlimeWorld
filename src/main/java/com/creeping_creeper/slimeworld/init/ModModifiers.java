@@ -22,6 +22,8 @@ public class ModModifiers {
     @SubscribeEvent
     static void registerSerializers(RegisterEvent event) {
         if (event.getRegistryKey() == Registries.RECIPE_SERIALIZER) {
+            ModifierModule.LOADER.register(getResource("affix"), AffixModule.INSTANCE.getLoader());
+
             ModifierModule.LOADER.register(getResource("sputtering"), SputteringModule.LOADER);
             ModifierModule.LOADER.register(getResource("overload"), OverloadModule.LOADER);
             ModifierModule.LOADER.register(getResource("overtomato"), OverTomatoModule.LOADER);
