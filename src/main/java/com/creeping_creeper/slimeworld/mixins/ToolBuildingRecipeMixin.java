@@ -2,7 +2,9 @@ package com.creeping_creeper.slimeworld.mixins;
 
 import com.creeping_creeper.slimeworld.SlimeWorld;
 import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
+import com.creeping_creeper.slimeworld.library.AffixUtil;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -18,10 +20,9 @@ public class ToolBuildingRecipeMixin {
 
     @Inject(method = "getValidatedResult", at = @At(value = "RETURN"), remap = false)
     private void getValidatedResul(ITinkerStationContainer inv, RegistryAccess access, CallbackInfoReturnable<RecipeResult<LazyToolStack>> cir) {
-        RecipeResult<LazyToolStack> stack = cir.getReturnValue();
-        ToolStack tool = stack.getResult().getTool();
-        tool.addModifier(ModModifierIds.affix, 1);
-        tool.getPersistentData().putString(SlimeWorld.getResource("affix"), ModModifierIds.overwash.toString());
-        tool.rebuildStats();
+        LazyToolStack lazyStack = cir.getReturnValue().getResult();
+        ItemStack stack = lazyStack.getStack();
+        ToolStack tool = lazyStack.getTool();
+        AffixUtil.addAffix(tool, stack, false);
     }
 }

@@ -52,9 +52,9 @@ public enum AffixModule implements ModifierModule, ModifierTraitHook, ModifierRe
     }
 
     public static Optional<ModifierId> getAffixModifier(IToolContext context) {
-        ResourceLocation affix = ResourceLocation.tryParse(context.getPersistentData().getString(SlimeWorld.getResource("affix")));
-        if (affix != null){
-            return Optional.ofNullable(ModifierId.tryBuild(affix.getNamespace(), affix.getPath()));
+        String string = context.getPersistentData().getString(SlimeWorld.getResource("affix"));
+        if (!string.isEmpty()){
+            return Optional.ofNullable(ModifierId.tryParse(string));
         }
         return Optional.empty();
     }

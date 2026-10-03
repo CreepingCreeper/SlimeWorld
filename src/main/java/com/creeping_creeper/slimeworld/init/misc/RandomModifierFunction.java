@@ -2,12 +2,12 @@ package com.creeping_creeper.slimeworld.init.misc;
 
 import com.creeping_creeper.slimeworld.init.ModMisc;
 import com.creeping_creeper.slimeworld.init.item.ModifierRuneItem;
+import com.creeping_creeper.slimeworld.library.AffixUtil;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunction;
@@ -18,9 +18,6 @@ import org.jetbrains.annotations.NotNull;
 import slimeknights.tconstruct.library.json.TinkerLoadables;
 import slimeknights.tconstruct.library.modifiers.Modifier;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
-import slimeknights.tconstruct.library.modifiers.ModifierManager;
-
-import java.util.List;
 
 public class RandomModifierFunction extends LootItemConditionalFunction {
     public static final RandomModifierFunction.Serializer SERIALIZER = new Serializer();
@@ -36,9 +33,7 @@ public class RandomModifierFunction extends LootItemConditionalFunction {
     @Override
     protected @NotNull ItemStack run(ItemStack stack, @NotNull LootContext lootContext) {
         if (stack.getItem() instanceof ModifierRuneItem){
-            RandomSource random = lootContext.getRandom();
-            List<Modifier> options = ModifierManager.getTagValues(tag);
-            ModifierId modifier = options.get(random.nextInt(options.size())).getId();
+            ModifierId modifier = AffixUtil.randomModifier(tag);
             return withModifier(stack, modifier, maxLevel);
         }
         return stack;

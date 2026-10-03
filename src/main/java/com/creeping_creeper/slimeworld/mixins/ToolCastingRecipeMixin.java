@@ -1,7 +1,6 @@
 package com.creeping_creeper.slimeworld.mixins;
 
-import com.creeping_creeper.slimeworld.SlimeWorld;
-import com.creeping_creeper.slimeworld.data.key.ModModifierIds;
+import com.creeping_creeper.slimeworld.library.AffixUtil;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,8 +18,6 @@ public class ToolCastingRecipeMixin {
     private void getValidatedResul(ICastingContainer inv, RegistryAccess access, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack stack = cir.getReturnValue();
         ToolStack tool = ToolStack.from(stack);
-        tool.addModifier(ModModifierIds.affix, 1);
-        tool.getPersistentData().putString(SlimeWorld.getResource("affix"), ModModifierIds.overwash.toString());
-        tool.rebuildStats();
+        AffixUtil.addAffix(tool, stack, false);
     }
 }
