@@ -12,7 +12,7 @@
   "mixins": [
     "PlayerMixin",
     "SlimeMixin",
-    "ToolBuildingRecipeMixin",
+    "TinkerStationBlockEntityMixin",
     "ToolCastingRecipeMixin",
     "ToolNameHookMixin"
   ]

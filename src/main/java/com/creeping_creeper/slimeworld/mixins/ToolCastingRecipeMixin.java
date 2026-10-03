@@ -15,9 +15,9 @@ import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 public class ToolCastingRecipeMixin {
 
     @Inject(method = "assemble(Lslimeknights/tconstruct/library/recipe/casting/ICastingContainer;Lnet/minecraft/core/RegistryAccess;)Lnet/minecraft/world/item/ItemStack;", at = @At(value = "RETURN", ordinal = 1), remap = false)
-    private void getValidatedResul(ICastingContainer inv, RegistryAccess access, CallbackInfoReturnable<ItemStack> cir) {
+    private void getValidatedResult(ICastingContainer inv, RegistryAccess access, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack stack = cir.getReturnValue();
         ToolStack tool = ToolStack.from(stack);
-        AffixUtil.addAffix(tool, stack, false);
+        AffixUtil.addAffix(tool, stack);
     }
 }

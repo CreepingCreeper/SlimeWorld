@@ -13,6 +13,5 @@
       "type": "tconstruct:swappable_tool_traits",
       "hook": "tconstruct:tool_traits"
     }
-  ],
-  "tooltip_display": "always"
+  ]
 }

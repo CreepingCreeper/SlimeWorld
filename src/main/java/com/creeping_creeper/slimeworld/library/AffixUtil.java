@@ -17,12 +17,13 @@ import java.util.List;
 public interface AffixUtil {
    Component Prep = SlimeWorld.makeTranslation("modifier", "affix.prep");
 
-   static void addAffix(ToolStack tool, ItemStack stack, boolean special) {
+   static void addAffix(ToolStack tool, ItemStack stack) {
        for (AffixType type : AffixType.TYPES){
            if (stack.is(type.getToolTag())){
-               int rarity = special ? 4 : stack.getRarity().ordinal();
+               int rarity = stack.getRarity().ordinal();
                String level = AffixLevel.getLevel(rarity);
                if (level.isEmpty()){
+                   SlimeWorld.LOG.error("Empty");
                    return;
                }
                ModifierId modifierId = randomModifier(type.getModifierTag(level));
@@ -36,7 +37,7 @@ public interface AffixUtil {
    static ModifierId randomModifier(TagKey<Modifier> tag) {
        List<Modifier> options = ModifierManager.getTagValues(tag);
        if (options.isEmpty()) {
-           SlimeWorld.LOG.error("There is no modifier in tag{}", tag);
+           SlimeWorld.LOG.warn("There is no modifier in tag{}", tag);
            return ModifierId.EMPTY;
        }
        return options.get(Modifier.RANDOM.nextInt(options.size())).getId();
@@ -51,7 +52,7 @@ public interface AffixUtil {
        private final TagKey<Item> toolTag;
        private final String type;
 
-       private static final AffixType[] TYPES = {ARMOR, RANGED, MELEE};
+       public static final AffixType[] TYPES = {ARMOR, RANGED, MELEE};
 
        AffixType(TagKey<Item> toolTag, String type) {
            this.toolTag = toolTag;
@@ -76,11 +77,13 @@ public interface AffixUtil {
        BETTER("better");
 
        private final String level;
-       private static final int[] COMMON_INDEX = {4, 6, 6, 9, 10, 10};
-       private static final int[] UNCOMMON_INDEX = {3, 5, 6, 9, 10, 10};
-       private static final int[] RARE_INDEX = {2, 4, 5, 8, 10, 10};
-       private static final int[] EPIC_INDEX = {1, 2, 4, 7, 9, 10};
-       private static final int[] SPECIAL_INDEX = {0, 0, 3, 6, 8, 10};
+
+       public static final AffixLevel[] TYPES = {BAD, NEUTRAL, NORMAL, GOOD, BETTER};
+       private static final int[] COMMON_INDEX = {3, 5, 6, 9, 10, 10};
+       private static final int[] UNCOMMON_INDEX = {2, 4, 6, 9, 10, 10};
+       private static final int[] RARE_INDEX = {1, 2, 4, 7, 9, 10};
+       private static final int[] EPIC_INDEX = {0, 1, 3, 6, 8, 10};
+       private static final int[] SPECIAL_INDEX = {0, 0, 2, 5, 8, 10};
 
        AffixLevel(String level) {
            this.level = level;
@@ -95,12 +98,17 @@ public interface AffixUtil {
                case 3 -> EPIC_INDEX;
                default -> SPECIAL_INDEX;
            };
+
            for (int i = 0; i < 6; i++) {
                if (r < index[i]) {
                    return values()[i].level;
                }
            }
            return "";
+       }
+
+       public String getLevel() {
+           return level;
        }
    }
 

@@ -4,6 +4,5 @@
     {
       "type": "slimeworld:slime_protect"
     }
-  ],
-  "tooltip_display": "always"
+  ]
 }

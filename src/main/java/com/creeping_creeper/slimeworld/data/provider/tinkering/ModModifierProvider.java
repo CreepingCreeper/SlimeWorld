@@ -9,12 +9,15 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.jetbrains.annotations.NotNull;
+import slimeknights.mantle.data.predicate.IJsonPredicate;
 import slimeknights.mantle.data.predicate.entity.LivingEntityPredicate;
 import slimeknights.mantle.data.predicate.item.ItemPredicate;
 import slimeknights.tconstruct.common.Sounds;
 import slimeknights.tconstruct.common.TinkerDamageTypes;
+import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.data.tinkering.AbstractModifierProvider;
 import slimeknights.tconstruct.library.json.LevelingValue;
+import slimeknights.tconstruct.library.json.predicate.modifier.ModifierPredicate;
 import slimeknights.tconstruct.library.json.variable.entity.ConditionalEntityVariable;
 import slimeknights.tconstruct.library.json.variable.entity.EntityVariable;
 import slimeknights.tconstruct.library.json.variable.stat.EntityConditionalStatVariable;
@@ -24,10 +27,13 @@ import slimeknights.tconstruct.library.modifiers.ModifierEntry;
 import slimeknights.tconstruct.library.modifiers.ModifierId;
 import slimeknights.tconstruct.library.modifiers.modules.behavior.AttributeModule;
 import slimeknights.tconstruct.library.modifiers.modules.behavior.ConditionalStatModule;
-import slimeknights.tconstruct.library.modifiers.modules.build.EnchantmentModule;
-import slimeknights.tconstruct.library.modifiers.modules.build.SwappableToolTraitsModule;
+import slimeknights.tconstruct.library.modifiers.modules.behavior.ReduceToolDamageModule;
+import slimeknights.tconstruct.library.modifiers.modules.behavior.RepairModule;
+import slimeknights.tconstruct.library.modifiers.modules.build.*;
 import slimeknights.tconstruct.library.modifiers.modules.mining.ConditionalMiningSpeedModule;
 import slimeknights.tconstruct.library.modifiers.util.ModifierLevelDisplay;
+import slimeknights.tconstruct.library.modifiers.util.ModifierTooltip;
+import slimeknights.tconstruct.library.tools.SlotType;
 import slimeknights.tconstruct.library.tools.definition.module.ToolHooks;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 import slimeknights.tconstruct.shared.TinkerAttributes;
@@ -46,6 +52,7 @@ public class ModModifierProvider extends AbstractModifierProvider {
 
     @Override
     protected void addModifiers() {
+        IJsonPredicate<ModifierId> allowReinforced = ModifierPredicate.tag(TinkerTags.Modifiers.BYPASS_REINFORCED).inverted();
         ModifierId overslime = TinkerModifiers.overslime.getId();
 
         buildModifier(ModModifierIds.undercurrent).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
@@ -87,8 +94,6 @@ public class ModModifierProvider extends AbstractModifierProvider {
         buildModifier(ModModifierIds.unyielding)
                 .addModule(new UnyieldingModule(LevelingValue.eachLevel(10.0f)));
 
-        buildModifier(ModModifierIds.affix).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(AffixModule.INSTANCE);
-
         buildModifier(ModModifierIds.crit).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(CritModule.INSTANCE);
         buildModifier(ModModifierIds.slimeProtect).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
@@ -99,6 +104,28 @@ public class ModModifierProvider extends AbstractModifierProvider {
                 .addModule(new SwappableToolTraitsModule(null, "", ToolHooks.TOOL_TRAITS));
         buildModifier(ModModifierIds.vanishingCurse).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(EnchantmentModule.builder(Enchantments.VANISHING_CURSE).constant());
+
+        // affix
+        buildModifier(ModModifierIds.affix).levelDisplay(ModifierLevelDisplay.NO_LEVELS).showInTooltips(ModifierTooltip.TINKER_STATION)
+                .addModule(AffixModule.INSTANCE);
+
+        buildModifier(ModModifierIds.authoritative).levelDisplay(ModifierLevelDisplay.NO_LEVELS).addModule(ModifierSlotModule.slot(SlotType.ABILITY).eachLevel(1));
+
+        buildModifier(ModModifierIds.superior).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
+                .addModule(StatBoostModule.add(ToolStats.ARMOR).toolItem(ItemPredicate.tag(ARMOR)).flat(1.5f))
+                .addModule(StatBoostModule.multiplyBase(ToolStats.PROJECTILE_DAMAGE).flat(0.15f))
+                .addModule(StatBoostModule.multiplyBase(ToolStats.ATTACK_DAMAGE).flat(0.15f))
+                .addModule(StatBoostModule.multiplyBase(ToolStats.MINING_SPEED).flat(0.15f));
+
+        buildModifier(ModModifierIds.hard).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
+                .addModule(ReduceToolDamageModule.builder().cause(allowReinforced).flat(0.15f));
+
+        buildModifier(ModModifierIds.broken).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
+                .addModule(StatBoostModule.multiplyBase(ToolStats.DURABILITY).flat(-0.15f));
+        buildModifier(ModModifierIds.damaged).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
+                .addModule(RepairModule.builder().eachLevel(-0.5f));
+
+        // overwrite
 
         buildModifier(ModifierIds.slimeball).levelDisplay(ModifierLevelDisplay.NO_LEVELS)
                 .addModule(FireballModule.builder()
